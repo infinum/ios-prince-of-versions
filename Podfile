@@ -7,4 +7,5 @@ use_frameworks!
 # Pods for Versioner
 target 'Versioner' do
     pod 'Alamofire', '~> 3.4'
+    pod 'AlamofireObjectMapper', '~> 3.0'
 end

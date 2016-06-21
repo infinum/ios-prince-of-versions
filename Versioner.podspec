@@ -16,9 +16,8 @@ Pod::Spec.new do |s|
   #
 
   s.name = "Versioner"
-  s.version      = "0.0.1"
+  s.version      = "0.1.0"
   s.summary = "Easy way for checking if user use last version of your app!"
-
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -133,6 +132,7 @@ Pod::Spec.new do |s|
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   s.dependency 'Alamofire', '~> 3.0'
-
+  s.dependency 'AlamofireObjectMapper', '~> 3.0'
+  
 
 end
