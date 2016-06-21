@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 
-
 class DataValues{
 
     var minimumVersion: String!
