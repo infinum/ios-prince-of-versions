@@ -1,6 +1,0 @@
-framework module Pods_Versioner {
-  umbrella header "Pods-Versioner-umbrella.h"
-
-  export *
-  module * { export * }
-}

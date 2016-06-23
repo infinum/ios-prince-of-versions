@@ -7,16 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		066396541D197C8800E8B7D2 /* Versioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* Versioner.swift */; };
-		066396571D19807900E8B7D2 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 066396551D197E6900E8B7D2 /* Alamofire.framework */; };
+		066396541D197C8800E8B7D2 /* AppVersionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* AppVersionChecker.swift */; };
 		0688DB171D199F660027695C /* DataValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0688DB161D199F660027695C /* DataValues.swift */; };
-		0688DB191D199F8B0027695C /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB181D199F8B0027695C /* AlamofireObjectMapper.framework */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
 		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06C2DF331D19639B0032E464 /* Versioner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* Versioner.framework */; };
+		06C2DF331D19639B0032E464 /* AppVersionChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* AppVersionChecker.framework */; };
 		06C2DF381D19639B0032E464 /* VersionerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2DF371D19639B0032E464 /* VersionerTests.swift */; };
-		38569578D24B1A393FD4D09D /* Pods_Versioner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B0608EACCACBF72F7144A41 /* Pods_Versioner.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,21 +27,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		066396531D197C8800E8B7D2 /* Versioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Versioner.swift; sourceTree = "<group>"; };
-		066396551D197E6900E8B7D2 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../Developer/Xcode/DerivedData/Versioner-fnuthfgoqrljsucmlplbwgdjdlid/Build/Products/Debug-iphonesimulator/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
+		066396531D197C8800E8B7D2 /* AppVersionChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionChecker.swift; sourceTree = "<group>"; };
 		0688DB161D199F660027695C /* DataValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataValues.swift; sourceTree = "<group>"; };
-		0688DB181D199F8B0027695C /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = "../../../../Developer/Xcode/DerivedData/Versioner-fnuthfgoqrljsucmlplbwgdjdlid/Build/Products/Debug-iphonesimulator/AlamofireObjectMapper/AlamofireObjectMapper.framework"; sourceTree = "<group>"; };
 		0688DB1A1D19AA460027695C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0688DB1C1D19AA4B0027695C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		06C2DF281D19639B0032E464 /* Versioner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Versioner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C2DF281D19639B0032E464 /* AppVersionChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppVersionChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06C2DF321D19639B0032E464 /* VersionerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VersionerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C2DF321D19639B0032E464 /* AppVersionChecker.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppVersionChecker.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF371D19639B0032E464 /* VersionerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionerTests.swift; sourceTree = "<group>"; };
 		06C2DF391D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1B0608EACCACBF72F7144A41 /* Pods_Versioner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Versioner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B630FEC6C408D4D5DE8D411 /* Pods-Versioner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Versioner.release.xcconfig"; path = "Pods/Target Support Files/Pods-Versioner/Pods-Versioner.release.xcconfig"; sourceTree = "<group>"; };
-		9CC91D719005AF63EA9C52A3 /* Pods-Versioner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Versioner.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Versioner/Pods-Versioner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +46,6 @@
 			files = (
 				0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */,
 				0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */,
-				0688DB191D199F8B0027695C /* AlamofireObjectMapper.framework in Frameworks */,
-				066396571D19807900E8B7D2 /* Alamofire.framework in Frameworks */,
-				38569578D24B1A393FD4D09D /* Pods_Versioner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06C2DF331D19639B0032E464 /* Versioner.framework in Frameworks */,
+				06C2DF331D19639B0032E464 /* AppVersionChecker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +66,6 @@
 				06C2DF2A1D19639B0032E464 /* Versioner */,
 				06C2DF361D19639B0032E464 /* VersionerTests */,
 				06C2DF291D19639B0032E464 /* Products */,
-				E9E818C5315F656FCB8BF59F /* Pods */,
 				1E349D472206F2D83F54231C /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -85,8 +73,8 @@
 		06C2DF291D19639B0032E464 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06C2DF281D19639B0032E464 /* Versioner.framework */,
-				06C2DF321D19639B0032E464 /* VersionerTests.xctest */,
+				06C2DF281D19639B0032E464 /* AppVersionChecker.framework */,
+				06C2DF321D19639B0032E464 /* AppVersionChecker.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -96,7 +84,7 @@
 			children = (
 				06C2DF2B1D19639B0032E464 /* Versioner.h */,
 				06C2DF2D1D19639B0032E464 /* Info.plist */,
-				066396531D197C8800E8B7D2 /* Versioner.swift */,
+				066396531D197C8800E8B7D2 /* AppVersionChecker.swift */,
 				0688DB161D199F660027695C /* DataValues.swift */,
 			);
 			path = Versioner;
@@ -116,20 +104,8 @@
 			children = (
 				0688DB1C1D19AA4B0027695C /* UIKit.framework */,
 				0688DB1A1D19AA460027695C /* Foundation.framework */,
-				0688DB181D199F8B0027695C /* AlamofireObjectMapper.framework */,
-				066396551D197E6900E8B7D2 /* Alamofire.framework */,
-				1B0608EACCACBF72F7144A41 /* Pods_Versioner.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E9E818C5315F656FCB8BF59F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9CC91D719005AF63EA9C52A3 /* Pods-Versioner.debug.xcconfig */,
-				8B630FEC6C408D4D5DE8D411 /* Pods-Versioner.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,29 +122,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		06C2DF271D19639B0032E464 /* Versioner */ = {
+		06C2DF271D19639B0032E464 /* AppVersionChecker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "Versioner" */;
+			buildConfigurationList = 06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionChecker" */;
 			buildPhases = (
-				F2EABCD169DA183630DA3401 /* [CP] Check Pods Manifest.lock */,
 				06C2DF231D19639B0032E464 /* Sources */,
 				06C2DF241D19639B0032E464 /* Frameworks */,
 				06C2DF251D19639B0032E464 /* Headers */,
 				06C2DF261D19639B0032E464 /* Resources */,
-				139EAD225C997FA37CC21B32 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Versioner;
+			name = AppVersionChecker;
 			productName = Versioner;
-			productReference = 06C2DF281D19639B0032E464 /* Versioner.framework */;
+			productReference = 06C2DF281D19639B0032E464 /* AppVersionChecker.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		06C2DF311D19639B0032E464 /* VersionerTests */ = {
+		06C2DF311D19639B0032E464 /* AppVersionCheckerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "VersionerTests" */;
+			buildConfigurationList = 06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionCheckerTests" */;
 			buildPhases = (
 				06C2DF2E1D19639B0032E464 /* Sources */,
 				06C2DF2F1D19639B0032E464 /* Frameworks */,
@@ -179,9 +153,9 @@
 			dependencies = (
 				06C2DF351D19639B0032E464 /* PBXTargetDependency */,
 			);
-			name = VersionerTests;
+			name = AppVersionCheckerTests;
 			productName = VersionerTests;
-			productReference = 06C2DF321D19639B0032E464 /* VersionerTests.xctest */;
+			productReference = 06C2DF321D19639B0032E464 /* AppVersionChecker.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -202,7 +176,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "Versioner" */;
+			buildConfigurationList = 06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "AppVersionChecker" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -214,8 +188,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06C2DF271D19639B0032E464 /* Versioner */,
-				06C2DF311D19639B0032E464 /* VersionerTests */,
+				06C2DF271D19639B0032E464 /* AppVersionChecker */,
+				06C2DF311D19639B0032E464 /* AppVersionCheckerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -237,45 +211,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		139EAD225C997FA37CC21B32 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Versioner/Pods-Versioner-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F2EABCD169DA183630DA3401 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		06C2DF231D19639B0032E464 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				066396541D197C8800E8B7D2 /* Versioner.swift in Sources */,
+				066396541D197C8800E8B7D2 /* AppVersionChecker.swift in Sources */,
 				0688DB171D199F660027695C /* DataValues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +234,7 @@
 /* Begin PBXTargetDependency section */
 		06C2DF351D19639B0032E464 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 06C2DF271D19639B0032E464 /* Versioner */;
+			target = 06C2DF271D19639B0032E464 /* AppVersionChecker */;
 			targetProxy = 06C2DF341D19639B0032E464 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -392,7 +333,6 @@
 		};
 		06C2DF3D1D19639B0032E464 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CC91D719005AF63EA9C52A3 /* Pods-Versioner.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -403,8 +343,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.Versioner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.AppVersionChecker;
+				PRODUCT_NAME = AppVersionChecker;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -412,7 +352,6 @@
 		};
 		06C2DF3E1D19639B0032E464 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B630FEC6C408D4D5DE8D411 /* Pods-Versioner.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -423,8 +362,8 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.Versioner;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.AppVersionChecker;
+				PRODUCT_NAME = AppVersionChecker;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -435,7 +374,7 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AppVersionChecker;
 			};
 			name = Debug;
 		};
@@ -445,14 +384,14 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AppVersionChecker;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "Versioner" */ = {
+		06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "AppVersionChecker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06C2DF3A1D19639B0032E464 /* Debug */,
@@ -461,7 +400,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "Versioner" */ = {
+		06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionChecker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06C2DF3D1D19639B0032E464 /* Debug */,
@@ -470,7 +409,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "VersionerTests" */ = {
+		06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionCheckerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06C2DF401D19639B0032E464 /* Debug */,
