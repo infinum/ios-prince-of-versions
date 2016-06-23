@@ -7,38 +7,68 @@
 //
 
 import UIKit
-import Alamofire
-
 
 class DataValues{
+
+    struct JSONConstants {
+        static let osName = "ios"
+        static let minimumVersion = "minimum_version"
+        static let optionalVersion = "optional_update"
+        static let notificationType = "notification_type"
+        static let currentVersion = "version"
+    }
+
+    private var url: NSURL!
+    private var value: AnyObject!
 
     var minimumVersion: String!
     var notificationType: String!
     var version: String!
 
     init(fromURL: NSURL){
+        self.url = fromURL
+        reloadData()
+    }
 
-        Alamofire.request(.GET, fromURL).responseJSON { (response: Response<AnyObject, NSError>) in
+    func reloadData(){
 
-            guard response.result.isSuccess else {
-                print("Error in fetching data")
+        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        var dataTask: NSURLSessionDataTask?
+
+        dataTask = defaultSession.dataTaskWithURL(url){
+            data, response, error in
+
+            if let error = error{
+                print("Error in fetching data from server with error: \(error.localizedDescription)")
                 return
             }
 
-            guard let value = response.result.value as? [String: AnyObject] else{
-                print("Error in JSON")
+            do{
+                self.value = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+            } catch {
+                print("Error in parsing JSON")
+            }
+
+            guard let value = self.value as? [String: AnyObject] else{
+                print("Error in reading JSON")
                 return
             }
 
-            let os = value["ios"]!
-            let optionalUpdate = os["optional_update"]!!
+            guard let os = value[JSONConstants.osName] as? [String: AnyObject] else{
+                //There is no "ios" key in JSON
+                return
+            }
+            self.minimumVersion = os[JSONConstants.minimumVersion] as! String
 
-            self.minimumVersion = os["minimum_version"] as! String
-            self.notificationType = optionalUpdate["notification_type"] as! String
-            self.version = optionalUpdate["version"] as! String
-
+            guard let optionalUpdate = os[JSONConstants.optionalVersion] as? [String: AnyObject] else{
+                return
+            }
+            self.notificationType = optionalUpdate[JSONConstants.notificationType] as! String
+            self.version = optionalUpdate[JSONConstants.currentVersion] as! String
+            
         }
-
+        
+        dataTask?.resume()
     }
     
 }
