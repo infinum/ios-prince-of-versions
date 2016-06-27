@@ -11,10 +11,8 @@ import UIKit
 public class AppVersionChecker{
 
     private let BundleShortString = "CFBundleShortVersionString"
-
     private var URL: NSURL!
-
-    var data: DataValues!
+    var data: DataParser!
 
     /**
      Initializes connection with server that contains JSON information.
@@ -22,9 +20,8 @@ public class AppVersionChecker{
      - parameter compareWithDataFrom: Takes URL Address in String format
      */
     public init(takeDataFrom: String){
-
         URL = NSURL(string: takeDataFrom)
-        data = DataValues(fromURL: URL)
+        data = DataParser(fromURL: URL)
     }
 
     /**
@@ -34,7 +31,6 @@ public class AppVersionChecker{
         data.reloadData()
     }
 
-
     /**
      Return minimum required version of app
 
@@ -42,7 +38,6 @@ public class AppVersionChecker{
      */
     public func getMinimumVersion() -> String? {
         guard data.minimumVersion != nil else {
-            print("Unable to fetch minimum version")
             return nil
         }
         return data.minimumVersion
@@ -58,7 +53,6 @@ public class AppVersionChecker{
      */
     public func getNotificationType() -> String? {
         guard data.notificationType != nil else {
-            print("Unable to fetch notification type")
             return nil
         }
         return data.notificationType
@@ -71,7 +65,6 @@ public class AppVersionChecker{
      */
     public func getCurrentVersion() -> String? {
         guard data.version != nil else {
-            print("Unable to fetch current version")
             return nil
         }
         return data.version
@@ -82,8 +75,10 @@ public class AppVersionChecker{
 
      -returns: String with current installed version
      */
-    public func getInstalledVersion() -> String {
-        let dict = NSBundle.mainBundle().infoDictionary!
+    public func getInstalledVersion() -> String? {
+        guard var dict = NSBundle.mainBundle().infoDictionary else {
+            return nil
+        }
         let currentVersion = dict[BundleShortString] as! String
         return currentVersion
     }
@@ -95,33 +90,12 @@ public class AppVersionChecker{
      */
     public func isMinimumVersionSatisfied() -> Bool? {
         guard getMinimumVersion() != nil else {
-            print("Unable to compare. Minimum requred version not fetched")
             return nil
         }
-
         if getMinimumVersion() <= getInstalledVersion(){
             return true
         } else {
             return false
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
