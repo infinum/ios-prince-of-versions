@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		066396541D197C8800E8B7D2 /* AppVersionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* AppVersionChecker.swift */; };
-		0688DB171D199F660027695C /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0688DB161D199F660027695C /* DataParser.swift */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
 		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,7 +27,6 @@
 
 /* Begin PBXFileReference section */
 		066396531D197C8800E8B7D2 /* AppVersionChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionChecker.swift; sourceTree = "<group>"; };
-		0688DB161D199F660027695C /* DataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataParser.swift; sourceTree = "<group>"; };
 		0688DB1A1D19AA460027695C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0688DB1C1D19AA4B0027695C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		06C2DF281D19639B0032E464 /* AppVersionChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppVersionChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +83,6 @@
 				06C2DF2B1D19639B0032E464 /* Versioner.h */,
 				06C2DF2D1D19639B0032E464 /* Info.plist */,
 				066396531D197C8800E8B7D2 /* AppVersionChecker.swift */,
-				0688DB161D199F660027695C /* DataParser.swift */,
 			);
 			path = Versioner;
 			sourceTree = "<group>";
@@ -217,7 +214,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				066396541D197C8800E8B7D2 /* AppVersionChecker.swift in Sources */,
-				0688DB171D199F660027695C /* DataParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

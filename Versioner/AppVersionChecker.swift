@@ -8,94 +8,147 @@
 
 import UIKit
 
-public class AppVersionChecker{
+public enum NotificationType : String {
+    case Always = "ALWAYS"
+    case Once = "ONCE"
+}
 
-    private let BundleShortString = "CFBundleShortVersionString"
-    private var URL: NSURL!
-    var data: DataParser!
-
-    /**
-     Initializes connection with server that contains JSON information.
-
-     - parameter compareWithDataFrom: Takes URL Address in String format
-     */
-    public init(takeDataFrom: String){
-        URL = NSURL(string: takeDataFrom)
-        data = DataParser(fromURL: URL)
-    }
-
-    /**
-     Reload data from server.
-     */
-    public func loadConfiguration() {
-        data.reloadData()
-    }
+public struct UpdateInfo {
 
     /**
      Return minimum required version of app
 
-     -returns: String with minimum app version
+     - returns: String with minimum app version
      */
-    public func getMinimumVersion() -> String? {
-        guard data.minimumVersion != nil else {
-            return nil
-        }
-        return data.minimumVersion
-    }
+    public private(set) var minimumRequiredVersion: String?
 
     /**
      Return notification type. Possible values are:
-     
-     - ONCE: Show notification only once
-     - ALWAYS: Show notification every time app run
 
-     -returns: String once/always
+     - Once: Show notification only once
+     - Always: Show notification every time app run
+
+     - returns: NotificationType
      */
-    public func getNotificationType() -> String? {
-        guard data.notificationType != nil else {
-            return nil
-        }
-        return data.notificationType
-    }
+    public private(set) var notificationType: NotificationType?
 
     /**
      Return current available version of app
 
-     -returns: String with current app version
+     - returns: String with current app version
      */
-    public func getCurrentVersion() -> String? {
-        guard data.version != nil else {
-            return nil
+    public private(set) var currentAvailableVersion: String?
+
+    
+    public init(data: NSData){
+
+        let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary
+
+        guard let value = json as? [String: AnyObject] else{
+            return
         }
-        return data.version
+
+        guard let os = value["ios"] as? [String: AnyObject] else{
+            return
+        }
+
+        if let minVer = os["minimum_version"] as? String{
+            self.minimumRequiredVersion = minVer
+        }
+
+        guard let optionalUpdate = os["optional_update"] as? [String: AnyObject] else{
+            return
+        }
+
+        if let notTyp = optionalUpdate["notification_type"] as? NotificationType.RawValue{
+            switch notTyp {
+            case "ALWAYS":
+                self.notificationType = NotificationType.Always
+            default:
+                self.notificationType = NotificationType.Once
+            }
+        }
+
+        if let ver = optionalUpdate["version"] as? String{
+            self.currentAvailableVersion = ver
+        }
     }
 
     /**
      Return current installed version of app
 
-     -returns: String with current installed version
+     - returns: String with current installed version
      */
-    public func getInstalledVersion() -> String? {
+    public var currentInstalledVersion: String? {
         guard var dict = NSBundle.mainBundle().infoDictionary else {
             return nil
         }
-        let currentVersion = dict[BundleShortString] as! String
+        let currentVersion = dict["CFBundleShortVersionString"] as? String
         return currentVersion
     }
 
     /**
      Checks and return true if minimum version requirement is satisfied
 
-     -returns: true if it is satisfied, else returns false
+     - returns: true if it is satisfied, else returns false
      */
-    public func isMinimumVersionSatisfied() -> Bool? {
-        guard getMinimumVersion() != nil else {
+    public var isMinimumVersionSatisfied: Bool? {
+        guard minimumRequiredVersion != nil else {
             return nil
         }
-        if getMinimumVersion() <= getInstalledVersion(){
+        guard currentInstalledVersion != nil else {
+            return nil
+        }
+        if minimumRequiredVersion <= currentInstalledVersion {
             return true
         } else {
             return false
         }
+    }
+}
+
+
+public struct AppVersionChecker{
+    public init(){}
+
+    /**
+     Check mimum required version, current installed version on device and current available version of app with data stored on URL.
+     It also checks if minimum version is satisfied and what should be frequency of notifying user.
+     
+     - parameters:
+        - configurationURL: URL that containts configuration data
+        - completion:       The completion handler to call when the load request is complete. 
+
+            This completion handler takes the following parameters:
+
+            `data`
+                            
+            Parsed data returned by the server.
+                            
+            `error`
+                            
+            An error object that indicates why the request failed, or nil if the request was successful.
+
+     - returns: Configuration data
+     */
+    public func loadCondiguration(configurationURL: NSURL, completion: (data: UpdateInfo?, error: NSError?) -> Void){
+
+        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+        var dataTask: NSURLSessionDataTask?
+
+        dataTask = defaultSession.dataTaskWithURL(configurationURL, completionHandler: {
+            (data, response, error) in
+
+            if error != nil{
+                completion(data: nil, error: error)
+                return
+            }
+
+            if let dic = data {
+                let data = UpdateInfo(data: dic)
+                completion(data: data, error: error)
+            }
+        })
+        dataTask?.resume()
     }
 }
