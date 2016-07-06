@@ -92,18 +92,17 @@ public struct UpdateInfo {
      - returns: true if it is satisfied, else returns false
      */
     public var isMinimumVersionSatisfied: Bool? {
-        guard minimumRequiredVersion != nil else {
+        if minimumRequiredVersion == nil || currentInstalledVersion == nil {
             return nil
-        }
-        guard currentInstalledVersion != nil else {
-            return nil
-        }
-        if minimumRequiredVersion <= currentInstalledVersion {
-            return true
         } else {
-            return false
+            if minimumRequiredVersion <= currentInstalledVersion {
+                return true
+            } else {
+                return false
+            }
         }
     }
+
 }
 
 
