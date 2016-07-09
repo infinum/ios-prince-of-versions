@@ -31,7 +31,7 @@ public struct AppVersionChecker {
 
      - returns: Configuration data
      */
-    public func loadCondiguration(configurationURL: NSURL, completion: (data: UpdateInfo?, error: NSError?) -> Void) {
+    public func loadConfiguration(configurationURL: NSURL, completion: (data: UpdateInfo?, error: NSError?) -> Void) {
 
         let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
         var dataTask: NSURLSessionDataTask?
@@ -49,7 +49,8 @@ public struct AppVersionChecker {
                 completion(data: data, error: error)
             }
         })
-        
+
         dataTask?.resume()
     }
+
 }

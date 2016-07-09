@@ -37,8 +37,37 @@ public struct UpdateInfo {
      */
     public private(set) var currentAvailableVersion: String?
 
+    /**
+     Return current installed version of the app
 
-    public init(data: NSData) {
+     - returns: String with current installed version
+     */
+    public var currentInstalledVersion: String? {
+        guard var dict = NSBundle.mainBundle().infoDictionary else {
+            return nil
+        }
+        let currentVersion = dict["CFBundleShortVersionString"] as? String
+        return currentVersion
+    }
+
+    /**
+     Checks and return true if minimum version requirement is satisfied
+
+     - returns: true if it is satisfied, else returns false
+     */
+    public var isMinimumVersionSatisfied: Bool? {
+        if minimumRequiredVersion == nil || currentInstalledVersion == nil {
+            return nil
+        } else {
+            if minimumRequiredVersion <= currentInstalledVersion {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
+    internal init(data: NSData) {
 
         var optionalUpdate: [String: AnyObject]
         let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary
@@ -72,37 +101,4 @@ public struct UpdateInfo {
             }
         }
     }
-
-    /**
-     Return current installed version of the app
-
-     - returns: String with current installed version
-     */
-    public var currentInstalledVersion: String? {
-        guard var dict = NSBundle.mainBundle().infoDictionary else {
-            return nil
-        }
-        let currentVersion = dict["CFBundleShortVersionString"] as? String
-        return currentVersion
-    }
-
-    /**
-     Checks and return true if minimum version requirement is satisfied
-
-     - returns: true if it is satisfied, else returns false
-     */
-    public var isMinimumVersionSatisfied: Bool? {
-        if minimumRequiredVersion == nil || currentInstalledVersion == nil {
-            return nil
-        } else {
-            if minimumRequiredVersion <= currentInstalledVersion {
-                return true
-            } else {
-                return false
-            }
-        }
-    }
-
 }
-
-
