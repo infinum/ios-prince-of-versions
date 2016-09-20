@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		066396541D197C8800E8B7D2 /* AppVersionChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* AppVersionChecker.swift */; };
+		066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
+		066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
+		066F7F5E1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
+		066F7F5F1D912A190089F6F8 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
 		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		06C2DF331D19639B0032E464 /* AppVersionChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* AppVersionChecker.framework */; };
+		06C2DF331D19639B0032E464 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */; };
 		06C2DF381D19639B0032E464 /* VersionerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2DF371D19639B0032E464 /* VersionerTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -26,13 +29,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		066396531D197C8800E8B7D2 /* AppVersionChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionChecker.swift; sourceTree = "<group>"; };
+		066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
+		066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		0688DB1A1D19AA460027695C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0688DB1C1D19AA4B0027695C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		06C2DF281D19639B0032E464 /* AppVersionChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppVersionChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06C2DF321D19639B0032E464 /* AppVersionChecker.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppVersionChecker.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinceOfVersions.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF371D19639B0032E464 /* VersionerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionerTests.swift; sourceTree = "<group>"; };
 		06C2DF391D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06C2DF331D19639B0032E464 /* AppVersionChecker.framework in Frameworks */,
+				06C2DF331D19639B0032E464 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,8 +75,8 @@
 		06C2DF291D19639B0032E464 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				06C2DF281D19639B0032E464 /* AppVersionChecker.framework */,
-				06C2DF321D19639B0032E464 /* AppVersionChecker.xctest */,
+				06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */,
+				06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,7 +86,8 @@
 			children = (
 				06C2DF2B1D19639B0032E464 /* Versioner.h */,
 				06C2DF2D1D19639B0032E464 /* Info.plist */,
-				066396531D197C8800E8B7D2 /* AppVersionChecker.swift */,
+				066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */,
+				066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */,
 			);
 			path = Versioner;
 			sourceTree = "<group>";
@@ -119,9 +124,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		06C2DF271D19639B0032E464 /* AppVersionChecker */ = {
+		06C2DF271D19639B0032E464 /* Prince of versions */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionChecker" */;
+			buildConfigurationList = 06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "Prince of versions" */;
 			buildPhases = (
 				06C2DF231D19639B0032E464 /* Sources */,
 				06C2DF241D19639B0032E464 /* Frameworks */,
@@ -132,14 +137,14 @@
 			);
 			dependencies = (
 			);
-			name = AppVersionChecker;
+			name = "Prince of versions";
 			productName = Versioner;
-			productReference = 06C2DF281D19639B0032E464 /* AppVersionChecker.framework */;
+			productReference = 06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		06C2DF311D19639B0032E464 /* AppVersionCheckerTests */ = {
+		06C2DF311D19639B0032E464 /* Prince of versionsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionCheckerTests" */;
+			buildConfigurationList = 06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "Prince of versionsTests" */;
 			buildPhases = (
 				06C2DF2E1D19639B0032E464 /* Sources */,
 				06C2DF2F1D19639B0032E464 /* Frameworks */,
@@ -150,9 +155,9 @@
 			dependencies = (
 				06C2DF351D19639B0032E464 /* PBXTargetDependency */,
 			);
-			name = AppVersionCheckerTests;
+			name = "Prince of versionsTests";
 			productName = VersionerTests;
-			productReference = 06C2DF321D19639B0032E464 /* AppVersionChecker.xctest */;
+			productReference = 06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -162,18 +167,20 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Infinum Ltd";
 				TargetAttributes = {
 					06C2DF271D19639B0032E464 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 					06C2DF311D19639B0032E464 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
-			buildConfigurationList = 06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "AppVersionChecker" */;
+			buildConfigurationList = 06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "Prince of versions" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -185,8 +192,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06C2DF271D19639B0032E464 /* AppVersionChecker */,
-				06C2DF311D19639B0032E464 /* AppVersionCheckerTests */,
+				06C2DF271D19639B0032E464 /* Prince of versions */,
+				06C2DF311D19639B0032E464 /* Prince of versionsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -213,7 +220,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				066396541D197C8800E8B7D2 /* AppVersionChecker.swift in Sources */,
+				066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
+				066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				066F7F5E1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
+				066F7F5F1D912A190089F6F8 /* PrinceOfVersions.swift in Sources */,
 				06C2DF381D19639B0032E464 /* VersionerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,7 +240,7 @@
 /* Begin PBXTargetDependency section */
 		06C2DF351D19639B0032E464 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 06C2DF271D19639B0032E464 /* AppVersionChecker */;
+			target = 06C2DF271D19639B0032E464 /* Prince of versions */;
 			targetProxy = 06C2DF341D19639B0032E464 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -250,8 +260,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -274,11 +286,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -299,8 +312,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -317,9 +332,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -331,6 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -339,10 +357,11 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.AppVersionChecker;
-				PRODUCT_NAME = AppVersionChecker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
+				PRODUCT_NAME = PrinceOfVersions;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -350,6 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -358,9 +378,10 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.AppVersionChecker;
-				PRODUCT_NAME = AppVersionChecker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
+				PRODUCT_NAME = PrinceOfVersions;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -370,7 +391,8 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
-				PRODUCT_NAME = AppVersionChecker;
+				PRODUCT_NAME = PrinceOfVersions;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -380,14 +402,15 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
-				PRODUCT_NAME = AppVersionChecker;
+				PRODUCT_NAME = PrinceOfVersions;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "AppVersionChecker" */ = {
+		06C2DF221D19639B0032E464 /* Build configuration list for PBXProject "Prince of versions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06C2DF3A1D19639B0032E464 /* Debug */,
@@ -396,7 +419,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionChecker" */ = {
+		06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "Prince of versions" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06C2DF3D1D19639B0032E464 /* Debug */,
@@ -405,7 +428,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "AppVersionCheckerTests" */ = {
+		06C2DF3F1D19639B0032E464 /* Build configuration list for PBXNativeTarget "Prince of versionsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06C2DF401D19639B0032E464 /* Debug */,

@@ -6,9 +6,11 @@
 //
 //
 
+import Foundation
+
 public enum NotificationType : String {
-    case Always = "ALWAYS"
-    case Once = "ONCE"
+    case always = "ALWAYS"
+    case once = "ONCE"
 }
 
 public struct UpdateInfo {
@@ -18,7 +20,7 @@ public struct UpdateInfo {
 
      - returns: String with minimum app version
      */
-    public private(set) var minimumRequiredVersion: String?
+    public fileprivate(set) var minimumRequiredVersion: String?
 
     /**
      Return notification type. Possible values are:
@@ -28,14 +30,14 @@ public struct UpdateInfo {
 
      - returns: NotificationType
      */
-    public private(set) var notificationType: NotificationType?
+    public fileprivate(set) var notificationType: NotificationType?
 
     /**
      Return current available version of the app
 
      - returns: String with current app version
      */
-    public private(set) var currentAvailableVersion: String?
+    public fileprivate(set) var currentAvailableVersion: String?
 
     /**
      Return current installed version of the app
@@ -43,7 +45,7 @@ public struct UpdateInfo {
      - returns: String with current installed version
      */
     public var currentInstalledVersion: String? {
-        guard var dict = NSBundle.mainBundle().infoDictionary else {
+        guard var dict = Bundle.main.infoDictionary else {
             return nil
         }
         let currentVersion = dict["CFBundleShortVersionString"] as? String
@@ -56,21 +58,21 @@ public struct UpdateInfo {
      - returns: true if it is satisfied, else returns false
      */
     public var isMinimumVersionSatisfied: Bool? {
-        if minimumRequiredVersion == nil || currentInstalledVersion == nil {
-            return nil
-        } else {
-            if minimumRequiredVersion <= currentInstalledVersion {
+        if let minimum = minimumRequiredVersion, let current = currentInstalledVersion {
+            if minimum <= current {
                 return true
             } else {
                 return false
             }
+        } else {
+            return nil
         }
     }
 
-    internal init(data: NSData) {
+    internal init(data: Data) {
 
         var optionalUpdate: [String: AnyObject]
-        let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary
+        let json = try? JSONSerialization.jsonObject(with:data, options: []) as? NSDictionary
 
         guard let value = json as? [String: AnyObject] else {
             return
@@ -90,9 +92,9 @@ public struct UpdateInfo {
             if let notTyp = optionalUpdate["notification_type"] as? NotificationType.RawValue {
                 switch notTyp {
                 case "ALWAYS":
-                    self.notificationType = NotificationType.Always
+                    self.notificationType = NotificationType.always
                 default:
-                    self.notificationType = NotificationType.Once
+                    self.notificationType = NotificationType.once
                 }
             }
 

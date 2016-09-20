@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name = "AppVersionChecker"
+  s.name = "PrinceOfVersions"
   s.version      = "1.0.0"
-  s.summary = "Easy way for checking if user use last version of your app!"
+  s.summary = "Library checks for updates using configuration from some resource."
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?

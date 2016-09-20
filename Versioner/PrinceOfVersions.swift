@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct AppVersionChecker {
+public struct PrinceOfVersions {
     public init(){}
 
     /**
@@ -31,22 +31,26 @@ public struct AppVersionChecker {
 
      - returns: Configuration data
      */
-    public func loadConfiguration(configurationURL: NSURL, completion: (data: UpdateInfo?, error: NSError?) -> Void) {
+    public func loadConfiguration(URL: URL, completion: @escaping (UpdateInfo?, NSError?) -> Void) {
 
-        let defaultSession = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-        var dataTask: NSURLSessionDataTask?
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+        var dataTask: URLSessionDataTask?
 
-        dataTask = defaultSession.dataTaskWithURL(configurationURL, completionHandler: {
+        dataTask = defaultSession.dataTask(with: URL, completionHandler: {
             (data, response, error) in
 
             if error != nil {
-                completion(data: nil, error: error)
+                DispatchQueue.main.async {
+                    completion(nil, error as NSError?)
+                }
                 return
             }
 
             if let data = data {
                 let data = UpdateInfo(data: data)
-                completion(data: data, error: error)
+                DispatchQueue.main.async {
+                    completion(data, error as NSError?)
+                }
             }
         })
 
