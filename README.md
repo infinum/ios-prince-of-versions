@@ -13,7 +13,32 @@ Features
   * Loading and verifying versions happen **outside of UI thread**
 
 ----------
-### Install
+
+### Requirements
+- iOS 8.0+
+- Xcode .0+
+- Swift .0
+
+### Installation
+The easiest way to use Prince of versions in your project is using the CocaPods package manager.
+
+###CocoaPods
+See installation instructions for [CocoaPods](http://cocoapods.org) if not already installed
+
+To integrate the library into your Xcode project specify the pod dependency to your `Podfile`:
+
+```ruby
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'PrinceOfVersions'
+```
+
+run pod install
+
+```bash
+pod install
+```
 
 ### JSON file
 
