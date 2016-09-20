@@ -67,7 +67,7 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
 }
 ```
 
-Depending on <code>notification_type</code> property, the user can be notified <code>ONCE</code> or <code>ALWAYS</code>. The library handles this for you, and if notification type is set to <code>ONCE</code>, it will notify you via <code>newUpdate(version: String, isMandatory: boolean, metadata: [String: AnyObject]?)</code> method only once. Every other time the library will return <code>noUpdate</code> for that specific version. 
+Depending on <code>notification_type</code> property, the user can be notified <code>ONCE</code> or <code>ALWAYS</code>. The library handles this for you, and if notification type is set to <code>ONCE</code>, it will notify you via <code>newUpdate(version: String, isMandatory: Bool, metadata: [String: AnyObject]?)</code> method only once. Every other time the library will return <code>noUpdate</code> for that specific version. 
 Key-value pairs under <code>"meta"</code> key are optional metadata of which any amount can be sent accompanying the required fields.
 
 
