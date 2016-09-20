@@ -73,7 +73,7 @@ Key-value pairs under <code>"meta"</code> key are optional metadata of which any
 
 Usage
 -------------
-Full example application is available [here](ExampleApp).
+Full example application is available [here]().
 
 
 ### Contributing
