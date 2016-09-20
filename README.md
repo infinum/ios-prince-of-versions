@@ -17,7 +17,7 @@ Features
 
 ### JSON file
 
-If you are using a default parser, version in your application and the JSON file has to follow [Semantic Versioning](http://semver.org/).JSON file has to look like this:
+JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
 
 ```json
 {
