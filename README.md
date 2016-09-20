@@ -1,6 +1,6 @@
 Prince of versions
 =================
-![Platform](https://img.shields.io/badge/pod-1.0.0-blue.svg)
+![Platform](https://img.shields.io/badge/pod-v1.0.0-blue.svg)
 ![License](https://img.shields.io/cocoapods/l/SemanticVersioning.svg)
 
 Library checks for updates using configuration from some resource.
