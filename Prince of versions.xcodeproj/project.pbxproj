@@ -15,7 +15,22 @@
 		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06C2DF331D19639B0032E464 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */; };
-		06C2DF381D19639B0032E464 /* VersionerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C2DF371D19639B0032E464 /* VersionerTests.swift */; };
+		06C8F15B1D9296EF0088BDA2 /* invalid_update_incalid_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F15A1D9296EF0088BDA2 /* invalid_update_incalid_version.json */; };
+		06C8F15D1D92973B0088BDA2 /* invalid_update_no_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F15C1D92973B0088BDA2 /* invalid_update_no_ios.json */; };
+		06C8F15F1D92976D0088BDA2 /* invalid_update_no_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F15E1D92976D0088BDA2 /* invalid_update_no_json.json */; };
+		06C8F1611D9297840088BDA2 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1601D9297840088BDA2 /* invalid_update_no_min_version.json */; };
+		06C8F1631D9297AD0088BDA2 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1621D9297AD0088BDA2 /* invalid_update_optional_without_version.json */; };
+		06C8F1651D9297D70088BDA2 /* malformed_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1641D9297D70088BDA2 /* malformed_json.json */; };
+		06C8F1671D92981C0088BDA2 /* valid_update_full.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1661D92981C0088BDA2 /* valid_update_full.json */; };
+		06C8F1691D92985F0088BDA2 /* valid_update_full_with_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1681D92985F0088BDA2 /* valid_update_full_with_metadata.json */; };
+		06C8F16D1D9298A40088BDA2 /* valid_update_full_with_metadata_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F16C1D9298A40088BDA2 /* valid_update_full_with_metadata_empty.json */; };
+		06C8F16F1D9298C80088BDA2 /* valid_update_full_with_metadata_malformed.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F16E1D9298C80088BDA2 /* valid_update_full_with_metadata_malformed.json */; };
+		06C8F1711D9298DF0088BDA2 /* valid_update_full_with_metadata_null.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1701D9298DF0088BDA2 /* valid_update_full_with_metadata_null.json */; };
+		06C8F1731D9298F70088BDA2 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1721D9298F70088BDA2 /* valid_update_no_notification.json */; };
+		06C8F1751D92991F0088BDA2 /* valid_update_notification_once.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1741D92991F0088BDA2 /* valid_update_notification_once.json */; };
+		06C8F1771D92994E0088BDA2 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */; };
+		06C8F1791D929A4F0088BDA2 /* UpdateInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */; };
+		06C8F17C1D92A2680088BDA2 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +52,23 @@
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinceOfVersions.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		06C2DF371D19639B0032E464 /* VersionerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionerTests.swift; sourceTree = "<group>"; };
 		06C2DF391D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06C8F15A1D9296EF0088BDA2 /* invalid_update_incalid_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_incalid_version.json; path = mockdata/invalid_update_incalid_version.json; sourceTree = "<group>"; };
+		06C8F15C1D92973B0088BDA2 /* invalid_update_no_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_no_ios.json; path = mockdata/invalid_update_no_ios.json; sourceTree = "<group>"; };
+		06C8F15E1D92976D0088BDA2 /* invalid_update_no_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_no_json.json; path = mockdata/invalid_update_no_json.json; sourceTree = "<group>"; };
+		06C8F1601D9297840088BDA2 /* invalid_update_no_min_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_no_min_version.json; path = mockdata/invalid_update_no_min_version.json; sourceTree = "<group>"; };
+		06C8F1621D9297AD0088BDA2 /* invalid_update_optional_without_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_optional_without_version.json; path = mockdata/invalid_update_optional_without_version.json; sourceTree = "<group>"; };
+		06C8F1641D9297D70088BDA2 /* malformed_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = malformed_json.json; path = mockdata/malformed_json.json; sourceTree = "<group>"; };
+		06C8F1661D92981C0088BDA2 /* valid_update_full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_full.json; path = mockdata/valid_update_full.json; sourceTree = "<group>"; };
+		06C8F1681D92985F0088BDA2 /* valid_update_full_with_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_full_with_metadata.json; path = mockdata/valid_update_full_with_metadata.json; sourceTree = "<group>"; };
+		06C8F16C1D9298A40088BDA2 /* valid_update_full_with_metadata_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_full_with_metadata_empty.json; path = mockdata/valid_update_full_with_metadata_empty.json; sourceTree = "<group>"; };
+		06C8F16E1D9298C80088BDA2 /* valid_update_full_with_metadata_malformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_full_with_metadata_malformed.json; path = mockdata/valid_update_full_with_metadata_malformed.json; sourceTree = "<group>"; };
+		06C8F1701D9298DF0088BDA2 /* valid_update_full_with_metadata_null.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_full_with_metadata_null.json; path = mockdata/valid_update_full_with_metadata_null.json; sourceTree = "<group>"; };
+		06C8F1721D9298F70088BDA2 /* valid_update_no_notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_no_notification.json; path = mockdata/valid_update_no_notification.json; sourceTree = "<group>"; };
+		06C8F1741D92991F0088BDA2 /* valid_update_notification_once.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_notification_once.json; path = mockdata/valid_update_notification_once.json; sourceTree = "<group>"; };
+		06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_only_min_version.json; path = mockdata/valid_update_only_min_version.json; sourceTree = "<group>"; };
+		06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoTest.swift; sourceTree = "<group>"; };
+		06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +125,33 @@
 		06C2DF361D19639B0032E464 /* VersionerTests */ = {
 			isa = PBXGroup;
 			children = (
-				06C2DF371D19639B0032E464 /* VersionerTests.swift */,
+				06C8F1591D9296BD0088BDA2 /* mockdata */,
 				06C2DF391D19639B0032E464 /* Info.plist */,
+				06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */,
+				06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */,
 			);
 			path = VersionerTests;
+			sourceTree = "<group>";
+		};
+		06C8F1591D9296BD0088BDA2 /* mockdata */ = {
+			isa = PBXGroup;
+			children = (
+				06C8F15A1D9296EF0088BDA2 /* invalid_update_incalid_version.json */,
+				06C8F15C1D92973B0088BDA2 /* invalid_update_no_ios.json */,
+				06C8F15E1D92976D0088BDA2 /* invalid_update_no_json.json */,
+				06C8F1601D9297840088BDA2 /* invalid_update_no_min_version.json */,
+				06C8F1621D9297AD0088BDA2 /* invalid_update_optional_without_version.json */,
+				06C8F1641D9297D70088BDA2 /* malformed_json.json */,
+				06C8F1661D92981C0088BDA2 /* valid_update_full.json */,
+				06C8F1681D92985F0088BDA2 /* valid_update_full_with_metadata.json */,
+				06C8F16C1D9298A40088BDA2 /* valid_update_full_with_metadata_empty.json */,
+				06C8F16E1D9298C80088BDA2 /* valid_update_full_with_metadata_malformed.json */,
+				06C8F1701D9298DF0088BDA2 /* valid_update_full_with_metadata_null.json */,
+				06C8F1721D9298F70088BDA2 /* valid_update_no_notification.json */,
+				06C8F1741D92991F0088BDA2 /* valid_update_notification_once.json */,
+				06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */,
+			);
+			name = mockdata;
 			sourceTree = "<group>";
 		};
 		1E349D472206F2D83F54231C /* Frameworks */ = {
@@ -203,6 +256,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C8F1711D9298DF0088BDA2 /* valid_update_full_with_metadata_null.json in Resources */,
+				06C8F15B1D9296EF0088BDA2 /* invalid_update_incalid_version.json in Resources */,
+				06C8F1631D9297AD0088BDA2 /* invalid_update_optional_without_version.json in Resources */,
+				06C8F1771D92994E0088BDA2 /* valid_update_only_min_version.json in Resources */,
+				06C8F1751D92991F0088BDA2 /* valid_update_notification_once.json in Resources */,
+				06C8F15D1D92973B0088BDA2 /* invalid_update_no_ios.json in Resources */,
+				06C8F16D1D9298A40088BDA2 /* valid_update_full_with_metadata_empty.json in Resources */,
+				06C8F1691D92985F0088BDA2 /* valid_update_full_with_metadata.json in Resources */,
+				06C8F1651D9297D70088BDA2 /* malformed_json.json in Resources */,
+				06C8F1731D9298F70088BDA2 /* valid_update_no_notification.json in Resources */,
+				06C8F1671D92981C0088BDA2 /* valid_update_full.json in Resources */,
+				06C8F15F1D92976D0088BDA2 /* invalid_update_no_json.json in Resources */,
+				06C8F1611D9297840088BDA2 /* invalid_update_no_min_version.json in Resources */,
+				06C8F16F1D9298C80088BDA2 /* valid_update_full_with_metadata_malformed.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,9 +296,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C8F17C1D92A2680088BDA2 /* PrinceOfVersionsTest.swift in Sources */,
 				066F7F5E1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
 				066F7F5F1D912A190089F6F8 /* PrinceOfVersions.swift in Sources */,
-				06C2DF381D19639B0032E464 /* VersionerTests.swift in Sources */,
+				06C8F1791D929A4F0088BDA2 /* UpdateInfoTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

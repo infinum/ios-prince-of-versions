@@ -1,15 +1,14 @@
 //
-//  VersionerTests.swift
-//  VersionerTests
+//  PrinceOfVersionsTest.swift
+//  Prince of versions
 //
-//  Created by Jasmin Abou Aldan on 21/06/16.
+//  Created by Jasmin Abou Aldan on 21/09/2016.
 //  Copyright © 2016 Infinum Ltd. All rights reserved.
 //
 
 import XCTest
-@testable import Versioner
 
-class VersionerTests: XCTestCase {
+class PrinceOfVersionsTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -28,7 +27,7 @@ class VersionerTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
