@@ -31,6 +31,7 @@
 		06C8F1771D92994E0088BDA2 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */; };
 		06C8F1791D929A4F0088BDA2 /* UpdateInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */; };
 		06C8F17C1D92A2680088BDA2 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */; };
+		06C8F17D1D92B7B60088BDA2 /* valid_update_full.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1661D92981C0088BDA2 /* valid_update_full.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -229,7 +230,9 @@
 					};
 					06C2DF311D19639B0032E464 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 5F5M64F878;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -277,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06C8F17D1D92B7B60088BDA2 /* valid_update_full.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +460,8 @@
 		06C2DF401D19639B0032E464 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
@@ -467,6 +473,8 @@
 		06C2DF411D19639B0032E464 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
