@@ -13,43 +13,49 @@ public enum NotificationType : String {
     case once = "ONCE"
 }
 
+public struct Version {
+    public var major: Int
+    public var minor: Int
+    public var patch: Int
+}
+
 public struct UpdateInfo {
 
     /**
-     Return minimum required version of the app
+     Returns minimum required version of the app
 
-     - returns: String with minimum app version
+     - returns: Version type of minimum app version
      */
-    public fileprivate(set) var minimumRequiredVersion: String?
+    public private(set) var minimumRequiredVersion: Version?
 
     /**
-     Return notification type. Possible values are:
+     Returns notification type. Possible values are:
 
      - Once: Show notification only once
      - Always: Show notification every time app run
 
      - returns: NotificationType
      */
-    public fileprivate(set) var notificationType: NotificationType?
+    public private(set) var notificationType: NotificationType?
 
     /**
-     Return current available version of the app
+     Returns latest available version of the app
 
-     - returns: String with current app version
+     - returns: Version type with current available app version
      */
-    public fileprivate(set) var currentAvailableVersion: String?
+    public private(set) var latestVersion: Version?
 
     /**
-     Return current installed version of the app
+     Returns installed version of the app
 
-     - returns: String with current installed version
+     - returns: Version with current installed version
      */
-    public var currentInstalledVersion: String? {
+    public var installedVersion: Version? {
         guard var dict = Bundle.main.infoDictionary else {
             return nil
         }
-        let currentVersion = dict["CFBundleShortVersionString"] as? String
-        return currentVersion
+        let currentVersion = dict["CFBundleShortVersionString"] as! String
+        return _version(fromString: currentVersion)
     }
 
     /**
@@ -58,14 +64,42 @@ public struct UpdateInfo {
      - returns: true if it is satisfied, else returns false
      */
     public var isMinimumVersionSatisfied: Bool? {
-        if let minimum = minimumRequiredVersion, let current = currentInstalledVersion {
-            if minimum <= current {
+        guard let minimum = minimumRequiredVersion, let installed = installedVersion else {
+            return nil
+        }
+        return _isVersionSatisfied(minimum: minimum, installed: installed)
+    }
+
+    //MARK: - Private method for handling version
+    private func _version(fromString string: String) -> Version {
+        var stringToArray = string.components(separatedBy: ".")
+        if !stringToArray.indices.contains(1) {
+            stringToArray.append("0")
+        }
+        if !stringToArray.indices.contains(2) {
+            stringToArray.append("0")
+        }
+        let arrayToIntegers = stringToArray.map{Int($0)!}
+        return(Version.init(major: arrayToIntegers[0], minor: arrayToIntegers[1], patch: arrayToIntegers[2]))
+    }
+
+    private func _isVersionSatisfied(minimum: Version, installed: Version) -> Bool {
+        if minimum.major < installed.major {
+            return true
+        } else if minimum.major == installed.major {
+            if minimum.minor < installed.minor {
                 return true
+            } else if minimum.minor == installed.minor {
+                if minimum.patch <= installed.patch {
+                    return true
+                } else {
+                    return false
+                }
             } else {
                 return false
             }
         } else {
-            return nil
+            return false
         }
     }
 
@@ -83,7 +117,7 @@ public struct UpdateInfo {
         }
 
         if let minimumVersion = os["minimum_version"] as? String {
-            self.minimumRequiredVersion = minimumVersion
+            self.minimumRequiredVersion = _version(fromString: minimumVersion)
         }
 
         if let optionalUpdateValues = os["optional_update"] as? [String: AnyObject] {
@@ -99,7 +133,7 @@ public struct UpdateInfo {
             }
 
             if let ver = optionalUpdate["version"] as? String {
-                self.currentAvailableVersion = ver
+                self.latestVersion = _version(fromString: ver)
             }
         }
     }

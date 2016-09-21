@@ -31,7 +31,7 @@ public struct PrinceOfVersions {
 
      - returns: Configuration data
      */
-    public func loadConfiguration(URL: URL, completion: @escaping (UpdateInfo?, NSError?) -> Void) {
+    public func loadConfiguration(from URL: URL, completion: @escaping (UpdateInfo?, NSError?) -> Void) {
 
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
         var dataTask: URLSessionDataTask?
