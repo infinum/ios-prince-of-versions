@@ -70,6 +70,13 @@ public struct UpdateInfo {
         return _isVersionSatisfied(minimum: minimum, installed: installed)
     }
 
+    /**
+     Key-value pairs under "meta" key are optional metadata of which any amount can be sent accompanying the required fields
+     
+     - returns: Data in key-value [String: AnyObject] pairs
+     */
+    public private(set) var metadata: [String: AnyObject]?
+
     //MARK: - Private method for handling version
     private func _version(fromString string: String) -> Version {
         var stringToArray = string.components(separatedBy: ".")
@@ -136,5 +143,12 @@ public struct UpdateInfo {
                 self.latestVersion = _version(fromString: ver)
             }
         }
+
+        if let meta = value["meta"] as? [String: AnyObject] {
+            metadata = meta
+        } else {
+            metadata = nil
+        }
+
     }
 }
