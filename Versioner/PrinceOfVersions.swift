@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let UserDefaultsVersionKey = "co.infinum.princeofversions.version-"
+
 public struct PrinceOfVersions {
     public init(){}
 
@@ -55,6 +57,22 @@ public struct PrinceOfVersions {
         })
 
         dataTask?.resume()
+    }
+
+    public func checkForUpdates(from URL: URL, newUpdate: @escaping (Version?,Bool?,[String:AnyObject]?) -> Void, noUpdate: @escaping ([String:AnyObject]?) -> Void, error: @escaping (NSError?) -> Void) {
+        loadConfiguration(from: URL, completion: { (data,dataError) in
+            if dataError != nil {
+                error(dataError)
+                return
+            }
+            let userDefaultsFullkey = UserDefaultsVersionKey+"\(data?.latestVersion?.major).\(data?.latestVersion?.minor).\(data?.latestVersion?.patch)"
+            if UserDefaults.standard.bool(forKey: userDefaultsFullkey) == false || data?.notificationType == .always {
+                newUpdate(data?.latestVersion, data?.isMinimumVersionSatisfied, data?.metadata)
+                UserDefaults.standard.set(true, forKey: userDefaultsFullkey)
+            } else {
+                noUpdate(data?.metadata)
+            }
+        })
     }
 
 }
