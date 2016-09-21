@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "06C2DF271D19639B0032E464"
                BuildableName = "PrinceOfVersions.framework"
-               BlueprintName = "Prince of versions"
-               ReferencedContainer = "container:Prince of versions.xcodeproj">
+               BlueprintName = "PrinceOfVersions"
+               ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "06C2DF311D19639B0032E464"
                BuildableName = "PrinceOfVersions.xctest"
-               BlueprintName = "Prince of versionsTests"
-               ReferencedContainer = "container:Prince of versions.xcodeproj">
+               BlueprintName = "PrinceOfVersionsTests"
+               ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06C2DF271D19639B0032E464"
             BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "Prince of versions"
-            ReferencedContainer = "container:Prince of versions.xcodeproj">
+            BlueprintName = "PrinceOfVersions"
+            ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,8 +66,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06C2DF271D19639B0032E464"
             BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "Prince of versions"
-            ReferencedContainer = "container:Prince of versions.xcodeproj">
+            BlueprintName = "PrinceOfVersions"
+            ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -84,8 +84,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06C2DF271D19639B0032E464"
             BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "Prince of versions"
-            ReferencedContainer = "container:Prince of versions.xcodeproj">
+            BlueprintName = "PrinceOfVersions"
+            ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
