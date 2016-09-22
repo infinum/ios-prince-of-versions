@@ -16,8 +16,8 @@ Features
 
 ### Requirements
 - iOS 8.0+
-- Xcode .0+
-- Swift .0
+- Xcode 8.0+
+- Swift 3.0
 
 ### Installation
 The easiest way to use Prince of versions in your project is using the CocaPods package manager.
@@ -75,6 +75,43 @@ Usage
 -------------
 Full example application is available [here]().
 
+#### Most common usage - loading from network resource
+1. Getting all data
+```Swift
+let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+PrinceOfVersions().loadConfiguration(from: url!) { (data, error) in
+	if let minRequired = data?.minimumRequiredVersion {
+	}
+
+	if let latestVers = data?.latestVersion {
+	}
+
+	if let notType = data?.notificationType {
+	}
+
+	if let installedVer = data?.installedVersion {
+	}
+
+	if let minVer = data?.isMinimumVersionSatisfied {
+	}
+}
+```
+
+2. Automatic handling update frequency
+```Swift
+let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+PrinceOfVersions().checkForUpdates(from: url!,
+	newUpdate: {
+		(latestVersion, isMinimumVersionSatisfied, metadata) in
+                
+	}, noUpdate: {
+		(metadata) in
+                
+	}, error: {
+		(error) in
+                
+})
+```
 
 ### Contributing
 
