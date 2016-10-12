@@ -490,7 +490,7 @@
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
 				PRODUCT_NAME = PrinceOfVersions;
 				SWIFT_VERSION = 3.0;
 			};
@@ -503,7 +503,7 @@
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.InfinumLtd.VersionerTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
 				PRODUCT_NAME = PrinceOfVersions;
 				SWIFT_VERSION = 3.0;
 			};
