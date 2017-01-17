@@ -9,8 +9,6 @@
 import XCTest
 
 class UpdateInfoTest: XCTestCase {
-
-    var updateInfo: UpdateInfo!
     
     override func setUp() {
         super.setUp()
@@ -25,10 +23,20 @@ class UpdateInfoTest: XCTestCase {
     func testCheckingValidContent() {
         let bundle = Bundle(for: type(of: self))
 
+        var info: UpdateInfo?
         if let jsonPath = bundle.path(forResource: "valid_update_full", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
-            updateInfo = UpdateInfo(data: data)
+            do {
+                info = try UpdateInfo(data: data, bundle: Bundle(for: type(of: self)))
+            } catch let error {
+                XCTFail(error.localizedDescription)
+            }
         }
 
-        XCTAssertNotNil(updateInfo.minimumRequiredVersion?.major, "Value for installed version should not be nil")
+        guard let _info = info else {
+            XCTFail("Update info should not be nil")
+            return
+        }
+
+        XCTAssertNotNil(_info.minimumRequiredVersion.major, "Value for installed version should not be nil")
     }
 }
