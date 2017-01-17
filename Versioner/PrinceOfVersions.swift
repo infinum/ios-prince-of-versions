@@ -8,9 +8,27 @@
 
 import UIKit
 
-private let UserDefaultsVersionKey = "co.infinum.princeofversions.version-"
-
 public struct PrinceOfVersions {
+
+    public enum Result {
+        case success(UpdateInfo)
+        case failure(Error)
+    }
+
+    public struct UpdateInfoResponse {
+
+        /// The server's response to the URL request.
+        public let response: URLResponse?
+
+        /// The result of response serialization.
+        public let result: Result
+    }
+
+    public typealias CompletionBlock = (UpdateInfoResponse) -> Void
+    public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
+    public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
+    public typealias ErrorBlock = (Error) -> Void
+
     public init(){}
 
     /**
@@ -33,44 +51,59 @@ public struct PrinceOfVersions {
 
      - returns: Configuration data
      */
-    public func loadConfiguration(from URL: URL, completion: @escaping (UpdateInfo?, NSError?) -> Void) {
+    @discardableResult
+    public func loadConfiguration(from URL: URL, completion: @escaping CompletionBlock) -> URLSessionDataTask {
 
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-        var dataTask: URLSessionDataTask?
+        let dataTask = defaultSession.dataTask(with: URL, completionHandler: { (data, response, error) in
 
-        dataTask = defaultSession.dataTask(with: URL, completionHandler: {
-            (data, response, error) in
-
-            if error != nil {
-                DispatchQueue.main.async {
-                    completion(nil, error as NSError?)
-                }
-                return
-            }
-
-            if let data = data {
-                let data = UpdateInfo(data: data)
-                DispatchQueue.main.async {
-                    completion(data, error as NSError?)
+            let result: Result
+            if let error = error {
+                result = Result.failure(error)
+            } else {
+                do {
+                    let updateInfo = try UpdateInfo(data: data)
+                    result = Result.success(updateInfo)
+                } catch let error {
+                    result = Result.failure(error)
                 }
             }
+            let updateInfoResponse = UpdateInfoResponse(
+                response: response,
+                result: result
+            )
+            completion(updateInfoResponse)
         })
-
-        dataTask?.resume()
+        dataTask.resume()
+        return dataTask
     }
 
-    public func checkForUpdates(from URL: URL, newUpdate: @escaping (Version?,Bool?,[String:AnyObject]?) -> Void, noUpdate: @escaping ([String:AnyObject]?) -> Void, error: @escaping (NSError?) -> Void) {
-        loadConfiguration(from: URL, completion: { (data,dataError) in
-            if dataError != nil {
-                error(dataError)
-                return
-            }
-            let userDefaultsFullkey = UserDefaultsVersionKey+"\(data?.latestVersion?.major).\(data?.latestVersion?.minor).\(data?.latestVersion?.patch)"
-            if UserDefaults.standard.bool(forKey: userDefaultsFullkey) == false || data?.notificationType == .always {
-                newUpdate(data?.latestVersion, data?.isMinimumVersionSatisfied, data?.metadata)
-                UserDefaults.standard.set(true, forKey: userDefaultsFullkey)
-            } else {
-                noUpdate(data?.metadata)
+    @discardableResult
+    func checkForUpdates(
+        from URL: URL,
+        newVersion: @escaping NewVersionBlock,
+        noNewVersion: @escaping NoNewVersionBlock,
+        error: @escaping ErrorBlock)
+        -> URLSessionDataTask
+    {
+
+        return loadConfiguration(from: URL, completion: { (response) in
+            switch response.result {
+            case .failure(let updateInfoError):
+                error(updateInfoError)
+
+            case .success(let info):
+                guard let latestVersion = info.latestVersion else {
+                    noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    return
+                }
+
+                if !latestVersion.wasNotified || info.notificationType == .always {
+                    newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                    latestVersion.markNotified()
+                } else {
+                    noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                }
             }
         })
     }
