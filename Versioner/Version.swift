@@ -18,6 +18,20 @@ public struct Version {
     public var minor: Int
     public var patch: Int
 
+    var wasNotified: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: versionUserDefaultKey)
+        }
+    }
+
+    private var versionUserDefaultKey: String {
+        return "co.infinum.prince-of-versions.version-" + self.description
+    }
+
+    public func markNotified() {
+        UserDefaults.standard.set(true, forKey: versionUserDefaultKey)
+    }
+
     init(string: String) throws {
         let versionComponents = string.components(separatedBy: ".")
 
