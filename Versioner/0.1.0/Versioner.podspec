@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  s.name = "AppVersionChecker"
-  s.version      = "1.0.0"
+  s.name = "Versioner"
+  s.version      = "0.1.0"
   s.summary = "Easy way for checking if user use last version of your app!"
 
   # This description is used to generate tags and improve search results.
@@ -131,5 +131,8 @@ Pod::Spec.new do |s|
   # s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+  s.dependency 'Alamofire', '~> 3.0'
+  s.dependency 'AlamofireObjectMapper', '~> 3.0'
+  
 
 end

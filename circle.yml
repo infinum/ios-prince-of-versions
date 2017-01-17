@@ -1,0 +1,31 @@
+machine:
+  xcode:
+    version: "8.0"
+  environment:
+    GYM_CODE_SIGNING_IDENTITY: 'iPhone Distribution: Infinum D.O.O.'
+    XCODE_SCHEME: 'PrinceOfVersions'
+
+# Uncomment these lines if you are using Git LFS
+# dependencies:
+#   pre:
+#     # Install git-lfs
+#     - brew install git-lfs
+#     - ssh git@github.com git-lfs-authenticate infinum/<Git Repo Name>.git download
+#     - git lfs pull
+
+test:
+  # use scan instead of xctool
+  override:
+    # For more options and info on 'scan' tool visit: https://github.com/fastlane/fastlane/tree/master/scan
+    - scan
+      --scheme $XCODE_SCHEME
+      --output_directory $CIRCLE_ARTIFACTS
+      --code_coverage 1
+      #--device 'iPad 2' # Set custom device for running tests (sometimes it runs tests on iPhone for iPad projects)
+
+experimental:
+  # enable chat notifications only for certain branches
+  notify:
+    branches:
+      only:
+        - master

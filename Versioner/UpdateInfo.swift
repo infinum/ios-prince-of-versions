@@ -6,99 +6,100 @@
 //
 //
 
-public enum NotificationType : String {
-    case Always = "ALWAYS"
-    case Once = "ONCE"
+import Foundation
+
+enum UpdateInfoError: Error {
+    case invalidJsonData
+    case invalidMinimumVersion
+    case invalidCurrentVersion
 }
 
 public struct UpdateInfo {
 
-    /**
-     Return minimum required version of the app
+    public enum NotificationType : String {
+        case always = "ALWAYS"
+        case once = "ONCE"
+    }
 
-     - returns: String with minimum app version
+    /**
+     Returns minimum required version of the app.
      */
-    public private(set) var minimumRequiredVersion: String?
+    public private(set) var minimumRequiredVersion: Version
 
     /**
-     Return notification type. Possible values are:
+     Returns notification type. Possible values are:
 
      - Once: Show notification only once
      - Always: Show notification every time app run
-
-     - returns: NotificationType
+     
+     Default value is @c .once
      */
-    public private(set) var notificationType: NotificationType?
+    public private(set) var notificationType: NotificationType = .once
 
     /**
-     Return current available version of the app
-
-     - returns: String with current app version
+     Returns latest available version of the app.
      */
-    public private(set) var currentAvailableVersion: String?
+    public private(set) var latestVersion: Version?
 
     /**
-     Return current installed version of the app
-
-     - returns: String with current installed version
+     Returns installed version of the app.
      */
-    public var currentInstalledVersion: String? {
-        guard var dict = NSBundle.mainBundle().infoDictionary else {
-            return nil
-        }
-        let currentVersion = dict["CFBundleShortVersionString"] as? String
-        return currentVersion
+    public private(set) var installedVersion: Version
+
+    /**
+     Checks and return true if minimum version requirement is satisfied.
+     */
+    public var isMinimumVersionSatisfied: Bool {
+        return installedVersion >= minimumRequiredVersion
     }
 
     /**
-     Checks and return true if minimum version requirement is satisfied
-
-     - returns: true if it is satisfied, else returns false
+     Key-value pairs under "meta" key are optional metadata of which any amount can be sent accompanying the required fields.
      */
-    public var isMinimumVersionSatisfied: Bool? {
-        if minimumRequiredVersion == nil || currentInstalledVersion == nil {
-            return nil
-        } else {
-            if minimumRequiredVersion <= currentInstalledVersion {
-                return true
-            } else {
-                return false
-            }
+    public private(set) var metadata: [String: Any]?
+
+    init(data: Data?, bundle: Bundle = Bundle.main) throws {
+        guard let _data = data else {
+            throw UpdateInfoError.invalidJsonData
         }
-    }
+        let json = try JSONSerialization.jsonObject(with: _data, options: []) as? NSDictionary
 
-    internal init(data: NSData) {
-
-        var optionalUpdate: [String: AnyObject]
-        let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []) as? NSDictionary
-
+        // JSON data
         guard let value = json as? [String: AnyObject] else {
-            return
+            throw UpdateInfoError.invalidJsonData
         }
-
         guard let os = value["ios"] as? [String: AnyObject] else {
-            return
+            throw UpdateInfoError.invalidJsonData
         }
 
+        // Minimum version
         if let minimumVersion = os["minimum_version"] as? String {
-            self.minimumRequiredVersion = minimumVersion
+            minimumRequiredVersion = try Version(string: minimumVersion)
+        } else {
+            throw UpdateInfoError.invalidMinimumVersion
         }
 
-        if let optionalUpdateValues = os["optional_update"] as? [String: AnyObject] {
-            optionalUpdate = optionalUpdateValues
+        // Latest version and notification type
+        if let optionalUpdate = os["optional_update"] as? [String: AnyObject] {
+            let notificationTypeString = (optionalUpdate["notification_type"] as? String) ?? ""
 
-            if let notTyp = optionalUpdate["notification_type"] as? NotificationType.RawValue {
-                switch notTyp {
-                case "ALWAYS":
-                    self.notificationType = NotificationType.Always
-                default:
-                    self.notificationType = NotificationType.Once
-                }
+            if let _notificationType = NotificationType(rawValue: notificationTypeString) {
+                notificationType = _notificationType
             }
 
-            if let ver = optionalUpdate["version"] as? String {
-                self.currentAvailableVersion = ver
+            if let versionString = optionalUpdate["version"] as? String {
+                latestVersion = try? Version(string: versionString)
             }
         }
+
+        // Installed version
+        guard let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
+            throw UpdateInfoError.invalidCurrentVersion
+        }
+        installedVersion = try Version(string: currentVersionString)
+
+        // Metadata
+        metadata = value["meta"] as? [String: Any]
     }
+
 }
