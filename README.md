@@ -81,39 +81,38 @@ Full example application is available [here]().
 
 	```Swift
 	let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
-	PrinceOfVersions().loadConfiguration(from: url!) { (data, error) in
-		if let minRequired = data?.minimumRequiredVersion {
-		}
+        PrinceOfVersions().loadConfiguration(from: url) { (response) in
+            switch response.result {
+            case .success(let info):
+                print("Minimum version: ", info.minimumRequiredVersion)
+                print("Installed version: ", info.installedVersion)
+                print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
+                print("Notification type: ", info.notificationType)
 
-		if let latestVers = data?.latestVersion {
-		}
-
-		if let notType = data?.notificationType {
-		}
-
-		if let installedVer = data?.installedVersion {
-		}
-
-		if let minVer = data?.isMinimumVersionSatisfied {
-		}
-	}
+                if let latestVersion = info.latestVersion {
+                    print("Is minimum version satisfied: ", latestVersion)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
 	```
 
 2. Automatic handling update frequency
 
 	```Swift
 	let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
-	PrinceOfVersions().checkForUpdates(from: url!,
-		newUpdate: {
-			(latestVersion, isMinimumVersionSatisfied, metadata) in
-	                
-		}, noUpdate: {
-			(metadata) in
-                
-		}, error: {
-			(error) in
-                
-	})
+	PrinceOfVersions().checkForUpdates(from: url,
+        newVersion: {
+            (latestVersion, isMinimumVersionSatisfied, metadata) in
+        },
+        noNewVersion: {
+            (isMinimumVersionSatisfied, metadata) in
+        },
+        error: {
+            (error) in
+
+        })
 	```
 
 ### Contributing
