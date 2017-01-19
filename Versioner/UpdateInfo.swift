@@ -10,7 +10,6 @@ import Foundation
 
 enum UpdateInfoError: Error {
     case invalidJsonData
-    case invalidMinimumVersion
     case invalidCurrentVersion
 }
 
@@ -24,7 +23,7 @@ public struct UpdateInfo {
     /**
      Returns minimum required version of the app.
      */
-    public private(set) var minimumRequiredVersion: Version
+    public private(set) var minimumRequiredVersion: Version?
 
     /**
      Returns notification type. Possible values are:
@@ -47,10 +46,13 @@ public struct UpdateInfo {
     public private(set) var installedVersion: Version
 
     /**
-     Checks and return true if minimum version requirement is satisfied.
+     Checks and return true if minimum version requirement is satisfied. If minimumRequiredVersion doesn't exist return true.
      */
     public var isMinimumVersionSatisfied: Bool {
-        return installedVersion >= minimumRequiredVersion
+        guard let _minimumRequiredVersion = minimumRequiredVersion else {
+            return true
+        }
+        return installedVersion >= _minimumRequiredVersion
     }
 
     /**
@@ -74,9 +76,7 @@ public struct UpdateInfo {
 
         // Minimum version
         if let minimumVersion = os["minimum_version"] as? String {
-            minimumRequiredVersion = try Version(string: minimumVersion)
-        } else {
-            throw UpdateInfoError.invalidMinimumVersion
+            minimumRequiredVersion? = try Version(string: minimumVersion)
         }
 
         // Latest version and notification type
