@@ -43,7 +43,7 @@ public struct Version {
         }
 
         if versionBuildComponents.count > 1 {
-            build = Version.number(from: versionComponents, atIndex: 1) ?? 0
+            build = Version.number(from: versionBuildComponents, atIndex: 1) ?? 0
         }
 
         if let _major = Version.number(from: versionComponents, atIndex: 0) {
