@@ -17,6 +17,7 @@ public struct Version {
     public var major: Int
     public var minor: Int
     public var patch: Int
+    public var build: Int = 0
 
     var wasNotified: Bool {
         get {
@@ -33,10 +34,16 @@ public struct Version {
     }
 
     init(string: String) throws {
-        let versionComponents = string.components(separatedBy: ".")
-
-        if versionComponents.isEmpty {
+        let versionBuildComponents = string.components(separatedBy: "-")
+        guard let versionComponents = versionBuildComponents.first?.components(separatedBy: ".") else {
             throw VersionError.invalidString
+        }
+        guard !versionComponents.isEmpty else {
+            throw VersionError.invalidString
+        }
+
+        if versionBuildComponents.count > 1 {
+            build = Version.number(from: versionComponents, atIndex: 1) ?? 0
         }
 
         if let _major = Version.number(from: versionComponents, atIndex: 0) {
@@ -60,14 +67,14 @@ public struct Version {
 
 extension Version: CustomStringConvertible {
     public var description: String {
-        return "\(major).\(minor).\(patch)"
+        return "\(major).\(minor).\(patch)-\(build)"
     }
 }
 
 extension Version: Comparable {
 
-    private var tuple: (Int, Int, Int) {
-        return (self.major, self.minor, self.patch)
+    private var tuple: (Int, Int, Int, Int) {
+        return (major, minor, patch, build)
     }
 
     public static func == (lhs: Version, rhs: Version) -> Bool {
