@@ -79,7 +79,7 @@ public struct PrinceOfVersions {
     }
 
     @discardableResult
-    func checkForUpdates(
+    public func checkForUpdates(
         from URL: URL,
         newVersion: @escaping NewVersionBlock,
         noNewVersion: @escaping NoNewVersionBlock,
