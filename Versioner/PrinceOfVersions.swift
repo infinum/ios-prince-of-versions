@@ -93,11 +93,7 @@ public struct PrinceOfVersions {
                 error(updateInfoError)
 
             case .success(let info):
-                guard let latestVersion = info.latestVersion else {
-                    noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
-                    return
-                }
-
+                let latestVersion = info.latestVersion
                 if !latestVersion.wasNotified || info.notificationType == .always {
                     newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
                     latestVersion.markNotified()

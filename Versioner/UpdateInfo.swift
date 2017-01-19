@@ -10,6 +10,7 @@ import Foundation
 
 enum UpdateInfoError: Error {
     case invalidJsonData
+    case invalidLatestVersion
     case invalidCurrentVersion
 }
 
@@ -38,7 +39,7 @@ public struct UpdateInfo {
     /**
      Returns latest available version of the app.
      */
-    public private(set) var latestVersion: Version?
+    public private(set) var latestVersion: Version
 
     /**
      Returns installed version of the app.
@@ -76,20 +77,24 @@ public struct UpdateInfo {
 
         // Minimum version
         if let minimumVersion = os["minimum_version"] as? String {
-            minimumRequiredVersion? = try Version(string: minimumVersion)
+            minimumRequiredVersion = try? Version(string: minimumVersion)
         }
 
         // Latest version and notification type
-        if let optionalUpdate = os["optional_update"] as? [String: AnyObject] {
-            let notificationTypeString = (optionalUpdate["notification_type"] as? String) ?? ""
+        guard let latestVersionInfo = os["latest_version"] as? [String: AnyObject] else {
+            throw UpdateInfoError.invalidLatestVersion
+        }
 
-            if let _notificationType = NotificationType(rawValue: notificationTypeString) {
-                notificationType = _notificationType
-            }
+        let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? ""
 
-            if let versionString = optionalUpdate["version"] as? String {
-                latestVersion = try? Version(string: versionString)
-            }
+        if let _notificationType = NotificationType(rawValue: notificationTypeString) {
+            notificationType = _notificationType
+        }
+
+        if let versionString = latestVersionInfo["version"] as? String {
+            latestVersion = try Version(string: versionString)
+        } else {
+            throw UpdateInfoError.invalidLatestVersion
         }
 
         // Installed version
