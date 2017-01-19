@@ -37,6 +37,6 @@ class UpdateInfoTest: XCTestCase {
             return
         }
 
-        XCTAssertNotNil(_info.minimumRequiredVersion.major, "Value for installed version should not be nil")
+        XCTAssertNotNil(_info.minimumRequiredVersion, "Value for minimum required version should not be nil")
     }
 }
