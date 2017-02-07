@@ -116,7 +116,8 @@ Full example application is available [here]().
 	```
 
 ### Multiple targets
- +If your application has multiple targets you might need more than one JSON configuration file. If that is the case, do not forget to set a different URL for each target.
+
+If your application has multiple targets you might need more than one JSON configuration file. If that is the case, do not forget to set a different URL for each target.
 
 ### Contributing
 
