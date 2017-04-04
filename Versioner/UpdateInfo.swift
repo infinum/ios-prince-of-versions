@@ -96,7 +96,11 @@ public struct UpdateInfo {
         guard let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
             throw UpdateInfoError.invalidCurrentVersion
         }
-        installedVersion = try Version(string: currentVersionString)
+        guard let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
+            throw UpdateInfoError.invalidCurrentVersion   
+        }
+
+        installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
 
         // Metadata
         metadata = value["meta"] as? [String: Any]

@@ -98,7 +98,7 @@ public struct PrinceOfVersions {
                     return
                 }
 
-                if !latestVersion.wasNotified || info.notificationType == .always {
+                if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
                     newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
                     latestVersion.markNotified()
                 } else {
