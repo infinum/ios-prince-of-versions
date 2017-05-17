@@ -19,7 +19,7 @@ public struct Version {
     public var patch: Int
     public var build: Int = 0
 
-    var wasNotified: Bool {
+    public var wasNotified: Bool {
         get {
             return UserDefaults.standard.bool(forKey: versionUserDefaultKey)
         }
