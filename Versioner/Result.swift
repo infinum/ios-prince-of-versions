@@ -9,8 +9,8 @@
 import Foundation
 
 public class Result: NSObject {
-    let updateInfo: UpdateInfo?
-    let error: Error?
+    public let updateInfo: UpdateInfo?
+    public let error: Error?
     
     public init(updateInfo: UpdateInfo?, error: Error?) {
         self.updateInfo = updateInfo
