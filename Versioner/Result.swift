@@ -8,7 +8,12 @@
 
 import Foundation
 
-public enum Result {
-    case success(UpdateInfo)
-    case failure(Error)
+public class Result: NSObject {
+    let updateInfo: UpdateInfo?
+    let error: Error?
+    
+    public init(updateInfo: UpdateInfo?, error: Error?) {
+        self.updateInfo = updateInfo
+        self.error = error
+    }
 }

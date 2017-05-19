@@ -11,7 +11,7 @@ import UIKit
 public typealias CompletionBlock = (UpdateInfoResponse) -> Void
 public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
 public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
-public typealias ErrorBlock = (Error) -> Void
+public typealias ErrorBlock = (Error?) -> Void
 
 public class PrinceOfVersions: NSObject {
     /**
@@ -42,13 +42,13 @@ public class PrinceOfVersions: NSObject {
 
             let result: Result
             if let error = error {
-                result = Result.failure(error)
+                result = Result(updateInfo: nil, error: error)
             } else {
                 do {
                     let updateInfo = try UpdateInfo(data: data)
-                    result = Result.success(updateInfo)
+                    result = Result(updateInfo: updateInfo, error: nil)
                 } catch let error {
-                    result = Result.failure(error)
+                    result = Result(updateInfo: nil, error: error)
                 }
             }
             let updateInfoResponse = UpdateInfoResponse(
@@ -71,18 +71,17 @@ public class PrinceOfVersions: NSObject {
     {
 
         return loadConfiguration(from: URL, completion: { (response) in
-            switch response.result {
-            case .failure(let updateInfoError):
-                error(updateInfoError)
-
-            case .success(let info):
-                let latestVersion = info.latestVersion
-                if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                    newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
-                    latestVersion.markNotified()
-                } else {
-                    noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
-                }
+            guard let info = response.result.updateInfo else {
+                error(response.result.error)
+                return
+            }
+            
+            let latestVersion = info.latestVersion
+            if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
+                newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                latestVersion.markNotified()
+            } else {
+                noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
             }
         })
     }
