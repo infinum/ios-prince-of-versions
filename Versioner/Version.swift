@@ -13,7 +13,7 @@ public enum VersionError: Error {
     case invalidMajorVersion
 }
 
-public struct Version {
+public class Version: NSObject {
     public var major: Int
     public var minor: Int
     public var patch: Int
@@ -62,13 +62,11 @@ public struct Version {
         }
         return Int(components[index])
     }
-
-}
-
-extension Version: CustomStringConvertible {
-    public var description: String {
+    
+    override public var description: String {
         return "\(major).\(minor).\(patch)-\(build)"
     }
+
 }
 
 extension Version: Comparable {

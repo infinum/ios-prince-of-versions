@@ -14,7 +14,7 @@ enum UpdateInfoError: Error {
     case invalidCurrentVersion
 }
 
-public struct UpdateInfo {
+public class UpdateInfo: NSObject {
 
     public enum NotificationType : String {
         case always = "ALWAYS"
