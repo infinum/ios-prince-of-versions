@@ -8,32 +8,12 @@
 
 import UIKit
 
+public typealias CompletionBlock = (UpdateInfoResponse) -> Void
+public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
+public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
+public typealias ErrorBlock = (Error) -> Void
+
 public class PrinceOfVersions: NSObject {
-
-    public enum Result {
-        case success(UpdateInfo)
-        case failure(Error)
-    }
-
-    public class UpdateInfoResponse: NSObject {
-        /// The server's response to the URL request.
-        public let response: URLResponse?
-
-        /// The result of response serialization.
-        public let result: Result
-        
-        /// Init
-        init(response: URLResponse?, result: Result) {
-            self.response = response
-            self.result = result
-        }
-    }
-
-    public typealias CompletionBlock = (UpdateInfoResponse) -> Void
-    public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
-    public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
-    public typealias ErrorBlock = (Error) -> Void
-    
     /**
      Check mimum required version, current installed version on device and current available version of the app with data stored on URL.
      It also checks if minimum version is satisfied and what should be frequency of notifying user.

@@ -47,6 +47,8 @@
 		06C8F18A1D92BA150088BDA2 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */; };
 		CF7576911DAC1F5E002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
 		CF7576921DAC1FBA002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
+		FE2232CD1ECF054E00D73F4D /* UpdateInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2232CC1ECF054E00D73F4D /* UpdateInfoResponse.swift */; };
+		FE2232CF1ECF058100D73F4D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2232CE1ECF058100D73F4D /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +88,8 @@
 		06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoTest.swift; sourceTree = "<group>"; };
 		06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
 		CF7576901DAC1F5E002B7581 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		FE2232CC1ECF054E00D73F4D /* UpdateInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoResponse.swift; sourceTree = "<group>"; };
+		FE2232CE1ECF058100D73F4D /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,8 @@
 				06C2DF2B1D19639B0032E464 /* Versioner.h */,
 				06C2DF2D1D19639B0032E464 /* Info.plist */,
 				066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */,
+				FE2232CC1ECF054E00D73F4D /* UpdateInfoResponse.swift */,
+				FE2232CE1ECF058100D73F4D /* Result.swift */,
 				066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */,
 				CF7576901DAC1F5E002B7581 /* Version.swift */,
 			);
@@ -322,6 +328,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
+				FE2232CF1ECF058100D73F4D /* Result.swift in Sources */,
+				FE2232CD1ECF054E00D73F4D /* UpdateInfoResponse.swift in Sources */,
 				CF7576911DAC1F5E002B7581 /* Version.swift in Sources */,
 				066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */,
 			);
