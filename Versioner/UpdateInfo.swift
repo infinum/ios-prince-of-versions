@@ -79,11 +79,8 @@ public class UpdateInfo: NSObject {
             throw UpdateInfoError.invalidLatestVersion
         }
 
-        let notificationTypeNumber = (latestVersionInfo["notification_type"] as? Int) ?? 0
-
-        if let _notificationType = NotificationType(rawValue: notificationTypeNumber) {
-            notificationType = _notificationType
-        }
+        let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? "ONCE"
+        notificationType = (notificationTypeString == "ONCE") ? .once : .always
 
         if let versionString = latestVersionInfo["version"] as? String {
             latestVersion = try Version(string: versionString)
