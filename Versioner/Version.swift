@@ -66,6 +66,28 @@ public class Version: NSObject {
     override public var description: String {
         return "\(major).\(minor).\(patch)-\(build)"
     }
+    
+    // MARK: - Comparison -
+    
+    public func greaterThan(_ version: Version) -> Bool {
+        return self > version
+    }
+    
+    public func greaterOrEqualTo(_ version: Version) -> Bool {
+        return self >= version
+    }
+    
+    public func lowerOrEqualTo(_ version: Version) -> Bool {
+        return self <= version
+    }
+    
+    public func equalTo(_ version: Version) -> Bool {
+        return self == version
+    }
+    
+    public func notEqualTo(_ version: Version) -> Bool {
+        return self != version
+    }
 
 }
 
