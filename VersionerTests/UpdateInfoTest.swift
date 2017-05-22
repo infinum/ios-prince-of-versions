@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import PrinceOfVersions
 
 class UpdateInfoTest: XCTestCase {
     

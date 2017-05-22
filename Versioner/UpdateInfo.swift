@@ -14,13 +14,7 @@ enum UpdateInfoError: Error {
     case invalidCurrentVersion
 }
 
-public struct UpdateInfo {
-
-    public enum NotificationType : String {
-        case always = "ALWAYS"
-        case once = "ONCE"
-    }
-
+public class UpdateInfo: NSObject {
     /**
      Returns minimum required version of the app.
      */
@@ -32,7 +26,7 @@ public struct UpdateInfo {
      - Once: Show notification only once
      - Always: Show notification every time app run
      
-     Default value is @c .once
+     Default value is .once
      */
     public private(set) var notificationType: NotificationType = .once
 
@@ -85,11 +79,8 @@ public struct UpdateInfo {
             throw UpdateInfoError.invalidLatestVersion
         }
 
-        let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? ""
-
-        if let _notificationType = NotificationType(rawValue: notificationTypeString) {
-            notificationType = _notificationType
-        }
+        let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? "ONCE"
+        notificationType = (notificationTypeString == "ONCE") ? .once : .always
 
         if let versionString = latestVersionInfo["version"] as? String {
             latestVersion = try Version(string: versionString)
