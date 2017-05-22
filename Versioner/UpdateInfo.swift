@@ -15,12 +15,6 @@ enum UpdateInfoError: Error {
 }
 
 public class UpdateInfo: NSObject {
-
-    public enum NotificationType : String {
-        case always = "ALWAYS"
-        case once = "ONCE"
-    }
-
     /**
      Returns minimum required version of the app.
      */
@@ -32,7 +26,7 @@ public class UpdateInfo: NSObject {
      - Once: Show notification only once
      - Always: Show notification every time app run
      
-     Default value is @c .once
+     Default value is .once
      */
     public private(set) var notificationType: NotificationType = .once
 
@@ -85,9 +79,9 @@ public class UpdateInfo: NSObject {
             throw UpdateInfoError.invalidLatestVersion
         }
 
-        let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? ""
+        let notificationTypeNumber = (latestVersionInfo["notification_type"] as? Int) ?? 0
 
-        if let _notificationType = NotificationType(rawValue: notificationTypeString) {
+        if let _notificationType = NotificationType(rawValue: notificationTypeNumber) {
             notificationType = _notificationType
         }
 
