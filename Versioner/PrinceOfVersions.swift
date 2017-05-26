@@ -94,12 +94,13 @@ public struct PrinceOfVersions {
 
             case .success(let info):
                 let latestVersion = info.latestVersion
-                if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                    newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
-                    latestVersion.markNotified()
-                } else {
+                let currnetVersion = info.installedVersion
+                if currnetVersion >= latestVersion || (latestVersion.wasNotified && info.notificationType == .once) {
                     noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    return
                 }
+                newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                latestVersion.markNotified()
             }
         })
     }
