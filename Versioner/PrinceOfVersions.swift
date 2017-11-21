@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct PrinceOfVersions {
+public class PrinceOfVersions: NSObject {
 
     public enum Result {
         case success(UpdateInfo)
@@ -28,8 +28,12 @@ public struct PrinceOfVersions {
     public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
     public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
     public typealias ErrorBlock = (Error) -> Void
+    
+    fileprivate var _pinnedCertificateURL: URL?
 
-    public init(){}
+    public override init() {
+        super.init()
+    }
 
     /**
      Check mimum required version, current installed version on device and current available version of the app with data stored on URL.
@@ -52,10 +56,20 @@ public struct PrinceOfVersions {
      - returns: Configuration data
      */
     @discardableResult
-    public func loadConfiguration(from URL: URL, completion: @escaping CompletionBlock) -> URLSessionDataTask {
+    public func loadConfiguration(from URL: URL, httpHeaderFields: [String : String?]? = nil, pinnedCertificateURL: URL? = nil, completion: @escaping CompletionBlock) -> URLSessionDataTask {
+        
+        _pinnedCertificateURL = pinnedCertificateURL
 
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
-        let dataTask = defaultSession.dataTask(with: URL, completionHandler: { (data, response, error) in
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        var request = URLRequest(url: URL)
+        
+        if let headerFields = httpHeaderFields {
+            for (fieldName, fieldValue) in headerFields {
+                request.setValue(fieldValue, forHTTPHeaderField: fieldName)
+            }
+        }
+        
+        let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
 
             let result: Result
             if let error = error {
@@ -81,13 +95,15 @@ public struct PrinceOfVersions {
     @discardableResult
     public func checkForUpdates(
         from URL: URL,
+        httpHeaderFields: [String : String?]? = nil,
+        pinnedCertificateURL: URL? = nil,
         newVersion: @escaping NewVersionBlock,
         noNewVersion: @escaping NoNewVersionBlock,
         error: @escaping ErrorBlock)
         -> URLSessionDataTask
     {
 
-        return loadConfiguration(from: URL, completion: { (response) in
+        return loadConfiguration(from: URL, httpHeaderFields: httpHeaderFields, completion: { (response) in
             switch response.result {
             case .failure(let updateInfoError):
                 error(updateInfoError)
@@ -103,5 +119,69 @@ public struct PrinceOfVersions {
             }
         })
     }
+}
 
+extension PrinceOfVersions: URLSessionDelegate {
+    
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        
+        guard let trust = challenge.protectionSpace.serverTrust, SecTrustGetCertificateCount(trust) > 0 else {
+            completionHandler(.cancelAuthenticationChallenge, nil)
+            return
+        }
+        
+        guard _pinnedCertificateURL != nil else {
+            completionHandler(.performDefaultHandling, nil)
+            return
+        }
+        
+        if let serverCertificate = SecTrustGetCertificateAtIndex(trust, 0), let serverCertificateKey = publicKey(for: serverCertificate) {
+            
+            let hasKey = pinnedKeys().contains(where: { (key) -> Bool in
+                if (serverCertificateKey as AnyObject).isEqual(key) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            
+            if hasKey {
+                completionHandler(.useCredential, URLCredential(trust: trust))
+                return
+            }
+        }
+        
+        completionHandler(.cancelAuthenticationChallenge, nil)
+    }
+    
+    fileprivate func pinnedKeys() -> [SecKey] {
+        var publicKeys: [SecKey] = []
+        
+        if let pinnedCertificateURL = _pinnedCertificateURL {
+            do {
+                let pinnedCertificateData = try Data(contentsOf: pinnedCertificateURL) as CFData
+                if let pinnedCertificate = SecCertificateCreateWithData(nil, pinnedCertificateData), let key = publicKey(for: pinnedCertificate) {
+                    publicKeys.append(key)
+                }
+            } catch (_) {
+                // TODO: Handle error
+            }
+        }
+        
+        return publicKeys
+    }
+    
+    fileprivate func publicKey(for certificate: SecCertificate) -> SecKey? {
+        var publicKey: SecKey?
+        
+        let policy = SecPolicyCreateBasicX509()
+        var trust: SecTrust?
+        let trustCreationStatus = SecTrustCreateWithCertificates(certificate, policy, &trust)
+        
+        if let trust = trust, trustCreationStatus == errSecSuccess {
+            publicKey = SecTrustCopyPublicKey(trust)
+        }
+        
+        return publicKey
+    }
 }
