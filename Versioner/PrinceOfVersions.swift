@@ -94,9 +94,9 @@ public struct PrinceOfVersions {
 
             case .success(let info):
                 let sdkVersion = info.sdkVersion
-                if let _minimumSdkForMinimumRequiredVersion = info.minimumSdkForMinimumRequiredVersion,
-                    _minimumSdkForMinimumRequiredVersion > sdkVersion {
-                    noNewVersion(false, info.metadata)
+                if let _minimumSdkForLatestVersion = info.minimumSdkForLatestVersion,
+                    _minimumSdkForLatestVersion > sdkVersion {
+                    noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
                     
                 } else {
                     let latestVersion = info.latestVersion

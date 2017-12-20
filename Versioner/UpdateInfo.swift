@@ -65,7 +65,12 @@ public struct UpdateInfo {
     /**
      Checks and return true if minimum version requirement is satisfied. If minimumRequiredVersion doesn't exist return true.
      */
-    public var isMinimumVersionSatisfied: Bool {        
+    public var isMinimumVersionSatisfied: Bool {
+        if let _minimumSdkForMinimumRequiredVersion = minimumSdkForMinimumRequiredVersion,
+            _minimumSdkForMinimumRequiredVersion > sdkVersion {
+            return true
+        }
+        
         guard let _minimumRequiredVersion = minimumRequiredVersion else {
             return true
         }
@@ -97,8 +102,8 @@ public struct UpdateInfo {
         }
         
         // Minimum sdk for minimum version
-        if let minimumSdkForMinimumVersion = os["minimum_version_min_sdk"] as? String {
-            minimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersion)
+        if let minimumSdkForMinimumVersionString = os["minimum_version_min_sdk"] as? String {
+            minimumSdkForMinimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersionString)
         }
 
         // Latest version and notification type
