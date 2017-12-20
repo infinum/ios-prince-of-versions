@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum UpdateInfoError: Error {
     case invalidJsonData
@@ -25,6 +26,11 @@ public struct UpdateInfo {
      Returns minimum required version of the app.
      */
     public private(set) var minimumRequiredVersion: Version?
+    
+    /**
+     Returns minimum sdk for minimum required version of the app.
+     */
+    public private(set) var minimumSdkForMinimumRequiredVersion: Version?
 
     /**
      Returns notification type. Possible values are:
@@ -40,16 +46,26 @@ public struct UpdateInfo {
      Returns latest available version of the app.
      */
     public private(set) var latestVersion: Version
+    
+    /**
+     Returns sdk for latest available version of the app.
+     */
+    public private(set) var minimumSdkForLatestVersion: Version?
 
     /**
      Returns installed version of the app.
      */
     public private(set) var installedVersion: Version
+    
+    /**
+     Returns sdk version of device.
+     */
+    public private(set) var sdkVersion: Version
 
     /**
      Checks and return true if minimum version requirement is satisfied. If minimumRequiredVersion doesn't exist return true.
      */
-    public var isMinimumVersionSatisfied: Bool {
+    public var isMinimumVersionSatisfied: Bool {        
         guard let _minimumRequiredVersion = minimumRequiredVersion else {
             return true
         }
@@ -79,6 +95,11 @@ public struct UpdateInfo {
         if let minimumVersion = os["minimum_version"] as? String {
             minimumRequiredVersion = try? Version(string: minimumVersion)
         }
+        
+        // Minimum sdk for minimum version
+        if let minimumSdkForMinimumVersion = os["minimum_version_min_sdk"] as? String {
+            minimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersion)
+        }
 
         // Latest version and notification type
         guard let latestVersionInfo = os["latest_version"] as? [String: AnyObject] else {
@@ -96,6 +117,10 @@ public struct UpdateInfo {
         } else {
             throw UpdateInfoError.invalidLatestVersion
         }
+        
+        if let minimumSdkForLatestVersionString = latestVersionInfo["min_sdk"] as? String {
+            minimumSdkForLatestVersion = try? Version(string: minimumSdkForLatestVersionString)
+        }
 
         // Installed version
         guard let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
@@ -106,6 +131,8 @@ public struct UpdateInfo {
         }
 
         installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
+        
+        sdkVersion = try Version(string: UIDevice.current.systemVersion)
 
         // Metadata
         metadata = value["meta"] as? [String: Any]
