@@ -93,12 +93,19 @@ public struct PrinceOfVersions {
                 error(updateInfoError)
 
             case .success(let info):
-                let latestVersion = info.latestVersion
-                if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                    newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
-                    latestVersion.markNotified()
-                } else {
+                let sdkVersion = info.sdkVersion
+                if let _minimumSdkForLatestVersion = info.minimumSdkForLatestVersion,
+                    _minimumSdkForLatestVersion > sdkVersion {
                     noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    
+                } else {
+                    let latestVersion = info.latestVersion
+                    if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
+                        newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                        latestVersion.markNotified()
+                    } else {
+                        noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    }
                 }
             }
         })
