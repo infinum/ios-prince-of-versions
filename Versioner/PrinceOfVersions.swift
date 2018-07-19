@@ -6,7 +6,7 @@
 //  Copyright © 2016 Infinum Ltd. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public typealias CompletionBlock = (UpdateInfoResponse) -> Void
 public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
