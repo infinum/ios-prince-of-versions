@@ -10,7 +10,6 @@
 		066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
 		066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
-		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06C2DF331D19639B0032E464 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */; };
 		06C8F15B1D9296EF0088BDA2 /* invalid_update_incalid_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F15A1D9296EF0088BDA2 /* invalid_update_incalid_version.json */; };
@@ -85,7 +84,6 @@
 		066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
 		066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		0688DB1A1D19AA460027695C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		0688DB1C1D19AA4B0027695C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */,
 				0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				4FAAEFE12100CFFC0008790F /* Foundation.framework */,
-				0688DB1C1D19AA4B0027695C /* UIKit.framework */,
 				0688DB1A1D19AA460027695C /* Foundation.framework */,
 			);
 			name = Frameworks;
@@ -243,9 +239,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		06C2DF271D19639B0032E464 /* PrinceOfVersions */ = {
+		06C2DF271D19639B0032E464 /* PrinceOfVersions-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "PrinceOfVersions" */;
+			buildConfigurationList = 06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "PrinceOfVersions-iOS" */;
 			buildPhases = (
 				06C2DF231D19639B0032E464 /* Sources */,
 				06C2DF241D19639B0032E464 /* Frameworks */,
@@ -256,7 +252,7 @@
 			);
 			dependencies = (
 			);
-			name = PrinceOfVersions;
+			name = "PrinceOfVersions-iOS";
 			productName = Versioner;
 			productReference = 06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */;
 			productType = "com.apple.product-type.framework";
@@ -335,7 +331,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				06C2DF271D19639B0032E464 /* PrinceOfVersions */,
+				06C2DF271D19639B0032E464 /* PrinceOfVersions-iOS */,
 				4FAAEFCC2100CE120008790F /* PrinceOfVersions-macOS */,
 				06C2DF311D19639B0032E464 /* PrinceOfVersionsTests */,
 			);
@@ -449,7 +445,7 @@
 /* Begin PBXTargetDependency section */
 		06C2DF351D19639B0032E464 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 06C2DF271D19639B0032E464 /* PrinceOfVersions */;
+			target = 06C2DF271D19639B0032E464 /* PrinceOfVersions-iOS */;
 			targetProxy = 06C2DF341D19639B0032E464 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -672,7 +668,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.PrinceOfVersions-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -712,7 +708,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.PrinceOfVersions-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -733,7 +729,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "PrinceOfVersions" */ = {
+		06C2DF3C1D19639B0032E464 /* Build configuration list for PBXNativeTarget "PrinceOfVersions-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				06C2DF3D1D19639B0032E464 /* Debug */,

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06C2DF271D19639B0032E464"
-               BuildableName = "PrinceOfVersions.framework"
-               BlueprintName = "PrinceOfVersions"
+               BlueprintIdentifier = "4FAAEFCC2100CE120008790F"
+               BuildableName = "PrinceOfVersions_macOS.framework"
+               BlueprintName = "PrinceOfVersions-macOS"
                ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,32 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06C2DF311D19639B0032E464"
-               BuildableName = "PrinceOfVersions.xctest"
-               BlueprintName = "PrinceOfVersionsTests"
-               ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06C2DF271D19639B0032E464"
-            BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "PrinceOfVersions"
+            BlueprintIdentifier = "4FAAEFCC2100CE120008790F"
+            BuildableName = "PrinceOfVersions_macOS.framework"
+            BlueprintName = "PrinceOfVersions-macOS"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = ""
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -70,9 +54,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06C2DF271D19639B0032E464"
-            BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "PrinceOfVersions"
+            BlueprintIdentifier = "4FAAEFCC2100CE120008790F"
+            BuildableName = "PrinceOfVersions_macOS.framework"
+            BlueprintName = "PrinceOfVersions-macOS"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -88,9 +72,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06C2DF271D19639B0032E464"
-            BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "PrinceOfVersions"
+            BlueprintIdentifier = "4FAAEFCC2100CE120008790F"
+            BuildableName = "PrinceOfVersions_macOS.framework"
+            BlueprintName = "PrinceOfVersions-macOS"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
