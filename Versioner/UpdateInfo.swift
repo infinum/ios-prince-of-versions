@@ -65,9 +65,18 @@ public class UpdateInfo: NSObject {
         guard let value = json as? [String: AnyObject] else {
             throw UpdateInfoError.invalidJsonData
         }
+
+        #if os(iOS)
         guard let os = value["ios"] as? [String: AnyObject] else {
             throw UpdateInfoError.invalidJsonData
         }
+        #elseif os(macOS)
+        guard let os = value["zip"] as? [String: AnyObject] else {
+            throw UpdateInfoError.invalidJsonData
+        }
+        #else
+        throw UpdateInfoError.invalidJsonData
+        #endif
 
         // Minimum version
         if let minimumVersion = os["minimum_version"] as? String {

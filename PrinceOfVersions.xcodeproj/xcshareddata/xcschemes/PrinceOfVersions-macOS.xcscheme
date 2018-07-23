@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4FD82F6B2105E30700491B81"
+               BuildableName = "PrinceOfVersionsTests-macOS.xctest"
+               BlueprintName = "PrinceOfVersionsTests-macOS"
+               ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

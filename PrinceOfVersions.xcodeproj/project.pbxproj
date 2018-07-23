@@ -62,6 +62,11 @@
 		4FAAEFEE2100D0170008790F /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1721D9298F70088BDA2 /* valid_update_no_notification.json */; };
 		4FAAEFEF2100D0170008790F /* valid_update_notification_once.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1741D92991F0088BDA2 /* valid_update_notification_once.json */; };
 		4FAAEFF02100D0170008790F /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */; };
+		4FD82F6F2105E30700491B81 /* PrinceOfVersionsTests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD82F6E2105E30700491B81 /* PrinceOfVersionsTests_macOS.swift */; };
+		4FD82F712105E30700491B81 /* PrinceOfVersions_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FAAEFCD2100CE120008790F /* PrinceOfVersions_macOS.framework */; };
+		4FD82F792105E3E800491B81 /* update_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FD82F782105E3E800491B81 /* update_info.json */; };
+		4FD82F7A2105E3E800491B81 /* update_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FD82F782105E3E800491B81 /* update_info.json */; };
+		4FD82F7B2105E4E100491B81 /* update_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FD82F782105E3E800491B81 /* update_info.json */; };
 		4FE4B6C72101DFE800BD2B7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FE4B6C62101DFE800BD2B7D /* Foundation.framework */; };
 		4FE4B6C92101DFF100BD2B7D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FE4B6C82101DFF100BD2B7D /* Foundation.framework */; };
 		CF7576911DAC1F5E002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
@@ -77,6 +82,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 06C2DF271D19639B0032E464;
 			remoteInfo = Versioner;
+		};
+		4FD82F722105E30700491B81 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06C2DF1F1D19639B0032E464 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FAAEFCC2100CE120008790F;
+			remoteInfo = "PrinceOfVersions-macOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -105,6 +117,10 @@
 		06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoTest.swift; sourceTree = "<group>"; };
 		06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
 		4FAAEFCD2100CE120008790F /* PrinceOfVersions_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrinceOfVersions_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FD82F6C2105E30700491B81 /* PrinceOfVersionsTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PrinceOfVersionsTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FD82F6E2105E30700491B81 /* PrinceOfVersionsTests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTests_macOS.swift; sourceTree = "<group>"; };
+		4FD82F702105E30700491B81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FD82F782105E3E800491B81 /* update_info.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = update_info.json; sourceTree = "<group>"; };
 		4FE4B6C62101DFE800BD2B7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4FE4B6C82101DFF100BD2B7D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CF7576901DAC1F5E002B7581 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
@@ -138,6 +154,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FD82F692105E30700491B81 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FD82F712105E30700491B81 /* PrinceOfVersions_macOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -146,6 +170,7 @@
 			children = (
 				06C2DF2A1D19639B0032E464 /* Versioner */,
 				06C2DF361D19639B0032E464 /* VersionerTests */,
+				4FD82F6D2105E30700491B81 /* VersionerTests-macOS */,
 				06C2DF291D19639B0032E464 /* Products */,
 				1E349D472206F2D83F54231C /* Frameworks */,
 			);
@@ -157,6 +182,7 @@
 				06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */,
 				06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */,
 				4FAAEFCD2100CE120008790F /* PrinceOfVersions_macOS.framework */,
+				4FD82F6C2105E30700491B81 /* PrinceOfVersionsTests-macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,6 +241,24 @@
 				4FE4B6C62101DFE800BD2B7D /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4FD82F6D2105E30700491B81 /* VersionerTests-macOS */ = {
+			isa = PBXGroup;
+			children = (
+				4FD82F772105E3B500491B81 /* mockdata */,
+				4FD82F702105E30700491B81 /* Info.plist */,
+				4FD82F6E2105E30700491B81 /* PrinceOfVersionsTests_macOS.swift */,
+			);
+			path = "VersionerTests-macOS";
+			sourceTree = "<group>";
+		};
+		4FD82F772105E3B500491B81 /* mockdata */ = {
+			isa = PBXGroup;
+			children = (
+				4FD82F782105E3E800491B81 /* update_info.json */,
+			);
+			path = mockdata;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,13 +337,31 @@
 			productReference = 4FAAEFCD2100CE120008790F /* PrinceOfVersions_macOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		4FD82F6B2105E30700491B81 /* PrinceOfVersionsTests-macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FD82F762105E30700491B81 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsTests-macOS" */;
+			buildPhases = (
+				4FD82F682105E30700491B81 /* Sources */,
+				4FD82F692105E30700491B81 /* Frameworks */,
+				4FD82F6A2105E30700491B81 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FD82F732105E30700491B81 /* PBXTargetDependency */,
+			);
+			name = "PrinceOfVersionsTests-macOS";
+			productName = "PrinceOfVersionsTests-macOS";
+			productReference = 4FD82F6C2105E30700491B81 /* PrinceOfVersionsTests-macOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		06C2DF1F1D19639B0032E464 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Infinum Ltd";
 				TargetAttributes = {
@@ -316,6 +378,11 @@
 					4FAAEFCC2100CE120008790F = {
 						CreatedOnToolsVersion = 9.3.1;
 						ProvisioningStyle = Manual;
+					};
+					4FD82F6B2105E30700491B81 = {
+						CreatedOnToolsVersion = 9.3.1;
+						DevelopmentTeam = 5F5M64F878;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -334,6 +401,7 @@
 				06C2DF271D19639B0032E464 /* PrinceOfVersions-iOS */,
 				4FAAEFCC2100CE120008790F /* PrinceOfVersions-macOS */,
 				06C2DF311D19639B0032E464 /* PrinceOfVersionsTests */,
+				4FD82F6B2105E30700491B81 /* PrinceOfVersionsTests-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -349,6 +417,7 @@
 				06C8F1771D92994E0088BDA2 /* valid_update_only_min_version.json in Resources */,
 				06C8F1751D92991F0088BDA2 /* valid_update_notification_once.json in Resources */,
 				06C8F15D1D92973B0088BDA2 /* invalid_update_no_ios.json in Resources */,
+				4FD82F792105E3E800491B81 /* update_info.json in Resources */,
 				06C8F16D1D9298A40088BDA2 /* valid_update_full_with_metadata_empty.json in Resources */,
 				06C8F1691D92985F0088BDA2 /* valid_update_full_with_metadata.json in Resources */,
 				06C8F1651D9297D70088BDA2 /* malformed_json.json in Resources */,
@@ -391,6 +460,7 @@
 				4FAAEFE62100D0170008790F /* invalid_update_no_min_version.json in Resources */,
 				4FAAEFE72100D0170008790F /* invalid_update_optional_without_version.json in Resources */,
 				4FAAEFE82100D0170008790F /* malformed_json.json in Resources */,
+				4FD82F7A2105E3E800491B81 /* update_info.json in Resources */,
 				4FAAEFE92100D0170008790F /* valid_update_full.json in Resources */,
 				4FAAEFEA2100D0170008790F /* valid_update_full_with_metadata.json in Resources */,
 				4FAAEFEB2100D0170008790F /* valid_update_full_with_metadata_empty.json in Resources */,
@@ -399,6 +469,14 @@
 				4FAAEFEE2100D0170008790F /* valid_update_no_notification.json in Resources */,
 				4FAAEFEF2100D0170008790F /* valid_update_notification_once.json in Resources */,
 				4FAAEFF02100D0170008790F /* valid_update_only_min_version.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FD82F6A2105E30700491B81 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FD82F7B2105E4E100491B81 /* update_info.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +518,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FD82F682105E30700491B81 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FD82F6F2105E30700491B81 /* PrinceOfVersionsTests_macOS.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -447,6 +533,11 @@
 			isa = PBXTargetDependency;
 			target = 06C2DF271D19639B0032E464 /* PrinceOfVersions-iOS */;
 			targetProxy = 06C2DF341D19639B0032E464 /* PBXContainerItemProxy */;
+		};
+		4FD82F732105E30700491B81 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FAAEFCC2100CE120008790F /* PrinceOfVersions-macOS */;
+			targetProxy = 4FD82F722105E30700491B81 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -717,6 +808,53 @@
 			};
 			name = Release;
 		};
+		4FD82F742105E30700491B81 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5F5M64F878;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VersionerTests-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.PrinceOfVersionsTests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		4FD82F752105E30700491B81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 5F5M64F878;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "VersionerTests-macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.PrinceOfVersionsTests-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -752,6 +890,15 @@
 			buildConfigurations = (
 				4FAAEFD22100CE120008790F /* Debug */,
 				4FAAEFD32100CE120008790F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FD82F762105E30700491B81 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsTests-macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FD82F742105E30700491B81 /* Debug */,
+				4FD82F752105E30700491B81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

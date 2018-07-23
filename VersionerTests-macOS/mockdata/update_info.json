@@ -1,0 +1,23 @@
+{
+    "ios": {
+        "minimum_version": "1.2.3",
+        "latest_version": {
+            "version": "2.4.5",
+            "notification_type": "ALWAYS"
+        }
+    },
+    "android": {
+        "minimum_version": "1.2.3",
+        "latest_version": {
+            "version": "2.4.5",
+            "notification_type": "ONCE"
+        }
+    },
+    "zip": {
+        "minimum_version": "2.3.4",
+        "latest_version": {
+            "version": "3.4.5",
+            "notification_type": "ONCE"
+        }
+    }
+}
