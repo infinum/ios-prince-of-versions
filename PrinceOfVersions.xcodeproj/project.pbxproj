@@ -481,7 +481,7 @@
 				PRODUCT_NAME = PrinceOfVersions;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -502,7 +502,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
 				PRODUCT_NAME = PrinceOfVersions;
 				SKIP_INSTALL = YES;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
