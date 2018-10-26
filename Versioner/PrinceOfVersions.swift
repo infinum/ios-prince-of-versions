@@ -40,8 +40,10 @@ public class PrinceOfVersions: NSObject {
      It also checks if minimum version is satisfied and what should be frequency of notifying user.
      
      - parameters:
-        - configurationURL: URL that containts configuration data
-        - completion:       The completion handler to call when the load request is complete. 
+        - configurationURL:      URL that containts configuration data.
+        - httpHeaderFields:      Optional HTTP header fields.
+        - shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
+        - completion:            The completion handler to call when the load request is complete.
 
             This completion handler takes the following parameters:
 
