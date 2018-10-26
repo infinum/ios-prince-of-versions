@@ -1,6 +1,6 @@
 machine:
   xcode:
-    version: "8.0"
+    version: "10.0"
   environment:
     GYM_CODE_SIGNING_IDENTITY: 'iPhone Distribution: Infinum D.O.O.'
     XCODE_SCHEME: 'PrinceOfVersions'
