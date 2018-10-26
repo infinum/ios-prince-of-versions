@@ -135,9 +135,9 @@ extension PrinceOfVersions: URLSessionDelegate {
             return
         }
         
-        if let serverCertificate = SecTrustGetCertificateAtIndex(trust, 0), let serverCertificateKey = publicKey(for: serverCertificate) {
+        if let serverCertificate = SecTrustGetCertificateAtIndex(trust, 0), let serverCertificateKey = _publicKey(for: serverCertificate) {
             
-            let hasKey = pinnedKeys().contains(where: { (key) -> Bool in
+            let hasKey = _pinnedKeys().contains(where: { (key) -> Bool in
                 if (serverCertificateKey as AnyObject).isEqual(key) {
                     return true
                 } else {
@@ -154,13 +154,13 @@ extension PrinceOfVersions: URLSessionDelegate {
         completionHandler(.cancelAuthenticationChallenge, nil)
     }
     
-    fileprivate func pinnedKeys() -> [SecKey] {
+    fileprivate func _pinnedKeys() -> [SecKey] {
         var publicKeys: [SecKey] = []
         
         if let pinnedCertificateURL = _pinnedCertificateURL {
             do {
                 let pinnedCertificateData = try Data(contentsOf: pinnedCertificateURL) as CFData
-                if let pinnedCertificate = SecCertificateCreateWithData(nil, pinnedCertificateData), let key = publicKey(for: pinnedCertificate) {
+                if let pinnedCertificate = SecCertificateCreateWithData(nil, pinnedCertificateData), let key = _publicKey(for: pinnedCertificate) {
                     publicKeys.append(key)
                 }
             } catch (_) {
@@ -171,7 +171,7 @@ extension PrinceOfVersions: URLSessionDelegate {
         return publicKeys
     }
     
-    fileprivate func publicKey(for certificate: SecCertificate) -> SecKey? {
+    fileprivate func _publicKey(for certificate: SecCertificate) -> SecKey? {
         var publicKey: SecKey?
         
         let policy = SecPolicyCreateBasicX509()
