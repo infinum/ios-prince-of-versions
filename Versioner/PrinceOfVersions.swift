@@ -28,9 +28,9 @@ public class PrinceOfVersions: NSObject {
     public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
     public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
     public typealias ErrorBlock = (Error) -> Void
-    
-    fileprivate var _pinnedCertificateURL: URL?
 
+    fileprivate var _shouldPinCertificates: Bool = false
+    
     public override init() {
         super.init()
     }
@@ -56,10 +56,10 @@ public class PrinceOfVersions: NSObject {
      - returns: Configuration data
      */
     @discardableResult
-    public func loadConfiguration(from URL: URL, httpHeaderFields: [String : String?]? = nil, pinnedCertificateURL: URL? = nil, completion: @escaping CompletionBlock) -> URLSessionDataTask {
-        
-        _pinnedCertificateURL = pinnedCertificateURL
+    public func loadConfiguration(from URL: URL, httpHeaderFields: [String : String?]? = nil, shouldPinCertificates: Bool = false, completion: @escaping CompletionBlock) -> URLSessionDataTask {
 
+        _shouldPinCertificates = shouldPinCertificates
+        
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         var request = URLRequest(url: URL)
         
@@ -130,7 +130,7 @@ extension PrinceOfVersions: URLSessionDelegate {
             return
         }
         
-        guard _pinnedCertificateURL != nil else {
+        guard _shouldPinCertificates else {
             completionHandler(.performDefaultHandling, nil)
             return
         }
@@ -154,17 +154,31 @@ extension PrinceOfVersions: URLSessionDelegate {
         completionHandler(.cancelAuthenticationChallenge, nil)
     }
     
+    fileprivate func _certificates(in bundle: Bundle = Bundle.main) -> [SecCertificate] {
+        var certificates: [SecCertificate] = []
+        
+        let paths = Set([".cer", ".CER", ".crt", ".CRT", ".der", ".DER"].map { fileExtension in
+            bundle.paths(forResourcesOfType: fileExtension, inDirectory: nil)
+            }.joined())
+        
+        for path in paths {
+            if
+                let certificateData = try? Data(contentsOf: URL(fileURLWithPath: path)) as CFData,
+                let certificate = SecCertificateCreateWithData(nil, certificateData)
+            {
+                certificates.append(certificate)
+            }
+        }
+        
+        return certificates
+    }
+    
     fileprivate func _pinnedKeys() -> [SecKey] {
         var publicKeys: [SecKey] = []
         
-        if let pinnedCertificateURL = _pinnedCertificateURL {
-            do {
-                let pinnedCertificateData = try Data(contentsOf: pinnedCertificateURL) as CFData
-                if let pinnedCertificate = SecCertificateCreateWithData(nil, pinnedCertificateData), let key = _publicKey(for: pinnedCertificate) {
-                    publicKeys.append(key)
-                }
-            } catch (_) {
-                // TODO: Handle error
+        for certificate in _certificates() {
+            if let key = _publicKey(for: certificate) {
+                publicKeys.append(key)
             }
         }
         
