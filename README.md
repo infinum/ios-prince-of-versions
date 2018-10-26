@@ -119,6 +119,25 @@ Full example application is available [here]().
 
 If your application has multiple targets you might need more than one JSON configuration file. If that is the case, do not forget to set a different URL for each target.
 
+### Security certificate pinning
+
+If you use certificate pinning for secure communication with the server holding your JSON version file, put the certificate in the app Resource folder (make sure that the certificate has one these extensions: `".cer"`, `".CER"`, `".crt"`, `".CRT"`, `".der"`, `".DER"`). 
+Prince Of Versions will look for all the certificates in the main bundle. Then set the `shouldPinCertificates` parameter to `true` in the `loadConfiguration` method call.
+
+```Swift
+let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (response) in
+    switch response.result {
+    case .success(let info):
+        if let latestVersion = info.latestVersion {
+            print("Is minimum version satisfied: ", latestVersion)
+        }
+    case .failure(let error):
+        print(error.localizedDescription)
+    }
+}
+```
+
 ### Contributing
 
 Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](https://github.com/infinum/Android-prince-of-versions/blob/dev/LICENCE).
