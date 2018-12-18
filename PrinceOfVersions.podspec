@@ -10,4 +10,5 @@ Pod::Spec.new do |s|
   s.source = { :git => "https://github.com/infinum/iOS-prince-of-versions.git", :tag => "#{s.version}" }
   s.source_files  = "Versioner/**/*.{h,m,swift}"
   s.framework  = "UIKit"
+  s.swift_version = "4.2"
 end

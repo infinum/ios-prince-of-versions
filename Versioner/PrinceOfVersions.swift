@@ -29,7 +29,7 @@ public class PrinceOfVersions: NSObject {
     public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
     public typealias ErrorBlock = (Error) -> Void
 
-    fileprivate var _shouldPinCertificates: Bool = false
+    private var _shouldPinCertificates: Bool = false
     
     public override init() {
         super.init()
@@ -58,11 +58,11 @@ public class PrinceOfVersions: NSObject {
      - returns: Configuration data
      */
     @discardableResult
-    public func loadConfiguration(from URL: URL, httpHeaderFields: [String : String?]? = nil, shouldPinCertificates: Bool = false, completion: @escaping CompletionBlock) -> URLSessionDataTask {
+    public func loadConfiguration(from URL: URL, httpHeaderFields: [String : String?]? = nil, shouldPinCertificates: Bool = false, completion: @escaping CompletionBlock, delegateQueue: OperationQueue? = nil) -> URLSessionDataTask {
 
         _shouldPinCertificates = shouldPinCertificates
         
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: delegateQueue)
         var request = URLRequest(url: URL)
         
         if let headerFields = httpHeaderFields {
@@ -156,7 +156,7 @@ extension PrinceOfVersions: URLSessionDelegate {
         completionHandler(.cancelAuthenticationChallenge, nil)
     }
     
-    fileprivate func _certificates(in bundle: Bundle = Bundle.main) -> [SecCertificate] {
+    private func _certificates(in bundle: Bundle = Bundle.main) -> [SecCertificate] {
         var certificates: [SecCertificate] = []
         
         let paths = Set([".cer", ".CER", ".crt", ".CRT", ".der", ".DER"].map { fileExtension in
@@ -175,7 +175,7 @@ extension PrinceOfVersions: URLSessionDelegate {
         return certificates
     }
     
-    fileprivate func _pinnedKeys() -> [SecKey] {
+    private func _pinnedKeys() -> [SecKey] {
         var publicKeys: [SecKey] = []
         
         for certificate in _certificates() {
@@ -187,7 +187,7 @@ extension PrinceOfVersions: URLSessionDelegate {
         return publicKeys
     }
     
-    fileprivate func _publicKey(for certificate: SecCertificate) -> SecKey? {
+    private func _publicKey(for certificate: SecCertificate) -> SecKey? {
         var publicKey: SecKey?
         
         let policy = SecPolicyCreateBasicX509()
