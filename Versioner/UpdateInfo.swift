@@ -71,7 +71,7 @@ public class UpdateInfo: NSObject {
             throw UpdateInfoError.invalidJsonData
         }
         #elseif os(macOS)
-        guard let os = value["zip"] as? [String: AnyObject] else {
+        guard let os = value["macos"] as? [String: AnyObject] else {
             throw UpdateInfoError.invalidJsonData
         }
         #else

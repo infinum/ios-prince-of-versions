@@ -13,7 +13,7 @@
             "notification_type": "ONCE"
         }
     },
-    "zip": {
+    "macos": {
         "minimum_version": "2.3.4",
         "latest_version": {
             "version": "3.4.5",
