@@ -91,6 +91,12 @@ public class PrinceOfVersions: NSObject {
             completion(updateInfoResponse)
         })
         dataTask.resume()
+
+        /// Call to `finishTasksAndInvalidate` will break the connection with delegate
+        /// and avoid memory leak. It is safe to call it immediately after dataTask
+        /// resume() call since it won't cancel running task.
+        defaultSession.finishTasksAndInvalidate()
+        
         return dataTask
     }
 
