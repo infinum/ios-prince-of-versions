@@ -30,7 +30,7 @@ public struct UpdateInfo {
     /**
      Returns minimum sdk for minimum required version of the app.
      */
-    public private(set) var minimumSdkForMinimumRequiredVersion: Version?
+    public private(set) var mingstimumSdkForMinimumRequiredVersion: Version?
 
     /**
      Returns notification type. Possible values are:
