@@ -10,6 +10,8 @@ import UIKit
 
 public class PrinceOfVersions: NSObject {
 
+    /// MARK: - Public interface -
+
     public enum Result {
         case success(UpdateInfo)
         case failure(Error)
@@ -29,11 +31,9 @@ public class PrinceOfVersions: NSObject {
     public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
     public typealias ErrorBlock = (Error) -> Void
 
+    /// MARK: - Private properties
+
     private var _shouldPinCertificates: Bool = false
-    
-    public override init() {
-        super.init()
-    }
 
     /**
      Check mimum required version, current installed version on device and current available version of the app with data stored on URL.
@@ -58,7 +58,13 @@ public class PrinceOfVersions: NSObject {
      - returns: Configuration data
      */
     @discardableResult
-    public func loadConfiguration(from URL: URL, httpHeaderFields: [String : String?]? = nil, shouldPinCertificates: Bool = false, completion: @escaping CompletionBlock, delegateQueue: OperationQueue? = nil) -> URLSessionDataTask {
+    public func loadConfiguration(
+        from URL: URL,
+        httpHeaderFields: [String : String?]? = nil,
+        shouldPinCertificates: Bool = false,
+        completion: @escaping CompletionBlock,
+        delegateQueue: OperationQueue? = nil
+    ) -> URLSessionDataTask {
 
         _shouldPinCertificates = shouldPinCertificates
         
@@ -72,7 +78,7 @@ public class PrinceOfVersions: NSObject {
         }
         
         let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
-
+            
             let result: Result
             if let error = error {
                 result = Result.failure(error)
@@ -107,10 +113,8 @@ public class PrinceOfVersions: NSObject {
         pinnedCertificateURL: URL? = nil,
         newVersion: @escaping NewVersionBlock,
         noNewVersion: @escaping NoNewVersionBlock,
-        error: @escaping ErrorBlock)
-        -> URLSessionDataTask
-    {
-
+        error: @escaping ErrorBlock
+    ) -> URLSessionDataTask {
         return loadConfiguration(from: URL, httpHeaderFields: httpHeaderFields, completion: { (response) in
             switch response.result {
             case .failure(let updateInfoError):
@@ -131,8 +135,11 @@ public class PrinceOfVersions: NSObject {
 
 extension PrinceOfVersions: URLSessionDelegate {
     
-    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        
+    public func urlSession(
+        _ session: URLSession,
+        didReceive challenge: URLAuthenticationChallenge,
+        completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void
+    ) {
         guard let trust = challenge.protectionSpace.serverTrust, SecTrustGetCertificateCount(trust) > 0 else {
             completionHandler(.cancelAuthenticationChallenge, nil)
             return
@@ -143,14 +150,12 @@ extension PrinceOfVersions: URLSessionDelegate {
             return
         }
         
-        if let serverCertificate = SecTrustGetCertificateAtIndex(trust, 0), let serverCertificateKey = _publicKey(for: serverCertificate) {
-            
+        if
+            let serverCertificate = SecTrustGetCertificateAtIndex(trust, 0),
+            let serverCertificateKey = _publicKey(for: serverCertificate)
+        {
             let hasKey = _pinnedKeys().contains(where: { (key) -> Bool in
-                if (serverCertificateKey as AnyObject).isEqual(key) {
-                    return true
-                } else {
-                    return false
-                }
+                return (serverCertificateKey as AnyObject).isEqual(key)
             })
             
             if hasKey {
@@ -158,52 +163,41 @@ extension PrinceOfVersions: URLSessionDelegate {
                 return
             }
         }
-        
         completionHandler(.cancelAuthenticationChallenge, nil)
     }
-    
-    private func _certificates(in bundle: Bundle = Bundle.main) -> [SecCertificate] {
-        var certificates: [SecCertificate] = []
-        
-        let paths = Set([".cer", ".CER", ".crt", ".CRT", ".der", ".DER"].map { fileExtension in
-            bundle.paths(forResourcesOfType: fileExtension, inDirectory: nil)
-            }.joined())
-        
-        for path in paths {
-            if
-                let certificateData = try? Data(contentsOf: URL(fileURLWithPath: path)) as CFData,
-                let certificate = SecCertificateCreateWithData(nil, certificateData)
-            {
-                certificates.append(certificate)
-            }
-        }
-        
-        return certificates
+
+}
+
+private extension PrinceOfVersions {
+
+    func _certificates(in bundle: Bundle = .main) -> [SecCertificate] {
+        let paths = [".cer", ".CER", ".crt", ".CRT", ".der", ".DER"]
+            .map { bundle.paths(forResourcesOfType: $0, inDirectory: nil) }
+            .joined()
+
+        /// Remove duplicates and extract certificate data from it
+        return Set(paths)
+            .compactMap { try? Data(contentsOf: URL(fileURLWithPath: $0)) as CFData }
+            .compactMap { SecCertificateCreateWithData(nil, $0) }
     }
-    
-    private func _pinnedKeys() -> [SecKey] {
-        var publicKeys: [SecKey] = []
-        
-        for certificate in _certificates() {
-            if let key = _publicKey(for: certificate) {
-                publicKeys.append(key)
-            }
-        }
-        
-        return publicKeys
+
+    func _pinnedKeys() -> [SecKey] {
+        return _certificates()
+            .compactMap { _publicKey(for: $0) }
     }
-    
-    private func _publicKey(for certificate: SecCertificate) -> SecKey? {
+
+    func _publicKey(for certificate: SecCertificate) -> SecKey? {
         var publicKey: SecKey?
-        
+
         let policy = SecPolicyCreateBasicX509()
         var trust: SecTrust?
         let trustCreationStatus = SecTrustCreateWithCertificates(certificate, policy, &trust)
-        
+
         if let trust = trust, trustCreationStatus == errSecSuccess {
             publicKey = SecTrustCopyPublicKey(trust)
         }
-        
+
         return publicKey
     }
+
 }
