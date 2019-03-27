@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
 		066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
-		066F7F5E1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
-		066F7F5F1D912A190089F6F8 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
 		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -46,7 +44,6 @@
 		06C8F1891D92BA150088BDA2 /* valid_update_notification_once.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1741D92991F0088BDA2 /* valid_update_notification_once.json */; };
 		06C8F18A1D92BA150088BDA2 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */; };
 		CF7576911DAC1F5E002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
-		CF7576921DAC1FBA002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,7 +64,7 @@
 		06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinceOfVersions.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C2DF321D19639B0032E464 /* PrinceOfVersionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinceOfVersionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF391D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06C8F15A1D9296EF0088BDA2 /* invalid_update_incalid_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_incalid_version.json; path = mockdata/invalid_update_incalid_version.json; sourceTree = "<group>"; };
 		06C8F15C1D92973B0088BDA2 /* invalid_update_no_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_no_ios.json; path = mockdata/invalid_update_no_ios.json; sourceTree = "<group>"; };
@@ -123,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */,
-				06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */,
+				06C2DF321D19639B0032E464 /* PrinceOfVersionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,7 +225,7 @@
 			);
 			name = PrinceOfVersionsTests;
 			productName = VersionerTests;
-			productReference = 06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */;
+			productReference = 06C2DF321D19639B0032E464 /* PrinceOfVersionsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -332,9 +329,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				06C8F17C1D92A2680088BDA2 /* PrinceOfVersionsTest.swift in Sources */,
-				CF7576921DAC1FBA002B7581 /* Version.swift in Sources */,
-				066F7F5E1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
-				066F7F5F1D912A190089F6F8 /* PrinceOfVersions.swift in Sources */,
 				06C8F1791D929A4F0088BDA2 /* UpdateInfoTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,7 +505,7 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
-				PRODUCT_NAME = PrinceOfVersions;
+				PRODUCT_NAME = PrinceOfVersionsTests;
 			};
 			name = Debug;
 		};
@@ -523,7 +517,7 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
-				PRODUCT_NAME = PrinceOfVersions;
+				PRODUCT_NAME = PrinceOfVersionsTests;
 			};
 			name = Release;
 		};
