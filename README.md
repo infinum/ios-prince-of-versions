@@ -16,13 +16,13 @@ Features
 
 ### Requirements
 - iOS 8.0+
-- Xcode 8.0+
-- Swift 3.0
+- Xcode 10.0+
+- Swift 4.2
 
 ### Installation
 The easiest way to use Prince of versions in your project is using the CocaPods package manager.
 
-###CocoaPods
+#### CocoaPods
 See installation instructions for [CocoaPods](http://cocoapods.org) if not already installed
 
 To integrate the library into your Xcode project specify the pod dependency to your `Podfile`:
@@ -67,19 +67,19 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
 }
 ```
 
-Depending on <code>notification_type</code> property, the user can be notified <code>ONCE</code> or <code>ALWAYS</code>. The library handles this for you, and if notification type is set to <code>ONCE</code>, it will notify you via <code>newUpdate(version: String, isMandatory: Bool, metadata: [String: AnyObject]?)</code> method only once. Every other time the library will return <code>noUpdate</code> for that specific version. 
-Key-value pairs under <code>"meta"</code> key are optional metadata of which any amount can be sent accompanying the required fields.
+Depending on `notification_type` property, the user can be notified `ONCE` or `ALWAYS`. The library handles this for you, and if notification type is set to `ONCE`, it will notify you via `newUpdate(version: String, isMandatory: Bool, metadata: [String: AnyObject]?)` method only once. Every other time the library will return `noUpdate` for that specific version. 
+
+Key-value pairs under `"meta"` key are optional metadata of which any amount can be sent accompanying the required fields.
 
 
 Usage
 -------------
-Full example application is available [here]().
 
 #### Most common usage - loading from network resource
 
 1. Getting all data
 
-	```Swift
+	```swift
 	let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
         PrinceOfVersions().loadConfiguration(from: url) { (response) in
             switch response.result {
@@ -100,7 +100,7 @@ Full example application is available [here]().
 
 2. Automatic handling update frequency
 
-	```Swift
+	```swift
 	let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
 	PrinceOfVersions().checkForUpdates(from: url,
         newVersion: {
@@ -124,7 +124,7 @@ If your application has multiple targets you might need more than one JSON confi
 If you use certificate pinning for secure communication with the server holding your JSON version file, put the certificate in the app Resource folder (make sure that the certificate has one these extensions: `".cer"`, `".CER"`, `".crt"`, `".CRT"`, `".der"`, `".DER"`). 
 Prince Of Versions will look for all the certificates in the main bundle. Then set the `shouldPinCertificates` parameter to `true` in the `loadConfiguration` method call.
 
-```Swift
+```swift
 let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
 PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (response) in
     switch response.result {
