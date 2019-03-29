@@ -1,28 +1,30 @@
-Prince of versions
-=================
+# Prince of Versions
+
 ![Platform](https://img.shields.io/badge/pod-v1.0.0-blue.svg)
 ![License](https://img.shields.io/cocoapods/l/SemanticVersioning.svg)
+[![Build Status](https://app.bitrise.io/app/b0d8da8839bc2c85/status.svg?token=bKDksnKBaI6oQRD861aYBg)](https://app.bitrise.io/app/b0d8da8839bc2c85)
 
 Library checks for updates using configuration from some resource.
 
-Features
---------
-  * Load update configuration from **network** resource
-  * Use predefined parser for parsing update configuration in **JSON format**
-  * Make **asynchronous** loading and use **callback** for notifying result
-  * Loading and verifying versions happen **outside of UI thread**
+## Features
 
-----------
+* Load update configuration from **network** resource
+* Use predefined parser for parsing update configuration in **JSON format**
+* Make **asynchronous** loading and use **callback** for notifying result
+* Loading and verifying versions happen **outside of UI thread**
 
 ### Requirements
-- iOS 8.0+
-- Xcode 8.0+
-- Swift 3.0
+
+* iOS 8.0+
+* Xcode 10.0+
+* Swift 4.2
 
 ### Installation
+
 The easiest way to use Prince of versions in your project is using the CocaPods package manager.
 
-###CocoaPods
+#### CocoaPods
+
 See installation instructions for [CocoaPods](http://cocoapods.org) if not already installed
 
 To integrate the library into your Xcode project specify the pod dependency to your `Podfile`:
@@ -46,42 +48,40 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
 
 ```json
 {
-	"ios": {
-		"minimum_version": "1.2.3",
-		"latest_version": {
-			"version": "2.4.5",
-			"notification_type": "ALWAYS"
-		}
-	},
-	"android": {
-		"minimum_version": "1.2.3",
-		"latest_version": {
-			"version": "2.4.5",
-			"notification_type": "ONCE"
-		}
-	},
-	"meta": {
-		"key1": "value1",
-		"key2": "value2"
-	}
+    "ios": {
+        "minimum_version": "1.2.3",
+        "latest_version": {
+            "version": "2.4.5",
+            "notification_type": "ALWAYS"
+        }
+    },
+    "android": {
+        "minimum_version": "1.2.3",
+        "latest_version": {
+            "version": "2.4.5",
+            "notification_type": "ONCE"
+        }
+    },
+    "meta": {
+        "key1": "value1",
+        "key2": "value2"
+    }
 }
 ```
 
-Depending on <code>notification_type</code> property, the user can be notified <code>ONCE</code> or <code>ALWAYS</code>. The library handles this for you, and if notification type is set to <code>ONCE</code>, it will notify you via <code>newUpdate(version: String, isMandatory: Bool, metadata: [String: AnyObject]?)</code> method only once. Every other time the library will return <code>noUpdate</code> for that specific version. 
-Key-value pairs under <code>"meta"</code> key are optional metadata of which any amount can be sent accompanying the required fields.
+Depending on `notification_type` property, the user can be notified `ONCE` or `ALWAYS`. The library handles this for you, and if notification type is set to `ONCE`, it will notify you via `newUpdate(version: String, isMandatory: Bool, metadata: [String: AnyObject]?)` method only once. Every other time the library will return `noUpdate` for that specific version. 
 
+Key-value pairs under `"meta"` key are optional metadata of which any amount can be sent accompanying the required fields.
 
-Usage
--------------
-Full example application is available [here]().
+## Usage
 
-#### Most common usage - loading from network resource
+### Most common usage - loading from network resource
 
 1. Getting all data
 
-	```Swift
-	let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
-        PrinceOfVersions().loadConfiguration(from: url) { (response) in
+    ```swift
+    let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+        PrinceOfVersions().loadConfiguration(from: url) { response in
             switch response.result {
             case .success(let info):
                 print("Minimum version: ", info.minimumRequiredVersion)
@@ -96,28 +96,46 @@ Full example application is available [here]().
                 print(error.localizedDescription)
             }
         }
-	```
+    ```
 
 2. Automatic handling update frequency
 
-	```Swift
-	let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
-	PrinceOfVersions().checkForUpdates(from: url,
-        newVersion: {
-            (latestVersion, isMinimumVersionSatisfied, metadata) in
+    ```swift
+    let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+    PrinceOfVersions().checkForUpdates(from: url,
+        newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
+            ...
         },
-        noNewVersion: {
-            (isMinimumVersionSatisfied, metadata) in
+        noNewVersion: { (isMinimumVersionSatisfied, metadata) in
+            ...
         },
-        error: {
-            (error) in
-
+        error: { error in
+            ...
         })
-	```
+    ```
 
 ### Multiple targets
 
 If your application has multiple targets you might need more than one JSON configuration file. If that is the case, do not forget to set a different URL for each target.
+
+### Security certificate pinning
+
+If you use certificate pinning for secure communication with the server holding your JSON version file, put the certificate in the app Resource folder (make sure that the certificate has one these extensions: `".cer"`, `".CER"`, `".crt"`, `".CRT"`, `".der"`, `".DER"`). 
+Prince Of Versions will look for all the certificates in the main bundle. Then set the `shouldPinCertificates` parameter to `true` in the `loadConfiguration` method call.
+
+```swift
+let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (response) in
+    switch response.result {
+    case .success(let info):
+        if let latestVersion = info.latestVersion {
+            print("Is minimum version satisfied: ", latestVersion)
+        }
+    case .failure(let error):
+        print(error.localizedDescription)
+    }
+}
+```
 
 ### Contributing
 

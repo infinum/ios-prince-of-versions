@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
 		066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
-		066F7F5E1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
-		066F7F5F1D912A190089F6F8 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
 		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -45,8 +43,8 @@
 		06C8F1881D92BA150088BDA2 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1721D9298F70088BDA2 /* valid_update_no_notification.json */; };
 		06C8F1891D92BA150088BDA2 /* valid_update_notification_once.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1741D92991F0088BDA2 /* valid_update_notification_once.json */; };
 		06C8F18A1D92BA150088BDA2 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */; };
+		0A1FA652224BBF1800D340B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FA651224BBF1700D340B2 /* README.md */; };
 		CF7576911DAC1F5E002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
-		CF7576921DAC1FBA002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
 		DF5BDEAA1FEADC9100F7CE15 /* VersionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +66,7 @@
 		06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinceOfVersions.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		06C2DF321D19639B0032E464 /* PrinceOfVersionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrinceOfVersionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF391D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06C8F15A1D9296EF0088BDA2 /* invalid_update_incalid_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_incalid_version.json; path = mockdata/invalid_update_incalid_version.json; sourceTree = "<group>"; };
 		06C8F15C1D92973B0088BDA2 /* invalid_update_no_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = invalid_update_no_ios.json; path = mockdata/invalid_update_no_ios.json; sourceTree = "<group>"; };
@@ -86,6 +84,7 @@
 		06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = valid_update_only_min_version.json; path = mockdata/valid_update_only_min_version.json; sourceTree = "<group>"; };
 		06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoTest.swift; sourceTree = "<group>"; };
 		06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
+		0A1FA651224BBF1700D340B2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CF7576901DAC1F5E002B7581 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +113,7 @@
 		06C2DF1E1D19639B0032E464 = {
 			isa = PBXGroup;
 			children = (
+				0A1FA651224BBF1700D340B2 /* README.md */,
 				06C2DF2A1D19639B0032E464 /* Versioner */,
 				06C2DF361D19639B0032E464 /* VersionerTests */,
 				06C2DF291D19639B0032E464 /* Products */,
@@ -125,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */,
-				06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */,
+				06C2DF321D19639B0032E464 /* PrinceOfVersionsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -231,7 +231,7 @@
 			);
 			name = PrinceOfVersionsTests;
 			productName = VersionerTests;
-			productReference = 06C2DF321D19639B0032E464 /* PrinceOfVersions.xctest */;
+			productReference = 06C2DF321D19639B0032E464 /* PrinceOfVersionsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -241,17 +241,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Infinum Ltd";
 				TargetAttributes = {
 					06C2DF271D19639B0032E464 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 					};
 					06C2DF311D19639B0032E464 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 5F5M64F878;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -291,6 +291,7 @@
 				06C8F1731D9298F70088BDA2 /* valid_update_no_notification.json in Resources */,
 				06C8F1671D92981C0088BDA2 /* valid_update_full.json in Resources */,
 				06C8F15F1D92976D0088BDA2 /* invalid_update_no_json.json in Resources */,
+				0A1FA652224BBF1800D340B2 /* README.md in Resources */,
 				06C8F1611D9297840088BDA2 /* invalid_update_no_min_version.json in Resources */,
 				06C8F16F1D9298C80088BDA2 /* valid_update_full_with_metadata_malformed.json in Resources */,
 			);
@@ -363,14 +364,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -399,7 +408,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -415,14 +424,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -444,7 +461,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -469,7 +486,6 @@
 				PRODUCT_NAME = PrinceOfVersions;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -489,7 +505,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
 				PRODUCT_NAME = PrinceOfVersions;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -501,8 +516,7 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
-				PRODUCT_NAME = PrinceOfVersions;
-				SWIFT_VERSION = 3.0;
+				PRODUCT_NAME = PrinceOfVersionsTests;
 			};
 			name = Debug;
 		};
@@ -514,8 +528,7 @@
 				INFOPLIST_FILE = VersionerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersions;
-				PRODUCT_NAME = PrinceOfVersions;
-				SWIFT_VERSION = 3.0;
+				PRODUCT_NAME = PrinceOfVersionsTests;
 			};
 			name = Release;
 		};
