@@ -45,6 +45,7 @@
 		06C8F18A1D92BA150088BDA2 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F1761D92994E0088BDA2 /* valid_update_only_min_version.json */; };
 		0A1FA652224BBF1800D340B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FA651224BBF1700D340B2 /* README.md */; };
 		CF7576911DAC1F5E002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
+		DF5BDEAA1FEADC9100F7CE15 /* VersionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
 		0A1FA651224BBF1700D340B2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CF7576901DAC1F5E002B7581 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
+		DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				06C2DF391D19639B0032E464 /* Info.plist */,
 				06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */,
 				06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */,
+				DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */,
 			);
 			path = VersionerTests;
 			sourceTree = "<group>";
@@ -333,6 +336,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				06C8F17C1D92A2680088BDA2 /* PrinceOfVersionsTest.swift in Sources */,
+				CF7576921DAC1FBA002B7581 /* Version.swift in Sources */,
+				066F7F5E1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
+				066F7F5F1D912A190089F6F8 /* PrinceOfVersions.swift in Sources */,
+				DF5BDEAA1FEADC9100F7CE15 /* VersionTest.swift in Sources */,
 				06C8F1791D929A4F0088BDA2 /* UpdateInfoTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
