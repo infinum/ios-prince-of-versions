@@ -81,7 +81,7 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 
     ```swift
     let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
-        PrinceOfVersions().loadConfiguration(from: url) { (response) in
+        PrinceOfVersions().loadConfiguration(from: url) { response in
             switch response.result {
             case .success(let info):
                 print("Minimum version: ", info.minimumRequiredVersion)
@@ -103,15 +103,14 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
     ```swift
     let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
     PrinceOfVersions().checkForUpdates(from: url,
-        newVersion: {
-            (latestVersion, isMinimumVersionSatisfied, metadata) in
+        newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
+            ...
         },
-        noNewVersion: {
-            (isMinimumVersionSatisfied, metadata) in
+        noNewVersion: { (isMinimumVersionSatisfied, metadata) in
+            ...
         },
-        error: {
-            (error) in
-
+        error: { error in
+            ...
         })
     ```
 
