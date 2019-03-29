@@ -66,8 +66,10 @@ public struct UpdateInfo {
      Checks and return true if minimum version requirement is satisfied. If minimumRequiredVersion doesn't exist return true.
      */
     public var isMinimumVersionSatisfied: Bool {
-        if let _minimumSdkForMinimumRequiredVersion = minimumSdkForMinimumRequiredVersion,
-            _minimumSdkForMinimumRequiredVersion > sdkVersion {
+        if
+            let minimumSdkForMinimumRequiredVersion = minimumSdkForMinimumRequiredVersion,
+            minimumSdkForMinimumRequiredVersion > sdkVersion
+        {
             return true
         }
         
