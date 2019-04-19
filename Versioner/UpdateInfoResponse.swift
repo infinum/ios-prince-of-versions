@@ -10,10 +10,10 @@ import Foundation
 
 public class UpdateInfoResponse: NSObject {
     /// The server's response to the URL request.
-    public let response: URLResponse?
+    @objc public let response: URLResponse?
     
     /// The result of response serialization.
-    public let result: Result
+    @objc public let result: Result
     
     /// Init
     init(response: URLResponse?, result: Result) {
