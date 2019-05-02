@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 
-enum UpdateInfoError: Error {
+public enum UpdateInfoError: Error {
     case invalidJsonData
     case invalidLatestVersion
     case invalidCurrentVersion
+    case unknown(String?)
 }
 
 public struct UpdateInfo {
