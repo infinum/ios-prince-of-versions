@@ -12,18 +12,13 @@ public class PrinceOfVersions: NSObject {
 
     /// MARK: - Public interface -
 
-    public enum Result {
-        case success(UpdateInfo)
-        case failure(Error)
-    }
-
     public struct UpdateInfoResponse {
 
         /// The server's response to the URL request.
         public let response: URLResponse?
 
         /// The result of response serialization.
-        public let result: Result
+        public let result: Result<UpdateInfo, UpdateInfoError>
     }
 
     public typealias CompletionBlock = (UpdateInfoResponse) -> Void
@@ -79,15 +74,15 @@ public class PrinceOfVersions: NSObject {
         
         let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
             
-            let result: Result
+            let result: Result<UpdateInfo, UpdateInfoError>
             if let error = error {
-                result = Result.failure(error)
+                result = Result.failure(.unknown(error.localizedDescription))
             } else {
                 do {
                     let updateInfo = try UpdateInfo(data: data)
                     result = Result.success(updateInfo)
-                } catch let error {
-                    result = Result.failure(error)
+                } catch _ {
+                    result = Result.failure(.invalidJsonData)
                 }
             }
             let updateInfoResponse = UpdateInfoResponse(
