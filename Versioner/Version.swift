@@ -14,10 +14,10 @@ public enum VersionError: Error {
 }
 
 public class Version: NSObject {
-    @objc public var major: Int
-    @objc public var minor: Int
-    @objc public var patch: Int
-    @objc public var build: Int = 0
+    public var major: Int
+    public var minor: Int
+    public var patch: Int
+    public var build: Int = 0
 
     var wasNotified: Bool {
         get {
@@ -29,7 +29,7 @@ public class Version: NSObject {
         return "co.infinum.prince-of-versions.version-" + self.description
     }
 
-    @objc public func markNotified() {
+    public func markNotified() {
         UserDefaults.standard.set(true, forKey: versionUserDefaultKey)
     }
 
@@ -68,24 +68,24 @@ public class Version: NSObject {
     }
     
     // MARK: - Comparison -
-    
-    @objc public func isGreaterThan(_ version: Version) -> Bool {
+
+    public func isVersionGreaterThan(_ version: Version) -> Bool {
         return self > version
     }
     
-    @objc public func isGreaterOrEqualTo(_ version: Version) -> Bool {
+    public func isVersionGreaterOrEqualTo(_ version: Version) -> Bool {
         return self >= version
     }
     
-    @objc public func isLowerOrEqualTo(_ version: Version) -> Bool {
+    public func isVersionLowerOrEqualTo(_ version: Version) -> Bool {
         return self <= version
     }
     
-    @objc public func isEqualTo(_ version: Version) -> Bool {
+    public func isVersionEqualTo(_ version: Version) -> Bool {
         return self == version
     }
     
-    @objc public func isNotEqualTo(_ version: Version) -> Bool {
+    public func isVersionNotEqualTo(_ version: Version) -> Bool {
         return self != version
     }
 
