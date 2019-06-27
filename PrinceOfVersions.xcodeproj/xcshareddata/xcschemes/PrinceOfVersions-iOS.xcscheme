@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "06C2DF271D19639B0032E464"
                BuildableName = "PrinceOfVersions.framework"
-               BlueprintName = "PrinceOfVersions"
+               BlueprintName = "PrinceOfVersions-iOS"
                ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06C2DF271D19639B0032E464"
             BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "PrinceOfVersions"
+            BlueprintName = "PrinceOfVersions-iOS"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -72,7 +72,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06C2DF271D19639B0032E464"
             BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "PrinceOfVersions"
+            BlueprintName = "PrinceOfVersions-iOS"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -90,7 +90,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "06C2DF271D19639B0032E464"
             BuildableName = "PrinceOfVersions.framework"
-            BlueprintName = "PrinceOfVersions"
+            BlueprintName = "PrinceOfVersions-iOS"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

@@ -5,9 +5,9 @@ Pod::Spec.new do |s|
   s.homepage = "https://github.com/infinum/iOS-prince-of-versions"
   s.license = { :type => "MIT", :file => "LICENSE" }
   s.author = { "Jasmin Abou Aldan" => "jasmin.aboualdan@infinum.hr" }
-  s.platform = :ios
+  s.platform = :ios, :osx
   s.ios.deployment_target = '8.0'
+  s.osx.deployment_target = '10.9'
   s.source = { :git => "https://github.com/infinum/iOS-prince-of-versions.git", :tag => "#{s.version}" }
   s.source_files  = "Versioner/**/*.{h,m,swift}"
-  s.framework  = "UIKit"
 end
