@@ -68,24 +68,28 @@ public class Version: NSObject {
     }
     
     // MARK: - Comparison -
-    
-    @objc public func isGreaterThan(_ version: Version) -> Bool {
+    @objc(isGreaterThanVersion:)
+    public func isGreaterThan(_ version: Version) -> Bool {
         return self > version
     }
-    
-    @objc public func isGreaterOrEqualTo(_ version: Version) -> Bool {
+
+    @objc(isGreaterOrEqualToVersion:)
+    public func isGreaterOrEqualTo(_ version: Version) -> Bool {
         return self >= version
     }
-    
-    @objc public func isLowerOrEqualTo(_ version: Version) -> Bool {
+
+    @objc(isLowerOrEqualToVersion:)
+    public func isLowerOrEqualTo(_ version: Version) -> Bool {
         return self <= version
     }
-    
-    @objc public func isEqualTo(_ version: Version) -> Bool {
+
+    @objc(isEqualToVersion:)
+    public func isEqualTo(_ version: Version) -> Bool {
         return self == version
     }
-    
-    @objc public func isNotEqualTo(_ version: Version) -> Bool {
+
+    @objc(isNotEqualToVersion:)
+    public func isNotEqualTo(_ version: Version) -> Bool {
         return self != version
     }
 
