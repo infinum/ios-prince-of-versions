@@ -13,11 +13,11 @@ public enum VersionError: Error {
     case invalidMajorVersion
 }
 
-public struct Version {
-    public var major: Int
-    public var minor: Int
-    public var patch: Int
-    public var build: Int = 0
+public class Version: NSObject {
+    @objc public var major: Int
+    @objc public var minor: Int
+    @objc public var patch: Int
+    @objc public var build: Int = 0
 
     public var wasNotified: Bool {
         get {
@@ -29,7 +29,7 @@ public struct Version {
         return "co.infinum.prince-of-versions.version-" + self.description
     }
 
-    public func markNotified() {
+    @objc public func markNotified() {
         UserDefaults.standard.set(true, forKey: versionUserDefaultKey)
     }
 
@@ -63,12 +63,36 @@ public struct Version {
         return Int(components[index])
     }
 
-}
-
-extension Version: CustomStringConvertible {
-    public var description: String {
+    @objc override public var description: String {
         return "\(major).\(minor).\(patch)-\(build)"
     }
+
+    // MARK: - Comparison -
+    @objc(isGreaterThanVersion:)
+    public func isGreaterThan(_ version: Version) -> Bool {
+        return self > version
+    }
+
+    @objc(isGreaterOrEqualToVersion:)
+    public func isGreaterOrEqualTo(_ version: Version) -> Bool {
+        return self >= version
+    }
+
+    @objc(isLowerOrEqualToVersion:)
+    public func isLowerOrEqualTo(_ version: Version) -> Bool {
+        return self <= version
+    }
+
+    @objc(isEqualToVersion:)
+    public func isEqualTo(_ version: Version) -> Bool {
+        return self == version
+    }
+
+    @objc(isNotEqualToVersion:)
+    public func isNotEqualTo(_ version: Version) -> Bool {
+        return self != version
+    }
+
 }
 
 extension Version: Comparable {
