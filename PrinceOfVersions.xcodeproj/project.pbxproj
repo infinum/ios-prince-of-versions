@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06151E4D232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06151E4C232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift */; };
+		0618BCF6232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0618BCF5232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift */; };
 		066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
+		0668A73A232D275500693EA6 /* PrinceOfVersionsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A739232D275500693EA6 /* PrinceOfVersionsError.swift */; };
 		066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
 		0688DB1D1D19AA4B0027695C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1C1D19AA4B0027695C /* UIKit.framework */; };
@@ -59,7 +62,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06151E4C232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
+		0618BCF5232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
+		0668A739232D275500693EA6 /* PrinceOfVersionsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsError.swift; sourceTree = "<group>"; };
 		066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		0688DB1A1D19AA460027695C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0688DB1C1D19AA4B0027695C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -110,6 +116,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0618BCF2232B869700AC7F84 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				0618BCF5232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift */,
+				06151E4C232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift */,
+			);
+			path = ObjC;
+			sourceTree = "<group>";
+		};
+		0618BCF3232B86AC00AC7F84 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06C2DF2B1D19639B0032E464 /* Versioner.h */,
+				06C2DF2D1D19639B0032E464 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		06C2DF1E1D19639B0032E464 = {
 			isa = PBXGroup;
 			children = (
@@ -133,11 +157,12 @@
 		06C2DF2A1D19639B0032E464 /* Versioner */ = {
 			isa = PBXGroup;
 			children = (
-				06C2DF2B1D19639B0032E464 /* Versioner.h */,
-				06C2DF2D1D19639B0032E464 /* Info.plist */,
 				066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */,
 				066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */,
 				CF7576901DAC1F5E002B7581 /* Version.swift */,
+				0668A739232D275500693EA6 /* PrinceOfVersionsError.swift */,
+				0618BCF2232B869700AC7F84 /* ObjC */,
+				0618BCF3232B86AC00AC7F84 /* Supporting Files */,
 			);
 			path = Versioner;
 			sourceTree = "<group>";
@@ -329,6 +354,9 @@
 				066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
 				CF7576911DAC1F5E002B7581 /* Version.swift in Sources */,
 				066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */,
+				0668A73A232D275500693EA6 /* PrinceOfVersionsError.swift in Sources */,
+				0618BCF6232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift in Sources */,
+				06151E4D232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +506,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Versioner/Info.plist;
+				INFOPLIST_FILE = "Versioner/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -498,7 +526,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Versioner/Info.plist;
+				INFOPLIST_FILE = "Versioner/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
