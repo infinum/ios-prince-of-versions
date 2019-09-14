@@ -84,7 +84,7 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 1. Getting all data
 
     ```swift
-    let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
         PrinceOfVersions().loadConfiguration(from: url) { response in
             switch response.result {
             case .success(let info):
@@ -105,7 +105,7 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 2. Automatic handling update frequency
 
     ```swift
-    let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
     PrinceOfVersions().checkForUpdates(from: url,
         newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
             ...
@@ -128,7 +128,7 @@ If you use certificate pinning for secure communication with the server holding 
 Prince Of Versions will look for all the certificates in the main bundle. Then set the `shouldPinCertificates` parameter to `true` in the `loadConfiguration` method call.
 
 ```swift
-let url = URL(string: "http://pastebin.com/raw/uBdFKP2t")
+let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
 PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (response) in
     switch response.result {
     case .success(let info):
