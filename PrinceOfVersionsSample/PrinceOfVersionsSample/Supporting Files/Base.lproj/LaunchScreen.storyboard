@@ -19,18 +19,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgd-4C-c2w">
-                                <rect key="frame" x="111.5" y="419.5" width="191.5" height="57.5"/>
+                                <rect key="frame" x="111.5" y="647.5" width="191.5" height="57.5"/>
                                 <string key="text">Prince of Versions
 Example App</string>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Prince" translatesAutoresizingMaskIntoConstraints="NO" id="CVJ-bL-0tI">
+                                <rect key="frame" x="69.5" y="310.5" width="275" height="275"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="CVJ-bL-0tI" secondAttribute="height" multiplier="1:1" id="kpz-k7-VbN"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="cgd-4C-c2w" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="UQs-gH-zSh"/>
+                            <constraint firstItem="CVJ-bL-0tI" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="2WR-LQ-L1N"/>
+                            <constraint firstItem="cgd-4C-c2w" firstAttribute="top" secondItem="CVJ-bL-0tI" secondAttribute="bottom" constant="62" id="Dwa-HD-0zk"/>
+                            <constraint firstItem="CVJ-bL-0tI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SkU-tA-ceB"/>
                             <constraint firstItem="cgd-4C-c2w" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="cgs-Qs-8kV"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CVJ-bL-0tI" secondAttribute="trailing" constant="12" id="vt6-gi-Kbj"/>
+                            <constraint firstItem="CVJ-bL-0tI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="xQ8-kU-hfH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -40,4 +50,7 @@ Example App</string>
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Prince" width="275" height="275"/>
+    </resources>
 </document>

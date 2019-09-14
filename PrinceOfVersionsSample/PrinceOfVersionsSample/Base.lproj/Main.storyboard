@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Automatic Check View Controller-->
+        <!--Automatic Check-->
         <scene sceneID="bHV-sk-5lW">
             <objects>
                 <viewController storyboardIdentifier="AutomaticCheckViewController" id="YEN-YA-OZZ" customClass="AutomaticCheckViewController" customModule="PrinceOfVersionsSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -78,7 +78,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dXL-33-wqk"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="977-M9-dUJ"/>
+                    <tabBarItem key="tabBarItem" title="Automatic Check" image="AutomaticCheck" selectedImage="AutomaticCheck" id="977-M9-dUJ"/>
                     <connections>
                         <outlet property="appStateLabel" destination="mYj-sJ-plI" id="bBc-7W-ICv"/>
                         <outlet property="metaLabel" destination="Gjc-rE-67Y" id="muG-dr-5eH"/>
@@ -88,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="429" y="988"/>
         </scene>
-        <!--Configuration View Controller-->
+        <!--Configuration-->
         <scene sceneID="iN2-v4-KtS">
             <objects>
                 <viewController storyboardIdentifier="ConfigurationViewController" id="WEo-8T-pfS" customClass="ConfigurationViewController" customModule="PrinceOfVersionsSample" customModuleProvider="target" sceneMemberID="viewController">
@@ -289,7 +289,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dW1-hA-Bvp"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="rLW-fT-tXk"/>
+                    <tabBarItem key="tabBarItem" title="Configuration" image="Configuration" selectedImage="Configuration" id="rLW-fT-tXk"/>
                     <connections>
                         <outlet property="iOSVersionLabel" destination="hMB-9J-b0z" id="veV-75-ewm"/>
                         <outlet property="installedVersionLabel" destination="tYI-lr-hha" id="1Y2-0A-yN0"/>
@@ -323,7 +323,7 @@
             </objects>
             <point key="canvasLocation" x="-117" y="263"/>
         </scene>
-        <!--ObjC Automatic Check View Controller-->
+        <!--Automatic Check-->
         <scene sceneID="gpy-6w-cJh">
             <objects>
                 <viewController storyboardIdentifier="ObjCAutomaticCheckViewController" id="x2F-sK-Nyq" customClass="ObjCAutomaticCheckViewController" sceneMemberID="viewController">
@@ -391,7 +391,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TAC-bw-EWI"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="Ub0-kV-dLt"/>
+                    <tabBarItem key="tabBarItem" title="Automatic Check" image="AutomaticCheck" selectedImage="AutomaticCheck" id="Ub0-kV-dLt"/>
                     <connections>
                         <outlet property="appStateLabel" destination="f4s-68-nx8" id="j4b-7c-N1Z"/>
                         <outlet property="metaLabel" destination="oPB-gm-Qw0" id="y4B-vC-9zY"/>
@@ -401,7 +401,7 @@
             </objects>
             <point key="canvasLocation" x="2467" y="988"/>
         </scene>
-        <!--ObjC Configuration View Controller-->
+        <!--Configuration-->
         <scene sceneID="691-hE-dzW">
             <objects>
                 <viewController storyboardIdentifier="ObjCConfigurationViewController" id="3aj-MA-zDV" customClass="ObjCConfigurationViewController" sceneMemberID="viewController">
@@ -602,7 +602,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wmw-P5-yLt"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="search" id="joF-OW-bxF"/>
+                    <tabBarItem key="tabBarItem" title="Configuration" image="Configuration" selectedImage="Configuration" id="joF-OW-bxF"/>
                     <connections>
                         <outlet property="iOSVersionLabel" destination="dIU-o6-NmX" id="JDc-BJ-Rfp"/>
                         <outlet property="installedVersionLabel" destination="UAj-JX-vXm" id="FSJ-6v-FWE"/>
@@ -652,4 +652,8 @@
             <point key="canvasLocation" x="1920" y="263"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="AutomaticCheck" width="25" height="25"/>
+        <image name="Configuration" width="25" height="25"/>
+    </resources>
 </document>
