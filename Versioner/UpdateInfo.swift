@@ -28,13 +28,13 @@ public struct UpdateInfo{
     }
 
     // MARK: - Private properties
-    private var minRequiredVersion: Version?
-    private var minSdkForMinimumRequiredVersion: Version?
-    private var latestVers: Version
-    private var minSdkForLatestVersion: Version?
-    private var installedVers: Version
-    private var sdkVers: Version
-    private var metadataObject: [String: Any]?
+    private var _minimumRequiredVersion: Version?
+    private var _minimumSdkForMinimumRequiredVersion: Version?
+    private var _latestVersion: Version
+    private var _minimumSdkForLatestVersion: Version?
+    private var _installedVersion: Version
+    private var _sdkVersion: Version
+    private var _metadata: [String: Any]?
 
     // MARK: - Public properties
 
@@ -51,10 +51,10 @@ public struct UpdateInfo{
 
     // MARK: - Init -
     init(data: Data?, bundle: Bundle = Bundle.main) throws {
-        guard let _data = data else {
+        guard let data = data else {
             throw UpdateInfoError.invalidJsonData
         }
-        let json = try JSONSerialization.jsonObject(with: _data, options: []) as? NSDictionary
+        let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
 
         // JSON data
         guard let value = json as? [String: AnyObject] else {
@@ -66,12 +66,12 @@ public struct UpdateInfo{
 
         // Minimum version
         if let minimumVersion = os["minimum_version"] as? String {
-            minRequiredVersion = try? Version(string: minimumVersion)
+            _minimumRequiredVersion = try? Version(string: minimumVersion)
         }
         
         // Minimum sdk for minimum version
         if let minimumSdkForMinimumVersionString = os["minimum_version_min_sdk"] as? String {
-            minSdkForMinimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersionString)
+            _minimumSdkForMinimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersionString)
         }
 
         // Latest version and notification type
@@ -81,18 +81,18 @@ public struct UpdateInfo{
 
         let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? ""
 
-        if let _notificationType = NotificationType(rawValue: notificationTypeString) {
-            notificationType = _notificationType
+        if let notificationTypeFromString = NotificationType(rawValue: notificationTypeString) {
+            notificationType = notificationTypeFromString
         }
 
         if let versionString = latestVersionInfo["version"] as? String {
-            latestVers = try Version(string: versionString)
+            _latestVersion = try Version(string: versionString)
         } else {
             throw UpdateInfoError.invalidLatestVersion
         }
         
         if let minimumSdkForLatestVersionString = latestVersionInfo["min_sdk"] as? String {
-            minSdkForLatestVersion = try? Version(string: minimumSdkForLatestVersionString)
+            _minimumSdkForLatestVersion = try? Version(string: minimumSdkForLatestVersionString)
         }
 
         // Installed version
@@ -103,12 +103,12 @@ public struct UpdateInfo{
             throw UpdateInfoError.invalidCurrentVersion   
         }
 
-        installedVers = try Version(string: currentVersionString + "-" + currentBuildNumberString)
+        _installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
         
-        sdkVers = try Version(string: UIDevice.current.systemVersion)
+        _sdkVersion = try Version(string: UIDevice.current.systemVersion)
 
         // Metadata
-        metadataObject = value["meta"] as? [String: Any]
+        _metadata = value["meta"] as? [String: Any]
     }
 
 }
@@ -121,42 +121,42 @@ extension UpdateInfo: UpdateInfoValues {
      Returns minimum required version of the app.
      */
     public var minimumRequiredVersion: Version? {
-        return minRequiredVersion
+        return _minimumRequiredVersion
     }
 
     /**
      Returns minimum sdk for minimum required version of the app.
      */
     public var minimumSdkForMinimumRequiredVersion: Version? {
-        return minSdkForMinimumRequiredVersion
+        return _minimumSdkForMinimumRequiredVersion
     }
 
     /**
      Returns latest available version of the app.
      */
     public var latestVersion: Version {
-        return latestVers
+        return _latestVersion
     }
 
     /**
      Returns sdk for latest available version of the app.
      */
     public var minimumSdkForLatestVersion: Version? {
-        return minSdkForLatestVersion
+        return _minimumSdkForLatestVersion
     }
 
     /**
      Returns installed version of the app.
      */
     public var installedVersion: Version {
-        return installedVers
+        return _installedVersion
     }
 
     /**
      Returns sdk version of device.
      */
     public var sdkVersion: Version {
-        return sdkVers
+        return _sdkVersion
     }
 
     /**
@@ -170,16 +170,16 @@ extension UpdateInfo: UpdateInfoValues {
             return true
         }
 
-        guard let _minimumRequiredVersion = minimumRequiredVersion else {
+        guard let minimumRequiredVersion = minimumRequiredVersion else {
             return true
         }
-        return installedVersion >= _minimumRequiredVersion
+        return installedVersion >= minimumRequiredVersion
     }
 
     /**
      Key-value pairs under "meta" key are optional metadata of which any amount can be sent accompanying the required fields.
      */
     public var metadata: [String : Any]? {
-        return metadataObject
+        return _metadata
     }
 }
