@@ -50,11 +50,11 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
 {
     "ios": {
         "minimum_version": "1.2.3",
-        "minimum_version_min_sdk":"8.0.0",
+        "minimum_version_min_sdk": "8.0.0",
         "latest_version": {
             "version": "2.4.5",
             "notification_type": "ALWAYS",
-            "min_sdk":"12.1.2"
+            "min_sdk": "12.1.2"
         }
     },
     "android": {

@@ -103,7 +103,7 @@ public extension PrinceOfVersions {
     /**
      Used for getting the automated information about update availability.
 
-     This method checks mimum required version, current installed version on device and current available version of the app with data stored on URL.
+     This method checks minimum required version, current installed version on device and current available version of the app with data stored on URL.
      It also checks if minimum version is satisfied and what should be frequency of notifying user.
 
      - parameter URL: URL that containts configuration data.

@@ -29,7 +29,8 @@
 
 #pragma mark - View Lifecycle
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
@@ -40,7 +41,6 @@
 
 - (void)checkAppVersion
 {
-
     NSURL *princeOfVersionsURL = [NSURL URLWithString:Constant.princeOfVersionsURL];
 
     __weak __typeof(self) weakSelf = self;
