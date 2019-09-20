@@ -7,7 +7,7 @@
 //
 
 #import "ObjCConfigurationViewController.h"
-#import "PrinceOfVersionsSample-Swift.h"
+#import "PrinceOfVersionsIosSample-Swift.h"
 
 @import PrinceOfVersions;
 
