@@ -1,5 +1,5 @@
 //
-//  ConfigurationViewController.h
+//  ObjCAutomaticCheckController.h
 //  PrinceOfVersionsMacSample
 //
 //  Created by Jasmin Abou Aldan on 20/09/2019.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ConfigurationViewController : NSViewController
+@interface ObjCAutomaticCheckController : NSViewController
 
 @end
 

@@ -25,6 +25,7 @@ class ConfigurationViewController: UIViewController {
     @IBOutlet private var metaLabel: UILabel!
 
     // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -7,16 +7,16 @@
 
 ## Usage
 
-You'll find 2 ViewControllers from where you can check how Prince of Versions could be used. In `ConfigurationViewController` you'll get all informations stored on server as well as current version of the app, while in `AutomaticCheckViewController` you'll only get an info if update is available and if update is mandatory or optional.
+You'll find 2 ViewControllers from where you can check how Prince of Versions could be used. In `ConfigurationController` you'll get all informations stored on server as well as current version of the app, while in `AutomaticCheckController` you'll only get an info if update is available and if update is mandatory or optional.
 
 You can change the app version from `AppConfiguration.xcconfig` file and Swift/Objective-C version of the `ViewControllers` from the `AppDelegate`.
 
 1. Getting all data
 
-Used in `ConfigurationViewController`.  
+Used in `ConfigurationController`.  
 
 ```swift
-    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
+    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
         PrinceOfVersions().loadConfiguration(from: url) { response in
             switch response.result {
             case .success(let info):
@@ -36,10 +36,10 @@ Used in `ConfigurationViewController`.
 
 2. Automatic handling update frequency
 
-Used in `AutomaticCheckViewController`. 
+Used in `AutomaticCheckController`. 
 
 ```swift
-    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
+    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
     PrinceOfVersions().checkForUpdates(from: url,
         newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
             ...
