@@ -18,8 +18,6 @@
 		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
-		0668A725232BD33D00693EA6 /* SwiftAppSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A724232BD33D00693EA6 /* SwiftAppSample.swift */; };
-		0668A728232BD34700693EA6 /* ObjCAppSample.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A727232BD34700693EA6 /* ObjCAppSample.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,9 +38,6 @@
 		0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCConfigurationViewController.m; sourceTree = "<group>"; };
 		0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckViewController.h; sourceTree = "<group>"; };
 		0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckViewController.m; sourceTree = "<group>"; };
-		0668A724232BD33D00693EA6 /* SwiftAppSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftAppSample.swift; sourceTree = "<group>"; };
-		0668A726232BD34700693EA6 /* ObjCAppSample.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAppSample.h; sourceTree = "<group>"; };
-		0668A727232BD34700693EA6 /* ObjCAppSample.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAppSample.m; sourceTree = "<group>"; };
 		0668A731232BE2D100693EA6 /* AppConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfiguration.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,7 +88,6 @@
 		0668A713232BCDD900693EA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				0668A723232BCFE100693EA6 /* TabBar */,
 				0668A71A232BCF4200693EA6 /* PrinceOfVersionsIosSample-Bridging-Header.h */,
 				0668A706232BCABA00693EA6 /* Assets.xcassets */,
 				0668A708232BCABA00693EA6 /* LaunchScreen.storyboard */,
@@ -136,16 +130,6 @@
 				0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */,
 			);
 			path = AutomaticCheckViewController;
-			sourceTree = "<group>";
-		};
-		0668A723232BCFE100693EA6 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				0668A724232BD33D00693EA6 /* SwiftAppSample.swift */,
-				0668A726232BD34700693EA6 /* ObjCAppSample.h */,
-				0668A727232BD34700693EA6 /* ObjCAppSample.m */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		0668A72D232BD91B00693EA6 /* Frameworks */ = {
@@ -231,8 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0668A700232BCAB700693EA6 /* AppDelegate.swift in Sources */,
-				0668A728232BD34700693EA6 /* ObjCAppSample.m in Sources */,
-				0668A725232BD33D00693EA6 /* SwiftAppSample.swift in Sources */,
 				0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */,
 				0668A717232BCF1D00693EA6 /* ConfigurationViewController.swift in Sources */,
 				0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */,

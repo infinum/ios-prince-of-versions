@@ -11,16 +11,19 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+
+        // Uncomment version that you want to build:
+        createAndShowViewController(with: "SwiftAppSample")
+//         createAndShowViewController(with: "ObjCAppSample")
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-
-
 }
 
+private extension AppDelegate {
+
+    func createAndShowViewController(with identifier: String) {
+        let tabBar = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: identifier) as! NSTabViewController
+        NSApplication.shared.mainWindow?.contentViewController = tabBar
+    }
+}
