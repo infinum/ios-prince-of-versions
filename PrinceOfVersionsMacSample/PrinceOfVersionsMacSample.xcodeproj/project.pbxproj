@@ -8,19 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		0650A01823350F13009400CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A01723350F13009400CA /* AppDelegate.swift */; };
-		0650A01A23350F13009400CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A01923350F13009400CA /* ViewController.swift */; };
 		0650A01C23350F16009400CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0650A01B23350F16009400CA /* Assets.xcassets */; };
 		0650A01F23350F16009400CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0650A01D23350F16009400CA /* Main.storyboard */; };
+		0650A02923351160009400CA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A02823351160009400CA /* Constants.swift */; };
+		0650A02E23351272009400CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0650A02D23351272009400CA /* README.md */; };
+		0650A03023351499009400CA /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A02F23351499009400CA /* ConfigurationViewController.swift */; };
+		0650A032233514B1009400CA /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A031233514B1009400CA /* AutomaticCheckViewController.swift */; };
+		0650A036233514E4009400CA /* ConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A035233514E4009400CA /* ConfigurationViewController.m */; };
+		0650A03A23351518009400CA /* AutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A03923351518009400CA /* AutomaticCheckViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0650A01423350F13009400CA /* PrinceOfVersionsMacSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrinceOfVersionsMacSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0650A01723350F13009400CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0650A01923350F13009400CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0650A01B23350F16009400CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0650A01E23350F16009400CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0650A02023350F16009400CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0650A02123350F16009400CA /* PrinceOfVersionsMacSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrinceOfVersionsMacSample.entitlements; sourceTree = "<group>"; };
+		0650A02723351151009400CA /* AppConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfiguration.xcconfig; sourceTree = "<group>"; };
+		0650A02823351160009400CA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0650A02D23351272009400CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0650A02F23351499009400CA /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
+		0650A031233514B1009400CA /* AutomaticCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCheckViewController.swift; sourceTree = "<group>"; };
+		0650A033233514E4009400CA /* PrinceOfVersionsMacSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrinceOfVersionsMacSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		0650A034233514E4009400CA /* ConfigurationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConfigurationViewController.h; sourceTree = "<group>"; };
+		0650A035233514E4009400CA /* ConfigurationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConfigurationViewController.m; sourceTree = "<group>"; };
+		0650A03823351518009400CA /* AutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutomaticCheckViewController.h; sourceTree = "<group>"; };
+		0650A03923351518009400CA /* AutomaticCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutomaticCheckViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +51,7 @@
 		0650A00B23350F13009400CA = {
 			isa = PBXGroup;
 			children = (
+				0650A02D23351272009400CA /* README.md */,
 				0650A01623350F13009400CA /* PrinceOfVersionsMacSample */,
 				0650A01523350F13009400CA /* Products */,
 			);
@@ -53,14 +68,62 @@
 		0650A01623350F13009400CA /* PrinceOfVersionsMacSample */ = {
 			isa = PBXGroup;
 			children = (
+				0650A02723351151009400CA /* AppConfiguration.xcconfig */,
+				0650A02823351160009400CA /* Constants.swift */,
 				0650A01723350F13009400CA /* AppDelegate.swift */,
-				0650A01923350F13009400CA /* ViewController.swift */,
-				0650A01B23350F16009400CA /* Assets.xcassets */,
 				0650A01D23350F16009400CA /* Main.storyboard */,
-				0650A02023350F16009400CA /* Info.plist */,
-				0650A02123350F16009400CA /* PrinceOfVersionsMacSample.entitlements */,
+				0650A02A2335119D009400CA /* Swift Implementation */,
+				0650A02B233511A4009400CA /* ObjectiveC Implementation */,
+				0650A02C233511AF009400CA /* Supporting Files */,
 			);
 			path = PrinceOfVersionsMacSample;
+			sourceTree = "<group>";
+		};
+		0650A02A2335119D009400CA /* Swift Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				0650A02F23351499009400CA /* ConfigurationViewController.swift */,
+				0650A031233514B1009400CA /* AutomaticCheckViewController.swift */,
+			);
+			path = "Swift Implementation";
+			sourceTree = "<group>";
+		};
+		0650A02B233511A4009400CA /* ObjectiveC Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				0650A037233514EB009400CA /* ConfigurationViewController */,
+				0650A03B2335151C009400CA /* AutomaticCheckViewController */,
+			);
+			path = "ObjectiveC Implementation";
+			sourceTree = "<group>";
+		};
+		0650A02C233511AF009400CA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0650A033233514E4009400CA /* PrinceOfVersionsMacSample-Bridging-Header.h */,
+				0650A02123350F16009400CA /* PrinceOfVersionsMacSample.entitlements */,
+				0650A01B23350F16009400CA /* Assets.xcassets */,
+				0650A02023350F16009400CA /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0650A037233514EB009400CA /* ConfigurationViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0650A034233514E4009400CA /* ConfigurationViewController.h */,
+				0650A035233514E4009400CA /* ConfigurationViewController.m */,
+			);
+			path = ConfigurationViewController;
+			sourceTree = "<group>";
+		};
+		0650A03B2335151C009400CA /* AutomaticCheckViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0650A03823351518009400CA /* AutomaticCheckViewController.h */,
+				0650A03923351518009400CA /* AutomaticCheckViewController.m */,
+			);
+			path = AutomaticCheckViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +158,7 @@
 				TargetAttributes = {
 					0650A01323350F13009400CA = {
 						CreatedOnToolsVersion = 10.3;
+						LastSwiftMigration = 1030;
 					};
 				};
 			};
@@ -121,6 +185,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0650A02E23351272009400CA /* README.md in Resources */,
 				0650A01C23350F16009400CA /* Assets.xcassets in Resources */,
 				0650A01F23350F16009400CA /* Main.storyboard in Resources */,
 			);
@@ -133,8 +198,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0650A01A23350F13009400CA /* ViewController.swift in Sources */,
 				0650A01823350F13009400CA /* AppDelegate.swift in Sources */,
+				0650A032233514B1009400CA /* AutomaticCheckViewController.swift in Sources */,
+				0650A02923351160009400CA /* Constants.swift in Sources */,
+				0650A03023351499009400CA /* ConfigurationViewController.swift in Sources */,
+				0650A036233514E4009400CA /* ConfigurationViewController.m in Sources */,
+				0650A03A23351518009400CA /* AutomaticCheckViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,16 +340,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PrinceOfVersionsMacSample/PrinceOfVersionsMacSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = PrinceOfVersionsMacSample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsMacSample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsMacSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsMacSample/ObjectiveC Implementation/PrinceOfVersionsMacSample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -289,16 +361,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = PrinceOfVersionsMacSample/PrinceOfVersionsMacSample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = PrinceOfVersionsMacSample/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsMacSample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsMacSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsMacSample/ObjectiveC Implementation/PrinceOfVersionsMacSample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
