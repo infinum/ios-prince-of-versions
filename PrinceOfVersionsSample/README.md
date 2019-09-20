@@ -1,8 +1,8 @@
-# Prince of Versions Sample App
+# Prince of Versions iOS Sample App
 
 ## Features
 
-* Check info set in https://pastebin.com/raw/LNVA8Gse
+* Check info set in https://pastebin.com/raw/ZAfWNZCi
 * Check app configuration
 
 ## Usage
