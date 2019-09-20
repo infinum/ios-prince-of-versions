@@ -13,7 +13,7 @@
         <!--Automatic Check-->
         <scene sceneID="bHV-sk-5lW">
             <objects>
-                <viewController storyboardIdentifier="AutomaticCheckViewController" id="YEN-YA-OZZ" customClass="AutomaticCheckViewController" customModule="PrinceOfVersionsSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AutomaticCheckViewController" id="YEN-YA-OZZ" customClass="AutomaticCheckViewController" customModule="PrinceOfVersionsIosSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wne-X6-ibW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,7 +91,7 @@
         <!--Configuration-->
         <scene sceneID="iN2-v4-KtS">
             <objects>
-                <viewController storyboardIdentifier="ConfigurationViewController" id="WEo-8T-pfS" customClass="ConfigurationViewController" customModule="PrinceOfVersionsSample" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConfigurationViewController" id="WEo-8T-pfS" customClass="ConfigurationViewController" customModule="PrinceOfVersionsIosSample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Htj-8Y-35l">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -305,10 +305,10 @@
             </objects>
             <point key="canvasLocation" x="-630.43478260869574" y="987.72321428571422"/>
         </scene>
-        <!--Swift App Sample-->
+        <!--Tab Bar Controller-->
         <scene sceneID="bye-hn-UUf">
             <objects>
-                <tabBarController storyboardIdentifier="SwiftAppSample" id="9QG-lR-jW5" customClass="SwiftAppSample" customModule="PrinceOfVersionsSample" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="SwiftAppSample" id="9QG-lR-jW5" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dnw-ut-oJ4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -633,10 +633,10 @@
             </objects>
             <point key="canvasLocation" x="910" y="-263"/>
         </scene>
-        <!--ObjC App Sample-->
+        <!--Tab Bar Controller-->
         <scene sceneID="Hgm-q6-IVn">
             <objects>
-                <tabBarController storyboardIdentifier="ObjCAppSample" id="0q8-HZ-sGw" customClass="ObjCAppSample" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="ObjCAppSample" id="0q8-HZ-sGw" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="n7U-SC-uCX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
