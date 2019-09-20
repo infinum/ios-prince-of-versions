@@ -123,7 +123,7 @@ public struct UpdateInfo{
          #if os(iOS)
         _sdkVersion = try Version(string: UIDevice.current.systemVersion)
         #elseif os(macOS)
-        _sdkVersion = try Version(string: ProcessInfo.processInfo.operatingSystemVersionString)
+        _sdkVersion = Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
         #endif
 
         // Metadata
