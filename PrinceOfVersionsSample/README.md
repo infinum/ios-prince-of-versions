@@ -16,7 +16,7 @@ You can change the app version from `AppConfiguration.xcconfig` file and Swift/O
 Used in `ConfigurationViewController`.  
 
 ```swift
-    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
+    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
         PrinceOfVersions().loadConfiguration(from: url) { response in
             switch response.result {
             case .success(let info):
@@ -39,7 +39,7 @@ Used in `ConfigurationViewController`.
 Used in `AutomaticCheckViewController`. 
 
 ```swift
-    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
+    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
     PrinceOfVersions().checkForUpdates(from: url,
         newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
             ...
