@@ -26,7 +26,7 @@
 		063B7E75232D3C2200DA8929 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		063B7E77232D40C300DA8929 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		063B7E79232D44BD00DA8929 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		0668A6FC232BCAB700693EA6 /* PrinceOfVersionsSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrinceOfVersionsSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrinceOfVersionsIosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0668A6FF232BCAB700693EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0668A704232BCAB700693EA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0668A706232BCABA00693EA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -35,7 +35,7 @@
 		0668A711232BCBC900693EA6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0668A716232BCF1D00693EA6 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCheckViewController.swift; sourceTree = "<group>"; };
-		0668A71A232BCF4200693EA6 /* PrinceOfVersionsSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrinceOfVersionsSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		0668A71A232BCF4200693EA6 /* PrinceOfVersionsIosSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrinceOfVersionsIosSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0668A71B232BCF4200693EA6 /* ObjCConfigurationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCConfigurationViewController.h; sourceTree = "<group>"; };
 		0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCConfigurationViewController.m; sourceTree = "<group>"; };
 		0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckViewController.h; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				0668A711232BCBC900693EA6 /* README.md */,
-				0668A6FE232BCAB700693EA6 /* PrinceOfVersionsSample */,
+				0668A6FE232BCAB700693EA6 /* PrinceOfVersionsIosSample */,
 				0668A6FD232BCAB700693EA6 /* Products */,
 				0668A72D232BD91B00693EA6 /* Frameworks */,
 			);
@@ -71,30 +71,30 @@
 		0668A6FD232BCAB700693EA6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0668A6FC232BCAB700693EA6 /* PrinceOfVersionsSample.app */,
+				0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0668A6FE232BCAB700693EA6 /* PrinceOfVersionsSample */ = {
+		0668A6FE232BCAB700693EA6 /* PrinceOfVersionsIosSample */ = {
 			isa = PBXGroup;
 			children = (
 				0668A731232BE2D100693EA6 /* AppConfiguration.xcconfig */,
-				0668A6FF232BCAB700693EA6 /* AppDelegate.swift */,
 				063B7E79232D44BD00DA8929 /* Constants.swift */,
+				0668A6FF232BCAB700693EA6 /* AppDelegate.swift */,
 				0668A703232BCAB700693EA6 /* Main.storyboard */,
 				0668A714232BCDE800693EA6 /* Swift Implementation */,
 				0668A715232BCEF000693EA6 /* ObjectiveC Implementation */,
 				0668A713232BCDD900693EA6 /* Supporting Files */,
 			);
-			path = PrinceOfVersionsSample;
+			path = PrinceOfVersionsIosSample;
 			sourceTree = "<group>";
 		};
 		0668A713232BCDD900693EA6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				0668A723232BCFE100693EA6 /* TabBar */,
-				0668A71A232BCF4200693EA6 /* PrinceOfVersionsSample-Bridging-Header.h */,
+				0668A71A232BCF4200693EA6 /* PrinceOfVersionsIosSample-Bridging-Header.h */,
 				0668A706232BCABA00693EA6 /* Assets.xcassets */,
 				0668A708232BCABA00693EA6 /* LaunchScreen.storyboard */,
 				0668A70B232BCABA00693EA6 /* Info.plist */,
@@ -160,9 +160,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0668A6FB232BCAB700693EA6 /* PrinceOfVersionsSample */ = {
+		0668A6FB232BCAB700693EA6 /* PrinceOfVersionsIosSample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0668A70E232BCABA00693EA6 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsSample" */;
+			buildConfigurationList = 0668A70E232BCABA00693EA6 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsIosSample" */;
 			buildPhases = (
 				0668A6F8232BCAB700693EA6 /* Sources */,
 				0668A6F9232BCAB700693EA6 /* Frameworks */,
@@ -172,9 +172,9 @@
 			);
 			dependencies = (
 			);
-			name = PrinceOfVersionsSample;
+			name = PrinceOfVersionsIosSample;
 			productName = PrinceOfVersionsSample;
-			productReference = 0668A6FC232BCAB700693EA6 /* PrinceOfVersionsSample.app */;
+			productReference = 0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -193,7 +193,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0668A6F7232BCAB700693EA6 /* Build configuration list for PBXProject "PrinceOfVersionsSample" */;
+			buildConfigurationList = 0668A6F7232BCAB700693EA6 /* Build configuration list for PBXProject "PrinceOfVersionsIosSample" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -206,7 +206,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0668A6FB232BCAB700693EA6 /* PrinceOfVersionsSample */,
+				0668A6FB232BCAB700693EA6 /* PrinceOfVersionsIosSample */,
 			);
 		};
 /* End PBXProject section */
@@ -387,14 +387,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsSample/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsIosSample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsSample;
+				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsIosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsSample/Supporting Files/PrinceOfVersionsSample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsIosSample/Supporting Files/PrinceOfVersionsIosSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -409,14 +409,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsSample/Supporting Files/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsIosSample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsSample;
+				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsIosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsSample/Supporting Files/PrinceOfVersionsSample-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsIosSample/Supporting Files/PrinceOfVersionsIosSample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -425,7 +425,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0668A6F7232BCAB700693EA6 /* Build configuration list for PBXProject "PrinceOfVersionsSample" */ = {
+		0668A6F7232BCAB700693EA6 /* Build configuration list for PBXProject "PrinceOfVersionsIosSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0668A70C232BCABA00693EA6 /* Debug */,
@@ -434,7 +434,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0668A70E232BCABA00693EA6 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsSample" */ = {
+		0668A70E232BCABA00693EA6 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsIosSample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0668A70F232BCABA00693EA6 /* Debug */,

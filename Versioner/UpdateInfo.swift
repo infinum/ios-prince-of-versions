@@ -7,7 +7,12 @@
 //
 
 import Foundation
+
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 protocol UpdateInfoValues {
     var minimumRequiredVersion: Version? { get }
@@ -60,9 +65,19 @@ public struct UpdateInfo{
         guard let value = json as? [String: AnyObject] else {
             throw UpdateInfoError.invalidJsonData
         }
+
+        #if os(iOS)
         guard let os = value["ios"] as? [String: AnyObject] else {
             throw UpdateInfoError.invalidJsonData
         }
+
+        #elseif os(macOS)
+        guard let os = value["macos"] as? [String: AnyObject] else {
+            throw UpdateInfoError.invalidJsonData
+        }
+        #else
+        throw UpdateInfoError.invalidJsonData
+        #endif
 
         // Minimum version
         if let minimumVersion = os["minimum_version"] as? String {
@@ -104,8 +119,12 @@ public struct UpdateInfo{
         }
 
         _installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
-        
+
+         #if os(iOS)
         _sdkVersion = try Version(string: UIDevice.current.systemVersion)
+        #elseif os(macOS)
+        _sdkVersion = try Version(string: ProcessInfo.processInfo.operatingSystemVersionString)
+        #endif
 
         // Metadata
         _metadata = value["meta"] as? [String: Any]
