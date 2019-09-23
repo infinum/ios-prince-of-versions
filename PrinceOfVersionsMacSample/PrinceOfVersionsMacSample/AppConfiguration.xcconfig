@@ -1,0 +1,12 @@
+//
+//  AppConfiguration.xcconfig
+//  PrinceOfVersionsMacSample
+//
+//  Created by Jasmin Abou Aldan on 20/09/2019.
+//  Copyright © 2019 infinum. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APP_VERSION = 2.0.0
