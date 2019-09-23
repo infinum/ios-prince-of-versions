@@ -6,7 +6,11 @@
 //  Copyright © 2016 Infinum Ltd. All rights reserved.
 //
 
+#if os(iOS)
 #import <UIKit/UIKit.h>
+#elseif os(macOS)
+#import <AppKit/AppKit.h>
+#endif
 
 //! Project version number for Versioner.
 FOUNDATION_EXPORT double VersionerVersionNumber;
