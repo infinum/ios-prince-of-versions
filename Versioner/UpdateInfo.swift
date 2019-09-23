@@ -7,61 +7,176 @@
 //
 
 import Foundation
-import UIKit
 
-public enum UpdateInfoError: Error {
-    case invalidJsonData
-    case invalidLatestVersion
-    case invalidCurrentVersion
-    case unknown(String?)
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
+protocol UpdateInfoValues {
+    var minimumRequiredVersion: Version? { get }
+    var minimumSdkForMinimumRequiredVersion: Version? { get }
+    var latestVersion: Version { get }
+    var minimumSdkForLatestVersion: Version? { get }
+    var installedVersion: Version { get }
+    var sdkVersion: Version { get }
+    var isMinimumVersionSatisfied: Bool { get }
+    var metadata: [String: Any]? { get }
 }
 
-public struct UpdateInfo {
+public struct UpdateInfo{
 
     public enum NotificationType : String {
         case always = "ALWAYS"
         case once = "ONCE"
     }
 
+    // MARK: - Private properties
+    private var _minimumRequiredVersion: Version?
+    private var _minimumSdkForMinimumRequiredVersion: Version?
+    private var _latestVersion: Version
+    private var _minimumSdkForLatestVersion: Version?
+    private var _installedVersion: Version
+    private var _sdkVersion: Version
+    private var _metadata: [String: Any]?
+
+    // MARK: - Public properties
+
+    /**
+     Returns notification type.
+
+     Possible values are:
+     - Once: Show notification only once
+     - Always: Show notification every time app run
+
+     Default value is `.once`
+     */
+    public private(set) var notificationType: UpdateInfo.NotificationType = .once
+
+    // MARK: - Init -
+    init(data: Data?, bundle: Bundle = Bundle.main) throws {
+        guard let data = data else {
+            throw UpdateInfoError.invalidJsonData
+        }
+        let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
+
+        // JSON data
+        guard let value = json as? [String: AnyObject] else {
+            throw UpdateInfoError.invalidJsonData
+        }
+
+        #if os(iOS)
+        guard let os = value["ios"] as? [String: AnyObject] else {
+            throw UpdateInfoError.invalidJsonData
+        }
+
+        #elseif os(macOS)
+        guard let os = value["macos"] as? [String: AnyObject] else {
+            throw UpdateInfoError.invalidJsonData
+        }
+        #else
+        throw UpdateInfoError.invalidJsonData
+        #endif
+
+        // Minimum version
+        if let minimumVersion = os["minimum_version"] as? String {
+            _minimumRequiredVersion = try? Version(string: minimumVersion)
+        }
+        
+        // Minimum sdk for minimum version
+        if let minimumSdkForMinimumVersionString = os["minimum_version_min_sdk"] as? String {
+            _minimumSdkForMinimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersionString)
+        }
+
+        // Latest version and notification type
+        guard let latestVersionInfo = os["latest_version"] as? [String: AnyObject] else {
+            throw UpdateInfoError.invalidLatestVersion
+        }
+
+        let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? ""
+
+        if let notificationTypeFromString = NotificationType(rawValue: notificationTypeString) {
+            notificationType = notificationTypeFromString
+        }
+
+        if let versionString = latestVersionInfo["version"] as? String {
+            _latestVersion = try Version(string: versionString)
+        } else {
+            throw UpdateInfoError.invalidLatestVersion
+        }
+        
+        if let minimumSdkForLatestVersionString = latestVersionInfo["min_sdk"] as? String {
+            _minimumSdkForLatestVersion = try? Version(string: minimumSdkForLatestVersionString)
+        }
+
+        // Installed version
+        guard let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
+            throw UpdateInfoError.invalidCurrentVersion
+        }
+        guard let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
+            throw UpdateInfoError.invalidCurrentVersion   
+        }
+
+        _installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
+
+         #if os(iOS)
+        _sdkVersion = try Version(string: UIDevice.current.systemVersion)
+        #elseif os(macOS)
+        _sdkVersion = Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
+        #endif
+
+        // Metadata
+        _metadata = value["meta"] as? [String: Any]
+    }
+
+}
+
+// MARK: - UpdateInfoValues -
+
+extension UpdateInfo: UpdateInfoValues {
+
     /**
      Returns minimum required version of the app.
      */
-    public private(set) var minimumRequiredVersion: Version?
-    
+    public var minimumRequiredVersion: Version? {
+        return _minimumRequiredVersion
+    }
+
     /**
      Returns minimum sdk for minimum required version of the app.
      */
-    public private(set) var minimumSdkForMinimumRequiredVersion: Version?
-
-    /**
-     Returns notification type. Possible values are:
-
-     - Once: Show notification only once
-     - Always: Show notification every time app run
-     
-     Default value is @c .once
-     */
-    public private(set) var notificationType: NotificationType = .once
+    public var minimumSdkForMinimumRequiredVersion: Version? {
+        return _minimumSdkForMinimumRequiredVersion
+    }
 
     /**
      Returns latest available version of the app.
      */
-    public private(set) var latestVersion: Version
-    
+    public var latestVersion: Version {
+        return _latestVersion
+    }
+
     /**
      Returns sdk for latest available version of the app.
      */
-    public private(set) var minimumSdkForLatestVersion: Version?
+    public var minimumSdkForLatestVersion: Version? {
+        return _minimumSdkForLatestVersion
+    }
 
     /**
      Returns installed version of the app.
      */
-    public private(set) var installedVersion: Version
-    
+    public var installedVersion: Version {
+        return _installedVersion
+    }
+
     /**
      Returns sdk version of device.
      */
-    public private(set) var sdkVersion: Version
+    public var sdkVersion: Version {
+        return _sdkVersion
+    }
 
     /**
      Checks and return true if minimum version requirement is satisfied. If minimumRequiredVersion doesn't exist return true.
@@ -73,77 +188,17 @@ public struct UpdateInfo {
         {
             return true
         }
-        
-        guard let _minimumRequiredVersion = minimumRequiredVersion else {
+
+        guard let minimumRequiredVersion = minimumRequiredVersion else {
             return true
         }
-        return installedVersion >= _minimumRequiredVersion
+        return installedVersion >= minimumRequiredVersion
     }
 
     /**
      Key-value pairs under "meta" key are optional metadata of which any amount can be sent accompanying the required fields.
      */
-    public private(set) var metadata: [String: Any]?
-
-    init(data: Data?, bundle: Bundle = Bundle.main) throws {
-        guard let _data = data else {
-            throw UpdateInfoError.invalidJsonData
-        }
-        let json = try JSONSerialization.jsonObject(with: _data, options: []) as? NSDictionary
-
-        // JSON data
-        guard let value = json as? [String: AnyObject] else {
-            throw UpdateInfoError.invalidJsonData
-        }
-        guard let os = value["ios"] as? [String: AnyObject] else {
-            throw UpdateInfoError.invalidJsonData
-        }
-
-        // Minimum version
-        if let minimumVersion = os["minimum_version"] as? String {
-            minimumRequiredVersion = try? Version(string: minimumVersion)
-        }
-        
-        // Minimum sdk for minimum version
-        if let minimumSdkForMinimumVersionString = os["minimum_version_min_sdk"] as? String {
-            minimumSdkForMinimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersionString)
-        }
-
-        // Latest version and notification type
-        guard let latestVersionInfo = os["latest_version"] as? [String: AnyObject] else {
-            throw UpdateInfoError.invalidLatestVersion
-        }
-
-        let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? ""
-
-        if let _notificationType = NotificationType(rawValue: notificationTypeString) {
-            notificationType = _notificationType
-        }
-
-        if let versionString = latestVersionInfo["version"] as? String {
-            latestVersion = try Version(string: versionString)
-        } else {
-            throw UpdateInfoError.invalidLatestVersion
-        }
-        
-        if let minimumSdkForLatestVersionString = latestVersionInfo["min_sdk"] as? String {
-            minimumSdkForLatestVersion = try? Version(string: minimumSdkForLatestVersionString)
-        }
-
-        // Installed version
-        guard let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
-            throw UpdateInfoError.invalidCurrentVersion
-        }
-        guard let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
-            throw UpdateInfoError.invalidCurrentVersion   
-        }
-
-        installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
-        
-        sdkVersion = try Version(string: UIDevice.current.systemVersion)
-
-        // Metadata
-        metadata = value["meta"] as? [String: Any]
+    public var metadata: [String : Any]? {
+        return _metadata
     }
-
 }
