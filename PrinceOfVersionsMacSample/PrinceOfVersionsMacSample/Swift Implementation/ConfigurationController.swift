@@ -41,15 +41,14 @@ private extension ConfigurationController {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
         PrinceOfVersions().loadConfiguration(
             from: princeOfVersionsURL,
-            completion: { [unowned self] response in
+            completion: { [weak self] response in
                 switch response.result {
                 case .success(let infoResponse):
                     DispatchQueue.main.async {
-                        self.fillUI(with: infoResponse)
+                        self?.fillUI(with: infoResponse)
                     }
-                case .failure(let error):
+                case .failure:
                     // Handle error
-                    print(error)
                     break
                 }
         })
