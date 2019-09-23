@@ -16,8 +16,9 @@ Library checks for updates using configuration from some resource.
 ### Requirements
 
 * iOS 8.0+
+* macOS 10.10+
 * Xcode 10.0+
-* Swift 4.2
+* Swift 5.0
 
 ### Installation
 
@@ -31,6 +32,15 @@ To integrate the library into your Xcode project specify the pod dependency to y
 
 ```ruby
 platform :ios, '8.0'
+use_frameworks!
+
+pod 'PrinceOfVersions'
+```
+
+or 
+
+```ruby
+platform :osx, '10.10'
 use_frameworks!
 
 pod 'PrinceOfVersions'
@@ -55,6 +65,15 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
             "version": "2.4.5",
             "notification_type": "ALWAYS",
             "min_sdk": "12.1.2"
+        }
+    },
+    "macos": {
+        "minimum_version": "1.2.3",
+        "minimum_version_min_sdk": "10.9.0",
+        "latest_version": {
+            "version": "2.4.5",
+            "notification_type": "ALWAYS",
+            "min_sdk": "10.11.0"
         }
     },
     "android": {
@@ -84,7 +103,7 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 1. Getting all data
 
     ```swift
-    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
+    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
         PrinceOfVersions().loadConfiguration(from: url) { response in
             switch response.result {
             case .success(let info):
@@ -105,7 +124,7 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 2. Automatic handling update frequency
 
     ```swift
-    let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
+    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
     PrinceOfVersions().checkForUpdates(from: url,
         newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
             ...
@@ -128,7 +147,7 @@ If you use certificate pinning for secure communication with the server holding 
 Prince Of Versions will look for all the certificates in the main bundle. Then set the `shouldPinCertificates` parameter to `true` in the `loadConfiguration` method call.
 
 ```swift
-let url = URL(string: "https://pastebin.com/raw/LNVA8Gse")
+let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
 PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (response) in
     switch response.result {
     case .success(let info):

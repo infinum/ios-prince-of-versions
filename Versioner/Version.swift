@@ -56,6 +56,14 @@ public class Version: NSObject {
         patch = Version.number(from: versionComponents, atIndex: 2) ?? 0
     }
 
+    #if os(macOS)
+    init(macVersion: OperatingSystemVersion) {
+        major = macVersion.majorVersion
+        minor = macVersion.minorVersion
+        patch = macVersion.patchVersion
+    }
+    #endif
+
     private static func number(from components: [String], atIndex index: Int) -> Int? {
         guard components.indices.contains(index) else {
             return nil

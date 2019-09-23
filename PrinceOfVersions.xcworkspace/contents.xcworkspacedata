@@ -5,6 +5,9 @@
       location = "group:PrinceOfVersions.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:PrinceOfVersionsSample/PrinceOfVersionsSample.xcodeproj">
+      location = "group:/Users/jaco/Infinum/Infinum_projects/ios-prince-of-versions/iOS-prince-of-versions/PrinceOfVersionsSample/PrinceOfVersionsIosSample.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:PrinceOfVersionsMacSample/PrinceOfVersionsMacSample.xcodeproj">
    </FileRef>
 </Workspace>
