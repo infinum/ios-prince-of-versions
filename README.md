@@ -1,8 +1,10 @@
 # Prince of Versions
 
-![Platform](https://img.shields.io/badge/pod-v1.0.0-blue.svg)
-![License](https://img.shields.io/cocoapods/l/SemanticVersioning.svg)
-[![Build Status](https://app.bitrise.io/app/b0d8da8839bc2c85/status.svg?token=bKDksnKBaI6oQRD861aYBg)](https://app.bitrise.io/app/b0d8da8839bc2c85)
+![Platform](https://img.shields.io/badge/pod-v1.0.0-blue.svg) ![License](https://img.shields.io/cocoapods/l/SemanticVersioning.svg) [![Build Status](https://app.bitrise.io/app/b0d8da8839bc2c85/status.svg?token=bKDksnKBaI6oQRD861aYBg)](https://app.bitrise.io/app/b0d8da8839bc2c85)
+
+<p align="center">
+    <img src="prince-of-versions.svg" width="300" max-width="50%" alt="PoV"/>
+</p>
 
 Library checks for updates using configuration from some resource.
 
