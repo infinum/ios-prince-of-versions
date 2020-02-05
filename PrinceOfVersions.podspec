@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "PrinceOfVersions"
-  s.version = "2.0.0"
+  s.version = "2.1.0"
   s.summary = "Library checks for updates using configuration from some resource."
   s.homepage = "https://github.com/infinum/iOS-prince-of-versions"
   s.license = { :type => "MIT", :file => "LICENSE" }
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files  = "Versioner/**/*.{h,m,swift}"
   s.ios.framework  = 'UIKit'
   s.osx.framework  = 'AppKit'
-  s.swift_version = "5.0"
+  s.swift_version = "5.1"
 end
