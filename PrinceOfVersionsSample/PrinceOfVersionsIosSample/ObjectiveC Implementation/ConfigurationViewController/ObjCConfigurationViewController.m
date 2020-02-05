@@ -46,9 +46,7 @@
     __weak __typeof(self) weakSelf = self;
     [[PrinceOfVersions new] loadConfigurationFromURL:princeOfVersionsURL
                                           completion:^(UpdateResponse *updateResponse) {
-                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                  [weakSelf fillUIWithInfoResponse:updateResponse.result];
-                                              });
+                                                [weakSelf fillUIWithInfoResponse:updateResponse.result];
                                           } error:^(NSError *error) {
                                               // Handle error
                                           }];

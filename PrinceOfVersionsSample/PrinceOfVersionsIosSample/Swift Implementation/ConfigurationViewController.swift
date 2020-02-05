@@ -45,9 +45,7 @@ private extension ConfigurationViewController {
             completion: { [weak self] response in
                 switch response.result {
                 case .success(let infoResponse):
-                    DispatchQueue.main.async {
-                        self?.fillUI(with: infoResponse)
-                    }
+                    self?.fillUI(with: infoResponse)
                 case .failure:
                     // Handle error
                     break
