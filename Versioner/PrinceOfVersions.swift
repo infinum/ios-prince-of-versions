@@ -21,7 +21,7 @@ public class PrinceOfVersions: NSObject {
         public let result: Result<UpdateInfo, UpdateInfoError>
     }
 
-    /// Queue on which callback is returned
+    /// The queue on which the completion handler is dispatched
     ///
     /// By default, OperationQueue of the URLSession's delegateQueue is set to default one (nil)
     @objc public enum CallbackQueue: Int {
