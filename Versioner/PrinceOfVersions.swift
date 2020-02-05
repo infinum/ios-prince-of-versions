@@ -21,6 +21,14 @@ public class PrinceOfVersions: NSObject {
         public let result: Result<UpdateInfo, UpdateInfoError>
     }
 
+    /// Queue on which callback is returned
+    ///
+    /// By default, OperationQueue of the URLSession's delegateQueue is set to default one (nil)
+    @objc public enum CallbackQueue: Int {
+        case main
+        case background
+    }
+
     public typealias CompletionBlock = (UpdateInfoResponse) -> Void
     public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
     public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
@@ -47,7 +55,7 @@ public extension PrinceOfVersions {
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or UpdateInfoError error
-     - parameter delegateQueue: An operation queue for scheduling the delegate calls and completion handlers. The queue should be a serial queue, in order to ensure the correct ordering of callbacks. If nil, the session creates a serial operation queue for performing all delegate method calls and completion handler calls.
+     - parameter callbackQueue: An operation queue for scheduling the completion handlers. If `backgrodun` is selected, callback will be called on the default serial queue. By default, `main` queue is used.
 
      - returns: Discardable `URLSessionDataTask`
      */
@@ -56,13 +64,13 @@ public extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: [String : String?]? = nil,
         shouldPinCertificates: Bool = false,
-        completion: @escaping CompletionBlock,
-        delegateQueue: OperationQueue? = nil
+        callbackQueue: CallbackQueue = .main,
+        completion: @escaping CompletionBlock
         ) -> URLSessionDataTask {
 
         _shouldPinCertificates = shouldPinCertificates
 
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: delegateQueue)
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         var request = URLRequest(url: URL)
 
         if let headerFields = httpHeaderFields {
@@ -71,7 +79,7 @@ public extension PrinceOfVersions {
             }
         }
 
-        let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
+        let dataTask = defaultSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
 
             let result: Result<UpdateInfo, UpdateInfoError>
             if let error = error {
@@ -88,7 +96,10 @@ public extension PrinceOfVersions {
                 response: response,
                 result: result
             )
-            completion(updateInfoResponse)
+
+            self?._dispatch(block: {
+                completion(updateInfoResponse)
+            }, on: callbackQueue)
         })
         dataTask.resume()
 
@@ -109,6 +120,7 @@ public extension PrinceOfVersions {
      - parameter URL: URL that containts configuration data.
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
+     - parameter callbackQueue: An operation queue for scheduling the completion handlers. If `backgrodun` is selected, callback will be called on the default serial queue. By default, `main` queue is used.
      - parameter newVersion: The completion handler to call when the load request is complete in case if new version is available. It returns result that contains info about new optional or non-optional available version, as well as info if minimum version is satisfied
      - parameter noNewVersion: The completion handler to call when the load request is complete in case if there is no new versions available. It returns result that contains if minimum version is satisfied.
 
@@ -119,6 +131,7 @@ public extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: [String : String?]? = nil,
         shouldPinCertificates: Bool = false,
+        callbackQueue: CallbackQueue = .main,
         newVersion: @escaping NewVersionBlock,
         noNewVersion: @escaping NoNewVersionBlock,
         error: @escaping ErrorBlock
@@ -127,21 +140,29 @@ public extension PrinceOfVersions {
             from: URL,
             httpHeaderFields: httpHeaderFields,
             shouldPinCertificates: shouldPinCertificates,
-            completion: { (response) in
+            callbackQueue: callbackQueue,
+            completion: { [weak self] response in
             switch response.result {
             case .failure(let updateInfoError):
-                error(updateInfoError)
-
+                self?._dispatch(block: {
+                    error(updateInfoError)
+                }, on: callbackQueue)
             case .success(let info):
                 if let minimumSdk = info.minimumSdkForLatestVersion, minimumSdk > info.sdkVersion {
-                    noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    self?._dispatch(block: {
+                        noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    }, on: callbackQueue)
                 } else {
                     let latestVersion = info.latestVersion
                     if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                        newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                        self?._dispatch(block: {
+                            newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                        }, on: callbackQueue)
                         latestVersion.markNotified()
                     } else {
-                        noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                        self?._dispatch(block: {
+                            noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                        }, on: callbackQueue)
                     }
                 }
             }
@@ -183,6 +204,16 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
+     func _dispatch(block: @escaping (() -> Void), on queue: CallbackQueue) {
+        switch queue {
+        case .main:
+            DispatchQueue.main.async {
+                block()
+            }
+        case .background:
+            block()
+        }
+    }
 }
 
 // MARK: - URLSessionDelegate -
