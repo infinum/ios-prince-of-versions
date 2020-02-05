@@ -79,7 +79,7 @@ public extension PrinceOfVersions {
             }
         }
 
-        let dataTask = defaultSession.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+        let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
 
             let result: Result<UpdateInfo, UpdateInfoError>
             if let error = error {
@@ -97,7 +97,7 @@ public extension PrinceOfVersions {
                 result: result
             )
 
-            self?._dispatch(block: {
+            PrinceOfVersions._dispatch(block: {
                 completion(updateInfoResponse)
             }, on: callbackQueue)
         })
@@ -141,26 +141,26 @@ public extension PrinceOfVersions {
             httpHeaderFields: httpHeaderFields,
             shouldPinCertificates: shouldPinCertificates,
             callbackQueue: callbackQueue,
-            completion: { [weak self] response in
+            completion: { response in
             switch response.result {
             case .failure(let updateInfoError):
-                self?._dispatch(block: {
+                PrinceOfVersions._dispatch(block: {
                     error(updateInfoError)
                 }, on: callbackQueue)
             case .success(let info):
                 if let minimumSdk = info.minimumSdkForLatestVersion, minimumSdk > info.sdkVersion {
-                    self?._dispatch(block: {
+                    PrinceOfVersions._dispatch(block: {
                         noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
                     }, on: callbackQueue)
                 } else {
                     let latestVersion = info.latestVersion
                     if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                        self?._dispatch(block: {
+                        PrinceOfVersions._dispatch(block: {
                             newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
                         }, on: callbackQueue)
                         latestVersion.markNotified()
                     } else {
-                        self?._dispatch(block: {
+                        PrinceOfVersions._dispatch(block: {
                             noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
                         }, on: callbackQueue)
                     }
@@ -204,7 +204,7 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-     func _dispatch(block: @escaping (() -> Void), on queue: CallbackQueue) {
+     static func _dispatch(block: @escaping (() -> Void), on queue: CallbackQueue) {
         switch queue {
         case .main:
             DispatchQueue.main.async {
