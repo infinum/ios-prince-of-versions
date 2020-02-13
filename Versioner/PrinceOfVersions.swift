@@ -96,10 +96,9 @@ public extension PrinceOfVersions {
                 response: response,
                 result: result
             )
-
-            PrinceOfVersions.dispatch(block: {
+            callbackQueue.async {
                 completion(updateInfoResponse)
-            }, on: callbackQueue)
+            }
         })
         dataTask.resume()
 
@@ -144,25 +143,25 @@ public extension PrinceOfVersions {
             completion: { response in
             switch response.result {
             case .failure(let updateInfoError):
-                PrinceOfVersions.dispatch(block: {
+                callbackQueue.async {
                     error(updateInfoError)
-                }, on: callbackQueue)
+                }
             case .success(let info):
                 if let minimumSdk = info.minimumSdkForLatestVersion, minimumSdk > info.sdkVersion {
-                    PrinceOfVersions.dispatch(block: {
+                    callbackQueue.async {
                         noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
-                    }, on: callbackQueue)
+                    }
                 } else {
                     let latestVersion = info.latestVersion
                     if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                        PrinceOfVersions.dispatch(block: {
+                        callbackQueue.async {
                             newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
-                        }, on: callbackQueue)
+                        }
                         latestVersion.markNotified()
                     } else {
-                        PrinceOfVersions.dispatch(block: {
+                        callbackQueue.async {
                             noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
-                        }, on: callbackQueue)
+                        }
                     }
                 }
             }
@@ -204,14 +203,20 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-     static func dispatch(block: @escaping (() -> Void), on queue: CallbackQueue) {
-        switch queue {
+}
+
+// MARK: - CallbackQueue -
+
+extension PrinceOfVersions.CallbackQueue {
+
+    func async(execute: @escaping (() -> Void)) {
+        switch self {
         case .main:
             DispatchQueue.main.async {
-                block()
+                execute()
             }
         case .background:
-            block()
+            execute()
         }
     }
 }
