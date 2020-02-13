@@ -21,14 +21,6 @@ public class PrinceOfVersions: NSObject {
         public let result: Result<UpdateInfo, UpdateInfoError>
     }
 
-    /// The queue on which the completion handler is dispatched
-    ///
-    /// By default, OperationQueue of the URLSession's delegateQueue is set to default one (nil)
-    @objc public enum CallbackQueue: Int {
-        case main
-        case background
-    }
-
     public typealias CompletionBlock = (UpdateInfoResponse) -> Void
     public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
     public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
@@ -55,7 +47,7 @@ public extension PrinceOfVersions {
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or UpdateInfoError error
-     - parameter callbackQueue: An operation queue for scheduling the completion handlers. If `backgrodun` is selected, callback will be called on the default serial queue. By default, `main` queue is used.
+     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
 
      - returns: Discardable `URLSessionDataTask`
      */
@@ -64,7 +56,7 @@ public extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: [String : String?]? = nil,
         shouldPinCertificates: Bool = false,
-        callbackQueue: CallbackQueue = .main,
+        callbackQueue: DispatchQueue = .main,
         completion: @escaping CompletionBlock
         ) -> URLSessionDataTask {
 
@@ -119,7 +111,7 @@ public extension PrinceOfVersions {
      - parameter URL: URL that containts configuration data.
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
-     - parameter callbackQueue: An operation queue for scheduling the completion handlers. If `backgrodun` is selected, callback will be called on the default serial queue. By default, `main` queue is used.
+     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
      - parameter newVersion: The completion handler to call when the load request is complete in case if new version is available. It returns result that contains info about new optional or non-optional available version, as well as info if minimum version is satisfied
      - parameter noNewVersion: The completion handler to call when the load request is complete in case if there is no new versions available. It returns result that contains if minimum version is satisfied.
 
@@ -130,7 +122,7 @@ public extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: [String : String?]? = nil,
         shouldPinCertificates: Bool = false,
-        callbackQueue: CallbackQueue = .main,
+        callbackQueue: DispatchQueue = .main,
         newVersion: @escaping NewVersionBlock,
         noNewVersion: @escaping NoNewVersionBlock,
         error: @escaping ErrorBlock
@@ -203,22 +195,6 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-}
-
-// MARK: - CallbackQueue -
-
-extension PrinceOfVersions.CallbackQueue {
-
-    func async(execute: @escaping (() -> Void)) {
-        switch self {
-        case .main:
-            DispatchQueue.main.async {
-                execute()
-            }
-        case .background:
-            execute()
-        }
-    }
 }
 
 // MARK: - URLSessionDelegate -
