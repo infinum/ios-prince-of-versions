@@ -38,6 +38,7 @@
 
     __weak __typeof(self) weakSelf = self;
     [[PrinceOfVersions new] checkForUpdatesFromURL:princeOfVersionsURL
+                                           options:nil
                                         newVersion:^(Version *versionData, BOOL isMinimumVersionSatisfied, NSDictionary *meta) {
                                             // versionData is same as in `ObjCConfigurationViewController`. Check example there
                                             NSString *typeOfUpdate = isMinimumVersionSatisfied ? @"optional" : @"mandatory";
