@@ -36,7 +36,7 @@ public class PrinceOfVersions: NSObject {
 
     // MARK: Private properties
 
-    private var _shouldPinCertificates: Bool = false
+    private var shouldPinCertificates: Bool = false
 
 }
 
@@ -68,7 +68,7 @@ public extension PrinceOfVersions {
         completion: @escaping CompletionBlock
         ) -> URLSessionDataTask {
 
-        _shouldPinCertificates = shouldPinCertificates
+        self.shouldPinCertificates = shouldPinCertificates
 
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         var request = URLRequest(url: URL)
@@ -97,7 +97,7 @@ public extension PrinceOfVersions {
                 result: result
             )
 
-            PrinceOfVersions._dispatch(block: {
+            PrinceOfVersions.dispatch(block: {
                 completion(updateInfoResponse)
             }, on: callbackQueue)
         })
@@ -144,23 +144,23 @@ public extension PrinceOfVersions {
             completion: { response in
             switch response.result {
             case .failure(let updateInfoError):
-                PrinceOfVersions._dispatch(block: {
+                PrinceOfVersions.dispatch(block: {
                     error(updateInfoError)
                 }, on: callbackQueue)
             case .success(let info):
                 if let minimumSdk = info.minimumSdkForLatestVersion, minimumSdk > info.sdkVersion {
-                    PrinceOfVersions._dispatch(block: {
+                    PrinceOfVersions.dispatch(block: {
                         noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
                     }, on: callbackQueue)
                 } else {
                     let latestVersion = info.latestVersion
                     if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                        PrinceOfVersions._dispatch(block: {
+                        PrinceOfVersions.dispatch(block: {
                             newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
                         }, on: callbackQueue)
                         latestVersion.markNotified()
                     } else {
-                        PrinceOfVersions._dispatch(block: {
+                        PrinceOfVersions.dispatch(block: {
                             noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
                         }, on: callbackQueue)
                     }
@@ -174,7 +174,7 @@ public extension PrinceOfVersions {
 
 private extension PrinceOfVersions {
 
-    func _certificates(in bundle: Bundle = .main) -> [SecCertificate] {
+    func certificates(in bundle: Bundle = .main) -> [SecCertificate] {
         let paths = [".cer", ".CER", ".crt", ".CRT", ".der", ".DER"]
             .map { bundle.paths(forResourcesOfType: $0, inDirectory: nil) }
             .joined()
@@ -185,12 +185,12 @@ private extension PrinceOfVersions {
             .compactMap { SecCertificateCreateWithData(nil, $0) }
     }
 
-    func _pinnedKeys() -> [SecKey] {
-        return _certificates()
-            .compactMap { _publicKey(for: $0) }
+    func pinnedKeys() -> [SecKey] {
+        return certificates()
+            .compactMap { publicKey(for: $0) }
     }
 
-    func _publicKey(for certificate: SecCertificate) -> SecKey? {
+    func publicKey(for certificate: SecCertificate) -> SecKey? {
         var publicKey: SecKey?
 
         let policy = SecPolicyCreateBasicX509()
@@ -204,7 +204,7 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-     static func _dispatch(block: @escaping (() -> Void), on queue: CallbackQueue) {
+     static func dispatch(block: @escaping (() -> Void), on queue: CallbackQueue) {
         switch queue {
         case .main:
             DispatchQueue.main.async {
@@ -230,16 +230,16 @@ extension PrinceOfVersions: URLSessionDelegate {
             return
         }
         
-        guard _shouldPinCertificates else {
+        guard shouldPinCertificates else {
             completionHandler(.performDefaultHandling, nil)
             return
         }
         
         if
             let serverCertificate = SecTrustGetCertificateAtIndex(trust, 0),
-            let serverCertificateKey = _publicKey(for: serverCertificate)
+            let serverCertificateKey = publicKey(for: serverCertificate)
         {
-            let hasKey = _pinnedKeys().contains(where: { (key) -> Bool in
+            let hasKey = pinnedKeys().contains(where: { (key) -> Bool in
                 return (serverCertificateKey as AnyObject).isEqual(key)
             })
             
