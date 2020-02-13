@@ -26,6 +26,21 @@ public class UpdateResponse: NSObject {
     }
 }
 
+/**
+ Used for configuring PoV request.
+
+ By default, PoV will not use http header fields and certificate pinning. All callbacks (success/versions, failure) will be returned on the main queue.
+ */
+@objcMembers
+public class PoVRequestOptions: NSObject {
+    /// Optional HTTP header fields.
+    var httpHeaderFields: NSDictionary?
+    /// Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
+    var shouldPinCertificates: Bool = false
+    /// An operation queue for scheduling the completion handlers. If `backgrodun` is selected, callback will be called on the default serial queue. By default, `main` queue is used.
+    var callbackQueue: PrinceOfVersions.CallbackQueue = .main
+}
+
 // MARK: Helpers
 
 internal extension PrinceOfVersions {

@@ -45,11 +45,12 @@
 
     __weak __typeof(self) weakSelf = self;
     [[PrinceOfVersions new] loadConfigurationFromURL:princeOfVersionsURL
+                                             options:nil
                                           completion:^(UpdateResponse *updateResponse) {
                                                 [weakSelf fillUIWithInfoResponse:updateResponse.result];
-                                          } error:^(NSError *error) {
-                                              // Handle error
-                                          }];
+                                             } error:^(NSError *error) {
+                                                 /* Handle error */
+                                             }];
 }
 
 - (void)fillUIWithInfoResponse:(UpdateInfoObject *)infoResponse

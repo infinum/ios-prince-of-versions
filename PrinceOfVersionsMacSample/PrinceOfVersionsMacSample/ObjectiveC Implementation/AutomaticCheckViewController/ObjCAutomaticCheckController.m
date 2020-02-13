@@ -37,24 +37,19 @@
 
     __weak __typeof(self) weakSelf = self;
     [[PrinceOfVersions new] checkForUpdatesFromURL:princeOfVersionsURL
+                                           options:nil
                                         newVersion:^(Version *versionData, BOOL isMinimumVersionSatisfied, NSDictionary *meta) {
                                             // versionData is same as in `ObjCConfigurationController`. Check example there
                                             NSString *typeOfUpdate = isMinimumVersionSatisfied ? @"optional" : @"mandatory";
                                             NSString *stateText = [NSString stringWithFormat:@"New %@ version is available.", typeOfUpdate];
-                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                [weakSelf fillUIWithAppState:stateText andMeta:meta];
-                                            });
+                                            [weakSelf fillUIWithAppState:stateText andMeta:meta];
                                         } noNewVersion:^(BOOL isMinimumVersionSatisfied, NSDictionary *meta) {
 
                                             NSMutableString *stateText = [NSMutableString stringWithString:@"There is no new app versions."];
                                             if (!isMinimumVersionSatisfied) {
                                                 [stateText appendString:@"But minimum version is not satisfied."];
                                             }
-
-                                            dispatch_async(dispatch_get_main_queue(), ^{
-                                                [weakSelf fillUIWithAppState:stateText andMeta:meta];
-                                            });
-
+                                            [weakSelf fillUIWithAppState:stateText andMeta:meta];
                                         } error:^(NSError *error) {
                                             // Handle error
                                         }];
