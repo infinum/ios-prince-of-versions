@@ -28,7 +28,7 @@ class PrinceOfVersionsTest: XCTestCase {
         runAsyncTest { finished in
             PrinceOfVersions().loadConfiguration(
                 from: PrinceOfVersionsTest.testURL,
-                callbackQueue: .background,
+                callbackQueue: .global(qos: .background),
                 completion: { _ in
                     XCTAssertFalse(Thread.isMainThread)
                     finished()
@@ -57,7 +57,7 @@ class PrinceOfVersionsTest: XCTestCase {
         runAsyncTest { finished in
             PrinceOfVersions().checkForUpdates(
                 from: PrinceOfVersionsTest.testURL,
-                callbackQueue: .background,
+                callbackQueue: .global(qos: .background),
                 newVersion: { _,_,_ in
                     XCTAssertFalse(Thread.isMainThread)
                     finished()
