@@ -37,8 +37,8 @@ public class PoVRequestOptions: NSObject {
     var httpHeaderFields: NSDictionary?
     /// Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
     var shouldPinCertificates: Bool = false
-    /// An operation queue for scheduling the completion handlers. If `backgrodun` is selected, callback will be called on the default serial queue. By default, `main` queue is used.
-    var callbackQueue: PrinceOfVersions.CallbackQueue = .main
+    /// The queue on which the completion handler is dispatched. By default, `main` queue is used.
+    var callbackQueue: DispatchQueue = .main
 }
 
 // MARK: Helpers
@@ -51,7 +51,7 @@ internal extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: NSDictionary?,
         shouldPinCertificates: Bool,
-        callbackQueue: CallbackQueue = .main,
+        callbackQueue: DispatchQueue = .main,
         completion: @escaping ObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
@@ -89,7 +89,7 @@ internal extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: NSDictionary?,
         shouldPinCertificates: Bool,
-        callbackQueue: CallbackQueue = .main,
+        callbackQueue: DispatchQueue = .main,
         newVersion: @escaping NewVersionBlock,
         noNewVersion: @escaping NoNewVersionBlock,
         error: @escaping ObjectErrorBlock
