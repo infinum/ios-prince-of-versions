@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		06151E4D232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06151E4C232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift */; };
-		0618BCF6232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0618BCF5232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift */; };
+		0618BCF6232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0618BCF5232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift */; };
+		06624BBC23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06624BBB23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift */; };
 		066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */; };
 		0668A73A232D275500693EA6 /* PrinceOfVersionsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A739232D275500693EA6 /* PrinceOfVersionsError.swift */; };
 		066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */; };
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
+		068D538323F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068D538223F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06C2DF331D19639B0032E464 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */; };
 		06C8F15B1D9296EF0088BDA2 /* invalid_update_incalid_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C8F15A1D9296EF0088BDA2 /* invalid_update_incalid_version.json */; };
@@ -62,12 +64,14 @@
 
 /* Begin PBXFileReference section */
 		06151E4C232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
-		0618BCF5232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsObjectiveCExtensions.swift; sourceTree = "<group>"; };
+		0618BCF5232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveCBaseExtensions.swift; sourceTree = "<group>"; };
+		06624BBB23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdatesObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
 		0668A739232D275500693EA6 /* PrinceOfVersionsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsError.swift; sourceTree = "<group>"; };
 		066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		0688DB1A1D19AA460027695C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		0688DB1C1D19AA4B0027695C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		068D538223F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadConfigurationObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +121,7 @@
 		0618BCF2232B869700AC7F84 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				0618BCF5232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift */,
+				06624BB823EAFE4300F9DE05 /* ObjectiveC Extensions */,
 				06151E4C232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift */,
 			);
 			path = ObjC;
@@ -130,6 +134,16 @@
 				06C2DF2D1D19639B0032E464 /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06624BB823EAFE4300F9DE05 /* ObjectiveC Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0618BCF5232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift */,
+				068D538223F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift */,
+				06624BBB23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift */,
+			);
+			path = "ObjectiveC Extensions";
 			sourceTree = "<group>";
 		};
 		06C2DF1E1D19639B0032E464 = {
@@ -351,9 +365,11 @@
 			files = (
 				066F7F5D1D9126F00089F6F8 /* UpdateInfo.swift in Sources */,
 				CF7576911DAC1F5E002B7581 /* Version.swift in Sources */,
+				06624BBC23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift in Sources */,
 				066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */,
+				068D538323F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift in Sources */,
 				0668A73A232D275500693EA6 /* PrinceOfVersionsError.swift in Sources */,
-				0618BCF6232B86F900AC7F84 /* PrinceOfVersionsObjectiveCExtensions.swift in Sources */,
+				0618BCF6232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift in Sources */,
 				06151E4D232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

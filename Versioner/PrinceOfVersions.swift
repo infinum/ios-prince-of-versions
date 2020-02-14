@@ -28,7 +28,7 @@ public class PrinceOfVersions: NSObject {
 
     // MARK: Private properties
 
-    private var _shouldPinCertificates: Bool = false
+    private var shouldPinCertificates: Bool = false
 
 }
 
@@ -47,7 +47,7 @@ public extension PrinceOfVersions {
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or UpdateInfoError error
-     - parameter delegateQueue: An operation queue for scheduling the delegate calls and completion handlers. The queue should be a serial queue, in order to ensure the correct ordering of callbacks. If nil, the session creates a serial operation queue for performing all delegate method calls and completion handler calls.
+     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
 
      - returns: Discardable `URLSessionDataTask`
      */
@@ -56,13 +56,13 @@ public extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: [String : String?]? = nil,
         shouldPinCertificates: Bool = false,
-        completion: @escaping CompletionBlock,
-        delegateQueue: OperationQueue? = nil
+        callbackQueue: DispatchQueue = .main,
+        completion: @escaping CompletionBlock
         ) -> URLSessionDataTask {
 
-        _shouldPinCertificates = shouldPinCertificates
+        self.shouldPinCertificates = shouldPinCertificates
 
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: delegateQueue)
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         var request = URLRequest(url: URL)
 
         if let headerFields = httpHeaderFields {
@@ -88,7 +88,9 @@ public extension PrinceOfVersions {
                 response: response,
                 result: result
             )
-            completion(updateInfoResponse)
+            callbackQueue.async {
+                completion(updateInfoResponse)
+            }
         })
         dataTask.resume()
 
@@ -109,6 +111,7 @@ public extension PrinceOfVersions {
      - parameter URL: URL that containts configuration data.
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
+     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
      - parameter newVersion: The completion handler to call when the load request is complete in case if new version is available. It returns result that contains info about new optional or non-optional available version, as well as info if minimum version is satisfied
      - parameter noNewVersion: The completion handler to call when the load request is complete in case if there is no new versions available. It returns result that contains if minimum version is satisfied.
 
@@ -119,6 +122,7 @@ public extension PrinceOfVersions {
         from URL: URL,
         httpHeaderFields: [String : String?]? = nil,
         shouldPinCertificates: Bool = false,
+        callbackQueue: DispatchQueue = .main,
         newVersion: @escaping NewVersionBlock,
         noNewVersion: @escaping NoNewVersionBlock,
         error: @escaping ErrorBlock
@@ -127,21 +131,29 @@ public extension PrinceOfVersions {
             from: URL,
             httpHeaderFields: httpHeaderFields,
             shouldPinCertificates: shouldPinCertificates,
-            completion: { (response) in
+            callbackQueue: callbackQueue,
+            completion: { response in
             switch response.result {
             case .failure(let updateInfoError):
-                error(updateInfoError)
-
+                callbackQueue.async {
+                    error(updateInfoError)
+                }
             case .success(let info):
                 if let minimumSdk = info.minimumSdkForLatestVersion, minimumSdk > info.sdkVersion {
-                    noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    callbackQueue.async {
+                        noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                    }
                 } else {
                     let latestVersion = info.latestVersion
                     if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                        newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                        callbackQueue.async {
+                            newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
+                        }
                         latestVersion.markNotified()
                     } else {
-                        noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                        callbackQueue.async {
+                            noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
+                        }
                     }
                 }
             }
@@ -153,7 +165,7 @@ public extension PrinceOfVersions {
 
 private extension PrinceOfVersions {
 
-    func _certificates(in bundle: Bundle = .main) -> [SecCertificate] {
+    func certificates(in bundle: Bundle = .main) -> [SecCertificate] {
         let paths = [".cer", ".CER", ".crt", ".CRT", ".der", ".DER"]
             .map { bundle.paths(forResourcesOfType: $0, inDirectory: nil) }
             .joined()
@@ -164,12 +176,12 @@ private extension PrinceOfVersions {
             .compactMap { SecCertificateCreateWithData(nil, $0) }
     }
 
-    func _pinnedKeys() -> [SecKey] {
-        return _certificates()
-            .compactMap { _publicKey(for: $0) }
+    func pinnedKeys() -> [SecKey] {
+        return certificates()
+            .compactMap { publicKey(for: $0) }
     }
 
-    func _publicKey(for certificate: SecCertificate) -> SecKey? {
+    func publicKey(for certificate: SecCertificate) -> SecKey? {
         var publicKey: SecKey?
 
         let policy = SecPolicyCreateBasicX509()
@@ -199,16 +211,16 @@ extension PrinceOfVersions: URLSessionDelegate {
             return
         }
         
-        guard _shouldPinCertificates else {
+        guard shouldPinCertificates else {
             completionHandler(.performDefaultHandling, nil)
             return
         }
         
         if
             let serverCertificate = SecTrustGetCertificateAtIndex(trust, 0),
-            let serverCertificateKey = _publicKey(for: serverCertificate)
+            let serverCertificateKey = publicKey(for: serverCertificate)
         {
-            let hasKey = _pinnedKeys().contains(where: { (key) -> Bool in
+            let hasKey = pinnedKeys().contains(where: { (key) -> Bool in
                 return (serverCertificateKey as AnyObject).isEqual(key)
             })
             

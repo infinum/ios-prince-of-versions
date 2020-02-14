@@ -10,27 +10,75 @@ import XCTest
 @testable import PrinceOfVersions
 
 class PrinceOfVersionsTest: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+
+    static let testURL = URL(string: "https://pastebin.com/raw/ZAfWNZCi")!
+
+    func testLoadConfigurationBaseOnMain() {
+        runAsyncTest { finished in
+            PrinceOfVersions().loadConfiguration(
+                from: PrinceOfVersionsTest.testURL,
+                completion: { _ in
+                    XCTAssertTrue(Thread.isMainThread)
+                    finished()
+            })
         }
     }
-    
+
+    func testLoadConfigurationBaseOnBackground() {
+        runAsyncTest { finished in
+            PrinceOfVersions().loadConfiguration(
+                from: PrinceOfVersionsTest.testURL,
+                callbackQueue: .global(qos: .background),
+                completion: { _ in
+                    XCTAssertFalse(Thread.isMainThread)
+                    finished()
+            })
+        }
+    }
+
+    func testCheckForUpdatesBaseOnMain() {
+        runAsyncTest { finished in
+            PrinceOfVersions().checkForUpdates(
+                from: PrinceOfVersionsTest.testURL,
+                newVersion: { _,_,_  in
+                    XCTAssertTrue(Thread.isMainThread)
+                    finished()
+                }, noNewVersion: { _,_  in
+                    XCTAssertTrue(Thread.isMainThread)
+                    finished()
+                }, error: { error in
+                    XCTAssertTrue(Thread.isMainThread)
+                    finished()
+                })
+        }
+    }
+
+    func testCheckForUpdatesBaseOnBackground() {
+        runAsyncTest { finished in
+            PrinceOfVersions().checkForUpdates(
+                from: PrinceOfVersionsTest.testURL,
+                callbackQueue: .global(qos: .background),
+                newVersion: { _,_,_ in
+                    XCTAssertFalse(Thread.isMainThread)
+                    finished()
+                }, noNewVersion: { _,_ in
+                    XCTAssertFalse(Thread.isMainThread)
+                    finished()
+                }, error: { _ in
+                    XCTAssertFalse(Thread.isMainThread)
+                    finished()
+                })
+        }
+    }
+}
+
+private extension PrinceOfVersionsTest {
+
+    func runAsyncTest(with description: String = #function, test: ( @escaping () -> Void ) -> Void) {
+        let expectation = XCTestExpectation(description: description)
+        test() {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 5.0)
+    }
 }

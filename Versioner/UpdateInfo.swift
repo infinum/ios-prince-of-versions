@@ -25,7 +25,17 @@ protocol UpdateInfoValues {
     var metadata: [String: Any]? { get }
 }
 
-public struct UpdateInfo{
+private struct ConfigurationData {
+    var minimumRequiredVersion: Version?
+    var minimumSdkForMinimumRequiredVersion: Version?
+    var latestVersion: Version?
+    var minimumSdkForLatestVersion: Version?
+    var installedVersion: Version?
+    var sdkVersion: Version?
+    var metadata: [String: Any]?
+}
+
+public struct UpdateInfo {
 
     public enum NotificationType : String {
         case always = "ALWAYS"
@@ -33,13 +43,7 @@ public struct UpdateInfo{
     }
 
     // MARK: - Private properties
-    private var _minimumRequiredVersion: Version?
-    private var _minimumSdkForMinimumRequiredVersion: Version?
-    private var _latestVersion: Version
-    private var _minimumSdkForLatestVersion: Version?
-    private var _installedVersion: Version
-    private var _sdkVersion: Version
-    private var _metadata: [String: Any]?
+    private var configurationData = ConfigurationData()
 
     // MARK: - Public properties
 
@@ -81,12 +85,12 @@ public struct UpdateInfo{
 
         // Minimum version
         if let minimumVersion = os["minimum_version"] as? String {
-            _minimumRequiredVersion = try? Version(string: minimumVersion)
+            configurationData.minimumRequiredVersion = try? Version(string: minimumVersion)
         }
         
         // Minimum sdk for minimum version
         if let minimumSdkForMinimumVersionString = os["minimum_version_min_sdk"] as? String {
-            _minimumSdkForMinimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersionString)
+            configurationData.minimumSdkForMinimumRequiredVersion = try? Version(string: minimumSdkForMinimumVersionString)
         }
 
         // Latest version and notification type
@@ -101,13 +105,13 @@ public struct UpdateInfo{
         }
 
         if let versionString = latestVersionInfo["version"] as? String {
-            _latestVersion = try Version(string: versionString)
+            configurationData.latestVersion = try Version(string: versionString)
         } else {
             throw UpdateInfoError.invalidLatestVersion
         }
         
         if let minimumSdkForLatestVersionString = latestVersionInfo["min_sdk"] as? String {
-            _minimumSdkForLatestVersion = try? Version(string: minimumSdkForLatestVersionString)
+            configurationData.minimumSdkForLatestVersion = try? Version(string: minimumSdkForLatestVersionString)
         }
 
         // Installed version
@@ -118,16 +122,16 @@ public struct UpdateInfo{
             throw UpdateInfoError.invalidCurrentVersion   
         }
 
-        _installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
+        configurationData.installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
 
          #if os(iOS)
-        _sdkVersion = try Version(string: UIDevice.current.systemVersion)
+        configurationData.sdkVersion = try Version(string: UIDevice.current.systemVersion)
         #elseif os(macOS)
-        _sdkVersion = Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
+        configurationData.sdkVersion = Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
         #endif
 
         // Metadata
-        _metadata = value["meta"] as? [String: Any]
+        configurationData.metadata = value["meta"] as? [String: Any]
     }
 
 }
@@ -140,42 +144,51 @@ extension UpdateInfo: UpdateInfoValues {
      Returns minimum required version of the app.
      */
     public var minimumRequiredVersion: Version? {
-        return _minimumRequiredVersion
+        return configurationData.minimumRequiredVersion
     }
 
     /**
      Returns minimum sdk for minimum required version of the app.
      */
     public var minimumSdkForMinimumRequiredVersion: Version? {
-        return _minimumSdkForMinimumRequiredVersion
+        return configurationData.minimumSdkForMinimumRequiredVersion
     }
 
     /**
      Returns latest available version of the app.
      */
     public var latestVersion: Version {
-        return _latestVersion
+        guard let version = configurationData.latestVersion else {
+            preconditionFailure("Missing requred latest version data")
+        }
+        return version
     }
 
     /**
      Returns sdk for latest available version of the app.
      */
     public var minimumSdkForLatestVersion: Version? {
-        return _minimumSdkForLatestVersion
+        return configurationData.minimumSdkForLatestVersion
     }
 
     /**
      Returns installed version of the app.
      */
     public var installedVersion: Version {
-        return _installedVersion
+        guard let version = configurationData.latestVersion else {
+            preconditionFailure("Unable to get installed version data")
+        }
+        return version
     }
 
     /**
      Returns sdk version of device.
      */
     public var sdkVersion: Version {
-        return _sdkVersion
+        guard let version = configurationData.latestVersion else {
+            preconditionFailure("Unable to get sdk version data")
+        }
+        return version
     }
 
     /**
@@ -199,6 +212,6 @@ extension UpdateInfo: UpdateInfoValues {
      Key-value pairs under "meta" key are optional metadata of which any amount can be sent accompanying the required fields.
      */
     public var metadata: [String : Any]? {
-        return _metadata
+        return configurationData.metadata
     }
 }

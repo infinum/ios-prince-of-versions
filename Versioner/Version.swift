@@ -46,8 +46,8 @@ public class Version: NSObject {
             build = Version.number(from: versionBuildComponents, atIndex: 1) ?? 0
         }
 
-        if let _major = Version.number(from: versionComponents, atIndex: 0) {
-            major = _major
+        if let majorVersion = Version.number(from: versionComponents, atIndex: 0) {
+            major = majorVersion
         } else {
             throw VersionError.invalidMajorVersion
         }
