@@ -38,17 +38,13 @@ private extension AutomaticCheckController {
             newVersion: { [weak self] (versionData, isMinimumVersionSatisfied, meta) in
                 // versionData is same as in `ConfigurationViewController`. Check example there
                 let stateText = "New \(isMinimumVersionSatisfied ? "optional" : "mandatory") version is available."
-                DispatchQueue.main.async {
-                    self?.fillUI(with: stateText, and: String(describing: meta!))
-                }
+                self?.fillUI(with: stateText, and: String(describing: meta!))
             }, noNewVersion: { [weak self] (isMinimumVersionSatisfied, meta) in
                 var stateText = "There is no new app versions."
                 if !isMinimumVersionSatisfied {
                     stateText += "But minimum version is not satisfied."
                 }
-                DispatchQueue.main.async {
-                    self?.fillUI(with: stateText, and: String(describing: meta!))
-                }
+                self?.fillUI(with: stateText, and: String(describing: meta!))
             }, error: { error in
                 // Handle error
             }
