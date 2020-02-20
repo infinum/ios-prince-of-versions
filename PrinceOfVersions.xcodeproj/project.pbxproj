@@ -16,6 +16,8 @@
 		0688DB1B1D19AA460027695C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0688DB1A1D19AA460027695C /* Foundation.framework */; };
 		068D538323F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068D538223F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift */; };
 		068F384C23EBFF3B004AC923 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F384B23EBFF3B004AC923 /* AppStoreInfo.swift */; };
+		06A17F3923FEEF5A00115013 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A17F3823FEEF5A00115013 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */; };
+		06A17F3B23FEF15900115013 /* AppStpreInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A17F3A23FEF15900115013 /* AppStpreInfoObjectiveC.swift */; };
 		06C2DF2C1D19639B0032E464 /* Versioner.h in Headers */ = {isa = PBXBuildFile; fileRef = 06C2DF2B1D19639B0032E464 /* Versioner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06C2DF331D19639B0032E464 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */; };
 		06C3F2A423F59E3C0009E659 /* app_store_version_example.json in Resources */ = {isa = PBXBuildFile; fileRef = 06C3F2A223F599540009E659 /* app_store_version_example.json */; };
@@ -61,6 +63,8 @@
 		0688DB1C1D19AA4B0027695C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		068D538223F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadConfigurationObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		068F384B23EBFF3B004AC923 /* AppStoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreInfo.swift; sourceTree = "<group>"; };
+		06A17F3823FEEF5A00115013 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckUpdateFromAppStoreObjectiveCExtensions.swift; sourceTree = "<group>"; };
+		06A17F3A23FEF15900115013 /* AppStpreInfoObjectiveC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStpreInfoObjectiveC.swift; sourceTree = "<group>"; };
 		06C2DF281D19639B0032E464 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		06C2DF2B1D19639B0032E464 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
 		06C2DF2D1D19639B0032E464 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 			children = (
 				06624BB823EAFE4300F9DE05 /* ObjectiveC Extensions */,
 				06151E4C232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift */,
+				06A17F3A23FEF15900115013 /* AppStpreInfoObjectiveC.swift */,
 			);
 			path = ObjC;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 				0618BCF5232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift */,
 				068D538223F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift */,
 				06624BBB23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift */,
+				06A17F3823FEEF5A00115013 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */,
 			);
 			path = "ObjectiveC Extensions";
 			sourceTree = "<group>";
@@ -347,8 +353,10 @@
 				068F384C23EBFF3B004AC923 /* AppStoreInfo.swift in Sources */,
 				06624BBC23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift in Sources */,
 				066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */,
+				06A17F3923FEEF5A00115013 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */,
 				068D538323F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift in Sources */,
 				0668A73A232D275500693EA6 /* PrinceOfVersionsError.swift in Sources */,
+				06A17F3B23FEF15900115013 /* AppStpreInfoObjectiveC.swift in Sources */,
 				0618BCF6232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift in Sources */,
 				06151E4D232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift in Sources */,
 			);
