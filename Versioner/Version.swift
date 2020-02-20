@@ -16,7 +16,7 @@ public enum VersionError: Error {
 public class Version: NSObject {
     @objc public var major: Int
     @objc public var minor: Int
-    @objc public var patch: Int
+    @objc public var patch: Int = 0
     @objc public var build: Int = 0
 
     public var wasNotified: Bool {
