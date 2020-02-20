@@ -70,6 +70,53 @@ class PrinceOfVersionsTest: XCTestCase {
                 })
         }
     }
+
+    func testAutomaticUpdateFromStore() {
+
+        let bundle = Bundle(for: type(of: self))
+        let jsonPath = bundle.path(forResource: "app_store_version_example", ofType: "json")!
+
+        let installedVersion = try! Version(string: "1.0.0-1")
+        let latestVersion = try! Version(string: "0.1.0")
+        let minimumSdkForLatestVersion = try! Version(string: "9.0")
+
+        runAsyncTest { finished in
+            PrinceOfVersions().internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: false, bundle: bundle, testMode: true, completion: { response in
+                switch response.result {
+                case .success(let info):
+                    XCTAssert(info.installedVersion == installedVersion)
+                    XCTAssert(info.latestVersion == latestVersion)
+                    if let minSdkForLatestVersion = info.minimumSdkForLatestVersion {
+                        XCTAssert(minSdkForLatestVersion == minimumSdkForLatestVersion)
+                    } else {
+                        XCTFail("min sdk should not be nil")
+                    }
+                    XCTAssert(!info.phaseReleaseInProgress)
+                    finished()
+                case .failure:
+                    XCTFail("Invalid data")
+                    finished()
+                }
+            })
+        }
+    }
+
+    func testAutomaticUpdateFromStorePhased() {
+        let bundle = Bundle(for: type(of: self))
+        let jsonPath = bundle.path(forResource: "app_store_version_example", ofType: "json")!
+        runAsyncTest { finished in
+            PrinceOfVersions().internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: true, bundle: bundle, testMode: true, completion: { response in
+                switch response.result {
+                case .success(let info):
+                    XCTAssert(!info.phaseReleaseInProgress)
+                    finished()
+                case .failure:
+                    XCTFail("Invalid data")
+                    finished()
+                }
+            })
+        }
+    }
 }
 
 private extension PrinceOfVersionsTest {
