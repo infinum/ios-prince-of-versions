@@ -18,7 +18,7 @@ public class PrinceOfVersions: NSObject {
         public let response: URLResponse?
 
         /// The result of response serialization.
-        public let result: Result<UpdateInfo, UpdateInfoError>
+        public let result: Result<UpdateInfo, PrinceOfVersionsError>
     }
 
     public typealias CompletionBlock = (UpdateInfoResponse) -> Void
@@ -46,8 +46,8 @@ public extension PrinceOfVersions {
      - parameter URL: URL that containts configuration data.
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or UpdateInfoError error
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PrinceOfVersionsError error
 
      - returns: Discardable `URLSessionDataTask`
      */
@@ -73,7 +73,7 @@ public extension PrinceOfVersions {
 
         let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
 
-            let result: Result<UpdateInfo, UpdateInfoError>
+            let result: Result<UpdateInfo, PrinceOfVersionsError>
             if let error = error {
                 result = Result.failure(.unknown(error.localizedDescription))
             } else {
@@ -114,6 +114,7 @@ public extension PrinceOfVersions {
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
      - parameter newVersion: The completion handler to call when the load request is complete in case if new version is available. It returns result that contains info about new optional or non-optional available version, as well as info if minimum version is satisfied
      - parameter noNewVersion: The completion handler to call when the load request is complete in case if there is no new versions available. It returns result that contains if minimum version is satisfied.
+     - parameter error The completion handler to call when error occurs
 
      - returns: Discardable `URLSessionDataTask`
      */

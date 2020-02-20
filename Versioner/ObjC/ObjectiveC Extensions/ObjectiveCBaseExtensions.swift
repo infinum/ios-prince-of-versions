@@ -123,6 +123,6 @@ internal extension PrinceOfVersions {
             return .success(httpHeaderFields)
         }
 
-        return .failure((UpdateInfoError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError))
+        return .failure((PrinceOfVersionsError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError))
     }
 }
