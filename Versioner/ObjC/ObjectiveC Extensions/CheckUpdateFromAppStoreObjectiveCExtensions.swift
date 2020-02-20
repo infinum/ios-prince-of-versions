@@ -31,8 +31,11 @@ extension PrinceOfVersions {
 
      - returns: Discardable `URLSessionDataTask`
      */
-    
-    func checkForUpdateFromAppStore(options: PoVRequestOptions?, completion: @escaping AppStoreObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
+
+    @available(swift, obsoleted: 1.0)
+    @objc(checkForUpdateFromAppStoreWithOptions:completion:error:)
+    @discardableResult
+    public func checkForUpdateFromAppStore(options: PoVRequestOptions?, completion: @escaping AppStoreObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
         return self.internalyCheckAndPrepareForUpdateAppStore(
             trackPhaseRelease: options?.trackPhaseRelease ?? true,
             bundle: options?.bundle ?? .main,
