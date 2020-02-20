@@ -26,6 +26,18 @@ public class UpdateResponse: NSObject {
     }
 }
 
+@objcMembers
+public class AppStoreResponse: NSObject {
+
+    /// The result of response serialization.
+    public let result: AppStoreInfoObject
+
+    public init(result: AppStoreInfoObject) {
+        self.result = result
+    }
+}
+
+
 /**
  Used for configuring PoV request.
 
@@ -39,6 +51,10 @@ public class PoVRequestOptions: NSObject {
     var shouldPinCertificates: Bool = false
     /// The queue on which the completion handler is dispatched. By default, `main` queue is used.
     var callbackQueue: DispatchQueue = .main
+    /// Boolean that indicates whether PoV should notify about new version after 7 days when app is fully rolled out or immediately. Default value is `true`.
+    var trackPhaseRelease: Bool = true
+    /// Bundle where .plist file is stored in which app identifier and app versions should be checked.
+    var bundle: Bundle = .main
 }
 
 // MARK: Helpers
@@ -112,6 +128,31 @@ internal extension PrinceOfVersions {
             noNewVersion: noNewVersion,
             error: { (checkError) in
                 error((checkError as NSError))
+        })
+    }
+
+    // MARK: AppStore check
+
+    func internalyCheckAndPrepareForUpdateAppStore(
+        trackPhaseRelease: Bool = true,
+        bundle: Bundle = .main,
+        callbackQueue: DispatchQueue = .main,
+        completion: @escaping AppStoreObjectCompletionBlock,
+        error: @escaping ObjectErrorBlock
+    ) -> URLSessionDataTask? {
+        return self.checkForUpdateFromAppStore(
+            trackPhaseRelease: trackPhaseRelease,
+            bundle: bundle,
+            callbackQueue: callbackQueue, completion: { response in
+                switch response.result {
+                case .success(let appStoreInfo):
+                    let appStoreInfoResponse = AppStoreResponse(
+                        result: AppStoreInfoObject(from: appStoreInfo)
+                    )
+                    completion(appStoreInfoResponse)
+                case .failure(let (errorResponse as NSError)):
+                    error(errorResponse)
+                }
         })
     }
 

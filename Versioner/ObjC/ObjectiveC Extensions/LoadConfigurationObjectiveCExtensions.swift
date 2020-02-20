@@ -26,7 +26,7 @@ extension PrinceOfVersions {
      - parameter URL: URL that containts configuration data.
      - parameter options: Options specifying how PoV should handle the request. Values available for configuring request are: HTTP header fields, certificate pinning enabled and callbackQueue. For details, see `PoVRequestOptions`
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data
-     - parameter error: The completion handler to call when load request errors. It returns UpdateInfoError error
+     - parameter error: The completion handler to call when load request errors
 
      - returns: Discardable `URLSessionDataTask`
      */
