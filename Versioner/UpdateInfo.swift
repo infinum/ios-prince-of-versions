@@ -25,26 +25,38 @@ protocol UpdateInfoValues {
     var metadata: [String: Any]? { get }
 }
 
-private struct ConfigurationData {
-    var minimumRequiredVersion: Version?
-    var minimumSdkForMinimumRequiredVersion: Version?
-    var latestVersion: Version?
-    var minimumSdkForLatestVersion: Version?
-    var installedVersion: Version?
-    var sdkVersion: Version?
-    var metadata: [String: Any]?
+extension UpdateInfoValues {
+    var minimumRequiredVersion: Version? { return nil }
+    var minimumSdkForMinimumRequiredVersion: Version? { return nil }
+    var isMinimumVersionSatisfied: Bool { return true }
+    var metadata: [String: Any]? { return nil }
 }
+
+// MARK: - Internal configuration data -
 
 public struct UpdateInfo {
 
+    // MARK: - Private configuration -
+    
+    /// Data parsed from the configuration file
+    private struct ConfigurationData {
+        var minimumRequiredVersion: Version?
+        var minimumSdkForMinimumRequiredVersion: Version?
+        var latestVersion: Version?
+        var minimumSdkForLatestVersion: Version?
+        var installedVersion: Version?
+        var sdkVersion: Version?
+        var metadata: [String: Any]?
+    }
+
+    private var configurationData = ConfigurationData()
+
+    // MARK: - Public notification type
+    
     public enum NotificationType : String {
         case always = "ALWAYS"
         case once = "ONCE"
     }
-
-    // MARK: - Private properties
-    private var configurationData = ConfigurationData()
-
     // MARK: - Public properties
 
     /**
@@ -61,26 +73,26 @@ public struct UpdateInfo {
     // MARK: - Init -
     init(data: Data?, bundle: Bundle = Bundle.main) throws {
         guard let data = data else {
-            throw UpdateInfoError.invalidJsonData
+            throw PrinceOfVersionsError.invalidJsonData
         }
         let json = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
 
         // JSON data
         guard let value = json as? [String: AnyObject] else {
-            throw UpdateInfoError.invalidJsonData
+            throw PrinceOfVersionsError.invalidJsonData
         }
 
         #if os(iOS)
         guard let os = value["ios"] as? [String: AnyObject] else {
-            throw UpdateInfoError.invalidJsonData
+            throw PrinceOfVersionsError.invalidJsonData
         }
 
         #elseif os(macOS)
         guard let os = value["macos"] as? [String: AnyObject] else {
-            throw UpdateInfoError.invalidJsonData
+            throw PrinceOfVersionsError.invalidJsonData
         }
         #else
-        throw UpdateInfoError.invalidJsonData
+        throw PrinceOfVersionsError.invalidJsonData
         #endif
 
         // Minimum version
@@ -95,7 +107,7 @@ public struct UpdateInfo {
 
         // Latest version and notification type
         guard let latestVersionInfo = os["latest_version"] as? [String: AnyObject] else {
-            throw UpdateInfoError.invalidLatestVersion
+            throw PrinceOfVersionsError.invalidLatestVersion
         }
 
         let notificationTypeString = (latestVersionInfo["notification_type"] as? String) ?? ""
@@ -107,7 +119,7 @@ public struct UpdateInfo {
         if let versionString = latestVersionInfo["version"] as? String {
             configurationData.latestVersion = try Version(string: versionString)
         } else {
-            throw UpdateInfoError.invalidLatestVersion
+            throw PrinceOfVersionsError.invalidLatestVersion
         }
         
         if let minimumSdkForLatestVersionString = latestVersionInfo["min_sdk"] as? String {
@@ -116,10 +128,10 @@ public struct UpdateInfo {
 
         // Installed version
         guard let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else {
-            throw UpdateInfoError.invalidCurrentVersion
+            throw PrinceOfVersionsError.invalidCurrentVersion
         }
         guard let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String else {
-            throw UpdateInfoError.invalidCurrentVersion   
+            throw PrinceOfVersionsError.invalidCurrentVersion   
         }
 
         configurationData.installedVersion = try Version(string: currentVersionString + "-" + currentBuildNumberString)
@@ -175,7 +187,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns installed version of the app.
      */
     public var installedVersion: Version {
-        guard let version = configurationData.latestVersion else {
+        guard let version = configurationData.installedVersion else {
             preconditionFailure("Unable to get installed version data")
         }
         return version
@@ -185,7 +197,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns sdk version of device.
      */
     public var sdkVersion: Version {
-        guard let version = configurationData.latestVersion else {
+        guard let version = configurationData.sdkVersion else {
             preconditionFailure("Unable to get sdk version data")
         }
         return version
