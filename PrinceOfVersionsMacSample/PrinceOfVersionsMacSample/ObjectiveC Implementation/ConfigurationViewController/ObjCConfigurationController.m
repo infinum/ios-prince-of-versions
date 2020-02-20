@@ -34,6 +34,7 @@
     [super viewDidLoad];
     // Do view setup here.
     [self checkAppVersion];
+    [self checkAppStoreVersion];
 }
 
 #pragma mark - Private methods
@@ -50,6 +51,21 @@
                                           } error:^(NSError *error) {
                                                 // Handle error
                                           }];
+}
+
+// In sample app, error will occur as bundle ID
+// of the app is not available on the App Store
+
+- (void)checkAppStoreVersion
+{
+    PoVRequestOptions *options = [PoVRequestOptions new];
+    options.trackPhaseRelease = NO;
+
+    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreResponse *response) {
+        // Handle success
+    } error:^(NSError *error) {
+        // Handle error
+    }];
 }
 
 - (void)fillUIWithInfoResponse:(UpdateInfoObject *)infoResponse
