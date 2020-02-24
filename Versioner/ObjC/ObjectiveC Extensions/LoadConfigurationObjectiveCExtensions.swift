@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: - Load Configuration -
 
 extension PrinceOfVersions {

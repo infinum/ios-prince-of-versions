@@ -11,7 +11,6 @@ import Foundation
 @objcMembers
 public class AppStoreInfoObject: NSObject {
 
-
     // MARK: - Private properties
     private var appStoreInfo: AppStoreInfo
 

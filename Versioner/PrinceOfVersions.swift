@@ -244,7 +244,7 @@ internal extension PrinceOfVersions {
             return nil
         }
 
-        let dataTask = defaultSession.dataTask(with: URLRequest(url: url), completionHandler: { (data, response, error) in
+        let dataTask = defaultSession.dataTask(with: URLRequest(url: url), completionHandler: { (data, /* response */_, error) in
             callbackQueue.async {
                 let appStoreData = PrinceOfVersions.prepareAppStoreData(
                     from: data,

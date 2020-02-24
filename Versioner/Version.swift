@@ -20,9 +20,7 @@ public class Version: NSObject {
     @objc public var build: Int = 0
 
     public var wasNotified: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: versionUserDefaultKey)
-        }
+        return UserDefaults.standard.bool(forKey: versionUserDefaultKey)
     }
 
     private var versionUserDefaultKey: String {
