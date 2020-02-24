@@ -40,13 +40,13 @@ class PrinceOfVersionsTest: XCTestCase {
         runAsyncTest { finished in
             PrinceOfVersions().checkForUpdates(
                 from: PrinceOfVersionsTest.testURL,
-                newVersion: { _,_,_  in
+                newVersion: { _, _, _  in
                     XCTAssertTrue(Thread.isMainThread)
                     finished()
-                }, noNewVersion: { _,_  in
+                }, noNewVersion: { _, _  in
                     XCTAssertTrue(Thread.isMainThread)
                     finished()
-                }, error: { error in
+                }, error: { _ in
                     XCTAssertTrue(Thread.isMainThread)
                     finished()
                 })
@@ -58,10 +58,10 @@ class PrinceOfVersionsTest: XCTestCase {
             PrinceOfVersions().checkForUpdates(
                 from: PrinceOfVersionsTest.testURL,
                 callbackQueue: .global(qos: .background),
-                newVersion: { _,_,_ in
+                newVersion: { _, _, _ in
                     XCTAssertFalse(Thread.isMainThread)
                     finished()
-                }, noNewVersion: { _,_ in
+                }, noNewVersion: { _, _ in
                     XCTAssertFalse(Thread.isMainThread)
                     finished()
                 }, error: { _ in
@@ -123,7 +123,7 @@ private extension PrinceOfVersionsTest {
 
     func runAsyncTest(with description: String = #function, test: ( @escaping () -> Void ) -> Void) {
         let expectation = XCTestExpectation(description: description)
-        test() {
+        test {
             expectation.fulfill()
         }
         wait(for: [expectation], timeout: 5.0)

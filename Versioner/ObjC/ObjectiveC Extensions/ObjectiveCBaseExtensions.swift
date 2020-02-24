@@ -37,7 +37,6 @@ public class AppStoreResponse: NSObject {
     }
 }
 
-
 /**
  Used for configuring PoV request.
 
