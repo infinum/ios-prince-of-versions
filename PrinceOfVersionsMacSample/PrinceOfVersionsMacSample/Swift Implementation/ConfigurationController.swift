@@ -61,8 +61,8 @@ private extension ConfigurationController {
         // of the app is not available on the App Store
         PrinceOfVersions().checkForUpdateFromAppStore(
             trackPhaseRelease: false,
-            completion: { response in
-                switch response.result {
+            completion: { result in
+                switch result {
                 case .success:
                     // Handle success
                     break

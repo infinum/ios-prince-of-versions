@@ -26,17 +26,6 @@ public class UpdateResponse: NSObject {
     }
 }
 
-@objcMembers
-public class AppStoreResponse: NSObject {
-
-    /// The result of response serialization.
-    public let result: AppStoreInfoObject
-
-    public init(result: AppStoreInfoObject) {
-        self.result = result
-    }
-}
-
 /**
  Used for configuring PoV request.
 
@@ -142,13 +131,10 @@ internal extension PrinceOfVersions {
         return self.checkForUpdateFromAppStore(
             trackPhaseRelease: trackPhaseRelease,
             bundle: bundle,
-            callbackQueue: callbackQueue, completion: { response in
-                switch response.result {
+            callbackQueue: callbackQueue, completion: { result in
+                switch result {
                 case .success(let appStoreInfo):
-                    let appStoreInfoResponse = AppStoreResponse(
-                        result: AppStoreInfoObject(from: appStoreInfo)
-                    )
-                    completion(appStoreInfoResponse)
+                    completion(AppStoreInfoObject(from: appStoreInfo))
                 case .failure(let (errorResponse as NSError)):
                     error(errorResponse)
                 }

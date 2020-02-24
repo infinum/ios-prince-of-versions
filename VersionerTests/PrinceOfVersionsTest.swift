@@ -81,8 +81,8 @@ class PrinceOfVersionsTest: XCTestCase {
         let minimumSdkForLatestVersion = try! Version(string: "9.0")
 
         runAsyncTest { finished in
-            PrinceOfVersions().internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: false, bundle: bundle, testMode: true, completion: { response in
-                switch response.result {
+            PrinceOfVersions().internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: false, bundle: bundle, testMode: true, completion: { result in
+                switch result {
                 case .success(let info):
                     XCTAssert(info.installedVersion == installedVersion)
                     XCTAssert(info.latestVersion == latestVersion)
@@ -105,8 +105,8 @@ class PrinceOfVersionsTest: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         let jsonPath = bundle.path(forResource: "app_store_version_example", ofType: "json")!
         runAsyncTest { finished in
-            PrinceOfVersions().internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: true, bundle: bundle, testMode: true, completion: { response in
-                switch response.result {
+            PrinceOfVersions().internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: true, bundle: bundle, testMode: true, completion: { result in
+                switch result {
                 case .success(let info):
                     XCTAssert(!info.phaseReleaseInProgress)
                     finished()
