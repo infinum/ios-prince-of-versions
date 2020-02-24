@@ -27,7 +27,7 @@ public struct AppStoreInfo {
     }
 
     private var configurationData = ConfigurationData()
-    private var currentVersionReleaseDate: Date?
+    private let currentVersionReleaseDate: Date?
 
     // MARK: - Init -
 
@@ -89,9 +89,9 @@ public struct AppStoreInfo {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        if let releaseDate = results["currentVersionReleaseDate"] as? String,
-            let date = dateFormatter.date(from: releaseDate) {
-            currentVersionReleaseDate = date
+        let releaseDate = results["currentVersionReleaseDate"] as? String
+        currentVersionReleaseDate = releaseDate.flatMap {
+            dateFormatter.date(from: $0)
         }
     }
 

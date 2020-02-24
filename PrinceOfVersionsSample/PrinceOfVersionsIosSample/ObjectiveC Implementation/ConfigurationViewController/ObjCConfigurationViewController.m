@@ -62,7 +62,7 @@
     PoVRequestOptions *options = [PoVRequestOptions new];
     options.trackPhaseRelease = NO;
 
-    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreResponse *response) {
+    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreInfoObject *infoObject) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
