@@ -14,7 +14,7 @@ import UIKit
 import AppKit
 #endif
 
-public struct AppStoreInfo{
+public struct AppStoreInfo {
 
     // MARK: - Private configuration
 
@@ -28,7 +28,6 @@ public struct AppStoreInfo{
 
     private var configurationData = ConfigurationData()
     private var currentVersionReleaseDate: Date?
-
 
     // MARK: - Init -
 
@@ -138,7 +137,6 @@ extension AppStoreInfo: UpdateInfoValues {
         }
         return version
     }
-
 
     /**
      Returns bool value if phased release period is in progress
