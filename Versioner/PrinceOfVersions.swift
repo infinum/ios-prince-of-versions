@@ -21,14 +21,8 @@ public class PrinceOfVersions: NSObject {
         public let result: Result<UpdateInfo, PrinceOfVersionsError>
     }
 
-    public struct AppStoreInfoResponse {
-
-        /// The result of response serialization.
-        public let result: Result<AppStoreInfo, PrinceOfVersionsError>
-    }
-
     public typealias CompletionBlock = (UpdateInfoResponse) -> Void
-    public typealias AppStoreCompletionBlock = (AppStoreInfoResponse) -> Void
+    public typealias AppStoreCompletionBlock = (Result<AppStoreInfo, PrinceOfVersionsError>) -> Void
     public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
     public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
     public typealias ErrorBlock = (Error) -> Void
@@ -200,7 +194,7 @@ public extension PrinceOfVersions {
             let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(bundleIdentifier)")
         else {
             callbackQueue.async {
-                completion(AppStoreInfoResponse(result: Result.failure(PrinceOfVersionsError.invalidJsonData)))
+                completion(Result.failure(PrinceOfVersionsError.invalidJsonData))
             }
             return nil
         }
@@ -301,26 +295,26 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool) -> AppStoreInfoResponse {
-        let result: Result<AppStoreInfo, PrinceOfVersionsError>
+    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool) -> Result<AppStoreInfo, PrinceOfVersionsError> {
+
         if let error = error {
-            result = Result.failure(.unknown(error.localizedDescription))
-        } else {
-            do {
-                let updateInfo = try AppStoreInfo(data: data, bundle: bundle)
-                result = Result.success(updateInfo)
-            } catch let error {
-                var errorDescription = error.localizedDescription
-                if let princeOfVersionsError = (error as? PrinceOfVersionsError),
-                    case .dataNotFound = princeOfVersionsError {
-                    errorDescription += ": \(bundle.bundleIdentifier ?? "bundle identifier not found")"
-                }
-                result = Result.failure(.unknown(errorDescription))
-            }
+            return Result.failure(.unknown(error.localizedDescription))
         }
-        return AppStoreInfoResponse(
-            result: result
-        )
+
+        let result: Result<AppStoreInfo, PrinceOfVersionsError>
+        do {
+            let updateInfo = try AppStoreInfo(data: data, bundle: bundle)
+            result = Result.success(updateInfo)
+        } catch let error {
+            var errorDescription = error.localizedDescription
+            if let princeOfVersionsError = (error as? PrinceOfVersionsError),
+                case .dataNotFound = princeOfVersionsError {
+                errorDescription += ": \(bundle.bundleIdentifier ?? "bundle identifier not found")"
+            }
+            result = Result.failure(.unknown(errorDescription))
+        }
+
+        return result
     }
 }
 
