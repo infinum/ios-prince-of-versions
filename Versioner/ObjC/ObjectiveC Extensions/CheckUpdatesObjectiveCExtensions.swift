@@ -22,6 +22,7 @@ extension PrinceOfVersions {
      - parameter options: Options specifying how PoV should handle the request. Values available for configuring request are: HTTP header fields, certificate pinning enabled and callbackQueue. For details, see `PoVRequestOptions`
      - parameter newVersion: The completion handler to call when the load request is complete in case if new version is available. It returns result that contains info about new optional or non-optional available version, as well as info if minimum version is satisfied
      - parameter noNewVersion: The completion handler to call when the load request is complete in case if there is no new versions available. It returns result that contains if minimum version is satisfied.
+     - parameter error: The completion handler to call when load request errors.
 
      - returns: Discardable `URLSessionDataTask`
      */
