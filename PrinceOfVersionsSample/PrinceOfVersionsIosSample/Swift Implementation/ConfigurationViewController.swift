@@ -31,6 +31,7 @@ class ConfigurationViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         checkAppVersion()
+        checkAppStoreVersion()
     }
 }
 
@@ -46,6 +47,23 @@ private extension ConfigurationViewController {
                 switch response.result {
                 case .success(let infoResponse):
                     self?.fillUI(with: infoResponse)
+                case .failure:
+                    // Handle error
+                    break
+                }
+        })
+    }
+
+    func checkAppStoreVersion() {
+        // In sample app, error will occur as bundle ID
+        // of the app is not available on the App Store
+        PrinceOfVersions().checkForUpdateFromAppStore(
+            trackPhaseRelease: false,
+            completion: { result in
+                switch result {
+                case .success:
+                    // Handle success
+                    break
                 case .failure:
                     // Handle error
                     break

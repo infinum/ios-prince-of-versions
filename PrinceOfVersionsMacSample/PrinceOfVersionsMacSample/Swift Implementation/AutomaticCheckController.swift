@@ -35,7 +35,7 @@ private extension AutomaticCheckController {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
         PrinceOfVersions().checkForUpdates(
             from: princeOfVersionsURL,
-            newVersion: { [weak self] (versionData, isMinimumVersionSatisfied, meta) in
+            newVersion: { [weak self] (/* versionData */ _, isMinimumVersionSatisfied, meta) in
                 // versionData is same as in `ConfigurationViewController`. Check example there
                 let stateText = "New \(isMinimumVersionSatisfied ? "optional" : "mandatory") version is available."
                 self?.fillUI(with: stateText, and: String(describing: meta!))
@@ -45,7 +45,7 @@ private extension AutomaticCheckController {
                     stateText += "But minimum version is not satisfied."
                 }
                 self?.fillUI(with: stateText, and: String(describing: meta!))
-            }, error: { error in
+            }, error: { /* error */ _ in
                 // Handle error
             }
         )
