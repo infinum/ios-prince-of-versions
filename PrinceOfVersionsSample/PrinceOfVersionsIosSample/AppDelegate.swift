@@ -13,13 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
         // Uncomment version that you want to build:
         createAndShowViewController(with: "SwiftAppSample")
-//         createAndShowViewController(with: "ObjCAppSample")
+//        createAndShowViewController(with: "ObjCAppSample")
 
         return true
     }
@@ -33,4 +32,3 @@ private extension AppDelegate {
         window?.makeKeyAndVisible()
     }
 }
-
