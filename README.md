@@ -1,6 +1,6 @@
  # Prince of Versions
 
-![Bitrise](https://img.shields.io/bitrise/b0d8da8839bc2c85?token=bKDksnKBaI6oQRD861aYBg) ![GitHub](https://img.shields.io/github/license/infinum/iOS-prince-of-versions) ![Cocoapods](https://img.shields.io/cocoapods/v/PrinceOfVersions) ![Cocoapods platforms](https://img.shields.io/cocoapods/p/PrinceOfVersions) 
+![Bitrise](https://img.shields.io/bitrise/b0d8da8839bc2c85?token=bKDksnKBaI6oQRD861aYBg) ![GitHub](https://img.shields.io/github/license/infinum/iOS-prince-of-versions) ![Cocoapods](https://img.shields.io/cocoapods/v/PrinceOfVersions)[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![Cocoapods platforms](https://img.shields.io/cocoapods/p/PrinceOfVersions) 
 
 <p align="center">
     <img src="./prince-of-versions.svg" width="300" max-width="50%" alt="PoV"/>
@@ -54,6 +54,17 @@ run pod install
 pod install
 ```
 
+#### Carthage
+
+For the Carthage installation and usage instruction, you can check official [quick start documentation](https://github.com/Carthage/Carthage#quick-start).
+
+To integrate the library into your Xcode project, specify it in your `Cartfile`:
+
+```
+github "infinum/iOS-prince-of-versions"
+```
+
+Run `carthage update`.
 ### JSON file
 
 JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
