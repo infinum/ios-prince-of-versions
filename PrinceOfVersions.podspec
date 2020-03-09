@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.10'
   s.source = { :git => "https://github.com/infinum/iOS-prince-of-versions.git", :tag => "#{s.version}" }
-  s.source_files  = "Versioner/**/*.{h,m,swift}"
+  s.source_files  = "Source/**/*.{h,m,swift}"
   s.ios.framework  = 'UIKit'
   s.osx.framework  = 'AppKit'
   s.swift_version = "5.1"
