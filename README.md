@@ -65,6 +65,17 @@ github "infinum/iOS-prince-of-versions"
 ```
 
 Run `carthage update`.
+
+#### Swift Package Manager
+
+Once you have your [Swift Package Manager](https://swift.org/package-manager/) set up, you can add Prince of Versions as a dependency by adding it to the `dependencies` value of your `Package.swift`.
+
+```
+dependencies: [
+    .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.0.0"))
+]
+```
+
 ### JSON file
 
 JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
