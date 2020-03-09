@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				0A1FA651224BBF1700D340B2 /* README.md */,
-				06C6D5B724166EFE009327A3 /* Source */,
+				06C6D5B724166EFE009327A3 /* Sources */,
 				06C6D5B824166F16009327A3 /* Tests */,
 				06C2DF291D19639B0032E464 /* Products */,
 				1E349D472206F2D83F54231C /* Frameworks */,
@@ -210,12 +210,12 @@
 			path = mockdata;
 			sourceTree = "<group>";
 		};
-		06C6D5B724166EFE009327A3 /* Source */ = {
+		06C6D5B724166EFE009327A3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				06C2DF2A1D19639B0032E464 /* PrinceOfVersionsPackage */,
 			);
-			path = Source;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		06C6D5B824166F16009327A3 /* Tests */ = {
