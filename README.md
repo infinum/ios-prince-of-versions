@@ -68,13 +68,11 @@ Run `carthage update`.
 
 #### Swift Package Manager
 
-Once you have your [Swift Package Manager](https://swift.org/package-manager/) set up, you can add Prince of Versions as a dependency by adding it to the `dependencies` value of your `Package.swift`.
+To install Prince of Versions from the Swift Package Manager, you should:
+* In Xcode 11+ select File → Packages → Add Package Dependency
+* Enter project's URL: https://github.com/infinum/iOS-prince-of-versions.git
 
-```
-dependencies: [
-    .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.0.0"))
-]
-```
+For more information, check [Swift Package Manager](https://swift.org/package-manager/) .
 
 ### JSON file
 
