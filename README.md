@@ -65,6 +65,7 @@ github "infinum/iOS-prince-of-versions"
 ```
 
 Run `carthage update`.
+<<<<<<< HEAD
 
 #### Swift Package Manager
 
@@ -74,6 +75,8 @@ To install Prince of Versions from the Swift Package Manager, you should:
 
 For more information, check [Swift Package Manager](https://swift.org/package-manager/) .
 
+=======
+>>>>>>> parent of 9a2350f... Change folder structure to conform Swift Package
 ### JSON file
 
 JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
