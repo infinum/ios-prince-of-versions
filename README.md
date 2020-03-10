@@ -15,14 +15,14 @@ Library checks for updates using configuration from some resource.
 * Make **asynchronous** loading and use **callback** for notifying result
 * Loading and verifying versions happen **outside of UI thread**
 
-### Requirements
+## Requirements
 
 * iOS 8.0+
 * macOS 10.10+
 * Xcode 10.0+
 * Swift 5.0
 
-### Installation
+## Installation
 
 The easiest way to use Prince of versions in your project is using the CocaPods package manager.
 
@@ -74,7 +74,7 @@ To install Prince of Versions from the Swift Package Manager, you should:
 
 For more information, check [Swift Package Manager](https://swift.org/package-manager/) .
 
-### JSON file
+## JSON file
 
 JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
 
@@ -182,6 +182,6 @@ PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (
 }
 ```
 
-### Contributing
+## Contributing
 
 Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](https://github.com/infinum/Android-prince-of-versions/blob/dev/LICENCE).
