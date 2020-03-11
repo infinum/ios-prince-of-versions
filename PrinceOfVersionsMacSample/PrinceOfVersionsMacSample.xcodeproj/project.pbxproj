@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060651302417E15600EB4866 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0606512F2417E15600EB4866 /* PrinceOfVersions.framework */; };
 		0650A01823350F13009400CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A01723350F13009400CA /* AppDelegate.swift */; };
 		0650A01C23350F16009400CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0650A01B23350F16009400CA /* Assets.xcassets */; };
 		0650A01F23350F16009400CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0650A01D23350F16009400CA /* Main.storyboard */; };
@@ -14,12 +15,12 @@
 		0650A02E23351272009400CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0650A02D23351272009400CA /* README.md */; };
 		0650A03023351499009400CA /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A02F23351499009400CA /* ConfigurationController.swift */; };
 		0650A032233514B1009400CA /* AutomaticCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A031233514B1009400CA /* AutomaticCheckController.swift */; };
-		0650A04B233520D2009400CA /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0650A04A233520D2009400CA /* PrinceOfVersions.framework */; };
 		0650A04E23353573009400CA /* ObjCConfigurationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A04D23353573009400CA /* ObjCConfigurationController.m */; };
 		0650A05123353593009400CA /* ObjCAutomaticCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A05023353593009400CA /* ObjCAutomaticCheckController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0606512F2417E15600EB4866 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0650A01423350F13009400CA /* Prince of Versions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prince of Versions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0650A01723350F13009400CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0650A01B23350F16009400CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0650A04B233520D2009400CA /* PrinceOfVersions.framework in Frameworks */,
+				060651302417E15600EB4866 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +134,7 @@
 		0650A049233520D2009400CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0606512F2417E15600EB4866 /* PrinceOfVersions.framework */,
 				0650A04A233520D2009400CA /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
