@@ -120,34 +120,35 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 
 ## Usage
 
-### Most common usage - loading from network resource
+### Loading from network resource
 
 1. Getting all data
 
     ```swift
     let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
-        PrinceOfVersions().loadConfiguration(from: url) { response in
-            switch response.result {
-            case .success(let info):
-                print("Minimum version: ", info.minimumRequiredVersion)
-                print("Installed version: ", info.installedVersion)
-                print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
-                print("Notification type: ", info.notificationType)
+    PrinceOfVersions().loadConfiguration(from: url) { response in
+        switch response.result {
+        case .success(let info):
+            print("Minimum version: ", info.minimumRequiredVersion)
+            print("Installed version: ", info.installedVersion)
+            print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
+            print("Notification type: ", info.notificationType)
 
-                if let latestVersion = info.latestVersion {
-                    print("Is minimum version satisfied: ", latestVersion)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+            if let latestVersion = info.latestVersion {
+                print("Is minimum version satisfied: ", latestVersion)
             }
+        case .failure(let error):
+            print(error.localizedDescription)
         }
+    }
     ```
 
 2. Automatic handling update frequency
 
     ```swift
     let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
-    PrinceOfVersions().checkForUpdates(from: url,
+    PrinceOfVersions().checkForUpdates(
+        from: url,
         newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
             ...
         },
@@ -158,6 +159,26 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
             ...
         })
     ```
+
+### Automatic check with data from the App Store
+
+If you don't want to manage the JSON configuration file required by `loadConfiguration` or `checkForUpdates`, you can use `checkForUpdateFromAppStore`. This method will automatically get your app BundleID and it will return version info fetched from the App Store.
+
+```swift
+PrinceOfVersions().checkForUpdateFromAppStore(
+    trackPhaseRelease: false,
+    completion: { result in
+        switch result {
+        case .success(let appStoreInfo):
+        print("Minimum version: ", info.minimumRequiredVersion)
+        print("Installed version: ", info.installedVersion)
+        print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
+        case .failure:
+            // Handle error
+        }
+    }
+)
+```
 
 ### Multiple targets
 
