@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		063B7E78232D40C300DA8929 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063B7E77232D40C300DA8929 /* PrinceOfVersions.framework */; };
 		063B7E7A232D44BD00DA8929 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063B7E79232D44BD00DA8929 /* Constants.swift */; };
 		0668A700232BCAB700693EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A6FF232BCAB700693EA6 /* AppDelegate.swift */; };
 		0668A705232BCAB700693EA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0668A703232BCAB700693EA6 /* Main.storyboard */; };
@@ -18,6 +17,7 @@
 		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
+		069AF6282418DF5B00319844 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063B7E75232D3C2200DA8929 /* PrinceOfVersions.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,7 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				063B7E78232D40C300DA8929 /* PrinceOfVersions.framework in Frameworks */,
+				069AF6282418DF5B00319844 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
