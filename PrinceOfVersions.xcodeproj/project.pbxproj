@@ -172,14 +172,6 @@
 			path = "ObjectiveC Extensions";
 			sourceTree = "<group>";
 		};
-		OBJ_22 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_23 /* PrinceOfVersionsTests */,
-			);
-			path = Tests;
-			sourceTree = SOURCE_ROOT;
-		};
 		OBJ_23 /* PrinceOfVersionsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,12 +193,12 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
-				OBJ_7 /* Sources */,
-				OBJ_22 /* Tests */,
+				OBJ_8 /* PrinceOfVersions */,
+				OBJ_23 /* PrinceOfVersionsTests */,
 				OBJ_27 /* Products */,
 				OBJ_30 /* PrinceOfVersionsMacSample */,
 				OBJ_31 /* PrinceOfVersions.xcworkspace */,
@@ -216,18 +208,9 @@
 				OBJ_35 /* PrinceOfVersions.podspec */,
 				OBJ_36 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
-		OBJ_7 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_8 /* PrinceOfVersionsPackage */,
-			);
-			path = Sources;
-			sourceTree = SOURCE_ROOT;
-		};
-		OBJ_8 /* PrinceOfVersionsPackage */ = {
+		OBJ_8 /* PrinceOfVersions */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_9 /* AppStoreInfo.swift */,
@@ -238,7 +221,7 @@
 				OBJ_21 /* Version.swift */,
 				06161A9224192867005D7122 /* Supporting Files */,
 			);
-			path = PrinceOfVersionsPackage;
+			path = PrinceOfVersions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +290,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_27 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
