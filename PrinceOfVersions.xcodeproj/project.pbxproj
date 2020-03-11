@@ -57,6 +57,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06161A9324192867005D7122 /* Versioner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
+		06161A9424192867005D7122 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06161A9624192885005D7122 /* invalid_update_no_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_no_json.json; sourceTree = "<group>"; };
+		06161A9724192885005D7122 /* valid_update_full_with_metadata_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata_empty.json; sourceTree = "<group>"; };
+		06161A9824192885005D7122 /* valid_update_notification_once.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_notification_once.json; sourceTree = "<group>"; };
+		06161A9924192885005D7122 /* app_store_version_example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app_store_version_example.json; sourceTree = "<group>"; };
+		06161A9A24192885005D7122 /* malformed_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = malformed_json.json; sourceTree = "<group>"; };
+		06161A9B24192885005D7122 /* valid_update_only_min_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_only_min_version.json; sourceTree = "<group>"; };
+		06161A9C24192885005D7122 /* valid_update_full_with_metadata_malformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata_malformed.json; sourceTree = "<group>"; };
+		06161A9D24192885005D7122 /* valid_update_full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full.json; sourceTree = "<group>"; };
+		06161A9E24192885005D7122 /* valid_update_full_with_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata.json; sourceTree = "<group>"; };
+		06161A9F24192885005D7122 /* invalid_update_no_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_no_ios.json; sourceTree = "<group>"; };
+		06161AA024192885005D7122 /* invalid_update_incalid_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_incalid_version.json; sourceTree = "<group>"; };
+		06161AA124192885005D7122 /* valid_update_full_with_metadata_null.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata_null.json; sourceTree = "<group>"; };
+		06161AA224192885005D7122 /* valid_update_no_notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_no_notification.json; sourceTree = "<group>"; };
+		06161AA324192885005D7122 /* invalid_update_optional_without_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_optional_without_version.json; sourceTree = "<group>"; };
+		06161AA424192885005D7122 /* invalid_update_no_min_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_no_min_version.json; sourceTree = "<group>"; };
+		06161AA524192885005D7122 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		OBJ_11 /* AppStpreInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStpreInfoObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdateFromAppStoreObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdatesObjectiveCExtensions.swift; sourceTree = "<group>"; };
@@ -79,8 +97,8 @@
 		OBJ_36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* AppStoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreInfo.swift; sourceTree = "<group>"; };
-		"PrinceOfVersions::PrinceOfVersions::Product" /* PrinceOfVersions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"PrinceOfVersions::PrinceOfVersionsTests::Product" /* PrinceOfVersionsTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrinceOfVersionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"PrinceOfVersions::PrinceOfVersions::Product" /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"PrinceOfVersions::PrinceOfVersionsTests::Product" /* PrinceOfVersionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PrinceOfVersionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +120,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06161A9224192867005D7122 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				06161A9324192867005D7122 /* Versioner.h */,
+				06161A9424192867005D7122 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		06161A9524192885005D7122 /* mockdata */ = {
+			isa = PBXGroup;
+			children = (
+				06161A9624192885005D7122 /* invalid_update_no_json.json */,
+				06161A9724192885005D7122 /* valid_update_full_with_metadata_empty.json */,
+				06161A9824192885005D7122 /* valid_update_notification_once.json */,
+				06161A9924192885005D7122 /* app_store_version_example.json */,
+				06161A9A24192885005D7122 /* malformed_json.json */,
+				06161A9B24192885005D7122 /* valid_update_only_min_version.json */,
+				06161A9C24192885005D7122 /* valid_update_full_with_metadata_malformed.json */,
+				06161A9D24192885005D7122 /* valid_update_full.json */,
+				06161A9E24192885005D7122 /* valid_update_full_with_metadata.json */,
+				06161A9F24192885005D7122 /* invalid_update_no_ios.json */,
+				06161AA024192885005D7122 /* invalid_update_incalid_version.json */,
+				06161AA124192885005D7122 /* valid_update_full_with_metadata_null.json */,
+				06161AA224192885005D7122 /* valid_update_no_notification.json */,
+				06161AA324192885005D7122 /* invalid_update_optional_without_version.json */,
+				06161AA424192885005D7122 /* invalid_update_no_min_version.json */,
+			);
+			path = mockdata;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +186,8 @@
 				OBJ_24 /* PrinceOfVersionsTest.swift */,
 				OBJ_25 /* UpdateInfoTest.swift */,
 				OBJ_26 /* VersionTest.swift */,
+				06161AA524192885005D7122 /* Info.plist */,
+				06161A9524192885005D7122 /* mockdata */,
 			);
 			path = PrinceOfVersionsTests;
 			sourceTree = "<group>";
@@ -185,6 +236,7 @@
 				OBJ_19 /* PrinceOfVersionsError.swift */,
 				OBJ_20 /* UpdateInfo.swift */,
 				OBJ_21 /* Version.swift */,
+				06161A9224192867005D7122 /* Supporting Files */,
 			);
 			path = PrinceOfVersionsPackage;
 			sourceTree = "<group>";
@@ -342,7 +394,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USE_HEADERMAP = NO;
@@ -358,7 +410,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersions_Info.plist;
+				INFOPLIST_FILE = "Sources/PrinceOfVersionsPackage/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -372,8 +424,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PrinceOfVersions;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -395,7 +445,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				USE_HEADERMAP = NO;
@@ -411,7 +461,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersions_Info.plist;
+				INFOPLIST_FILE = "Sources/PrinceOfVersionsPackage/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -425,8 +475,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PrinceOfVersions;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -470,7 +518,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersionsTests_Info.plist;
+				INFOPLIST_FILE = Tests/PrinceOfVersionsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -495,7 +543,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersionsTests_Info.plist;
+				INFOPLIST_FILE = Tests/PrinceOfVersionsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
