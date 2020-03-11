@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		063018C02418FBD900D2AD72 /* invalid_update_no_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664993F24167F55006A4363 /* invalid_update_no_json.json */; };
+		063018C12418FBD900D2AD72 /* valid_update_full_with_metadata_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994024167F55006A4363 /* valid_update_full_with_metadata_empty.json */; };
+		063018C22418FBD900D2AD72 /* valid_update_notification_once.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994124167F55006A4363 /* valid_update_notification_once.json */; };
+		063018C32418FBD900D2AD72 /* app_store_version_example.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994224167F55006A4363 /* app_store_version_example.json */; };
+		063018C42418FBD900D2AD72 /* malformed_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994324167F55006A4363 /* malformed_json.json */; };
+		063018C52418FBD900D2AD72 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994424167F55006A4363 /* valid_update_only_min_version.json */; };
+		063018C62418FBD900D2AD72 /* valid_update_full_with_metadata_malformed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994524167F55006A4363 /* valid_update_full_with_metadata_malformed.json */; };
+		063018C72418FBD900D2AD72 /* valid_update_full.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994624167F55006A4363 /* valid_update_full.json */; };
+		063018C82418FBD900D2AD72 /* valid_update_full_with_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994724167F55006A4363 /* valid_update_full_with_metadata.json */; };
+		063018C92418FBD900D2AD72 /* invalid_update_no_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994824167F55006A4363 /* invalid_update_no_ios.json */; };
+		063018CA2418FBD900D2AD72 /* invalid_update_incalid_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994924167F55006A4363 /* invalid_update_incalid_version.json */; };
+		063018CB2418FBD900D2AD72 /* valid_update_full_with_metadata_null.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994A24167F55006A4363 /* valid_update_full_with_metadata_null.json */; };
+		063018CC2418FBD900D2AD72 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994B24167F55006A4363 /* valid_update_no_notification.json */; };
+		063018CD2418FBD900D2AD72 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994C24167F55006A4363 /* invalid_update_optional_without_version.json */; };
+		063018CE2418FBD900D2AD72 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994D24167F55006A4363 /* invalid_update_no_min_version.json */; };
 		OBJ_42 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreInfo.swift */; };
 		OBJ_43 /* AppStpreInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStpreInfoObjectiveC.swift */; };
 		OBJ_44 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */; };
@@ -233,6 +248,7 @@
 			buildPhases = (
 				OBJ_69 /* Sources */,
 				OBJ_73 /* Frameworks */,
+				063018BF2418FBC700D2AD72 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -270,6 +286,31 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		063018BF2418FBC700D2AD72 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				063018C02418FBD900D2AD72 /* invalid_update_no_json.json in Resources */,
+				063018C12418FBD900D2AD72 /* valid_update_full_with_metadata_empty.json in Resources */,
+				063018C22418FBD900D2AD72 /* valid_update_notification_once.json in Resources */,
+				063018C32418FBD900D2AD72 /* app_store_version_example.json in Resources */,
+				063018C42418FBD900D2AD72 /* malformed_json.json in Resources */,
+				063018C52418FBD900D2AD72 /* valid_update_only_min_version.json in Resources */,
+				063018C62418FBD900D2AD72 /* valid_update_full_with_metadata_malformed.json in Resources */,
+				063018C72418FBD900D2AD72 /* valid_update_full.json in Resources */,
+				063018C82418FBD900D2AD72 /* valid_update_full_with_metadata.json in Resources */,
+				063018C92418FBD900D2AD72 /* invalid_update_no_ios.json in Resources */,
+				063018CA2418FBD900D2AD72 /* invalid_update_incalid_version.json in Resources */,
+				063018CB2418FBD900D2AD72 /* valid_update_full_with_metadata_null.json in Resources */,
+				063018CC2418FBD900D2AD72 /* valid_update_no_notification.json in Resources */,
+				063018CD2418FBD900D2AD72 /* invalid_update_optional_without_version.json in Resources */,
+				063018CE2418FBD900D2AD72 /* invalid_update_no_min_version.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		OBJ_41 /* Sources */ = {
