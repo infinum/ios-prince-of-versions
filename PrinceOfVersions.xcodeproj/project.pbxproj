@@ -6,22 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		"PrinceOfVersions::PrinceOfVersionsPackageTests::ProductTarget" /* PrinceOfVersionsPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_61 /* Build configuration list for PBXAggregateTarget "PrinceOfVersionsPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_64 /* PBXTargetDependency */,
+			);
+			name = PrinceOfVersionsPackageTests;
+			productName = PrinceOfVersionsPackageTests;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		063018C02418FBD900D2AD72 /* invalid_update_no_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664993F24167F55006A4363 /* invalid_update_no_json.json */; };
-		063018C12418FBD900D2AD72 /* valid_update_full_with_metadata_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994024167F55006A4363 /* valid_update_full_with_metadata_empty.json */; };
-		063018C22418FBD900D2AD72 /* valid_update_notification_once.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994124167F55006A4363 /* valid_update_notification_once.json */; };
-		063018C32418FBD900D2AD72 /* app_store_version_example.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994224167F55006A4363 /* app_store_version_example.json */; };
-		063018C42418FBD900D2AD72 /* malformed_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994324167F55006A4363 /* malformed_json.json */; };
-		063018C52418FBD900D2AD72 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994424167F55006A4363 /* valid_update_only_min_version.json */; };
-		063018C62418FBD900D2AD72 /* valid_update_full_with_metadata_malformed.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994524167F55006A4363 /* valid_update_full_with_metadata_malformed.json */; };
-		063018C72418FBD900D2AD72 /* valid_update_full.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994624167F55006A4363 /* valid_update_full.json */; };
-		063018C82418FBD900D2AD72 /* valid_update_full_with_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994724167F55006A4363 /* valid_update_full_with_metadata.json */; };
-		063018C92418FBD900D2AD72 /* invalid_update_no_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994824167F55006A4363 /* invalid_update_no_ios.json */; };
-		063018CA2418FBD900D2AD72 /* invalid_update_incalid_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994924167F55006A4363 /* invalid_update_incalid_version.json */; };
-		063018CB2418FBD900D2AD72 /* valid_update_full_with_metadata_null.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994A24167F55006A4363 /* valid_update_full_with_metadata_null.json */; };
-		063018CC2418FBD900D2AD72 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994B24167F55006A4363 /* valid_update_no_notification.json */; };
-		063018CD2418FBD900D2AD72 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994C24167F55006A4363 /* invalid_update_optional_without_version.json */; };
-		063018CE2418FBD900D2AD72 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 0664994D24167F55006A4363 /* invalid_update_no_min_version.json */; };
 		OBJ_42 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreInfo.swift */; };
 		OBJ_43 /* AppStpreInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStpreInfoObjectiveC.swift */; };
 		OBJ_44 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */; };
@@ -33,6 +32,7 @@
 		OBJ_50 /* PrinceOfVersionsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PrinceOfVersionsError.swift */; };
 		OBJ_51 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UpdateInfo.swift */; };
 		OBJ_52 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Version.swift */; };
+		OBJ_59 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_70 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* PrinceOfVersionsTest.swift */; };
 		OBJ_71 /* UpdateInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* UpdateInfoTest.swift */; };
 		OBJ_72 /* VersionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* VersionTest.swift */; };
@@ -40,34 +40,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0664993824167EAD006A4363 /* PBXContainerItemProxy */ = {
+		06161A9024192744005D7122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "PrinceOfVersions::PrinceOfVersions";
 			remoteInfo = PrinceOfVersions;
 		};
+		06161A9124192745005D7122 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "PrinceOfVersions::PrinceOfVersionsTests";
+			remoteInfo = PrinceOfVersionsTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0664993B24167F13006A4363 /* Versioner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Versioner.h; sourceTree = "<group>"; };
-		0664993C24167F14006A4363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0664993D24167F55006A4363 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0664993F24167F55006A4363 /* invalid_update_no_json.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalid_update_no_json.json; sourceTree = "<group>"; };
-		0664994024167F55006A4363 /* valid_update_full_with_metadata_empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_full_with_metadata_empty.json; sourceTree = "<group>"; };
-		0664994124167F55006A4363 /* valid_update_notification_once.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_notification_once.json; sourceTree = "<group>"; };
-		0664994224167F55006A4363 /* app_store_version_example.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = app_store_version_example.json; sourceTree = "<group>"; };
-		0664994324167F55006A4363 /* malformed_json.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = malformed_json.json; sourceTree = "<group>"; };
-		0664994424167F55006A4363 /* valid_update_only_min_version.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_min_version.json; sourceTree = "<group>"; };
-		0664994524167F55006A4363 /* valid_update_full_with_metadata_malformed.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_full_with_metadata_malformed.json; sourceTree = "<group>"; };
-		0664994624167F55006A4363 /* valid_update_full.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_full.json; sourceTree = "<group>"; };
-		0664994724167F55006A4363 /* valid_update_full_with_metadata.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_full_with_metadata.json; sourceTree = "<group>"; };
-		0664994824167F55006A4363 /* invalid_update_no_ios.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalid_update_no_ios.json; sourceTree = "<group>"; };
-		0664994924167F55006A4363 /* invalid_update_incalid_version.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalid_update_incalid_version.json; sourceTree = "<group>"; };
-		0664994A24167F55006A4363 /* valid_update_full_with_metadata_null.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_full_with_metadata_null.json; sourceTree = "<group>"; };
-		0664994B24167F55006A4363 /* valid_update_no_notification.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_no_notification.json; sourceTree = "<group>"; };
-		0664994C24167F55006A4363 /* invalid_update_optional_without_version.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalid_update_optional_without_version.json; sourceTree = "<group>"; };
-		0664994D24167F55006A4363 /* invalid_update_no_min_version.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = invalid_update_no_min_version.json; sourceTree = "<group>"; };
 		OBJ_11 /* AppStpreInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStpreInfoObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdateFromAppStoreObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdatesObjectiveCExtensions.swift; sourceTree = "<group>"; };
@@ -81,12 +70,17 @@
 		OBJ_24 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
 		OBJ_25 /* UpdateInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoTest.swift; sourceTree = "<group>"; };
 		OBJ_26 /* VersionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTest.swift; sourceTree = "<group>"; };
+		OBJ_30 /* PrinceOfVersionsMacSample */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PrinceOfVersionsMacSample; sourceTree = SOURCE_ROOT; };
+		OBJ_31 /* PrinceOfVersions.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = PrinceOfVersions.xcworkspace; sourceTree = SOURCE_ROOT; };
+		OBJ_32 /* PrinceOfVersionsSample */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PrinceOfVersionsSample; sourceTree = SOURCE_ROOT; };
+		OBJ_33 /* prince-of-versions.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "prince-of-versions.svg"; sourceTree = "<group>"; };
 		OBJ_34 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		OBJ_35 /* PrinceOfVersions.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = PrinceOfVersions.podspec; sourceTree = "<group>"; };
 		OBJ_36 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* AppStoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreInfo.swift; sourceTree = "<group>"; };
-		"PrinceOfVersions::PrinceOfVersions::Product" /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"PrinceOfVersions::PrinceOfVersionsTests::Product" /* PrinceOfVersionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PrinceOfVersionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		"PrinceOfVersions::PrinceOfVersions::Product" /* PrinceOfVersions.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"PrinceOfVersions::PrinceOfVersionsTests::Product" /* PrinceOfVersionsTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = PrinceOfVersionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,43 +102,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0664993A24167F13006A4363 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				0664993B24167F13006A4363 /* Versioner.h */,
-				0664993C24167F14006A4363 /* Info.plist */,
-			);
-			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		0664993E24167F55006A4363 /* mockdata */ = {
-			isa = PBXGroup;
-			children = (
-				0664993F24167F55006A4363 /* invalid_update_no_json.json */,
-				0664994024167F55006A4363 /* valid_update_full_with_metadata_empty.json */,
-				0664994124167F55006A4363 /* valid_update_notification_once.json */,
-				0664994224167F55006A4363 /* app_store_version_example.json */,
-				0664994324167F55006A4363 /* malformed_json.json */,
-				0664994424167F55006A4363 /* valid_update_only_min_version.json */,
-				0664994524167F55006A4363 /* valid_update_full_with_metadata_malformed.json */,
-				0664994624167F55006A4363 /* valid_update_full.json */,
-				0664994724167F55006A4363 /* valid_update_full_with_metadata.json */,
-				0664994824167F55006A4363 /* invalid_update_no_ios.json */,
-				0664994924167F55006A4363 /* invalid_update_incalid_version.json */,
-				0664994A24167F55006A4363 /* valid_update_full_with_metadata_null.json */,
-				0664994B24167F55006A4363 /* valid_update_no_notification.json */,
-				0664994C24167F55006A4363 /* invalid_update_optional_without_version.json */,
-				0664994D24167F55006A4363 /* invalid_update_no_min_version.json */,
-			);
-			path = mockdata;
-			sourceTree = "<group>";
-		};
 		OBJ_10 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_11 /* AppStpreInfoObjectiveC.swift */,
-				OBJ_17 /* UpdateInfoObjectiveC.swift */,
 				OBJ_12 /* ObjectiveC Extensions */,
+				OBJ_17 /* UpdateInfoObjectiveC.swift */,
 			);
 			path = ObjC;
 			sourceTree = "<group>";
@@ -174,8 +137,6 @@
 				OBJ_24 /* PrinceOfVersionsTest.swift */,
 				OBJ_25 /* UpdateInfoTest.swift */,
 				OBJ_26 /* VersionTest.swift */,
-				0664993D24167F55006A4363 /* Info.plist */,
-				0664993E24167F55006A4363 /* mockdata */,
 			);
 			path = PrinceOfVersionsTests;
 			sourceTree = "<group>";
@@ -189,16 +150,22 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 = {
+		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_34 /* LICENSE */,
-				OBJ_36 /* README.md */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_22 /* Tests */,
 				OBJ_27 /* Products */,
+				OBJ_30 /* PrinceOfVersionsMacSample */,
+				OBJ_31 /* PrinceOfVersions.xcworkspace */,
+				OBJ_32 /* PrinceOfVersionsSample */,
+				OBJ_33 /* prince-of-versions.svg */,
+				OBJ_34 /* LICENSE */,
+				OBJ_35 /* PrinceOfVersions.podspec */,
+				OBJ_36 /* README.md */,
 			);
+			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -212,13 +179,12 @@
 		OBJ_8 /* PrinceOfVersionsPackage */ = {
 			isa = PBXGroup;
 			children = (
+				OBJ_9 /* AppStoreInfo.swift */,
+				OBJ_10 /* ObjC */,
 				OBJ_18 /* PrinceOfVersions.swift */,
 				OBJ_19 /* PrinceOfVersionsError.swift */,
 				OBJ_20 /* UpdateInfo.swift */,
-				OBJ_9 /* AppStoreInfo.swift */,
 				OBJ_21 /* Version.swift */,
-				OBJ_10 /* ObjC */,
-				0664993A24167F13006A4363 /* Supporting Files */,
 			);
 			path = PrinceOfVersionsPackage;
 			sourceTree = "<group>";
@@ -248,7 +214,6 @@
 			buildPhases = (
 				OBJ_69 /* Sources */,
 				OBJ_73 /* Frameworks */,
-				063018BF2418FBC700D2AD72 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +224,20 @@
 			productName = PrinceOfVersionsTests;
 			productReference = "PrinceOfVersions::PrinceOfVersionsTests::Product" /* PrinceOfVersionsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		"PrinceOfVersions::SwiftPMPackageDescription" /* PrinceOfVersionsPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_55 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsPackageDescription" */;
+			buildPhases = (
+				OBJ_58 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PrinceOfVersionsPackageDescription;
+			productName = PrinceOfVersionsPackageDescription;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -276,41 +255,18 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5;
+			mainGroup = OBJ_5 /*  */;
 			productRefGroup = OBJ_27 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				"PrinceOfVersions::PrinceOfVersions" /* PrinceOfVersions */,
+				"PrinceOfVersions::SwiftPMPackageDescription" /* PrinceOfVersionsPackageDescription */,
+				"PrinceOfVersions::PrinceOfVersionsPackageTests::ProductTarget" /* PrinceOfVersionsPackageTests */,
 				"PrinceOfVersions::PrinceOfVersionsTests" /* PrinceOfVersionsTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		063018BF2418FBC700D2AD72 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				063018C02418FBD900D2AD72 /* invalid_update_no_json.json in Resources */,
-				063018C12418FBD900D2AD72 /* valid_update_full_with_metadata_empty.json in Resources */,
-				063018C22418FBD900D2AD72 /* valid_update_notification_once.json in Resources */,
-				063018C32418FBD900D2AD72 /* app_store_version_example.json in Resources */,
-				063018C42418FBD900D2AD72 /* malformed_json.json in Resources */,
-				063018C52418FBD900D2AD72 /* valid_update_only_min_version.json in Resources */,
-				063018C62418FBD900D2AD72 /* valid_update_full_with_metadata_malformed.json in Resources */,
-				063018C72418FBD900D2AD72 /* valid_update_full.json in Resources */,
-				063018C82418FBD900D2AD72 /* valid_update_full_with_metadata.json in Resources */,
-				063018C92418FBD900D2AD72 /* invalid_update_no_ios.json in Resources */,
-				063018CA2418FBD900D2AD72 /* invalid_update_incalid_version.json in Resources */,
-				063018CB2418FBD900D2AD72 /* valid_update_full_with_metadata_null.json in Resources */,
-				063018CC2418FBD900D2AD72 /* valid_update_no_notification.json in Resources */,
-				063018CD2418FBD900D2AD72 /* invalid_update_optional_without_version.json in Resources */,
-				063018CE2418FBD900D2AD72 /* invalid_update_no_min_version.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		OBJ_41 /* Sources */ = {
@@ -331,6 +287,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		OBJ_58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_59 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		OBJ_69 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
@@ -344,10 +308,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		OBJ_64 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "PrinceOfVersions::PrinceOfVersionsTests" /* PrinceOfVersionsTests */;
+			targetProxy = 06161A9124192745005D7122 /* PBXContainerItemProxy */;
+		};
 		OBJ_75 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "PrinceOfVersions::PrinceOfVersions" /* PrinceOfVersions */;
-			targetProxy = 0664993824167EAD006A4363 /* PBXContainerItemProxy */;
+			targetProxy = 06161A9024192744005D7122 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -373,7 +342,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE DEBUG";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USE_HEADERMAP = NO;
@@ -389,7 +358,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Sources/PrinceOfVersionsPackage/Supporting Files/Info.plist";
+				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersions_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -403,6 +372,8 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PrinceOfVersions;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -424,7 +395,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				USE_HEADERMAP = NO;
@@ -440,7 +411,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "Sources/PrinceOfVersionsPackage/Supporting Files/Info.plist";
+				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersions_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -454,6 +425,38 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
 				TARGET_NAME = PrinceOfVersions;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		OBJ_56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.1";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		OBJ_57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk -package-description-version 5.1";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		OBJ_62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		OBJ_63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
 			};
 			name = Release;
 		};
@@ -467,7 +470,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Tests/PrinceOfVersionsTests/Info.plist;
+				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersionsTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -492,7 +495,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = Tests/PrinceOfVersionsTests/Info.plist;
+				INFOPLIST_FILE = PrinceOfVersions.xcodeproj/PrinceOfVersionsTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -524,6 +527,24 @@
 			buildConfigurations = (
 				OBJ_39 /* Debug */,
 				OBJ_40 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_55 /* Build configuration list for PBXNativeTarget "PrinceOfVersionsPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_56 /* Debug */,
+				OBJ_57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_61 /* Build configuration list for PBXAggregateTarget "PrinceOfVersionsPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_62 /* Debug */,
+				OBJ_63 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
