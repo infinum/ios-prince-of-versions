@@ -17,12 +17,25 @@
 		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
-		069AF6282418DF5B00319844 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063B7E75232D3C2200DA8929 /* PrinceOfVersions.framework */; };
+		06F8ADB3241946370099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8ADB2241946370099E820 /* PrinceOfVersions.framework */; };
+		06F8ADB4241946370099E820 /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8ADB2241946370099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		06F8ADB5241946370099E820 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				06F8ADB4241946370099E820 /* PrinceOfVersions.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		063B7E75232D3C2200DA8929 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		063B7E77232D40C300DA8929 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		063B7E79232D44BD00DA8929 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrinceOfVersionsIosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0668A6FF232BCAB700693EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +52,7 @@
 		0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckViewController.h; sourceTree = "<group>"; };
 		0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckViewController.m; sourceTree = "<group>"; };
 		0668A731232BE2D100693EA6 /* AppConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfiguration.xcconfig; sourceTree = "<group>"; };
+		06F8ADB2241946370099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				069AF6282418DF5B00319844 /* PrinceOfVersions.framework in Frameworks */,
+				06F8ADB3241946370099E820 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +149,7 @@
 		0668A72D232BD91B00693EA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				063B7E77232D40C300DA8929 /* PrinceOfVersions.framework */,
-				063B7E75232D3C2200DA8929 /* PrinceOfVersions.framework */,
+				06F8ADB2241946370099E820 /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,6 +164,7 @@
 				0668A6F8232BCAB700693EA6 /* Sources */,
 				0668A6F9232BCAB700693EA6 /* Frameworks */,
 				0668A6FA232BCAB700693EA6 /* Resources */,
+				06F8ADB5241946370099E820 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
