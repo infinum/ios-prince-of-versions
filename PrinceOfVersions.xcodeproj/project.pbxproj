@@ -150,8 +150,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_11 /* AppStpreInfoObjectiveC.swift */,
-				OBJ_12 /* ObjectiveC Extensions */,
 				OBJ_17 /* UpdateInfoObjectiveC.swift */,
+				OBJ_12 /* ObjectiveC Extensions */,
 			);
 			path = ObjC;
 			sourceTree = "<group>";
@@ -196,7 +196,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_34 /* LICENSE */,
@@ -206,7 +206,6 @@
 				OBJ_22 /* Tests */,
 				OBJ_27 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -220,12 +219,12 @@
 		OBJ_8 /* PrinceOfVersionsPackage */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* AppStoreInfo.swift */,
-				OBJ_10 /* ObjC */,
 				OBJ_18 /* PrinceOfVersions.swift */,
 				OBJ_19 /* PrinceOfVersionsError.swift */,
 				OBJ_20 /* UpdateInfo.swift */,
+				OBJ_9 /* AppStoreInfo.swift */,
 				OBJ_21 /* Version.swift */,
+				OBJ_10 /* ObjC */,
 				0664993A24167F13006A4363 /* Supporting Files */,
 			);
 			path = PrinceOfVersionsPackage;
@@ -297,7 +296,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_27 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -393,6 +392,7 @@
 		OBJ_39 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,6 +445,7 @@
 		OBJ_40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEFINES_MODULE = YES;
 				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
