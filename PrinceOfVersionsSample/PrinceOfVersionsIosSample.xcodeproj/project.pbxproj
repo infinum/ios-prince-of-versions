@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061C22C5241A8B8C004A635A /* PrinceOfVersions in Frameworks */ = {isa = PBXBuildFile; productRef = 061C22C4241A8B8C004A635A /* PrinceOfVersions */; };
+		061C22C6241A8B8C004A635A /* PrinceOfVersions in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 061C22C4241A8B8C004A635A /* PrinceOfVersions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		063B7E7A232D44BD00DA8929 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063B7E79232D44BD00DA8929 /* Constants.swift */; };
 		0668A700232BCAB700693EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A6FF232BCAB700693EA6 /* AppDelegate.swift */; };
 		0668A705232BCAB700693EA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0668A703232BCAB700693EA6 /* Main.storyboard */; };
@@ -17,8 +19,6 @@
 		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
-		06989067241A7E6A000E043F /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */; };
-		06989068241A7E6A000E043F /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,7 +28,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06989068241A7E6A000E043F /* PrinceOfVersions.framework in Embed Frameworks */,
+				061C22C6241A8B8C004A635A /* PrinceOfVersions in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,7 +52,6 @@
 		0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckViewController.h; sourceTree = "<group>"; };
 		0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckViewController.m; sourceTree = "<group>"; };
 		0668A731232BE2D100693EA6 /* AppConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfiguration.xcconfig; sourceTree = "<group>"; };
-		06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06989067241A7E6A000E043F /* PrinceOfVersions.framework in Frameworks */,
+				061C22C5241A8B8C004A635A /* PrinceOfVersions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +148,6 @@
 		0668A72D232BD91B00693EA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,6 +169,9 @@
 			dependencies = (
 			);
 			name = PrinceOfVersionsIosSample;
+			packageProductDependencies = (
+				061C22C4241A8B8C004A635A /* PrinceOfVersions */,
+			);
 			productName = PrinceOfVersionsSample;
 			productReference = 0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */;
 			productType = "com.apple.product-type.application";
@@ -200,6 +201,9 @@
 				Base,
 			);
 			mainGroup = 0668A6F3232BCAB700693EA6;
+			packageReferences = (
+				061C22C3241A8B8C004A635A /* XCRemoteSwiftPackageReference "iOS-prince-of-versions" */,
+			);
 			productRefGroup = 0668A6FD232BCAB700693EA6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -440,6 +444,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		061C22C3241A8B8C004A635A /* XCRemoteSwiftPackageReference "iOS-prince-of-versions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "file:///Users/jaco/Infinum/Infinum_projects/ios-prince-of-versions/iOS-prince-of-versions/";
+			requirement = {
+				branch = "feature/additinal-deploy-supports";
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		061C22C4241A8B8C004A635A /* PrinceOfVersions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 061C22C3241A8B8C004A635A /* XCRemoteSwiftPackageReference "iOS-prince-of-versions" */;
+			productName = PrinceOfVersions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0668A6F4232BCAB700693EA6 /* Project object */;
 }
