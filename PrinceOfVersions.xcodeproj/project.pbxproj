@@ -113,6 +113,21 @@
 			isa = PBXGroup;
 			children = (
 				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		061C22CA241A93B4004A635A /* PrinceOfVersionsObjC */ = {
+			isa = PBXGroup;
+			children = (
+				061C22C7241A8D54004A635A /* include */,
+			);
+			path = PrinceOfVersionsObjC;
+			sourceTree = "<group>";
+		};
+		061C22CB241A93CE004A635A /* include */ = {
+			isa = PBXGroup;
+			children = (
 				06F8AE39241A61850099E820 /* module.modulemap */,
 			);
 			path = include;
@@ -196,7 +211,7 @@
 				OBJ_39 /* README.md */,
 				061C22BA241A89C7004A635A /* Package.swift */,
 				OBJ_8 /* PrinceOfVersions */,
-				061C22C7241A8D54004A635A /* include */,
+				061C22CA241A93B4004A635A /* PrinceOfVersionsObjC */,
 				OBJ_23 /* PrinceOfVersionsTests */,
 				OBJ_28 /* Products */,
 			);
@@ -211,6 +226,7 @@
 				OBJ_19 /* PrinceOfVersionsError.swift */,
 				OBJ_20 /* UpdateInfo.swift */,
 				OBJ_21 /* Version.swift */,
+				061C22CB241A93CE004A635A /* include */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
 			);
 			path = PrinceOfVersions;
@@ -427,7 +443,6 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_TESTABILITY = YES;
@@ -457,7 +472,6 @@
 			buildSettings = {
 				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_TESTABILITY = YES;
