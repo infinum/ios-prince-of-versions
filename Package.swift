@@ -24,7 +24,7 @@ let package = Package(
             name: "PrinceOfVersions",
             dependencies: [],
             path: "PrinceOfVersions",
-            publicHeadersPath: nil
+            publicHeadersPath: "."
         ),
         .testTarget(name: "PrinceOfVersionsTests", dependencies: ["PrinceOfVersions"], path: "PrinceOfVersionsTests")
     ]
