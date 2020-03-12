@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 
         // Uncomment version that you want to build:
-        createAndShowViewController(with: "SwiftAppSample")
-//        createAndShowViewController(with: "ObjCAppSample")
+//        createAndShowViewController(with: "SwiftAppSample")
+        createAndShowViewController(with: "ObjCAppSample")
 
         return true
     }
