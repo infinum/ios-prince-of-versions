@@ -108,22 +108,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06989065241A79FA000E043F /* PrinceOfVersionsObjC */ = {
-			isa = PBXGroup;
-			children = (
-				06989066241A7A05000E043F /* include */,
-			);
-			path = PrinceOfVersionsObjC;
-			sourceTree = "<group>";
-		};
-		06989066241A7A05000E043F /* include */ = {
-			isa = PBXGroup;
-			children = (
-				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		06F8AD9F241945CE0099E820 /* mockdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +133,7 @@
 		06F8ADAF241945D90099E820 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
 				06F8ADB1241945D90099E820 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -204,15 +189,15 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 = {
+		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_39 /* README.md */,
 				OBJ_8 /* PrinceOfVersions */,
-				06989065241A79FA000E043F /* PrinceOfVersionsObjC */,
 				OBJ_23 /* PrinceOfVersionsTests */,
 				OBJ_28 /* Products */,
 			);
+			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_8 /* PrinceOfVersions */ = {
@@ -296,7 +281,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5;
+			mainGroup = OBJ_5 /*  */;
 			productRefGroup = OBJ_28 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
