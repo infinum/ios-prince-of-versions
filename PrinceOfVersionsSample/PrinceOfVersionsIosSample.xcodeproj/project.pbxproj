@@ -17,23 +17,8 @@
 		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
-		06F8ADC2241A50700099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8ADC1241A50700099E820 /* PrinceOfVersions.framework */; };
-		06F8ADC3241A50700099E820 /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8ADC1241A50700099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06F8AE06241A5C170099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE05241A5C170099E820 /* PrinceOfVersions.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		06F8ADC4241A50700099E820 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				06F8ADC3241A50700099E820 /* PrinceOfVersions.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		063B7E79232D44BD00DA8929 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -52,8 +37,7 @@
 		0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckViewController.h; sourceTree = "<group>"; };
 		0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckViewController.m; sourceTree = "<group>"; };
 		0668A731232BE2D100693EA6 /* AppConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfiguration.xcconfig; sourceTree = "<group>"; };
-		06F8ADB2241946370099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		06F8ADC1241A50700099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F8AE05241A5C170099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F8ADC2241A50700099E820 /* PrinceOfVersions.framework in Frameworks */,
+				06F8AE06241A5C170099E820 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,8 +134,7 @@
 		0668A72D232BD91B00693EA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				06F8ADC1241A50700099E820 /* PrinceOfVersions.framework */,
-				06F8ADB2241946370099E820 /* PrinceOfVersions.framework */,
+				06F8AE05241A5C170099E820 /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,7 +149,6 @@
 				0668A6F8232BCAB700693EA6 /* Sources */,
 				0668A6F9232BCAB700693EA6 /* Frameworks */,
 				0668A6FA232BCAB700693EA6 /* Resources */,
-				06F8ADC4241A50700099E820 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -293,7 +275,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -354,7 +335,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -390,7 +370,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsIosSample;
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersionsIosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsIosSample/Supporting Files/PrinceOfVersionsIosSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -412,7 +393,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsIosSample;
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersionsIosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsIosSample/Supporting Files/PrinceOfVersionsIosSample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
