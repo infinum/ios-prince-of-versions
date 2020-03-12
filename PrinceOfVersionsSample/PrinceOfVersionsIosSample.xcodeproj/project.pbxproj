@@ -17,18 +17,18 @@
 		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
-		06F8AE56241A658A0099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */; };
-		06F8AE57241A658A0099E820 /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06989067241A7E6A000E043F /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */; };
+		06989068241A7E6A000E043F /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE55241A658A0099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		06F8AE4C241A63960099E820 /* Embed Frameworks */ = {
+		06989069241A7E6B000E043F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06F8AE57241A658A0099E820 /* PrinceOfVersions.framework in Embed Frameworks */,
+				06989068241A7E6A000E043F /* PrinceOfVersions.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F8AE56241A658A0099E820 /* PrinceOfVersions.framework in Frameworks */,
+				06989067241A7E6A000E043F /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +164,7 @@
 				0668A6F8232BCAB700693EA6 /* Sources */,
 				0668A6F9232BCAB700693EA6 /* Frameworks */,
 				0668A6FA232BCAB700693EA6 /* Resources */,
-				06F8AE4C241A63960099E820 /* Embed Frameworks */,
+				06989069241A7E6B000E043F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
