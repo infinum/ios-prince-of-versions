@@ -16,8 +16,23 @@
 		0650A032233514B1009400CA /* AutomaticCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A031233514B1009400CA /* AutomaticCheckController.swift */; };
 		0650A04E23353573009400CA /* ObjCConfigurationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A04D23353573009400CA /* ObjCConfigurationController.m */; };
 		0650A05123353593009400CA /* ObjCAutomaticCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A05023353593009400CA /* ObjCAutomaticCheckController.m */; };
-		06F8ADB72419463F0099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8ADB62419463F0099E820 /* PrinceOfVersions.framework */; };
+		06F8ADC6241A507C0099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8ADC5241A507C0099E820 /* PrinceOfVersions.framework */; };
+		06F8ADC7241A507C0099E820 /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8ADC5241A507C0099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		06F8ADC8241A507C0099E820 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				06F8ADC7241A507C0099E820 /* PrinceOfVersions.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0650A01423350F13009400CA /* Prince of Versions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prince of Versions.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +52,7 @@
 		0650A04F23353593009400CA /* ObjCAutomaticCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckController.h; sourceTree = "<group>"; };
 		0650A05023353593009400CA /* ObjCAutomaticCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckController.m; sourceTree = "<group>"; };
 		06F8ADB62419463F0099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F8ADC5241A507C0099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F8ADB72419463F0099E820 /* PrinceOfVersions.framework in Frameworks */,
+				06F8ADC6241A507C0099E820 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +149,7 @@
 		0650A049233520D2009400CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06F8ADC5241A507C0099E820 /* PrinceOfVersions.framework */,
 				06F8ADB62419463F0099E820 /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
@@ -148,6 +165,7 @@
 				0650A01023350F13009400CA /* Sources */,
 				0650A01123350F13009400CA /* Frameworks */,
 				0650A01223350F13009400CA /* Resources */,
+				06F8ADC8241A507C0099E820 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
