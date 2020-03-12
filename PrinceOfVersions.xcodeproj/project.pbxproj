@@ -134,10 +134,18 @@
 			isa = PBXGroup;
 			children = (
 				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
-				06F8AE39241A61850099E820 /* module.modulemap */,
+				06F8AE54241A65530099E820 /* include */,
 				06F8ADB1241945D90099E820 /* Info.plist */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		06F8AE54241A65530099E820 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				06F8AE39241A61850099E820 /* module.modulemap */,
+			);
+			path = include;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* ObjC */ = {
@@ -429,7 +437,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PrinceOfVersions/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MODULEMAP_FILE = "$(SRCROOT)/PrinceOfVersions/SupportingFiles/module.modulemap";
+				MODULEMAP_FILE = "$(SRCROOT)/PrinceOfVersions/SupportingFiles/include/module.modulemap";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -459,7 +467,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PrinceOfVersions/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MODULEMAP_FILE = "$(SRCROOT)/PrinceOfVersions/SupportingFiles/module.modulemap";
+				MODULEMAP_FILE = "$(SRCROOT)/PrinceOfVersions/SupportingFiles/include/module.modulemap";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
