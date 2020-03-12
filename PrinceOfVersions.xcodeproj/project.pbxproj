@@ -51,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		061C22BA241A89C7004A635A /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		06F8ADA0241945CE0099E820 /* invalid_update_no_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_no_json.json; sourceTree = "<group>"; };
 		06F8ADA1241945CE0099E820 /* valid_update_full_with_metadata_empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata_empty.json; sourceTree = "<group>"; };
 		06F8ADA2241945CE0099E820 /* valid_update_notification_once.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_notification_once.json; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 		06F8ADAF241945D90099E820 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
 				06F8ADB1241945D90099E820 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -142,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				06F8AE39241A61850099E820 /* module.modulemap */,
-				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
 			);
 			path = include;
 			sourceTree = "<group>";
@@ -193,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_39 /* README.md */,
+				061C22BA241A89C7004A635A /* Package.swift */,
 				OBJ_8 /* PrinceOfVersions */,
 				OBJ_23 /* PrinceOfVersionsTests */,
 				OBJ_28 /* Products */,
