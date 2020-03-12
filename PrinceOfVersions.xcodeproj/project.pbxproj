@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061C22C8241A91F6004A635A /* PrinceOfVersions.h in Headers */ = {isa = PBXBuildFile; fileRef = 06F8AE03241A57590099E820 /* PrinceOfVersions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		06F8ADF1241A542A0099E820 /* invalid_update_no_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA0241945CE0099E820 /* invalid_update_no_json.json */; };
 		06F8ADF2241A542A0099E820 /* valid_update_full_with_metadata_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA1241945CE0099E820 /* valid_update_full_with_metadata_empty.json */; };
 		06F8ADF3241A542A0099E820 /* valid_update_notification_once.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA2241945CE0099E820 /* valid_update_notification_once.json */; };
@@ -22,7 +23,6 @@
 		06F8ADFD241A542A0099E820 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */; };
 		06F8ADFE241A542A0099E820 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */; };
 		06F8ADFF241A542A0099E820 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */; };
-		06F8AE04241A57590099E820 /* PrinceOfVersions.h in Headers */ = {isa = PBXBuildFile; fileRef = 06F8AE03241A57590099E820 /* PrinceOfVersions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		OBJ_45 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreInfo.swift */; };
 		OBJ_46 /* AppStpreInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStpreInfoObjectiveC.swift */; };
 		OBJ_47 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */; };
@@ -112,6 +112,7 @@
 		061C22C7241A8D54004A635A /* include */ = {
 			isa = PBXGroup;
 			children = (
+				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
 				06F8AE39241A61850099E820 /* module.modulemap */,
 			);
 			path = include;
@@ -142,7 +143,6 @@
 		06F8ADAF241945D90099E820 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
 				06F8ADB1241945D90099E820 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -223,7 +223,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F8AE04241A57590099E820 /* PrinceOfVersions.h in Headers */,
+				061C22C8241A91F6004A635A /* PrinceOfVersions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
