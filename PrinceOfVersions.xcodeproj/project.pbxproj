@@ -109,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061C22C7241A8D54004A635A /* include */ = {
+			isa = PBXGroup;
+			children = (
+				06F8AE39241A61850099E820 /* module.modulemap */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		06F8AD9F241945CE0099E820 /* mockdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,14 +146,6 @@
 				06F8ADB1241945D90099E820 /* Info.plist */,
 			);
 			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		06F8AE54241A65530099E820 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				06F8AE39241A61850099E820 /* module.modulemap */,
-			);
-			path = include;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* ObjC */ = {
@@ -196,6 +196,7 @@
 				OBJ_39 /* README.md */,
 				061C22BA241A89C7004A635A /* Package.swift */,
 				OBJ_8 /* PrinceOfVersions */,
+				061C22C7241A8D54004A635A /* include */,
 				OBJ_23 /* PrinceOfVersionsTests */,
 				OBJ_28 /* Products */,
 			);
@@ -211,7 +212,6 @@
 				OBJ_20 /* UpdateInfo.swift */,
 				OBJ_21 /* Version.swift */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
-				06F8AE54241A65530099E820 /* include */,
 			);
 			path = PrinceOfVersions;
 			sourceTree = SOURCE_ROOT;
@@ -438,7 +438,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PrinceOfVersions/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MODULEMAP_FILE = "$(SRCROOT)/PrinceOfVersions/include/module.modulemap";
+				MODULEMAP_FILE = "$(SRCROOT)/include/module.modulemap";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -468,7 +468,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = PrinceOfVersions/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
-				MODULEMAP_FILE = "$(SRCROOT)/PrinceOfVersions/include/module.modulemap";
+				MODULEMAP_FILE = "$(SRCROOT)/include/module.modulemap";
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
