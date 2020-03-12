@@ -16,18 +16,18 @@
 		0650A032233514B1009400CA /* AutomaticCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A031233514B1009400CA /* AutomaticCheckController.swift */; };
 		0650A04E23353573009400CA /* ObjCConfigurationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A04D23353573009400CA /* ObjCConfigurationController.m */; };
 		0650A05123353593009400CA /* ObjCAutomaticCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A05023353593009400CA /* ObjCAutomaticCheckController.m */; };
-		06F8AE09241A5C1E0099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE08241A5C1E0099E820 /* PrinceOfVersions.framework */; };
-		06F8AE0A241A5C1E0099E820 /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE08241A5C1E0099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06F8AE4E241A63B80099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE4D241A63B80099E820 /* PrinceOfVersions.framework */; };
+		06F8AE4F241A63B80099E820 /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE4D241A63B80099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		06F8ADC8241A507C0099E820 /* Embed Frameworks */ = {
+		06F8AE50241A63B90099E820 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06F8AE0A241A5C1E0099E820 /* PrinceOfVersions.framework in Embed Frameworks */,
+				06F8AE4F241A63B80099E820 /* PrinceOfVersions.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,7 +51,8 @@
 		0650A04D23353573009400CA /* ObjCConfigurationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCConfigurationController.m; sourceTree = "<group>"; };
 		0650A04F23353593009400CA /* ObjCAutomaticCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckController.h; sourceTree = "<group>"; };
 		0650A05023353593009400CA /* ObjCAutomaticCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckController.m; sourceTree = "<group>"; };
-		06F8AE08241A5C1E0099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F8AE47241A635E0099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		06F8AE4D241A63B80099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06F8AE09241A5C1E0099E820 /* PrinceOfVersions.framework in Frameworks */,
+				06F8AE4E241A63B80099E820 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,7 +149,8 @@
 		0650A049233520D2009400CA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				06F8AE08241A5C1E0099E820 /* PrinceOfVersions.framework */,
+				06F8AE4D241A63B80099E820 /* PrinceOfVersions.framework */,
+				06F8AE47241A635E0099E820 /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,7 +165,7 @@
 				0650A01023350F13009400CA /* Sources */,
 				0650A01123350F13009400CA /* Frameworks */,
 				0650A01223350F13009400CA /* Resources */,
-				06F8ADC8241A507C0099E820 /* Embed Frameworks */,
+				06F8AE50241A63B90099E820 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -381,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsMacSample;
 				PRODUCT_NAME = "Prince of Versions";
 				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsMacSample/Supporting Files/PrinceOfVersionsMacSample-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "PrinceOfVersionsMacSample-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -403,6 +406,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsMacSample;
 				PRODUCT_NAME = "Prince of Versions";
 				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsMacSample/Supporting Files/PrinceOfVersionsMacSample-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "PrinceOfVersionsMacSample-Swift.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
