@@ -109,28 +109,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		061C22C7241A8D54004A635A /* include */ = {
-			isa = PBXGroup;
-			children = (
-				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		061C22CA241A93B4004A635A /* PrinceOfVersionsObjC */ = {
-			isa = PBXGroup;
-			children = (
-				061C22C7241A8D54004A635A /* include */,
-			);
-			path = PrinceOfVersionsObjC;
-			sourceTree = "<group>";
-		};
 		061C22CB241A93CE004A635A /* include */ = {
 			isa = PBXGroup;
 			children = (
 				06F8AE39241A61850099E820 /* module.modulemap */,
 			);
 			path = include;
+			sourceTree = "<group>";
+		};
+		06995064241D74A80026CC2A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_8 /* PrinceOfVersions */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		06995065241D74DD0026CC2A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_23 /* PrinceOfVersionsTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		06F8AD9F241945CE0099E820 /* mockdata */ = {
@@ -158,6 +158,7 @@
 		06F8ADAF241945D90099E820 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
 				06F8ADB1241945D90099E820 /* Info.plist */,
 			);
 			path = SupportingFiles;
@@ -193,7 +194,8 @@
 				OBJ_24 /* Info.plist */,
 				06F8AD9F241945CE0099E820 /* mockdata */,
 			);
-			path = PrinceOfVersionsTests;
+			name = PrinceOfVersionsTests;
+			path = Tests/PrinceOfVersionsTests;
 			sourceTree = SOURCE_ROOT;
 		};
 		OBJ_28 /* Products */ = {
@@ -210,9 +212,8 @@
 			children = (
 				OBJ_39 /* README.md */,
 				061C22BA241A89C7004A635A /* Package.swift */,
-				OBJ_8 /* PrinceOfVersions */,
-				061C22CA241A93B4004A635A /* PrinceOfVersionsObjC */,
-				OBJ_23 /* PrinceOfVersionsTests */,
+				06995064241D74A80026CC2A /* Sources */,
+				06995065241D74DD0026CC2A /* Tests */,
 				OBJ_28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -229,7 +230,8 @@
 				061C22CB241A93CE004A635A /* include */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
 			);
-			path = PrinceOfVersions;
+			name = PrinceOfVersions;
+			path = Sources/PrinceOfVersions;
 			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
