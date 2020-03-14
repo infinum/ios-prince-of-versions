@@ -17,16 +17,7 @@ let package = Package(
         )
     ],
     targets: [
-        .target(
-            name: "PrinceOfVersionsObjC",
-            dependencies: [],
-            path: "PrinceOfVersionsObjc"
-        ),
-        .target(
-            name: "PrinceOfVersions",
-            dependencies: ["PrinceOfVersionsObjC"],
-            path: "PrinceOfVersions"
-        ),
-        .testTarget(name: "PrinceOfVersionsTests", dependencies: ["PrinceOfVersions"], path: "PrinceOfVersionsTests")
+        .target(name: "PrinceOfVersions", dependencies: []),
+        .testTarget(name: "PrinceOfVersionsTests", dependencies: ["PrinceOfVersions"])
     ]
 )
