@@ -214,6 +214,7 @@
 				061C22BA241A89C7004A635A /* Package.swift */,
 				06995064241D74A80026CC2A /* Sources */,
 				06995065241D74DD0026CC2A /* Tests */,
+				061C22CB241A93CE004A635A /* include */,
 				OBJ_28 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -227,7 +228,6 @@
 				OBJ_19 /* PrinceOfVersionsError.swift */,
 				OBJ_20 /* UpdateInfo.swift */,
 				OBJ_21 /* Version.swift */,
-				061C22CB241A93CE004A635A /* include */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
 			);
 			name = PrinceOfVersions;
@@ -453,7 +453,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersions/SupportingFiles/Info.plist;
+				INFOPLIST_FILE = Sources/PrinceOfVersions/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MODULEMAP_FILE = "$(SRCROOT)/include/module.modulemap";
 				OTHER_CFLAGS = "$(inherited)";
@@ -482,7 +482,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersions/SupportingFiles/Info.plist;
+				INFOPLIST_FILE = Sources/PrinceOfVersions/SupportingFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MODULEMAP_FILE = "$(SRCROOT)/include/module.modulemap";
 				OTHER_CFLAGS = "$(inherited)";
@@ -508,7 +508,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersionsTests/Info.plist;
+				INFOPLIST_FILE = Tests/PrinceOfVersionsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
@@ -533,7 +533,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = PrinceOfVersionsTests/Info.plist;
+				INFOPLIST_FILE = Tests/PrinceOfVersionsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
