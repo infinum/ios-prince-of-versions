@@ -9,7 +9,8 @@
 #import "ObjCAutomaticCheckViewController.h"
 #import "PrinceOfVersionsIosSample-Swift.h"
 
-@import PrinceOfVersions;
+//@import PrinceOfVersions;
+#import <PrinceOfVersions/PrinceOfVersions-Swift.h>
 
 @interface ObjCAutomaticCheckViewController ()
 
