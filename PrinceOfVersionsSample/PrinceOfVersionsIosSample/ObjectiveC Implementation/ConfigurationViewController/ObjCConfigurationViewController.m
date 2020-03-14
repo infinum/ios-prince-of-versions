@@ -9,9 +9,7 @@
 #import "ObjCConfigurationViewController.h"
 #import "PrinceOfVersionsIosSample-Swift.h"
 
-//@import PrinceOfVersions;
-
-#import <PrinceOfVersions/PrinceOfVersions-Swift.h>
+@import PrinceOfVersions;
 
 @interface ObjCConfigurationViewController ()
 
