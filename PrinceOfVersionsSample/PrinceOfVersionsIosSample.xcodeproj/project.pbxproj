@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		061C22C5241A8B8C004A635A /* PrinceOfVersions in Frameworks */ = {isa = PBXBuildFile; productRef = 061C22C4241A8B8C004A635A /* PrinceOfVersions */; };
-		061C22C6241A8B8C004A635A /* PrinceOfVersions in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 061C22C4241A8B8C004A635A /* PrinceOfVersions */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		063B7E7A232D44BD00DA8929 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063B7E79232D44BD00DA8929 /* Constants.swift */; };
 		0668A700232BCAB700693EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A6FF232BCAB700693EA6 /* AppDelegate.swift */; };
 		0668A705232BCAB700693EA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0668A703232BCAB700693EA6 /* Main.storyboard */; };
@@ -28,7 +26,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				061C22C6241A8B8C004A635A /* PrinceOfVersions in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				061C22C5241A8B8C004A635A /* PrinceOfVersions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +166,6 @@
 			);
 			name = PrinceOfVersionsIosSample;
 			packageProductDependencies = (
-				061C22C4241A8B8C004A635A /* PrinceOfVersions */,
 			);
 			productName = PrinceOfVersionsSample;
 			productReference = 0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */;
@@ -202,7 +197,6 @@
 			);
 			mainGroup = 0668A6F3232BCAB700693EA6;
 			packageReferences = (
-				061C22C3241A8B8C004A635A /* XCRemoteSwiftPackageReference "iOS-prince-of-versions" */,
 			);
 			productRefGroup = 0668A6FD232BCAB700693EA6 /* Products */;
 			projectDirPath = "";
@@ -444,25 +438,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		061C22C3241A8B8C004A635A /* XCRemoteSwiftPackageReference "iOS-prince-of-versions" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "file:///Users/jaco/Infinum/Infinum_projects/ios-prince-of-versions/iOS-prince-of-versions/";
-			requirement = {
-				branch = "feature/additinal-deploy-supports";
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		061C22C4241A8B8C004A635A /* PrinceOfVersions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 061C22C3241A8B8C004A635A /* XCRemoteSwiftPackageReference "iOS-prince-of-versions" */;
-			productName = PrinceOfVersions;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0668A6F4232BCAB700693EA6 /* Project object */;
 }
