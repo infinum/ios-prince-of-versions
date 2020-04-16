@@ -34,11 +34,48 @@ extension UpdateInfoValues {
 
 // MARK: - Internal configuration data -
 
-public struct UpdateInfo: Decodable {
+public struct UpdateInfo: Codable {
+
+    // MARK: - Private properties -
 
     private let ios: ConfigurationData?
     private let macos: ConfigurationData?
     private let meta: [String: Id<Any>]?
+
+    private let bundle = Bundle.main
+
+    private var configurationForOS: ConfigurationData? {
+        #if os(iOS)
+        return ios
+        #elseif os(macOS)
+        return macos
+        #endif
+    }
+
+    private var currentSdkVersion: Version? {
+        #if os(iOS)
+        return try Version(string: UIDevice.current.systemVersion)
+        #elseif os(macOS)
+        return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
+        #endif
+    }
+
+    private var currentInstalledVersion: Version? {
+
+        guard
+            let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        else {
+//            throw PrinceOfVersionsError.invalidCurrentVersion
+            return nil
+        }
+
+        do {
+            return try Version(string: currentVersionString + "-" + currentBuildNumberString)
+        } catch _ {
+            return nil
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case ios
@@ -70,26 +107,6 @@ public struct UpdateInfo: Decodable {
         }
     }
 
-    // MARK: - Private properties -
-
-    private var configurationForOS: ConfigurationData? {
-        #if os(iOS)
-        return ios
-        #elseif os(macOS)
-        return macos
-        #endif
-    }
-
-    private var currentSdkVersion: Version? {
-        #if os(iOS)
-        return try Version(string: UIDevice.current.systemVersion)
-        #elseif os(macOS)
-        return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
-        #endif
-    }
-
-    private let bundle = Bundle.main
-
     // MARK: - Public notification type
 
     public enum NotificationType: String, Codable {
@@ -115,23 +132,6 @@ public struct UpdateInfo: Decodable {
      */
     public var notificationType: UpdateInfo.NotificationType {
         return configurationForOS?.latestVersion?.notificationType ?? .once
-    }
-
-    private var currentInstalledVersion: Version? {
-
-        guard
-            let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-            let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-        else {
-//            throw PrinceOfVersionsError.invalidCurrentVersion
-            return nil
-        }
-
-        do {
-            return try Version(string: currentVersionString + "-" + currentBuildNumberString)
-        } catch _ {
-            return nil
-        }
     }
 }
 
