@@ -1,5 +1,5 @@
 framework module PrinceOfVersions {
-	umbrella header "PrinceOfVersions-Swift.h"
+	umbrella header "PrinceOfVersions.h"
 
 	export *
 	module * { export * }
