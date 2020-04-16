@@ -80,7 +80,7 @@ public extension PrinceOfVersions {
                 result = Result.failure(.unknown(error.localizedDescription))
             } else {
                 do {
-                    let updateInfo = try UpdateInfo(data: data)
+                    let updateInfo = try JSONDecoder().decode(UpdateInfo.self, from: data!)
                     result = Result.success(updateInfo)
                 } catch _ {
                     result = Result.failure(.invalidJsonData)
