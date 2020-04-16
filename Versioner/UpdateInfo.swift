@@ -42,39 +42,12 @@ public struct UpdateInfo: Codable {
     private let macos: ConfigurationData?
     private let meta: [String: Id<Any>]?
 
-    private let bundle = Bundle.main
-
     private var configurationForOS: ConfigurationData? {
         #if os(iOS)
         return ios
         #elseif os(macOS)
         return macos
         #endif
-    }
-
-    private var currentSdkVersion: Version? {
-        #if os(iOS)
-        return try Version(string: UIDevice.current.systemVersion)
-        #elseif os(macOS)
-        return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
-        #endif
-    }
-
-    private var currentInstalledVersion: Version? {
-
-        guard
-            let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-            let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-        else {
-//            throw PrinceOfVersionsError.invalidCurrentVersion
-            return nil
-        }
-
-        do {
-            return try Version(string: currentVersionString + "-" + currentBuildNumberString)
-        } catch _ {
-            return nil
-        }
     }
 
     enum CodingKeys: String, CodingKey {
@@ -84,9 +57,37 @@ public struct UpdateInfo: Codable {
     }
 
     private struct ConfigurationData: Codable {
+
+        private let bundle = Bundle.main
+
         let minimumVersion: Version?
         let minimumSdkForMinimumRequiredVersion: Version?
         let latestVersion: LatestVersion?
+
+        var sdkVersion: Version? {
+            #if os(iOS)
+            return try Version(string: UIDevice.current.systemVersion)
+            #elseif os(macOS)
+            return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
+            #endif
+        }
+
+        var installedVersion: Version? {
+
+            guard
+                let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+                let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+            else {
+    //            throw PrinceOfVersionsError.invalidCurrentVersion
+                return nil
+            }
+
+            do {
+                return try Version(string: currentVersionString + "-" + currentBuildNumberString)
+            } catch _ {
+                return nil
+            }
+        }
 
         enum CodingKeys: String, CodingKey {
             case minimumVersion = "minimum_version"
@@ -96,7 +97,7 @@ public struct UpdateInfo: Codable {
     }
 
     private struct LatestVersion: Codable {
-        let version: Version?
+        let version: Version? // throw PrinceOfVersionsError.invalidLatestVersion
         let notificationType: UpdateInfo.NotificationType?
         let minimumSdk: Version?
 
@@ -157,7 +158,6 @@ extension UpdateInfo: UpdateInfoValues {
      Returns latest available version of the app.
      */
     public var latestVersion: Version {
-//        throw PrinceOfVersionsError.invalidLatestVersion
         guard let version = configurationForOS?.latestVersion?.version else {
             preconditionFailure("Missing requred latest version data")
         }
@@ -175,7 +175,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns installed version of the app.
      */
     public var installedVersion: Version {
-        guard let version = currentInstalledVersion else {
+        guard let version = configurationForOS?.installedVersion else {
             preconditionFailure("Unable to get installed version data")
         }
         return version
@@ -185,7 +185,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns sdk version of device.
      */
     public var sdkVersion: Version {
-        guard let version = currentSdkVersion else {
+        guard let version = configurationForOS?.sdkVersion else {
             preconditionFailure("Unable to get sdk version data")
         }
         return version
