@@ -38,6 +38,7 @@
 		06C8F1791D929A4F0088BDA2 /* UpdateInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */; };
 		06C8F17C1D92A2680088BDA2 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */; };
 		0A1FA652224BBF1800D340B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FA651224BBF1700D340B2 /* README.md */; };
+		A8459660244746B8007603BE /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845965F244746B8007603BE /* AnyCodable.swift */; };
 		CF7576911DAC1F5E002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
 		DF5BDEAA1FEADC9100F7CE15 /* VersionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		06C8F1781D929A4F0088BDA2 /* UpdateInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateInfoTest.swift; sourceTree = "<group>"; };
 		06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
 		0A1FA651224BBF1700D340B2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		A845965F244746B8007603BE /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
 		CF7576901DAC1F5E002B7581 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +171,7 @@
 				066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */,
 				068F384B23EBFF3B004AC923 /* AppStoreInfo.swift */,
 				CF7576901DAC1F5E002B7581 /* Version.swift */,
+				A845965F244746B8007603BE /* AnyCodable.swift */,
 				0668A739232D275500693EA6 /* PrinceOfVersionsError.swift */,
 				0618BCF2232B869700AC7F84 /* ObjC */,
 				0618BCF3232B86AC00AC7F84 /* Supporting Files */,
@@ -375,6 +378,7 @@
 				068F384C23EBFF3B004AC923 /* AppStoreInfo.swift in Sources */,
 				06624BBC23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift in Sources */,
 				066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */,
+				A8459660244746B8007603BE /* AnyCodable.swift in Sources */,
 				06A17F3923FEEF5A00115013 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */,
 				068D538323F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift in Sources */,
 				0668A73A232D275500693EA6 /* PrinceOfVersionsError.swift in Sources */,
