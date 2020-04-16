@@ -311,9 +311,16 @@ private extension PrinceOfVersions {
 
         let result: Result<AppStoreInfo, PrinceOfVersionsError>
         do {
+            
             var updateInfo = try JSONDecoder().decode(AppStoreInfo.self, from: data!)
-            updateInfo.bundle = bundle
-            result = Result.success(updateInfo)
+
+            if let error = updateInfo.validate() {
+                result = Result.failure(error)
+            } else {
+                updateInfo.bundle = bundle
+                result = Result.success(updateInfo)
+            }
+
         } catch let error {
             var errorDescription = error.localizedDescription
             if let princeOfVersionsError = (error as? PrinceOfVersionsError),
