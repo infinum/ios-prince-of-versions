@@ -18,10 +18,10 @@ public struct AppStoreInfo: Codable {
 
     var bundle: Bundle = .main
 
-    private let resultCount: Int
+    private let resultCount: Int?
     private let results: [ConfigurationData]
 
-    private var configurationData: ConfigurationData? { // results.count == 0 -> throw PrinceOfVersionsError.dataNotFound
+    private var configurationData: ConfigurationData? {
         var configurationData = results.first
         configurationData?.bundle = bundle
         return configurationData
@@ -36,17 +36,24 @@ public struct AppStoreInfo: Codable {
 
         var bundle: Bundle = .main
 
-        var latestVersion: Version? // throw PrinceOfVersionsError.invalidLatestVersion
+        var latestVersion: Version?
         var minimumSdkForLatestVersion: Version?
         var releaseDate: String?
+
+        var currentVersionString: String? {
+            return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        }
+
+        var currentBuildNumberString: String? {
+            return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        }
 
         var installedVersion: Version? {
 
             guard
-                let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-                let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+                let currentVersionString = currentVersionString,
+                let currentBuildNumberString = currentBuildNumberString
             else {
-                //throw PrinceOfVersionsError.invalidCurrentVersion
                 return nil
             }
 
@@ -77,6 +84,23 @@ public struct AppStoreInfo: Codable {
             case minimumSdkForLatestVersion = "minimumOsVersion"
             case releaseDate = "currentVersionReleaseDate"
         }
+    }
+
+    // MARK: - Public methods
+
+    public func validate() -> PrinceOfVersionsError? {
+
+        guard let resultCount = resultCount, resultCount > 0 else { return .dataNotFound }
+
+        guard let configuration = configurationData else { return .invalidJsonData }
+
+        if configuration.latestVersion == nil { return .invalidLatestVersion }
+
+        if configuration.currentVersionString == nil || configuration.currentBuildNumberString == nil {
+            return .invalidCurrentVersion
+        }
+
+        return nil
     }
 }
 
