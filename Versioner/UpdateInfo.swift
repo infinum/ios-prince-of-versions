@@ -142,6 +142,8 @@ public struct UpdateInfo: Codable {
         return configurationForOS?.latestVersion?.notificationType ?? .once
     }
 
+    // MARK: - Public methods
+
     public func validate() -> PrinceOfVersionsError? {
 
         guard let configuration = configurationForOS else { return .invalidJsonData }
