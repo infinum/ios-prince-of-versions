@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		063B7E78232D40C300DA8929 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063B7E77232D40C300DA8929 /* PrinceOfVersions.framework */; };
 		063B7E7A232D44BD00DA8929 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063B7E79232D44BD00DA8929 /* Constants.swift */; };
 		0668A700232BCAB700693EA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A6FF232BCAB700693EA6 /* AppDelegate.swift */; };
 		0668A705232BCAB700693EA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0668A703232BCAB700693EA6 /* Main.storyboard */; };
@@ -20,9 +19,20 @@
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		06989069241A7E6B000E043F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		063B7E75232D3C2200DA8929 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		063B7E77232D40C300DA8929 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		063B7E79232D44BD00DA8929 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrinceOfVersionsIosSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0668A6FF232BCAB700693EA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				063B7E78232D40C300DA8929 /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,8 +144,6 @@
 		0668A72D232BD91B00693EA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				063B7E77232D40C300DA8929 /* PrinceOfVersions.framework */,
-				063B7E75232D3C2200DA8929 /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,12 +158,15 @@
 				0668A6F8232BCAB700693EA6 /* Sources */,
 				0668A6F9232BCAB700693EA6 /* Frameworks */,
 				0668A6FA232BCAB700693EA6 /* Resources */,
+				06989069241A7E6B000E043F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = PrinceOfVersionsIosSample;
+			packageProductDependencies = (
+			);
 			productName = PrinceOfVersionsSample;
 			productReference = 0668A6FC232BCAB700693EA6 /* PrinceOfVersionsIosSample.app */;
 			productType = "com.apple.product-type.application";
@@ -186,6 +196,8 @@
 				Base,
 			);
 			mainGroup = 0668A6F3232BCAB700693EA6;
+			packageReferences = (
+			);
 			productRefGroup = 0668A6FD232BCAB700693EA6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -277,7 +289,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -338,7 +349,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -374,7 +384,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsIosSample;
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersionsIosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsIosSample/Supporting Files/PrinceOfVersionsIosSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -396,7 +407,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = co.infinum.PrinceOfVersionsIosSample;
+				MARKETING_VERSION = 3.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.infinum.PrinceOfVersionsIosSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PrinceOfVersionsIosSample/Supporting Files/PrinceOfVersionsIosSample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
