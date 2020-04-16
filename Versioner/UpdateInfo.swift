@@ -72,13 +72,20 @@ public struct UpdateInfo: Codable {
             #endif
         }
 
+        var currentVersionString: String? {
+            return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        }
+
+        var currentBuildNumberString: String? {
+            return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        }
+
         var installedVersion: Version? {
 
             guard
-                let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
-                let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+                let currentVersionString = currentVersionString,
+                let currentBuildNumberString = currentBuildNumberString
             else {
-    //            throw PrinceOfVersionsError.invalidCurrentVersion
                 return nil
             }
 
@@ -97,7 +104,7 @@ public struct UpdateInfo: Codable {
     }
 
     private struct LatestVersion: Codable {
-        let version: Version? // throw PrinceOfVersionsError.invalidLatestVersion
+        let version: Version?
         let notificationType: UpdateInfo.NotificationType?
         let minimumSdk: Version?
 
@@ -133,6 +140,24 @@ public struct UpdateInfo: Codable {
      */
     public var notificationType: UpdateInfo.NotificationType {
         return configurationForOS?.latestVersion?.notificationType ?? .once
+    }
+
+    public func validate() -> PrinceOfVersionsError? {
+
+        guard let configuration = configurationForOS else { return .invalidJsonData }
+
+        guard
+            let latestVersionInfo = configuration.latestVersion,
+            latestVersionInfo.version != nil
+        else {
+            return .invalidLatestVersion
+        }
+
+        if configuration.currentVersionString == nil || configuration.currentBuildNumberString == nil {
+            return .invalidCurrentVersion
+        }
+
+        return nil
     }
 }
 
