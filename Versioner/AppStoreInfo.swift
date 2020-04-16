@@ -50,8 +50,11 @@ public struct AppStoreInfo: Codable {
                 return nil
             }
 
-            do { return try Version(string: currentVersionString + "-" + currentBuildNumberString) }
-            catch _ { return nil }
+            do {
+                return try Version(string: currentVersionString + "-" + currentBuildNumberString)
+            } catch _ {
+                return nil
+            }
         }
 
         var currentVersionReleaseDate: Date? {
