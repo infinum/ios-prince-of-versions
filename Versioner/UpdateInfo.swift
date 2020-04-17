@@ -34,85 +34,126 @@ extension UpdateInfoValues {
 
 // MARK: - Internal configuration data -
 
-public struct UpdateInfo: Codable {
+public struct UpdateInfo: Decodable {
 
     // MARK: - Private properties -
 
-    private let ios: ConfigurationData?
-    private let macos: ConfigurationData?
-    private let meta: [String: Id<Any>]?
+    private let bundle = Bundle.main
+
+    private var ios: Configurations?
+    private var ios2: Configurations?
+    private var macos: Configurations?
+    private var macos2: Configurations?
+    private var meta: [String: Id<Any>]?
+
+    public init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        // MARK: - V1
+        if let value = decode(container: container, key: .ios, version: .v1) { ios = value }
+        if let value = decode(container: container, key: .macos, version: .v1) { macos = value }
+
+        // MARK: - V2
+        if let value = decode(container: container, key: .ios, version: .v2) { ios = value }
+        if let value = decode(container: container, key: .macos, version: .v2) { macos = value }
+        if let value = decode(container: container, key: .ios2, version: .v2) { ios2 = value }
+        if let value = decode(container: container, key: .macos2, version: .v2) { macos2 = value }
+
+        #if os(iOS)
+        if ios == nil && ios2 == nil { throw PrinceOfVersionsError.dataNotFound }
+        #elseif os(macOS)
+        if macos == nil && macos2 == nil { throw PrinceOfVersionsError.dataNotFound }
+        #endif
+
+        meta = try container.decode([String: Id<Any>].self, forKey: .meta)
+    }
+
+    private struct Configurations {
+        let data: [ConfigurationData]
+        let version: JSONVersion
+    }
+
+    private var jsonVersion: JSONVersion? {
+        #if os(iOS)
+        if ios?.version == .v2 { return .v2 }
+        return ios2 == nil ? .v1 : .v2
+        #elseif os(macOS)
+        if macos?.version == .v2 { return .v2 }
+        return macos2 == nil ? .v1 : .v2
+        #endif
+    }
+
+    private var configurations: [ConfigurationData]? {
+        #if os(iOS)
+        #elseif os(macOS)
+        #endif
+    }
 
     private var configurationForOS: ConfigurationData? {
         #if os(iOS)
-        return ios
         #elseif os(macOS)
-        return macos
         #endif
+    }
+
+    var currentSdkVersion: Version? {
+        #if os(iOS)
+        return try Version(string: UIDevice.current.systemVersion)
+        #elseif os(macOS)
+        return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
+        #endif
+    }
+
+    var currentVersionString: String? {
+        return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+
+    var currentBuildNumberString: String? {
+        return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+    }
+
+    var currentInstalledVersion: Version? {
+
+        guard
+            let currentVersionString = currentVersionString,
+            let currentBuildNumberString = currentBuildNumberString
+        else {
+            return nil
+        }
+
+        do {
+            return try Version(string: currentVersionString + "-" + currentBuildNumberString)
+        } catch _ {
+            return nil
+        }
+    }
+
+    private func decode(container: KeyedDecodingContainer<CodingKeys>, key: CodingKeys, version: JSONVersion) -> Configurations? {
+
+        let decodeForVersion: () throws -> Configurations? = {
+            switch version {
+            case .v1:
+                if let value = try container.decodeIfPresent(ConfigurationDataV1.self, forKey: key) {
+                    return Configurations(data: [value], version: .v1)
+                }
+            case .v2:
+                if let value = try container.decodeIfPresent([ConfigurationDataV2].self, forKey: key) {
+                    return Configurations(data: value, version: .v2)
+                }
+            }
+
+            return nil
+        }
+
+        do { return try decodeForVersion() } catch _ { return nil }
     }
 
     enum CodingKeys: String, CodingKey {
         case ios
+        case ios2
         case macos
+        case macos2
         case meta
-    }
-
-    private struct ConfigurationData: Codable {
-
-        private let bundle = Bundle.main
-
-        let minimumVersion: Version?
-        let minimumSdkForMinimumRequiredVersion: Version?
-        let latestVersion: LatestVersion?
-
-        var sdkVersion: Version? {
-            #if os(iOS)
-            return try Version(string: UIDevice.current.systemVersion)
-            #elseif os(macOS)
-            return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
-            #endif
-        }
-
-        var currentVersionString: String? {
-            return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-        }
-
-        var currentBuildNumberString: String? {
-            return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-        }
-
-        var installedVersion: Version? {
-
-            guard
-                let currentVersionString = currentVersionString,
-                let currentBuildNumberString = currentBuildNumberString
-            else {
-                return nil
-            }
-
-            do {
-                return try Version(string: currentVersionString + "-" + currentBuildNumberString)
-            } catch _ {
-                return nil
-            }
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case minimumVersion = "minimum_version"
-            case minimumSdkForMinimumRequiredVersion = "minimum_version_min_sdk"
-            case latestVersion = "latest_version"
-        }
-    }
-
-    private struct LatestVersion: Codable {
-        let version: Version?
-        let notificationType: UpdateInfo.NotificationType?
-        let minimumSdk: Version?
-
-        enum CodingKeys: String, CodingKey {
-            case version = "version"
-            case notificationType = "notification_type"
-            case minimumSdk = "min_sdk"
-        }
     }
 
     // MARK: - Public notification type
@@ -155,7 +196,7 @@ public struct UpdateInfo: Codable {
             return .invalidLatestVersion
         }
 
-        if configuration.currentVersionString == nil || configuration.currentBuildNumberString == nil {
+        if currentVersionString == nil || currentBuildNumberString == nil {
             return .invalidCurrentVersion
         }
 
@@ -202,7 +243,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns installed version of the app.
      */
     public var installedVersion: Version {
-        guard let version = configurationForOS?.installedVersion else {
+        guard let version = currentInstalledVersion else {
             preconditionFailure("Unable to get installed version data")
         }
         return version
@@ -212,7 +253,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns sdk version of device.
      */
     public var sdkVersion: Version {
-        guard let version = configurationForOS?.sdkVersion else {
+        guard let version = currentSdkVersion else {
             preconditionFailure("Unable to get sdk version data")
         }
         return version
