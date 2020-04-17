@@ -39,6 +39,9 @@
 		06C8F17C1D92A2680088BDA2 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */; };
 		0A1FA652224BBF1800D340B2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A1FA651224BBF1700D340B2 /* README.md */; };
 		A8459660244746B8007603BE /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845965F244746B8007603BE /* AnyCodable.swift */; };
+		A84596652448912A007603BE /* ConfigurationDataV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A84596642448912A007603BE /* ConfigurationDataV2.swift */; };
+		A845966724489134007603BE /* ConfigurationDataV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845966624489134007603BE /* ConfigurationDataV1.swift */; };
+		A845966924489E90007603BE /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A845966824489E90007603BE /* ConfigurationData.swift */; };
 		CF7576911DAC1F5E002B7581 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7576901DAC1F5E002B7581 /* Version.swift */; };
 		DF5BDEAA1FEADC9100F7CE15 /* VersionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +93,9 @@
 		06C8F17B1D92A2680088BDA2 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
 		0A1FA651224BBF1700D340B2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A845965F244746B8007603BE /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
+		A84596642448912A007603BE /* ConfigurationDataV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDataV2.swift; sourceTree = "<group>"; };
+		A845966624489134007603BE /* ConfigurationDataV1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationDataV1.swift; sourceTree = "<group>"; };
+		A845966824489E90007603BE /* ConfigurationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationData.swift; sourceTree = "<group>"; };
 		CF7576901DAC1F5E002B7581 /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		DF5BDEA91FEADC9100F7CE15 /* VersionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +173,7 @@
 		06C2DF2A1D19639B0032E464 /* Versioner */ = {
 			isa = PBXGroup;
 			children = (
+				A845966324489101007603BE /* Configuration */,
 				066396531D197C8800E8B7D2 /* PrinceOfVersions.swift */,
 				066F7F5C1D9126F00089F6F8 /* UpdateInfo.swift */,
 				068F384B23EBFF3B004AC923 /* AppStoreInfo.swift */,
@@ -220,6 +227,16 @@
 				0688DB1A1D19AA460027695C /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A845966324489101007603BE /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				A845966824489E90007603BE /* ConfigurationData.swift */,
+				A845966624489134007603BE /* ConfigurationDataV1.swift */,
+				A84596642448912A007603BE /* ConfigurationDataV2.swift */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -379,11 +396,14 @@
 				06624BBC23EAFF3100F9DE05 /* CheckUpdatesObjectiveCExtensions.swift in Sources */,
 				066396541D197C8800E8B7D2 /* PrinceOfVersions.swift in Sources */,
 				A8459660244746B8007603BE /* AnyCodable.swift in Sources */,
+				A845966924489E90007603BE /* ConfigurationData.swift in Sources */,
 				06A17F3923FEEF5A00115013 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */,
 				068D538323F53DFD00FCD1A7 /* LoadConfigurationObjectiveCExtensions.swift in Sources */,
 				0668A73A232D275500693EA6 /* PrinceOfVersionsError.swift in Sources */,
+				A84596652448912A007603BE /* ConfigurationDataV2.swift in Sources */,
 				06A17F3B23FEF15900115013 /* AppStpreInfoObjectiveC.swift in Sources */,
 				0618BCF6232B86F900AC7F84 /* ObjectiveCBaseExtensions.swift in Sources */,
+				A845966724489134007603BE /* ConfigurationDataV1.swift in Sources */,
 				06151E4D232BB1A5000F4BFF /* UpdateInfoObjectiveC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
