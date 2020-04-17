@@ -1,0 +1,6 @@
+framework module PrinceOfVersions {
+	umbrella header "PrinceOfVersions.h"
+
+	export *
+	module * { export * }
+}
