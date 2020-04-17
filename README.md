@@ -1,6 +1,6 @@
  # Prince of Versions
 
-![Bitrise](https://img.shields.io/bitrise/b0d8da8839bc2c85?token=bKDksnKBaI6oQRD861aYBg) ![GitHub](https://img.shields.io/github/license/infinum/iOS-prince-of-versions) ![Cocoapods](https://img.shields.io/cocoapods/v/PrinceOfVersions) ![Cocoapods platforms](https://img.shields.io/cocoapods/p/PrinceOfVersions) 
+![Bitrise](https://img.shields.io/bitrise/b0d8da8839bc2c85?token=bKDksnKBaI6oQRD861aYBg) ![GitHub](https://img.shields.io/github/license/infinum/iOS-prince-of-versions) ![Cocoapods](https://img.shields.io/cocoapods/v/PrinceOfVersions)[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager) ![Cocoapods platforms](https://img.shields.io/cocoapods/p/PrinceOfVersions)
 
 <p align="center">
     <img src="./prince-of-versions.svg" width="300" max-width="50%" alt="PoV"/>
@@ -15,14 +15,14 @@ Library checks for updates using configuration from some resource.
 * Make **asynchronous** loading and use **callback** for notifying result
 * Loading and verifying versions happen **outside of UI thread**
 
-### Requirements
+## Requirements
 
 * iOS 8.0+
 * macOS 10.10+
 * Xcode 10.0+
 * Swift 5.0
 
-### Installation
+## Installation
 
 The easiest way to use Prince of versions in your project is using the CocaPods package manager.
 
@@ -54,7 +54,27 @@ run pod install
 pod install
 ```
 
-### JSON file
+#### Carthage
+
+For the Carthage installation and usage instruction, you can check official [quick start documentation](https://github.com/Carthage/Carthage#quick-start).
+
+To integrate the library into your Xcode project, specify it in your `Cartfile`:
+
+```
+github "infinum/iOS-prince-of-versions"
+```
+
+Run `carthage update`.
+
+#### Swift Package Manager
+
+To install Prince of Versions from the Swift Package Manager, you should:
+* In Xcode 11+ select File → Packages → Add Package Dependency
+* Enter project's URL: https://github.com/infinum/iOS-prince-of-versions.git
+
+For more information, check [Swift Package Manager](https://swift.org/package-manager/) .
+
+## JSON file
 
 JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
 
@@ -100,34 +120,35 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 
 ## Usage
 
-### Most common usage - loading from network resource
+### Loading from network resource
 
 1. Getting all data
 
     ```swift
     let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
-        PrinceOfVersions().loadConfiguration(from: url) { response in
-            switch response.result {
-            case .success(let info):
-                print("Minimum version: ", info.minimumRequiredVersion)
-                print("Installed version: ", info.installedVersion)
-                print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
-                print("Notification type: ", info.notificationType)
+    PrinceOfVersions().loadConfiguration(from: url) { response in
+        switch response.result {
+        case .success(let info):
+            print("Minimum version: ", info.minimumRequiredVersion)
+            print("Installed version: ", info.installedVersion)
+            print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
+            print("Notification type: ", info.notificationType)
 
-                if let latestVersion = info.latestVersion {
-                    print("Is minimum version satisfied: ", latestVersion)
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
+            if let latestVersion = info.latestVersion {
+                print("Is minimum version satisfied: ", latestVersion)
             }
+        case .failure(let error):
+            print(error.localizedDescription)
         }
+    }
     ```
 
 2. Automatic handling update frequency
 
     ```swift
     let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
-    PrinceOfVersions().checkForUpdates(from: url,
+    PrinceOfVersions().checkForUpdates(
+        from: url,
         newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
             ...
         },
@@ -138,6 +159,26 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
             ...
         })
     ```
+
+### Automatic check with data from the App Store
+
+If you don't want to manage the JSON configuration file required by `loadConfiguration` or `checkForUpdates`, you can use `checkForUpdateFromAppStore`. This method will automatically get your app BundleID and it will return version info fetched from the App Store.
+
+```swift
+PrinceOfVersions().checkForUpdateFromAppStore(
+    trackPhaseRelease: false,
+    completion: { result in
+        switch result {
+        case .success(let appStoreInfo):
+        print("Minimum version: ", info.minimumRequiredVersion)
+        print("Installed version: ", info.installedVersion)
+        print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
+        case .failure:
+            // Handle error
+        }
+    }
+)
+```
 
 ### Multiple targets
 
@@ -162,6 +203,6 @@ PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (
 }
 ```
 
-### Contributing
+## Contributing
 
 Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](https://github.com/infinum/Android-prince-of-versions/blob/dev/LICENCE).

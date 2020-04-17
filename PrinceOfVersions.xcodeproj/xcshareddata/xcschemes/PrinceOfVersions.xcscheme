@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06C2DF271D19639B0032E464"
+               BlueprintIdentifier = "PrinceOfVersions::PrinceOfVersions"
                BuildableName = "PrinceOfVersions.framework"
                BlueprintName = "PrinceOfVersions"
                ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
@@ -27,22 +27,10 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "06C2DF311D19639B0032E464"
-               BuildableName = "PrinceOfVersionsTests.xctest"
-               BlueprintName = "PrinceOfVersionsTests"
-               ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06C2DF271D19639B0032E464"
+            BlueprintIdentifier = "PrinceOfVersions::PrinceOfVersions"
             BuildableName = "PrinceOfVersions.framework"
             BlueprintName = "PrinceOfVersions"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
@@ -54,8 +42,18 @@
             isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
-      <AdditionalOptions>
-      </AdditionalOptions>
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "PrinceOfVersions::PrinceOfVersionsTests"
+               BuildableName = "PrinceOfVersionsTests.xctest"
+               BlueprintName = "PrinceOfVersionsTests"
+               ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -70,14 +68,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06C2DF271D19639B0032E464"
+            BlueprintIdentifier = "PrinceOfVersions::PrinceOfVersions"
             BuildableName = "PrinceOfVersions.framework"
             BlueprintName = "PrinceOfVersions"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -88,7 +84,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06C2DF271D19639B0032E464"
+            BlueprintIdentifier = "PrinceOfVersions::PrinceOfVersions"
             BuildableName = "PrinceOfVersions.framework"
             BlueprintName = "PrinceOfVersions"
             ReferencedContainer = "container:PrinceOfVersions.xcodeproj">
