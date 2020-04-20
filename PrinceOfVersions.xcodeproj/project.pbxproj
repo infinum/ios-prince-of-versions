@@ -23,17 +23,17 @@
 		06F8ADFD241A542A0099E820 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */; };
 		06F8ADFE241A542A0099E820 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */; };
 		06F8ADFF241A542A0099E820 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */; };
-		A8F918A52449A8B60003C05E /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A42449A8B50003C05E /* AnyCodable.swift */; };
-		A8F918AA2449A96F0003C05E /* ConfigurationDataV1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A72449A96F0003C05E /* ConfigurationDataV1.swift */; };
-		A8F918AB2449A96F0003C05E /* ConfigurationDataV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A82449A96F0003C05E /* ConfigurationDataV2.swift */; };
-		A8F918AC2449A96F0003C05E /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A92449A96F0003C05E /* ConfigurationData.swift */; };
+		A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */; };
+		A82DD4C32449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82DD4C22449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift */; };
+		A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A42449A8B50003C05E /* AnyDecodable.swift */; };
+		A8F918AB2449A96F0003C05E /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A82449A96F0003C05E /* ConfigurationData.swift */; };
 		OBJ_45 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreInfo.swift */; };
-		OBJ_46 /* AppStpreInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStpreInfoObjectiveC.swift */; };
+		OBJ_46 /* AppStoreInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStoreInfoObjectiveC.swift */; };
 		OBJ_47 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */; };
 		OBJ_48 /* CheckUpdatesObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */; };
 		OBJ_49 /* LoadConfigurationObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* LoadConfigurationObjectiveCExtensions.swift */; };
 		OBJ_50 /* ObjectiveCBaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* ObjectiveCBaseExtensions.swift */; };
-		OBJ_51 /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* UpdateInfoObjectiveC.swift */; };
+		OBJ_51 /* UpdateResultObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* UpdateResultObjectiveC.swift */; };
 		OBJ_52 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* PrinceOfVersions.swift */; };
 		OBJ_53 /* PrinceOfVersionsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PrinceOfVersionsError.swift */; };
 		OBJ_54 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UpdateInfo.swift */; };
@@ -74,16 +74,16 @@
 		06F8ADB1241945D90099E820 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06F8AE03241A57590099E820 /* PrinceOfVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinceOfVersions.h; sourceTree = "<group>"; };
 		06F8AE39241A61850099E820 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		A8F918A42449A8B50003C05E /* AnyCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
-		A8F918A72449A96F0003C05E /* ConfigurationDataV1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDataV1.swift; sourceTree = "<group>"; };
-		A8F918A82449A96F0003C05E /* ConfigurationDataV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationDataV2.swift; sourceTree = "<group>"; };
-		A8F918A92449A96F0003C05E /* ConfigurationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationData.swift; sourceTree = "<group>"; };
-		OBJ_11 /* AppStpreInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStpreInfoObjectiveC.swift; sourceTree = "<group>"; };
+		A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResult.swift; sourceTree = "<group>"; };
+		A82DD4C22449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
+		A8F918A42449A8B50003C05E /* AnyDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
+		A8F918A82449A96F0003C05E /* ConfigurationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationData.swift; sourceTree = "<group>"; };
+		OBJ_11 /* AppStoreInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreInfoObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdateFromAppStoreObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdatesObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_15 /* LoadConfigurationObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadConfigurationObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_16 /* ObjectiveCBaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveCBaseExtensions.swift; sourceTree = "<group>"; };
-		OBJ_17 /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
+		OBJ_17 /* UpdateResultObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResultObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_18 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
 		OBJ_19 /* PrinceOfVersionsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsError.swift; sourceTree = "<group>"; };
 		OBJ_20 /* UpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
@@ -172,22 +172,22 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		A8F918A62449A96F0003C05E /* Configuration */ = {
+		A8F918A62449A96F0003C05E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				A8F918A72449A96F0003C05E /* ConfigurationDataV1.swift */,
-				A8F918A82449A96F0003C05E /* ConfigurationDataV2.swift */,
-				A8F918A92449A96F0003C05E /* ConfigurationData.swift */,
+				A8F918A42449A8B50003C05E /* AnyDecodable.swift */,
+				A8F918A82449A96F0003C05E /* ConfigurationData.swift */,
 			);
-			path = Configuration;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_11 /* AppStpreInfoObjectiveC.swift */,
+				OBJ_11 /* AppStoreInfoObjectiveC.swift */,
 				OBJ_12 /* ObjectiveC Extensions */,
-				OBJ_17 /* UpdateInfoObjectiveC.swift */,
+				A82DD4C22449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift */,
+				OBJ_17 /* UpdateResultObjectiveC.swift */,
 			);
 			path = ObjC;
 			sourceTree = "<group>";
@@ -240,14 +240,14 @@
 		OBJ_8 /* PrinceOfVersions */ = {
 			isa = PBXGroup;
 			children = (
-				A8F918A62449A96F0003C05E /* Configuration */,
-				A8F918A42449A8B50003C05E /* AnyCodable.swift */,
-				OBJ_9 /* AppStoreInfo.swift */,
-				OBJ_10 /* ObjC */,
 				OBJ_18 /* PrinceOfVersions.swift */,
 				OBJ_19 /* PrinceOfVersionsError.swift */,
+				OBJ_9 /* AppStoreInfo.swift */,
 				OBJ_20 /* UpdateInfo.swift */,
+				A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */,
 				OBJ_21 /* Version.swift */,
+				A8F918A62449A96F0003C05E /* Data */,
+				OBJ_10 /* ObjC */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
 			);
 			name = PrinceOfVersions;
@@ -368,19 +368,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				A8F918AA2449A96F0003C05E /* ConfigurationDataV1.swift in Sources */,
 				OBJ_45 /* AppStoreInfo.swift in Sources */,
-				A8F918AB2449A96F0003C05E /* ConfigurationDataV2.swift in Sources */,
-				OBJ_46 /* AppStpreInfoObjectiveC.swift in Sources */,
+				A8F918AB2449A96F0003C05E /* ConfigurationData.swift in Sources */,
+				OBJ_46 /* AppStoreInfoObjectiveC.swift in Sources */,
 				OBJ_47 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */,
 				OBJ_48 /* CheckUpdatesObjectiveCExtensions.swift in Sources */,
 				OBJ_49 /* LoadConfigurationObjectiveCExtensions.swift in Sources */,
-				A8F918A52449A8B60003C05E /* AnyCodable.swift in Sources */,
-				A8F918AC2449A96F0003C05E /* ConfigurationData.swift in Sources */,
+				A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */,
 				OBJ_50 /* ObjectiveCBaseExtensions.swift in Sources */,
-				OBJ_51 /* UpdateInfoObjectiveC.swift in Sources */,
+				OBJ_51 /* UpdateResultObjectiveC.swift in Sources */,
+				A82DD4C32449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift in Sources */,
 				OBJ_52 /* PrinceOfVersions.swift in Sources */,
 				OBJ_53 /* PrinceOfVersionsError.swift in Sources */,
+				A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */,
 				OBJ_54 /* UpdateInfo.swift in Sources */,
 				OBJ_55 /* Version.swift in Sources */,
 			);

@@ -40,17 +40,16 @@ private extension ConfigurationController {
 
     func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions().loadConfiguration(
-            from: princeOfVersionsURL,
-            completion: { [weak self] response in
-                switch response.result {
-                case .success(let infoResponse):
-                    self?.fillUI(with: infoResponse)
-                case .failure:
-                    // Handle error
-                    break
-                }
+        PrinceOfVersions().checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] updateResultResponse in
+            switch updateResultResponse.result {
+            case .success(let updateResultData):
+                self.fillUI(with: updateResultData)
+            case .failure:
+                // Handle error
+                break
+            }
         })
+
     }
 
     // In sample app, error will occur as bundle ID
@@ -73,14 +72,14 @@ private extension ConfigurationController {
         })
     }
 
-    func fillUI(with infoResponse: UpdateInfo ) {
-        installedVersionTextField.stringValue = infoResponse.installedVersion.description
-        macOSVersionTextField.stringValue = infoResponse.sdkVersion.description
-        minimumVersionTextField.stringValue = infoResponse.minimumRequiredVersion?.description ?? "-"
-        minimumSDKTextField.stringValue = infoResponse.minimumSdkForMinimumRequiredVersion?.description ?? "-"
-        latestVersionTextField.stringValue = infoResponse.latestVersion.description
-        notificationTypeTextField.stringValue = infoResponse.notificationType == .once ? "Once" : "Always"
-        latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion?.description ?? "-"
-        metaTextField.stringValue = String(describing: infoResponse.metadata!)
+    func fillUI(with infoResponse: UpdateResult) {
+        installedVersionTextField.stringValue = infoResponse.versionInfo.installedVersion.description
+//        macOSVersionTextField.stringValue = infoResponse.sdkVersion.description
+//        minimumVersionTextField.stringValue = infoResponse.minimumRequiredVersion?.description ?? "-"
+//        minimumSDKTextField.stringValue = infoResponse.minimumSdkForMinimumRequiredVersion?.description ?? "-"
+//        latestVersionTextField.stringValue = infoResponse.latestVersion.description
+//        notificationTypeTextField.stringValue = infoResponse.notificationType == .once ? "Once" : "Always"
+//        latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion?.description ?? "-"
+//        metaTextField.stringValue = String(describing: infoResponse.metadata!)
     }
 }
