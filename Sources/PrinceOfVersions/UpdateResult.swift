@@ -39,6 +39,9 @@ extension UpdateResult: UpdateResultValues {
         return updateInfo.lastVersionAvailable ?? updateInfo.installedVersion
     }
 
+/**    This method checks minimum required version, current installed version on device and current available version of the app with data stored on URL.
+    It also checks if minimum version is satisfied and what should be frequency of notifying user.
+*/
     public var updateState: UpdateStatus {
 
         if let minimumSdk = updateInfo.requiredVersion, minimumSdk > updateInfo.installedVersion {

@@ -28,7 +28,6 @@ public class UpdateResponse: NSObject {
 
 /**
  Used for configuring PoV request.
-
  By default, PoV will not use http header fields and certificate pinning. All callbacks (success/versions, failure) will be returned on the main queue.
  */
 @objcMembers
@@ -53,22 +52,16 @@ internal extension PrinceOfVersions {
 
     func internalyCheckAndPrepareForUpdates(
         from URL: URL,
-        httpHeaderFields: NSDictionary?,
-        shouldPinCertificates: Bool,
-        callbackQueue: DispatchQueue = .main,
         completion: @escaping ObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
 
-        var headers: [String : String?]?
-        do {
-            headers = try checkHeadersValidity(from: httpHeaderFields).get()
-        } catch let (headersError as NSError) {
+        if let headersError = checkHeadersValidity(from: options.httpHeaderFields) {
             error(headersError)
             return nil
         }
 
-        return self.checkForUpdates(from: URL, httpHeaderFields: headers, shouldPinCertificates: shouldPinCertificates, callbackQueue: callbackQueue, completion: { response in
+        return self.checkForUpdates(from: URL, completion: { response in
                 switch response.result {
                 case .success(let updateResult):
                     let updateResultResponse = UpdateResponse(
@@ -85,16 +78,10 @@ internal extension PrinceOfVersions {
     // MARK: AppStore check
 
     func internalyCheckAndPrepareForUpdateAppStore(
-        trackPhaseRelease: Bool = true,
-        bundle: Bundle = .main,
-        callbackQueue: DispatchQueue = .main,
         completion: @escaping AppStoreObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
-        return self.checkForUpdateFromAppStore(
-            trackPhaseRelease: trackPhaseRelease,
-            bundle: bundle,
-            callbackQueue: callbackQueue, completion: { result in
+        return self.checkForUpdateFromAppStore(completion: { result in
                 switch result {
                 case .success(let appStoreInfo):
                     completion(AppStoreInfoObject(from: appStoreInfo))
@@ -104,14 +91,14 @@ internal extension PrinceOfVersions {
         })
     }
 
-    func checkHeadersValidity(from headers: NSDictionary?) -> Result<[String: String?]?, NSError> {
+    func checkHeadersValidity(from headers: NSDictionary?) -> NSError? {
 
-        if headers == nil { return .success(nil) }
+        if headers == nil { return nil }
 
-        if let httpHeaderFields = headers as? [String : String?] {
-            return .success(httpHeaderFields)
+        if (headers as? [String : String?]) != nil {
+            return nil
         }
 
-        return .failure((PrinceOfVersionsError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError))
+        return (PrinceOfVersionsError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError)
     }
 }
