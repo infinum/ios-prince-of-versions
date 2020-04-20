@@ -49,7 +49,7 @@ struct Requirements: Decodable {
 
         dynamicKeysContainer.allKeys.forEach {
             guard
-                $0.stringValue == CodingKeys.requiredOSVersion.rawValue,
+                $0.stringValue != CodingKeys.requiredOSVersion.rawValue,
                 let value = dynamicKeysContainer.getValue(for: $0)
             else { return }
 
