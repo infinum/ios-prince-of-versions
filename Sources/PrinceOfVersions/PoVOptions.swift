@@ -32,19 +32,17 @@ public class PoVOptions {
     /// Bundle where .plist file is stored in which app identifier and app versions should be checked.
     public var bundle: Bundle = .main
 
-    func addRequirement(key: String, requirementCheck: @escaping ((Any) -> Bool)) {
+    public func addRequirement(key: String, requirementCheck: @escaping ((Any) -> Bool)) {
         userRequirements.updateValue(requirementCheck, forKey: key)
     }
 
-    // MARK: - Internal properties -
-
-    internal var userRequirements: [String: ((Any) -> Bool)] = [:]
+    var userRequirements: [String: ((Any) -> Bool)] = [:]
 
     // MARK: - Initialization -
 
     public init() { }
 
-    internal init(with options: PoVRequestOptions?) {
+    init(with options: PoVRequestOptions?) {
         guard let options = options else { return }
         self.callbackQueue = options.callbackQueue
         self.shouldPinCertificates = options.shouldPinCertificates

@@ -26,7 +26,7 @@ public class PrinceOfVersions: NSObject {
 
     // MARK: Internal properties
 
-    internal var options: PoVOptions
+    var options: PoVOptions
 
     // MARK: Private properties
 
@@ -34,12 +34,13 @@ public class PrinceOfVersions: NSObject {
 
     // MARK: Initialization
 
-    public override init() {
-        self.options = PoVOptions()
-    }
-
     public init(with options: PoVOptions? = nil) {
         self.options = options ?? PoVOptions()
+    }
+
+    @available(swift, obsoleted: 1.0)
+    public override init() {
+        self.options = PoVOptions()
     }
 
     @available(swift, obsoleted: 1.0)
@@ -81,7 +82,7 @@ public extension PrinceOfVersions {
             }
         }
 
-        let dataTask = defaultSession.dataTask(with: request, completionHandler: { [unowned self] (data, response, error) in
+        let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
 
             let result: Result<UpdateResult, PrinceOfVersionsError>
             if let error = error {
