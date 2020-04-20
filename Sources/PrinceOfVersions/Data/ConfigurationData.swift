@@ -1,5 +1,5 @@
 //
-//  ConfigurationDataV2.swift
+//  ConfigurationData.swift
 //  PrinceOfVersions
 //
 //  Created by Ivana Mršić on 16/04/2020.
@@ -8,22 +8,20 @@
 
 import Foundation
 
-struct ConfigurationDataV2: ConfigurationData, Decodable {
+struct ConfigurationData: Decodable {
 
     let requiredVersion: Version?
     let lastVersionAvailable: Version?
     let notificationType: UpdateInfo.NotificationType?
-    let requirements: Requirements
-
-    var version: JSONVersion {
-        return .v2
-    }
+    let requirements: Requirements?
+    let meta: [String: AnyDecodable]?
 
     enum CodingKeys: String, CodingKey {
         case requiredVersion = "required_version"
         case lastVersionAvailable = "last_version_available"
         case notificationType = "notify_last_version_frequency"
         case requirements
+        case meta
     }
 
     func validate() -> PrinceOfVersionsError? {
@@ -47,44 +45,43 @@ struct Requirements: Decodable {
 
         userDefinedRequirements = [:]
         let dynamicKeysContainer = try decoder.container(keyedBy: DynamicKey.self)
-        try dynamicKeysContainer.allKeys.forEach {
-            guard let value = try dynamicKeysContainer.getValue(for: $0) else { return }
+        dynamicKeysContainer.allKeys.forEach {
+            guard
+                $0.stringValue != CodingKeys.requiredOSVersion.rawValue,
+                let value = dynamicKeysContainer.getValue(for: $0)
+            else { return }
             userDefinedRequirements.updateValue(value, forKey: $0.stringValue)
         }
-
-    }
-}
-
-private struct DynamicKey: CodingKey {
-    var stringValue: String
-    init?(stringValue: String) {
-        self.stringValue = stringValue
-    }
-    var intValue: Int?
-    init?(intValue: Int) {
-        return nil
     }
 }
 
 private extension KeyedDecodingContainer {
 
-    func getValue(for key: K) throws -> Any? {
+    func getValue(for key: K) -> Any? {
 
-        if let stringValue = try decodeIfPresent(String.self, forKey: key) {
-            return stringValue
-        }
+        do {
+            if let stringValue = try decodeIfPresent(String.self, forKey: key) {
+                return stringValue
+            }
+        } catch _ { }
 
-        if let integerValue = try decodeIfPresent(Int.self, forKey: key) {
-            return integerValue
-        }
+        do {
+            if let integerValue = try decodeIfPresent(Int.self, forKey: key) {
+                return integerValue
+            }
+        } catch _ { }
 
-        if let boolValue = try decodeIfPresent(Bool.self, forKey: key) {
-            return boolValue
-        }
+        do {
+            if let boolValue = try decodeIfPresent(Bool.self, forKey: key) {
+                return boolValue
+            }
+        } catch _ { }
 
-        if try decodeNil(forKey: key) {
-            return true
-        }
+        do {
+            if try decodeNil(forKey: key) {
+                return true
+            }
+        } catch _ { }
 
         return nil
     }

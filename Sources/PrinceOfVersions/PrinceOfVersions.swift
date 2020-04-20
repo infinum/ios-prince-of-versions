@@ -12,19 +12,17 @@ public class PrinceOfVersions: NSObject {
 
     // MARK: - Public interface
 
-    public struct UpdateInfoResponse {
+    public struct UpdateResultResponse {
 
         /// The server's response to the URL request.
         public let response: URLResponse?
 
         /// The result of response serialization.
-        public let result: Result<UpdateInfo, PrinceOfVersionsError>
+        public let result: Result<UpdateResult, PrinceOfVersionsError>
     }
 
-    public typealias CompletionBlock = (UpdateInfoResponse) -> Void
+    public typealias CompletionBlock = (UpdateResultResponse) -> Void
     public typealias AppStoreCompletionBlock = (Result<AppStoreInfo, PrinceOfVersionsError>) -> Void
-    public typealias NewVersionBlock = (Version, Bool, [String: Any]?) -> Void
-    public typealias NoNewVersionBlock = (Bool, [String: Any]?) -> Void
     public typealias ErrorBlock = (Error) -> Void
 
     // MARK: Private properties
@@ -38,6 +36,23 @@ public class PrinceOfVersions: NSObject {
 public extension PrinceOfVersions {
 
     /**
+     Used for getting the automated information about update availability.
+
+     This method checks minimum required version, current installed version on device and current available version of the app with data stored on URL.
+     It also checks if minimum version is satisfied and what should be frequency of notifying user.
+
+     - parameter URL: URL that containts configuration data.
+     - parameter httpHeaderFields: Optional HTTP header fields.
+     - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
+     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
+     - parameter newVersion: The completion handler to call when the load request is complete in case if new version is available. It returns result that contains info about new optional or non-optional available version, as well as info if minimum version is satisfied
+     - parameter noNewVersion: The completion handler to call when the load request is complete in case if there is no new versions available. It returns result that contains if minimum version is satisfied.
+     - parameter error The completion handler to call when error occurs
+
+     - returns: Discardable `URLSessionDataTask`
+     */
+
+    /**
      Used for getting the versioning configuration stored on server.
 
      After check with server is finished, this method will return all informations about the app versioning.
@@ -49,12 +64,12 @@ public extension PrinceOfVersions {
      - parameter httpHeaderFields: Optional HTTP header fields.
      - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PrinceOfVersionsError error
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data or PrinceOfVersionsError error
 
      - returns: Discardable `URLSessionDataTask`
      */
     @discardableResult
-    func loadConfiguration(
+    func checkForUpdates(
         from URL: URL,
         httpHeaderFields: [String : String?]? = nil,
         shouldPinCertificates: Bool = false,
@@ -75,18 +90,18 @@ public extension PrinceOfVersions {
 
         let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
 
-            let result: Result<UpdateInfo, PrinceOfVersionsError>
+            let result: Result<UpdateResult, PrinceOfVersionsError>
             if let error = error {
                 result = Result.failure(.unknown(error.localizedDescription))
             } else {
                 do {
-
                     let updateInfo = try JSONDecoder().decode(UpdateInfo.self, from: data!)
+                    let updateResult = UpdateResult(updateInfo: updateInfo)
 
-                    if let error = updateInfo.validate() {
+                    if let error = updateResult.validate() {
                         result = Result.failure(error)
                     } else {
-                        result = Result.success(updateInfo)
+                        result = Result.success(updateResult)
                     }
 
                 } catch _ {
@@ -94,7 +109,7 @@ public extension PrinceOfVersions {
                 }
             }
 
-            let updateInfoResponse = UpdateInfoResponse(
+            let updateInfoResponse = UpdateResultResponse(
                 response: response,
                 result: result
             )
@@ -110,65 +125,6 @@ public extension PrinceOfVersions {
         defaultSession.finishTasksAndInvalidate()
 
         return dataTask
-    }
-
-    /**
-     Used for getting the automated information about update availability.
-
-     This method checks minimum required version, current installed version on device and current available version of the app with data stored on URL.
-     It also checks if minimum version is satisfied and what should be frequency of notifying user.
-
-     - parameter URL: URL that containts configuration data.
-     - parameter httpHeaderFields: Optional HTTP header fields.
-     - parameter shouldPinCertificates: Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
-     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
-     - parameter newVersion: The completion handler to call when the load request is complete in case if new version is available. It returns result that contains info about new optional or non-optional available version, as well as info if minimum version is satisfied
-     - parameter noNewVersion: The completion handler to call when the load request is complete in case if there is no new versions available. It returns result that contains if minimum version is satisfied.
-     - parameter error The completion handler to call when error occurs
-
-     - returns: Discardable `URLSessionDataTask`
-     */
-    @discardableResult
-    func checkForUpdates(
-        from URL: URL,
-        httpHeaderFields: [String : String?]? = nil,
-        shouldPinCertificates: Bool = false,
-        callbackQueue: DispatchQueue = .main,
-        newVersion: @escaping NewVersionBlock,
-        noNewVersion: @escaping NoNewVersionBlock,
-        error: @escaping ErrorBlock
-    ) -> URLSessionDataTask {
-        return loadConfiguration(
-            from: URL,
-            httpHeaderFields: httpHeaderFields,
-            shouldPinCertificates: shouldPinCertificates,
-            callbackQueue: callbackQueue,
-            completion: { response in
-                switch response.result {
-                case .failure(let updateInfoError):
-                    callbackQueue.async {
-                        error(updateInfoError)
-                    }
-                case .success(let info):
-                    if let minimumSdk = info.minimumSdkForLatestVersion, minimumSdk > info.sdkVersion {
-                        callbackQueue.async {
-                            noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
-                        }
-                    } else {
-                        let latestVersion = info.latestVersion
-                        if (latestVersion > info.installedVersion) && (!latestVersion.wasNotified || info.notificationType == .always) {
-                            callbackQueue.async {
-                                newVersion(latestVersion, info.isMinimumVersionSatisfied, info.metadata)
-                            }
-                            latestVersion.markNotified()
-                        } else {
-                            callbackQueue.async {
-                                noNewVersion(info.isMinimumVersionSatisfied, info.metadata)
-                            }
-                        }
-                    }
-                }
-        })
     }
 
     /**
