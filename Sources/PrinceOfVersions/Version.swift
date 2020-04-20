@@ -114,6 +114,9 @@ public class Version: NSObject, Codable {
         return self != version
     }
 
+    public static func getGreaterVersion(_ version1: Version, _ version2: Version) -> Version {
+        return version1.isGreaterThan(version2) ? version1 : version2
+    }
 }
 
 extension Version: Comparable {

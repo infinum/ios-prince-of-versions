@@ -81,14 +81,16 @@ public extension PrinceOfVersions {
             }
         }
 
-        let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
+        let dataTask = defaultSession.dataTask(with: request, completionHandler: { [unowned self] (data, response, error) in
 
             let result: Result<UpdateResult, PrinceOfVersionsError>
             if let error = error {
                 result = Result.failure(.unknown(error.localizedDescription))
             } else {
                 do {
-                    let updateInfo = try JSONDecoder().decode(UpdateInfo.self, from: data!)
+                    var updateInfo = try JSONDecoder().decode(UpdateInfo.self, from: data!)
+                    updateInfo.userRequirements = self.options.userRequirements
+
                     let updateResult = UpdateResult(updateInfo: updateInfo)
 
                     if let error = updateResult.validate() {
