@@ -45,7 +45,7 @@
     NSURL *princeOfVersionsURL = [NSURL URLWithString:Constant.princeOfVersionsURL];
 
     __weak __typeof(self) weakSelf = self;
-    [[PrinceOfVersions new] checkForUpdatesFromURL:princeOfVersionsURL options:nil completion:^(UpdateResponse *updateResponse) {
+    [[PrinceOfVersions new] checkForUpdatesFromURL:princeOfVersionsURL completion:^(UpdateResponse *updateResponse) {
         [weakSelf fillUIWithInfoResponse:updateResponse.result];
     } error:^(NSError *error) {
         // Handle error
@@ -60,7 +60,7 @@
     PoVRequestOptions *options = [PoVRequestOptions new];
     options.trackPhaseRelease = NO;
 
-    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreInfoObject *response) {
+    [[[PrinceOfVersions alloc] initWithOptions:options] checkForUpdateFromAppStoreWithCompletion:^(AppStoreInfoObject *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
