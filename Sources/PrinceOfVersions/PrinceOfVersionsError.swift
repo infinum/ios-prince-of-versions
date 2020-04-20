@@ -15,6 +15,7 @@ public enum PrinceOfVersionsError: Error {
     case invalidMinimumVersion
     case invalidBundleId
     case dataNotFound
+    case requirementsNotSatisfied([String: Any]?)
     case unknown(String?)
 }
 
@@ -34,6 +35,8 @@ extension PrinceOfVersionsError: LocalizedError {
             return NSLocalizedString("BundleID not found", comment: "")
         case .dataNotFound:
             return NSLocalizedString("Data not found for selected app id", comment: "")
+        case .requirementsNotSatisfied:
+            return NSLocalizedString("Requirements not satisfied", comment: "")
         case .unknown(let customMessage):
             guard let message = customMessage else {
                 return NSLocalizedString("Unknown error", comment: "")
