@@ -25,7 +25,6 @@ extension PrinceOfVersions {
 
      __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), if `trackPhaseRelease` is enabled `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value set on AppStore Connect.
 
-     - parameter options: Options specifying how PoV should handle the request. Values available for configuring request are: HTTP header fields, certificate pinning enabled and callbackQueue. For details, see `PoVRequestOptions`
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PrinceOfVersionsError error
      - parameter error: The completion handler to call when load request errors
 
@@ -33,15 +32,9 @@ extension PrinceOfVersions {
      */
 
     @available(swift, obsoleted: 1.0)
-    @objc(checkForUpdateFromAppStoreWithOptions:completion:error:)
+    @objc(checkForUpdateFromAppStoreWithCompletion:error:)
     @discardableResult
-    public func checkForUpdateFromAppStore(options: PoVRequestOptions?, completion: @escaping AppStoreObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return self.internalyCheckAndPrepareForUpdateAppStore(
-            trackPhaseRelease: options?.trackPhaseRelease ?? true,
-            bundle: options?.bundle ?? .main,
-            callbackQueue: options?.callbackQueue ?? .main,
-            completion: completion,
-            error: error
-        )
+    public func checkForUpdateFromAppStore(completion: @escaping AppStoreObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
+        return self.internalyCheckAndPrepareForUpdateAppStore(completion: completion, error: error)
     }
 }
