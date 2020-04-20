@@ -92,7 +92,8 @@ public struct UpdateInfo: Decodable {
 
     var metadata: [String: Any]? {
         guard let configurationMeta = configurationForOS?.meta else { return meta?.mapValues { $0.value } }
-        return meta?.merging(configurationMeta, uniquingKeysWith: { (current, _) in current }).mapValues { $0.value }
+        return meta?.merging(configurationMeta, uniquingKeysWith: { (_, newValue) in newValue })
+            .mapValues { $0.value }
     }
 
     var userRequirements: [String: ((Any) -> Bool)] = [:]

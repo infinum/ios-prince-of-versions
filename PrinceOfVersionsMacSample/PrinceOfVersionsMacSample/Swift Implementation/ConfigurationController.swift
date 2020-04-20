@@ -39,8 +39,15 @@ class ConfigurationController: NSViewController {
 private extension ConfigurationController {
 
     func checkAppVersion() {
+
+        let options = PoVOptions()
+        options.addRequirement(key: "bluetooth") { (value) -> Bool in
+            guard let value = value as? String else { return false }
+            return value.starts(with: "10")
+        }
+
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions().checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] updateResultResponse in
+        PrinceOfVersions(with: options).checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] updateResultResponse in
             switch updateResultResponse.result {
             case .success(let updateResultData):
                 self.fillUI(with: updateResultData)
@@ -60,7 +67,7 @@ private extension ConfigurationController {
         // of the app is not available on the App Store
         let options = PoVOptions()
         options.trackPhaseRelease = false
-        
+
         PrinceOfVersions(with: options).checkForUpdateFromAppStore(
             completion: { result in
                 switch result {
