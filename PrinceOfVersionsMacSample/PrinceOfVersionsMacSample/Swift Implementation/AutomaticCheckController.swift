@@ -33,26 +33,34 @@ private extension AutomaticCheckController {
     func checkAppVersion() {
 
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions().checkForUpdates(
-            from: princeOfVersionsURL,
-            newVersion: { [weak self] (/* versionData */ _, isMinimumVersionSatisfied, meta) in
-                // versionData is same as in `ConfigurationViewController`. Check example there
-                let stateText = "New \(isMinimumVersionSatisfied ? "optional" : "mandatory") version is available."
-                self?.fillUI(with: stateText, and: String(describing: meta!))
-            }, noNewVersion: { [weak self] (isMinimumVersionSatisfied, meta) in
-                var stateText = "There is no new app versions."
-                if !isMinimumVersionSatisfied {
-                    stateText += "But minimum version is not satisfied."
-                }
-                self?.fillUI(with: stateText, and: String(describing: meta!))
-            }, error: { /* error */ _ in
+        PrinceOfVersions().checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] updateResultResponse in
+            switch updateResultResponse.result {
+            case .success(let updateResultData):
+                self.handle(updateResultData: updateResultData)
+            case .failure:
                 // Handle error
+                break
             }
-        )
+        })
     }
 
     func fillUI(with appState: String, and meta: String) {
         appStateTextField.stringValue = appState
         metaTextField.stringValue = meta
+    }
+
+    func handle(updateResultData: UpdateResult) {
+        switch updateResultData.updateState {
+        case .newUpdateAvailable:
+            let stateText = "New version is available."
+            fillUI(with: stateText, and: String(describing: updateResultData.metadata!))
+        case .noUpdateAvailable:
+            let stateText = "There is no new app versions."
+            fillUI(with: stateText, and: String(describing: updateResultData.metadata!))
+        case .requiredUpdateNeeded:
+            break
+        default:
+            break
+        }
     }
 }
