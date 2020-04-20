@@ -9,10 +9,12 @@
 import Foundation
 
 struct DynamicKey: CodingKey {
+
     var stringValue: String
     init?(stringValue: String) {
         self.stringValue = stringValue
     }
+
     var intValue: Int?
     init?(intValue: Int) {
         return nil
@@ -20,6 +22,7 @@ struct DynamicKey: CodingKey {
 }
 
 public struct AnyDecodable: Decodable {
+
     public let value: Any
 
     public init<T>(_ value: T?) {
@@ -27,23 +30,10 @@ public struct AnyDecodable: Decodable {
     }
 }
 
-#if swift(>=4.2)
-@usableFromInline
-protocol _AnyDecodable {
-    var value: Any { get }
-    init<T>(_ value: T?)
-}
-#else
-protocol _AnyDecodable {
-    var value: Any { get }
-    init<T>(_ value: T?)
-}
-#endif
+extension AnyDecodable {
 
-extension AnyDecodable: _AnyDecodable {}
-
-extension _AnyDecodable {
     public init(from decoder: Decoder) throws {
+
         let container = try decoder.singleValueContainer()
 
         if container.decodeNil() {
@@ -65,6 +55,7 @@ extension _AnyDecodable {
 }
 
 extension AnyDecodable: Equatable {
+
     public static func == (lhs: AnyDecodable, rhs: AnyDecodable) -> Bool {
         switch (lhs.value, rhs.value) {
         case is (NSNull, NSNull), is (Void, Void):
@@ -99,30 +90,6 @@ extension AnyDecodable: Equatable {
             return lhs == rhs
         default:
             return false
-        }
-    }
-}
-
-extension AnyDecodable: CustomStringConvertible {
-    public var description: String {
-        switch value {
-        case is Void:
-            return String(describing: nil as Any?)
-        case let value as CustomStringConvertible:
-            return value.description
-        default:
-            return String(describing: value)
-        }
-    }
-}
-
-extension AnyDecodable: CustomDebugStringConvertible {
-    public var debugDescription: String {
-        switch value {
-        case let value as CustomDebugStringConvertible:
-            return "AnyDecodable(\(value.debugDescription))"
-        default:
-            return "AnyDecodable(\(description))"
         }
     }
 }

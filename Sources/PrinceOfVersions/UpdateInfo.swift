@@ -29,19 +29,102 @@ public struct UpdateInfo: Decodable {
 
     private let bundle = Bundle.main
 
-    let ios: [ConfigurationData]?
-    let ios2: [ConfigurationData]?
-    let macos: [ConfigurationData]?
-    let macos2: [ConfigurationData]?
-    let meta: [String: AnyDecodable]?
+    private let ios: [ConfigurationData]?
+    private let ios2: [ConfigurationData]?
+    private let macos: [ConfigurationData]?
+    private let macos2: [ConfigurationData]?
+    private let meta: [String: AnyDecodable]?
 
-    enum CodingKeys: String, CodingKey {
-        case ios
-        case ios2
-        case macos
-        case macos2
-        case meta
+    private var configurations: [ConfigurationData]? {
+        #if os(iOS)
+        return ios != nil ? ios : ios2
+        #elseif os(macOS)
+        return macos != nil ? macos : macos2
+        #endif
     }
+
+    private var configurationForOS: ConfigurationData? {
+
+        guard let configurations = configurations else { return nil }
+
+        return configurations.first { configuration in
+            guard
+                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
+                let sdkVersion = sdkVersion
+            else { return false }
+            return sdkVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
+        }
+    }
+
+    // MARK: - Internal properties -
+
+    var sdkVersion: Version? {
+        #if os(iOS)
+        return try Version(string: UIDevice.current.systemVersion)
+        #elseif os(macOS)
+        return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
+        #endif
+    }
+
+    var currentVersionString: String? {
+        return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+
+    var currentBuildNumberString: String? {
+        return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+    }
+
+    var currentInstalledVersion: Version? {
+
+        guard
+            let currentVersionString = currentVersionString,
+            let currentBuildNumberString = currentBuildNumberString
+        else {
+            return nil
+        }
+
+        do {
+            return try Version(string: currentVersionString + "-" + currentBuildNumberString)
+        } catch _ {
+            return nil
+        }
+    }
+
+    var metadata: [String: Any]? {
+        guard let configurationMeta = configurationForOS?.meta else { return meta?.mapValues { $0.value } }
+        return meta?.merging(configurationMeta, uniquingKeysWith: { (current, _) in current }).mapValues { $0.value }
+    }
+
+    var userRequirements: [String: ((Any) -> Bool)] = [:]
+
+    // MARK: - Public notification type
+
+    public enum NotificationType: String, Codable {
+        case always = "ALWAYS"
+        case once = "ONCE"
+
+        enum CodingKeys: CodingKey {
+            case always
+            case once
+        }
+    }
+
+    // MARK: - Public properties
+
+    /**
+     Returns notification type.
+
+     Possible values are:
+     - Once: Show notification only once
+     - Always: Show notification every time app run
+
+     Default value is `.once`
+     */
+    public var notificationType: UpdateInfo.NotificationType {
+        return configurationForOS?.notificationType ?? .once
+    }
+
+    // MARK: - Initialization -
 
     public init(from decoder: Decoder) throws {
 
@@ -78,84 +161,41 @@ public struct UpdateInfo: Decodable {
         }
     }
 
-    private var configurations: [ConfigurationData]? {
-        #if os(iOS)
-        return ios != nil ? ios : ios2
-        #elseif os(macOS)
-        return macos != nil ? macos : macos2
-        #endif
+    // MARK: - Coding keys -
+
+    enum CodingKeys: String, CodingKey {
+        case ios
+        case ios2
+        case macos
+        case macos2
+        case meta
     }
+}
 
-    private var configurationForOS: ConfigurationData? {
-        guard let configurations = configurations else { return nil }
-        return configurations.filter {
-            guard let requiredOSVersion = $0.requirements?.requiredOSVersion else { return false }
-            return requiredOSVersion >= installedVersion
-        }.first
-    }
+// MARK: - Private methods -
 
-    var currentSdkVersion: Version? {
-        #if os(iOS)
-        return try Version(string: UIDevice.current.systemVersion)
-        #elseif os(macOS)
-        return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
-        #endif
-    }
+extension UpdateInfo {
 
-    var currentVersionString: String? {
-        return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-    }
+    private func meetsUserRequirements(for configuration: ConfigurationData) -> Bool {
 
-    var currentBuildNumberString: String? {
-        return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-    }
+        return userRequirements.reduce(true) { (result, requirement) -> Bool in
 
-    var currentInstalledVersion: Version? {
+            let (key, checkRequirement) = requirement
 
-        guard
-            let currentVersionString = currentVersionString,
-            let currentBuildNumberString = currentBuildNumberString
-        else {
-            return nil
-        }
+            guard let valueForKey = configuration.requirements?.userDefinedRequirements[key] else {
+                return false
+            }
 
-        do {
-            return try Version(string: currentVersionString + "-" + currentBuildNumberString)
-        } catch _ {
-            return nil
+            return checkRequirement(valueForKey)
         }
     }
+}
 
-    // MARK: - Public notification type
+// MARK: - Internal methods -
 
-    // MARK: - Public properties
+extension UpdateInfo {
 
-    public enum NotificationType: String, Codable {
-        case always = "ALWAYS"
-        case once = "ONCE"
-
-        enum CodingKeys: CodingKey {
-            case always
-            case once
-        }
-    }
-
-    /**
-     Returns notification type.
-
-     Possible values are:
-     - Once: Show notification only once
-     - Always: Show notification every time app run
-
-     Default value is `.once`
-     */
-    public var notificationType: UpdateInfo.NotificationType {
-        return configurationForOS?.notificationType ?? .once
-    }
-
-    // MARK: - Public methods
-
-    public func validate() -> PrinceOfVersionsError? {
+    func validate() -> PrinceOfVersionsError? {
         return nil
     }
 }

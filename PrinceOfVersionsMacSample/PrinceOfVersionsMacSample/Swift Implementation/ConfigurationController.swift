@@ -82,6 +82,6 @@ private extension ConfigurationController {
 //        latestVersionTextField.stringValue = infoResponse.latestVersion.description
         notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == .once ? "Once" : "Always"
 //        latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion?.description ?? "-"
-//        metaTextField.stringValue = String(describing: infoResponse.metadata!)
+        metaTextField.stringValue = String(describing: infoResponse.metadata!)
     }
 }
