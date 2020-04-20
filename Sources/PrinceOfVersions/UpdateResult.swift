@@ -36,12 +36,22 @@ public struct UpdateResult {
 extension UpdateResult: UpdateResultValues {
 
     public var updateVersion: Version {
-        return updateInfo.lastVersionAvailable ?? updateInfo.installedVersion
+
+        if let requiredVersion = updateInfo.requiredVersion, let lastVersionAvailable = updateInfo.lastVersionAvailable {
+            return Version.getGreaterVersion(requiredVersion, lastVersionAvailable)
+        }
+
+        if let requiredVersion = updateInfo.requiredVersion, updateInfo.lastVersionAvailable == nil {
+            return Version.getGreaterVersion(requiredVersion, updateInfo.installedVersion)
+        }
+
+        if updateInfo.requiredVersion == nil, let lastVersionAvailable = updateInfo.lastVersionAvailable {
+            return Version.getGreaterVersion(lastVersionAvailable, updateInfo.installedVersion)
+        }
+
+        return updateInfo.installedVersion
     }
 
-/**    This method checks minimum required version, current installed version on device and current available version of the app with data stored on URL.
-    It also checks if minimum version is satisfied and what should be frequency of notifying user.
-*/
     public var updateState: UpdateStatus {
 
         if let minimumSdk = updateInfo.requiredVersion, minimumSdk > updateInfo.installedVersion {
@@ -64,6 +74,6 @@ extension UpdateResult: UpdateResultValues {
     }
 
     public var metadata: [String : Any]? {
-        return nil
+        return updateInfo.metadata
     }
 }

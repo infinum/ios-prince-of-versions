@@ -44,12 +44,15 @@ struct Requirements: Decodable {
         requiredOSVersion = try container.decode(Version.self, forKey: .requiredOSVersion)
 
         userDefinedRequirements = [:]
+
         let dynamicKeysContainer = try decoder.container(keyedBy: DynamicKey.self)
+
         dynamicKeysContainer.allKeys.forEach {
             guard
-                $0.stringValue != CodingKeys.requiredOSVersion.rawValue,
+                $0.stringValue == CodingKeys.requiredOSVersion.rawValue,
                 let value = dynamicKeysContainer.getValue(for: $0)
             else { return }
+
             userDefinedRequirements.updateValue(value, forKey: $0.stringValue)
         }
     }
@@ -57,32 +60,9 @@ struct Requirements: Decodable {
 
 private extension KeyedDecodingContainer {
 
-    func getValue(for key: K) -> Any? {
-
-        do {
-            if let stringValue = try decodeIfPresent(String.self, forKey: key) {
-                return stringValue
-            }
-        } catch _ { }
-
-        do {
-            if let integerValue = try decodeIfPresent(Int.self, forKey: key) {
-                return integerValue
-            }
-        } catch _ { }
-
-        do {
-            if let boolValue = try decodeIfPresent(Bool.self, forKey: key) {
-                return boolValue
-            }
-        } catch _ { }
-
-        do {
-            if try decodeNil(forKey: key) {
-                return true
-            }
-        } catch _ { }
-
+    func getValue(for key: K) -> AnyDecodable? {
+        do { return try decodeIfPresent(AnyDecodable.self, forKey: key) }
+        catch _ { }
         return nil
     }
 }

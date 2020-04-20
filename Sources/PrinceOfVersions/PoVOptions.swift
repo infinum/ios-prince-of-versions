@@ -9,6 +9,8 @@ import Foundation
 
 public class PoVOptions {
 
+    // MARK: - Public properties -
+
     /// The queue on which the completion handler is dispatched. By default, `main` queue is used.
     public var callbackQueue: DispatchQueue = .main
     
@@ -30,9 +32,15 @@ public class PoVOptions {
     /// Bundle where .plist file is stored in which app identifier and app versions should be checked.
     public var bundle: Bundle = .main
 
-    func addRequirement(key: String, requirementCheck: ((String) -> Bool)) {
-        
+    func addRequirement(key: String, requirementCheck: @escaping ((Any) -> Bool)) {
+        userRequirements.updateValue(requirementCheck, forKey: key)
     }
+
+    // MARK: - Internal properties -
+
+    internal var userRequirements: [String: ((Any) -> Bool)] = [:]
+
+    // MARK: - Initialization -
 
     public init() { }
 
