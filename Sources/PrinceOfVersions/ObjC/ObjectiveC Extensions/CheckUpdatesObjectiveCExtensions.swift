@@ -22,23 +22,15 @@ extension PrinceOfVersions {
      It's up to the user to handle that info in a way sutable for the app.
 
      - parameter URL: URL that containts configuration data.
-     - parameter options: Options specifying how PoV should handle the request. Values available for configuring request are: HTTP header fields, certificate pinning enabled and callbackQueue. For details, see `PoVRequestOptions`
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data
      - parameter error: The completion handler to call when load request errors
 
      - returns: Discardable `URLSessionDataTask`
          */
     @available(swift, obsoleted: 1.0)
-    @objc(checkForUpdatesFromURL:options:completion:error:)
+    @objc(checkForUpdatesFromURL:completion:error:)
     @discardableResult
-    public func checkForUpdatesFromURL(_ URL: URL, options: PoVRequestOptions?, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return self.internalyCheckAndPrepareForUpdates(
-            from: URL,
-            httpHeaderFields: options?.httpHeaderFields,
-            shouldPinCertificates: options?.shouldPinCertificates ?? false,
-            callbackQueue: options?.callbackQueue ?? .main,
-            completion: completion,
-            error: error
-        )
+    public func checkForUpdatesFromURL(_ URL: URL, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
+        return self.internalyCheckAndPrepareForUpdates(from: URL, completion: completion, error: error)
     }
 }
