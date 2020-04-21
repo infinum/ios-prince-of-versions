@@ -94,7 +94,7 @@ public struct AppStoreInfo: Codable {
 
         guard let configuration = configurationData else { return .invalidJsonData }
 
-        if configuration.latestVersion == nil { return .invalidLatestVersion }
+        if configuration.latestVersion == nil { return .missingConfigurationVersion }
 
         if configuration.currentVersionString == nil || configuration.currentBuildNumberString == nil {
             return .invalidCurrentVersion
