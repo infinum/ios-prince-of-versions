@@ -28,9 +28,6 @@ public struct UpdateResult {
         self.updateInfo = updateInfo
     }
 
-    public func validate() -> PrinceOfVersionsError? {
-        return nil
-    }
 }
 
 extension UpdateResult: UpdateResultValues {
