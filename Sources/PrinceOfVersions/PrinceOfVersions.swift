@@ -92,11 +92,10 @@ public extension PrinceOfVersions {
                     var updateInfo = try JSONDecoder().decode(UpdateInfo.self, from: data!)
                     updateInfo.userRequirements = self.options.userRequirements
 
-                    let updateResult = UpdateResult(updateInfo: updateInfo)
-
-                    if let error = updateResult.validate() {
+                    if let error = updateInfo.validate() {
                         result = Result.failure(error)
                     } else {
+                        let updateResult = UpdateResult(updateInfo: updateInfo)
                         result = Result.success(updateResult)
                     }
 

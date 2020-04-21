@@ -39,7 +39,4 @@ public class PoVOptions: NSObject {
 
     // MARK: - Internal properties
     var userRequirements: [String: ((Any) -> Bool)] = [:]
-
-    // MARK: - Init
-    public override init() { }
 }

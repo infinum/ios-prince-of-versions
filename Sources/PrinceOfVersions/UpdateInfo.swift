@@ -34,7 +34,6 @@ public struct UpdateInfo: Decodable {
     private var meta: [String: AnyDecodable]?
 
     private let bundle = Bundle.main
-    private var configurationForOS: ConfigurationData?
 
     private var configurations: [ConfigurationData]? {
         #if os(iOS)
@@ -42,6 +41,19 @@ public struct UpdateInfo: Decodable {
         #elseif os(macOS)
         return macos != nil ? macos : macos2
         #endif
+    }
+
+    private var configurationForOS: ConfigurationData? {
+
+        guard let configurations = configurations else { return nil }
+
+        return configurations.first { configuration in
+            guard
+                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
+                let sdkVersion = sdkVersion
+            else { return false }
+            return sdkVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
+        }
     }
 
     // MARK: - Internal properties -
@@ -129,8 +141,6 @@ public struct UpdateInfo: Decodable {
         macos = container.decodeConfiguration(.macos)
         macos2 = container.decodeConfiguration(.macos2)
         meta = container.decodeMeta(.meta)
-
-        configurationForOS = suitableConfiguration
     }
 
     // MARK: - Coding keys -
@@ -147,19 +157,6 @@ public struct UpdateInfo: Decodable {
 // MARK: - Private methods -
 
 extension UpdateInfo {
-
-    private var suitableConfiguration: ConfigurationData? {
-
-        guard let configurations = configurations else { return nil }
-
-        return configurations.first { configuration in
-            guard
-                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
-                let sdkVersion = sdkVersion
-            else { return false }
-            return sdkVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
-        }
-    }
 
     private func meetsUserRequirements(for configuration: ConfigurationData) -> Bool {
 
@@ -181,6 +178,27 @@ extension UpdateInfo {
 extension UpdateInfo {
 
     func validate() -> PrinceOfVersionsError? {
+
+        if configurations == nil {
+            return .dataNotFound
+        }
+
+        if configurations != nil && configurationForOS == nil {
+            return .requirementsNotSatisfied(nil)
+        }
+
+        if currentInstalledVersion == nil {
+            return .invalidCurrentVersion
+        }
+
+        if lastVersionAvailable == nil {
+            return .invalidLatestVersion
+        }
+
+        if requiredVersion == nil {
+            return .invalidMinimumVersion
+        }
+
         return nil
     }
 }

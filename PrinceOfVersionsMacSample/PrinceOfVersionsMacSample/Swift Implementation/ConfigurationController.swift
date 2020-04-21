@@ -21,6 +21,7 @@ class ConfigurationController: NSViewController {
     @IBOutlet weak var requiredVersionTextField: NSTextField!
     @IBOutlet weak var lastVersionAvailableTextField: NSTextField!
     @IBOutlet weak var installedVersionTextField: NSTextField!
+    @IBOutlet weak var notificationTypeTextField: NSTextField!
     @IBOutlet weak var requirementsTextField: NSTextField!
 
     // MARK: - View Lifecycle
@@ -37,14 +38,24 @@ class ConfigurationController: NSViewController {
 
 private extension ConfigurationController {
 
-    func checkAppVersion() {
+    var options: PoVOptions {
 
         let options = PoVOptions()
-        options.addRequirement(key: "bluetooth") { (value) -> Bool in
+
+        options.addRequirement(key: "region") { (value) -> Bool in
             guard let value = value as? String else { return false }
-            return value.starts(with: "10")
+            return value == "hr"
         }
 
+        options.addRequirement(key: "bluetooth") { (value) -> Bool in
+            guard let value = value as? String else { return false }
+            return value.starts(with: "5")
+        }
+
+        return options
+    }
+
+    func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
         PrinceOfVersions(with: options).checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] updateResultResponse in
             switch updateResultResponse.result {
@@ -95,6 +106,7 @@ private extension ConfigurationController {
         requiredVersionTextField.stringValue = versionInfo.requiredVersion?.description ?? ""
         lastVersionAvailableTextField.stringValue = versionInfo.lastVersionAvailable?.description ?? ""
         installedVersionTextField.stringValue = versionInfo.installedVersion.description
+        notificationTypeTextField.stringValue = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
         requirementsTextField.stringValue = String(format: "%@", versionInfo.requirements!)
     }
 }
