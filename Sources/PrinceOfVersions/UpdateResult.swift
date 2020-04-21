@@ -54,14 +54,17 @@ extension UpdateResult: UpdateResultValues {
 
     public var updateState: UpdateStatus {
 
-        if let minimumSdk = updateInfo.requiredVersion, minimumSdk > updateInfo.installedVersion {
+        if let requiredVersion = updateInfo.requiredVersion, requiredVersion > updateInfo.installedVersion {
+            return .requiredUpdateNeeded
+        }
+
+        guard let latestVersion = updateInfo.lastVersionAvailable else {
             return .noUpdateAvailable
         }
 
-        guard let latestVersion = updateInfo.lastVersionAvailable else { return .noUpdateAvailable }
+        let shouldNotify = !latestVersion.wasNotified || updateInfo.notificationType == .always
 
-        if (latestVersion > updateInfo.installedVersion) &&
-            (!latestVersion.wasNotified || updateInfo.notificationType == .always) {
+        if (latestVersion > updateInfo.installedVersion) && shouldNotify {
             updateInfo.lastVersionAvailable?.markNotified()
             return .newUpdateAvailable
         }
