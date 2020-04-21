@@ -15,15 +15,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
 
 //         Uncomment version that you want to build:
-        createAndShowViewController(with: "SwiftAppSample")
-//        createAndShowViewController(with: "ObjCAppSample")
+//        createAndShowViewController(with: "SwiftAppSample")
+        createAndShowViewController(with: "ObjCAppSample")
     }
 }
 
 private extension AppDelegate {
 
     func createAndShowViewController(with identifier: String) {
-        let tabBarController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: identifier) as! NSTabViewController
-        NSApplication.shared.mainWindow?.contentViewController = tabBarController
+        let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: identifier) as! NSViewController
+        NSApplication.shared.mainWindow?.contentViewController = viewController
     }
 }
