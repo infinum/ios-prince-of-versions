@@ -184,19 +184,15 @@ extension UpdateInfo {
         }
 
         if configurations != nil && configurationForOS == nil {
-            return .requirementsNotSatisfied(nil)
+            return .requirementsNotSatisfied(metadata)
+        }
+
+        if lastVersionAvailable == nil && requiredVersion == nil {
+            return .missingConfigurationVersion
         }
 
         if currentInstalledVersion == nil {
             return .invalidCurrentVersion
-        }
-
-        if lastVersionAvailable == nil {
-            return .invalidLatestVersion
-        }
-
-        if requiredVersion == nil {
-            return .invalidMinimumVersion
         }
 
         return nil
