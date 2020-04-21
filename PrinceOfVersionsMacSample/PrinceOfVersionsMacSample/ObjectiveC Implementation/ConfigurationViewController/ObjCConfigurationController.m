@@ -57,7 +57,7 @@
 
 - (void)checkAppStoreVersion
 {
-    PoVRequestOptions *options = [PoVRequestOptions new];
+    PoVOptions *options = [PoVOptions new];
     options.trackPhaseRelease = NO;
 
     [[[PrinceOfVersions alloc] initWithOptions:options] checkForUpdateFromAppStoreWithCompletion:^(AppStoreInfoObject *response) {
