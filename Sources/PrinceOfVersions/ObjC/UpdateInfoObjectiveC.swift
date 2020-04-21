@@ -11,13 +11,14 @@ import Foundation
 @objcMembers
 public class UpdateInfoObject: NSObject {
 
+    // MARK: - Private properties
+    private var updateInfo: UpdateInfo
+
+    // MARK: - Public notification type
     @objc public enum UpdateNotificationType: Int {
         case once
         case always
     }
-
-    // MARK: - Private properties
-    private var updateInfo: UpdateInfo
 
     // MARK: - Public properties
 
@@ -80,10 +81,8 @@ private extension UpdateInfo.NotificationType {
 
     var updateNotificationType: UpdateInfoObject.UpdateNotificationType {
         switch self {
-        case .always:
-            return .always
-        case .once:
-            return .once
+        case .always: return .always
+        case .once: return .once
         }
     }
 }
