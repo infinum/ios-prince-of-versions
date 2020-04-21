@@ -217,7 +217,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns requirements for configuration.
      */
     public var requirements: [String : Any]? {
-        return configurationForOS?.requirements?.userDefinedRequirements
+        return configurationForOS?.requirements?.allRequirements
     }
 }
 
