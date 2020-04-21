@@ -10,12 +10,11 @@ import Foundation
 
 public enum PrinceOfVersionsError: Error {
     case invalidJsonData
-    case invalidLatestVersion
-    case invalidCurrentVersion
-    case invalidMinimumVersion
-    case invalidBundleId
     case dataNotFound
     case requirementsNotSatisfied([String: Any]?)
+    case missingConfigurationVersion
+    case invalidCurrentVersion
+    case invalidBundleId
     case unknown(String?)
 }
 
@@ -25,18 +24,16 @@ extension PrinceOfVersionsError: LocalizedError {
         switch self {
         case .invalidJsonData:
             return NSLocalizedString("Invalid JSDON Data", comment: "")
-        case .invalidLatestVersion:
-            return NSLocalizedString("Invalid Latest Version", comment: "")
-        case .invalidCurrentVersion:
-            return NSLocalizedString("Invalid Current Version", comment: "")
-        case .invalidMinimumVersion:
-            return NSLocalizedString("Invalid Minimum Version", comment: "")
-        case .invalidBundleId:
-            return NSLocalizedString("BundleID not found", comment: "")
         case .dataNotFound:
             return NSLocalizedString("Data not found for selected app id", comment: "")
         case .requirementsNotSatisfied:
             return NSLocalizedString("Requirements not satisfied", comment: "")
+        case .missingConfigurationVersion:
+            return NSLocalizedString("Missing configuration version", comment: "")
+        case .invalidCurrentVersion:
+            return NSLocalizedString("Invalid Current Version", comment: "")
+        case .invalidBundleId:
+            return NSLocalizedString("BundleID not found", comment: "")
         case .unknown(let customMessage):
             guard let message = customMessage else {
                 return NSLocalizedString("Unknown error", comment: "")
