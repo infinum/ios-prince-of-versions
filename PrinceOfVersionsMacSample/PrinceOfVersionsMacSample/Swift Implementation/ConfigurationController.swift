@@ -21,6 +21,7 @@ class ConfigurationController: NSViewController {
     @IBOutlet weak var minimumSDKTextField: NSTextField!
     @IBOutlet weak var latestVersionTextField: NSTextField!
     @IBOutlet weak var notificationTypeTextField: NSTextField!
+    @IBOutlet weak var updateStatusTextField: NSTextField!
     @IBOutlet weak var latestMinimumSDKTextField: NSTextField!
     @IBOutlet weak var metaTextField: NSTextField!
 
@@ -86,9 +87,25 @@ private extension ConfigurationController {
 //        macOSVersionTextField.stringValue = infoResponse.sdkVersion.description
 //        minimumVersionTextField.stringValue = infoResponse.minimumRequiredVersion?.description ?? "-"
 //        minimumSDKTextField.stringValue = infoResponse.minimumSdkForMinimumRequiredVersion?.description ?? "-"
-//        latestVersionTextField.stringValue = infoResponse.latestVersion.description
+        if let lastVersionAvailable = infoResponse.versionInfo.lastVersionAvailable?.description {
+            latestVersionTextField.stringValue = lastVersionAvailable
+        }
         notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == .once ? "Once" : "Always"
 //        latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion?.description ?? "-"
+        updateStatusTextField.stringValue = infoResponse.updateState.description
         metaTextField.stringValue = String(describing: infoResponse.metadata!)
+    }
+
+}
+
+private extension UpdateStatus {
+
+    var description: String {
+        switch self {
+        case .noUpdateAvailable: return "No Update Available"
+        case .requiredUpdateNeeded: return "Required Update Needed"
+        case .newUpdateAvailable: return "New Update Available"
+        default: return ""
+        }
     }
 }
