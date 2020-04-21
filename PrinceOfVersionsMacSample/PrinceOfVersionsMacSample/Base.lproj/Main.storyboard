@@ -670,6 +670,7 @@
                         <outlet property="minimumSDKTextField" destination="89V-bd-w2I" id="SIe-bv-llh"/>
                         <outlet property="minimumVersionTextField" destination="qCR-g2-DeE" id="IxP-Dv-dlK"/>
                         <outlet property="notificationTypeTextField" destination="cpA-ST-k6w" id="zhh-Ce-MkW"/>
+                        <outlet property="updateStatusTextField" destination="JzC-09-wsD" id="XL0-Qn-rH2"/>
                     </connections>
                 </viewController>
                 <customObject id="zYe-Qc-3UY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

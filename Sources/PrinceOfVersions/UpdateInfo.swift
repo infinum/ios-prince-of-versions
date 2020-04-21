@@ -27,13 +27,14 @@ public struct UpdateInfo: Decodable {
 
     // MARK: - Private properties -
 
-    private let bundle = Bundle.main
+    private var ios: [ConfigurationData]?
+    private var ios2: [ConfigurationData]?
+    private var macos: [ConfigurationData]?
+    private var macos2: [ConfigurationData]?
+    private var meta: [String: AnyDecodable]?
 
-    private let ios: [ConfigurationData]?
-    private let ios2: [ConfigurationData]?
-    private let macos: [ConfigurationData]?
-    private let macos2: [ConfigurationData]?
-    private let meta: [String: AnyDecodable]?
+    private let bundle = Bundle.main
+    private var configurationForOS: ConfigurationData?
 
     private var configurations: [ConfigurationData]? {
         #if os(iOS)
@@ -41,19 +42,6 @@ public struct UpdateInfo: Decodable {
         #elseif os(macOS)
         return macos != nil ? macos : macos2
         #endif
-    }
-
-    private var configurationForOS: ConfigurationData? {
-
-        guard let configurations = configurations else { return nil }
-
-        return configurations.first { configuration in
-            guard
-                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
-                let sdkVersion = sdkVersion
-            else { return false }
-            return sdkVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
-        }
     }
 
     // MARK: - Internal properties -
@@ -91,8 +79,13 @@ public struct UpdateInfo: Decodable {
     }
 
     var metadata: [String: Any]? {
-        guard let configurationMeta = configurationForOS?.meta else { return meta?.mapValues { $0.value } }
-        return meta?.merging(configurationMeta, uniquingKeysWith: { (_, newValue) in newValue })
+
+        guard let configMeta = configurationForOS?.meta else {
+            return meta?.mapValues { $0.value }
+        }
+
+        return meta?
+            .merging(configMeta, uniquingKeysWith: { (_, newValue) in newValue })
             .mapValues { $0.value }
     }
 
@@ -125,41 +118,19 @@ public struct UpdateInfo: Decodable {
         return configurationForOS?.notificationType ?? .once
     }
 
-    // MARK: - Initialization -
+    // MARK: - Init -
 
     public init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        do {
-            ios = try container.decode([ConfigurationData].self, forKey: .ios)
-        } catch _ {
-            ios = nil
-        }
+        ios = container.decodeConfiguration(.ios)
+        ios2 = container.decodeConfiguration(.ios2)
+        macos = container.decodeConfiguration(.macos)
+        macos2 = container.decodeConfiguration(.macos2)
+        meta = container.decodeMeta(.meta)
 
-        do {
-            ios2 = try container.decode([ConfigurationData].self, forKey: .ios2)
-        } catch _ {
-            ios2 = nil
-        }
-
-        do {
-            macos = try container.decode([ConfigurationData].self, forKey: .macos)
-        } catch _ {
-            macos = nil
-        }
-
-        do {
-            macos2 = try container.decode([ConfigurationData].self, forKey: .macos2)
-        } catch _ {
-            macos2 = nil
-        }
-
-        do {
-            meta = try container.decode([String: AnyDecodable].self, forKey: .meta)
-        } catch _ {
-            meta = nil
-        }
+        configurationForOS = suitableConfiguration
     }
 
     // MARK: - Coding keys -
@@ -176,6 +147,19 @@ public struct UpdateInfo: Decodable {
 // MARK: - Private methods -
 
 extension UpdateInfo {
+
+    private var suitableConfiguration: ConfigurationData? {
+
+        guard let configurations = configurations else { return nil }
+
+        return configurations.first { configuration in
+            guard
+                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
+                let sdkVersion = sdkVersion
+            else { return false }
+            return sdkVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
+        }
+    }
 
     private func meetsUserRequirements(for configuration: ConfigurationData) -> Bool {
 
@@ -234,5 +218,22 @@ extension UpdateInfo: UpdateInfoValues {
      */
     public var requirements: [String : Any]? {
         return configurationForOS?.requirements?.userDefinedRequirements
+    }
+}
+
+// MARK: - Helpers -
+
+private extension KeyedDecodingContainer {
+    
+    func decodeConfiguration(_ key: K) -> [ConfigurationData]? {
+        do { return try decode([ConfigurationData].self, forKey: key) }
+        catch _ { }
+        return nil
+    }
+
+    func decodeMeta(_ key: K) -> [String: AnyDecodable]? {
+        do { return try decode([String: AnyDecodable].self, forKey: key) }
+        catch _ { }
+        return nil
     }
 }
