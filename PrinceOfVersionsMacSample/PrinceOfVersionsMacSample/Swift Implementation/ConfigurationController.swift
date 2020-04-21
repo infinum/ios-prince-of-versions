@@ -88,14 +88,14 @@ private extension ConfigurationController {
     func fillUpdateResultUI(with infoResponse: UpdateResult) {
         updateVersionTextField.stringValue = infoResponse.updateVersion.description
         updateStateTextField.stringValue = infoResponse.updateState.description
-        metaTextField.stringValue = String(describing: infoResponse.metadata!)
+        metaTextField.stringValue = String(format: "%@", infoResponse.metadata!)
     }
 
     func fillVersionInfoUI(with versionInfo: UpdateInfo) {
         requiredVersionTextField.stringValue = versionInfo.requiredVersion?.description ?? ""
         lastVersionAvailableTextField.stringValue = versionInfo.lastVersionAvailable?.description ?? ""
         installedVersionTextField.stringValue = versionInfo.installedVersion.description
-        requirementsTextField.stringValue = String(describing: versionInfo.requirements!)
+        requirementsTextField.stringValue = String(format: "%@", versionInfo.requirements!)
     }
 }
 

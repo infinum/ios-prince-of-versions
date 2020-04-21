@@ -13,16 +13,14 @@
 
 @interface ObjCConfigurationController ()
 
- @property (nonatomic, weak) IBOutlet NSTextField *installedVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *macOSVersionTextField;
-
- @property (nonatomic, weak) IBOutlet NSTextField *minimumVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *minimumSDKTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *latestVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *notificationTypeTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *updateStatusTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *latestMinimumSDKTextField;
+ @property (nonatomic, weak) IBOutlet NSTextField *updateVersionTextField;
+ @property (nonatomic, weak) IBOutlet NSTextField *updateStateTextField;
  @property (nonatomic, weak) IBOutlet NSTextField *metaTextField;
+
+ @property (nonatomic, weak) IBOutlet NSTextField *requiredVersionTextField;
+ @property (nonatomic, weak) IBOutlet NSTextField *lastVersionAvailableTextField;
+ @property (nonatomic, weak) IBOutlet NSTextField *installedVersionTextField;
+ @property (nonatomic, weak) IBOutlet NSTextField *requirementsTextField;
 
 @end
 
@@ -69,15 +67,16 @@
 
 - (void)fillUIWithInfoResponse:(UpdateResultObject *)infoResponse
 {
+    self.updateVersionTextField.stringValue = infoResponse.updateVersion.description;
+    self.updateStateTextField.stringValue = [self updateStateFromResult:infoResponse.updateState];
+    self.metaTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
+
+    self.requiredVersionTextField.stringValue = infoResponse.versionInfo.requiredVersion.description;
+    self.lastVersionAvailableTextField.stringValue = infoResponse.versionInfo.lastVersionAvailable.description;
     self.installedVersionTextField.stringValue = infoResponse.versionInfo.installedVersion.description;
-//    self.macOSVersionTextField.stringValue = infoResponse.sdkVersion.description;
-    self.minimumVersionTextField.stringValue = infoResponse.versionInfo.requiredVersion.description;
-//    self.minimumSDKTextField.stringValue = infoResponse.minimumSdkForMinimumRequiredVersion.description;
-    self.latestVersionTextField.stringValue = infoResponse.versionInfo.lastVersionAvailable.description;
-    self.notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"Once" : @"Always";
-//    self.latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion.description;
-    self.updateStatusTextField.stringValue = [self updateStateFromResult:infoResponse.updateState];
-    self.metaTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.metadata];
+    self.requirementsTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.versionInfo.requirements];
+
+//    self.notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"Once" : @"Always";
 }
 
 - (NSString *)updateStateFromResult:(UpdateStatusType)type
