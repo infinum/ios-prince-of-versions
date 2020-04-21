@@ -9,7 +9,7 @@
 import Foundation
 
 enum Constants {
-    static let princeOfVersionsURL = "https://pastebin.com/raw/NgM2Rhv3"
+    static let princeOfVersionsURL = "https://pastebin.com/raw/N7S6J2wz"
 }
 
 @objcMembers class Constant: NSObject {

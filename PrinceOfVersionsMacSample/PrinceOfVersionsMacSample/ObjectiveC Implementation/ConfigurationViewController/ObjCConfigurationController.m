@@ -13,14 +13,15 @@
 
 @interface ObjCConfigurationController ()
 
- @property (nonatomic, weak) IBOutlet NSTextField *updateVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *updateStateTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *metaTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *updateVersionTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *updateStateTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *metaTextField;
 
- @property (nonatomic, weak) IBOutlet NSTextField *requiredVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *lastVersionAvailableTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *installedVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *requirementsTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *requiredVersionTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *lastVersionAvailableTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *installedVersionTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *notificationTypeTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *requirementsTextField;
 
 @end
 
@@ -74,9 +75,8 @@
     self.requiredVersionTextField.stringValue = infoResponse.versionInfo.requiredVersion.description;
     self.lastVersionAvailableTextField.stringValue = infoResponse.versionInfo.lastVersionAvailable.description;
     self.installedVersionTextField.stringValue = infoResponse.versionInfo.installedVersion.description;
+    self.notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
     self.requirementsTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.versionInfo.requirements];
-
-//    self.notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"Once" : @"Always";
 }
 
 - (NSString *)updateStateFromResult:(UpdateStatusType)type
