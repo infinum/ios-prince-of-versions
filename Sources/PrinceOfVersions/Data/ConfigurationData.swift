@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - ConfigurationData -
 struct ConfigurationData: Decodable {
 
     let requiredVersion: Version?
@@ -29,13 +30,17 @@ struct ConfigurationData: Decodable {
     }
 }
 
+// MARK: - Requirements -
 struct Requirements: Decodable {
 
     let requiredOSVersion: Version?
     var userDefinedRequirements: [String: Any]
 
-    enum CodingKeys: String, CodingKey {
-        case requiredOSVersion = "required_os_version"
+    var allRequirements: [String: Any]? {
+        guard let requiredOSVersion = requiredOSVersion else { return nil }
+        var requirements: [String : Any] = [:]
+        requirements.updateValue(requiredOSVersion, forKey: CodingKeys.requiredOSVersion.rawValue)
+        return requirements.merging(userDefinedRequirements, uniquingKeysWith: { (_, newValue) in newValue })
     }
 
     init(from decoder: Decoder) throws {
@@ -53,10 +58,16 @@ struct Requirements: Decodable {
                 let value = dynamicKeysContainer.getValue(for: $0)
             else { return }
 
-            userDefinedRequirements.updateValue(value, forKey: $0.stringValue)
+            userDefinedRequirements.updateValue(value.value, forKey: $0.stringValue)
         }
     }
+
+    enum CodingKeys: String, CodingKey {
+        case requiredOSVersion = "required_os_version"
+    }
 }
+
+// MARK: - Helpers -
 
 private extension KeyedDecodingContainer {
 

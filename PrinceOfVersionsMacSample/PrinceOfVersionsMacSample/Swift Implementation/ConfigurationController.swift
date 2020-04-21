@@ -14,16 +14,14 @@ class ConfigurationController: NSViewController {
     // MARK: - Private properties
     // MARK: IBOutlets
 
-    @IBOutlet weak var installedVersionTextField: NSTextField!
-    @IBOutlet weak var macOSVersionTextField: NSTextField!
-
-    @IBOutlet weak var minimumVersionTextField: NSTextField!
-    @IBOutlet weak var minimumSDKTextField: NSTextField!
-    @IBOutlet weak var latestVersionTextField: NSTextField!
-    @IBOutlet weak var notificationTypeTextField: NSTextField!
-    @IBOutlet weak var updateStatusTextField: NSTextField!
-    @IBOutlet weak var latestMinimumSDKTextField: NSTextField!
+    @IBOutlet weak var updateVersionTextField: NSTextField!
+    @IBOutlet weak var updateStateTextField: NSTextField!
     @IBOutlet weak var metaTextField: NSTextField!
+
+    @IBOutlet weak var requiredVersionTextField: NSTextField!
+    @IBOutlet weak var lastVersionAvailableTextField: NSTextField!
+    @IBOutlet weak var installedVersionTextField: NSTextField!
+    @IBOutlet weak var requirementsTextField: NSTextField!
 
     // MARK: - View Lifecycle
 
@@ -83,19 +81,22 @@ private extension ConfigurationController {
     }
 
     func fillUI(with infoResponse: UpdateResult) {
-        installedVersionTextField.stringValue = infoResponse.versionInfo.installedVersion.description
-//        macOSVersionTextField.stringValue = infoResponse.sdkVersion.description
-//        minimumVersionTextField.stringValue = infoResponse.minimumRequiredVersion?.description ?? "-"
-//        minimumSDKTextField.stringValue = infoResponse.minimumSdkForMinimumRequiredVersion?.description ?? "-"
-        if let lastVersionAvailable = infoResponse.versionInfo.lastVersionAvailable?.description {
-            latestVersionTextField.stringValue = lastVersionAvailable
-        }
-        notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == .once ? "Once" : "Always"
-//        latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion?.description ?? "-"
-        updateStatusTextField.stringValue = infoResponse.updateState.description
+        fillUpdateResultUI(with: infoResponse)
+        fillVersionInfoUI(with: infoResponse.versionInfo)
+    }
+
+    func fillUpdateResultUI(with infoResponse: UpdateResult) {
+        updateVersionTextField.stringValue = infoResponse.updateVersion.description
+        updateStateTextField.stringValue = infoResponse.updateState.description
         metaTextField.stringValue = String(describing: infoResponse.metadata!)
     }
 
+    func fillVersionInfoUI(with versionInfo: UpdateInfo) {
+        requiredVersionTextField.stringValue = versionInfo.requiredVersion?.description ?? ""
+        lastVersionAvailableTextField.stringValue = versionInfo.lastVersionAvailable?.description ?? ""
+        installedVersionTextField.stringValue = versionInfo.installedVersion.description
+        requirementsTextField.stringValue = String(describing: versionInfo.requirements!)
+    }
 }
 
 private extension UpdateStatus {

@@ -15,8 +15,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
 
 //         Uncomment version that you want to build:
-//        createAndShowViewController(with: "SwiftAppSample")
-        createAndShowViewController(with: "ObjCAppSample")
+        createAndShowViewController(with: "SwiftAppSample")
+//        createAndShowViewController(with: "ObjCAppSample")
     }
 }
 
