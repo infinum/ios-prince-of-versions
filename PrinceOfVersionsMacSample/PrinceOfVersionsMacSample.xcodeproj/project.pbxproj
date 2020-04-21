@@ -13,9 +13,7 @@
 		0650A02923351160009400CA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A02823351160009400CA /* Constants.swift */; };
 		0650A02E23351272009400CA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0650A02D23351272009400CA /* README.md */; };
 		0650A03023351499009400CA /* ConfigurationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A02F23351499009400CA /* ConfigurationController.swift */; };
-		0650A032233514B1009400CA /* AutomaticCheckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0650A031233514B1009400CA /* AutomaticCheckController.swift */; };
 		0650A04E23353573009400CA /* ObjCConfigurationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A04D23353573009400CA /* ObjCConfigurationController.m */; };
-		0650A05123353593009400CA /* ObjCAutomaticCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0650A05023353593009400CA /* ObjCAutomaticCheckController.m */; };
 		06F8AE59241A658F0099E820 /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE58241A658F0099E820 /* PrinceOfVersions.framework */; };
 		06F8AE5A241A658F0099E820 /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06F8AE58241A658F0099E820 /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -45,12 +43,9 @@
 		0650A02823351160009400CA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0650A02D23351272009400CA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0650A02F23351499009400CA /* ConfigurationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationController.swift; sourceTree = "<group>"; };
-		0650A031233514B1009400CA /* AutomaticCheckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCheckController.swift; sourceTree = "<group>"; };
 		0650A033233514E4009400CA /* PrinceOfVersionsMacSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrinceOfVersionsMacSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0650A04C23353573009400CA /* ObjCConfigurationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCConfigurationController.h; sourceTree = "<group>"; };
 		0650A04D23353573009400CA /* ObjCConfigurationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCConfigurationController.m; sourceTree = "<group>"; };
-		0650A04F23353593009400CA /* ObjCAutomaticCheckController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckController.h; sourceTree = "<group>"; };
-		0650A05023353593009400CA /* ObjCAutomaticCheckController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckController.m; sourceTree = "<group>"; };
 		06F8AE58241A658F0099E820 /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,7 +97,6 @@
 			isa = PBXGroup;
 			children = (
 				0650A02F23351499009400CA /* ConfigurationController.swift */,
-				0650A031233514B1009400CA /* AutomaticCheckController.swift */,
 			);
 			path = "Swift Implementation";
 			sourceTree = "<group>";
@@ -111,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				0650A037233514EB009400CA /* ConfigurationViewController */,
-				0650A03B2335151C009400CA /* AutomaticCheckViewController */,
 			);
 			path = "ObjectiveC Implementation";
 			sourceTree = "<group>";
@@ -134,15 +127,6 @@
 				0650A04D23353573009400CA /* ObjCConfigurationController.m */,
 			);
 			path = ConfigurationViewController;
-			sourceTree = "<group>";
-		};
-		0650A03B2335151C009400CA /* AutomaticCheckViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0650A04F23353593009400CA /* ObjCAutomaticCheckController.h */,
-				0650A05023353593009400CA /* ObjCAutomaticCheckController.m */,
-			);
-			path = AutomaticCheckViewController;
 			sourceTree = "<group>";
 		};
 		0650A049233520D2009400CA /* Frameworks */ = {
@@ -226,9 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0650A05123353593009400CA /* ObjCAutomaticCheckController.m in Sources */,
 				0650A01823350F13009400CA /* AppDelegate.swift in Sources */,
-				0650A032233514B1009400CA /* AutomaticCheckController.swift in Sources */,
 				0650A02923351160009400CA /* Constants.swift in Sources */,
 				0650A03023351499009400CA /* ConfigurationController.swift in Sources */,
 				0650A04E23353573009400CA /* ObjCConfigurationController.m in Sources */,
