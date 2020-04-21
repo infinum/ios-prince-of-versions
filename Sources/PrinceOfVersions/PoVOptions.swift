@@ -7,9 +7,10 @@
 
 import Foundation
 
-public class PoVOptions {
+@objcMembers
+public class PoVOptions: NSObject {
 
-    // MARK: - Public properties -
+    // MARK: - Public properties
 
     /// The queue on which the completion handler is dispatched. By default, `main` queue is used.
     public var callbackQueue: DispatchQueue = .main
@@ -36,18 +37,9 @@ public class PoVOptions {
         userRequirements.updateValue(requirementCheck, forKey: key)
     }
 
+    // MARK: - Internal properties
     var userRequirements: [String: ((Any) -> Bool)] = [:]
 
-    // MARK: - Initialization -
-
-    public init() { }
-
-    init(with options: PoVRequestOptions?) {
-        guard let options = options else { return }
-        self.callbackQueue = options.callbackQueue
-        self.shouldPinCertificates = options.shouldPinCertificates
-        self.httpHeaderFields = options.httpHeaderFields
-        self.trackPhaseRelease = options.trackPhaseRelease
-        self.bundle = options.bundle
-    }
+    // MARK: - Init
+    public override init() { }
 }
