@@ -24,15 +24,15 @@ public class PrinceOfVersions: NSObject {
     public typealias CompletionBlock = (UpdateResultResponse) -> Void
     public typealias AppStoreCompletionBlock = (Result<AppStoreInfo, PrinceOfVersionsError>) -> Void
 
-    // MARK: Internal properties
+    // MARK: - Internal properties
 
     var options: PoVOptions
 
-    // MARK: Private properties
+    // MARK: - Private properties
 
     private var shouldPinCertificates: Bool = false
 
-    // MARK: Initialization
+    // MARK: - Init
 
     public init(with options: PoVOptions? = nil) {
         self.options = options ?? PoVOptions()
@@ -45,8 +45,8 @@ public class PrinceOfVersions: NSObject {
 
     @available(swift, obsoleted: 1.0)
     @objc(initWithOptions:)
-    public init(with options: PoVRequestOptions) {
-        self.options = PoVOptions(with: options)
+    public init(with options: PoVOptions) {
+        self.options = options
     }
 }
 
@@ -69,7 +69,7 @@ public extension PrinceOfVersions {
     @discardableResult
     func checkForUpdates(from URL: URL, completion: @escaping CompletionBlock) -> URLSessionDataTask {
 
-        self.shouldPinCertificates = options.shouldPinCertificates
+        shouldPinCertificates = options.shouldPinCertificates
 
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
         var request = URLRequest(url: URL)

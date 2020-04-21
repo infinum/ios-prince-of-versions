@@ -18,15 +18,15 @@ public protocol UpdateResultObjectValues {
 @objcMembers
 public class UpdateResultObject: NSObject {
 
+    // MARK: - Private properties
+    private var updateResult: UpdateResult
+
+    // MARK: - Public update status type
     @objc public enum UpdateStatusType: Int {
         case noUpdateAvailable
         case requiredUpdateNeeded
         case newUpdateAvailable
     }
-
-    // MARK: - Private properties
-
-    private var updateResult: UpdateResult
 
     // MARK: - Init
     init(from updateResult: UpdateResult) {
