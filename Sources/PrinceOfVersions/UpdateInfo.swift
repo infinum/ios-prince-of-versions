@@ -83,11 +83,7 @@ public struct UpdateInfo: Decodable {
             return nil
         }
 
-        do {
-            return try Version(string: currentVersionString + "-" + currentBuildNumberString)
-        } catch _ {
-            return nil
-        }
+        return try? Version(string: currentVersionString + "-" + currentBuildNumberString)
     }
 
     var metadata: [String: Any]? {
@@ -168,7 +164,7 @@ extension UpdateInfo {
                 return false
             }
 
-            return checkRequirement(valueForKey)
+            return result && checkRequirement(valueForKey)
         }
     }
 }
@@ -199,7 +195,7 @@ extension UpdateInfo {
     }
 }
 
-// MARK: - UpdateInfoData -
+// MARK: - UpdateInfoValues -
 
 extension UpdateInfo: UpdateInfoValues {
 
@@ -240,14 +236,10 @@ extension UpdateInfo: UpdateInfoValues {
 private extension KeyedDecodingContainer {
     
     func decodeConfiguration(_ key: K) -> [ConfigurationData]? {
-        do { return try decode([ConfigurationData].self, forKey: key) }
-        catch _ { }
-        return nil
+        return try? decode([ConfigurationData].self, forKey: key)
     }
 
     func decodeMeta(_ key: K) -> [String: AnyDecodable]? {
-        do { return try decode([String: AnyDecodable].self, forKey: key) }
-        catch _ { }
-        return nil
+        return try? decode([String: AnyDecodable].self, forKey: key)
     }
 }
