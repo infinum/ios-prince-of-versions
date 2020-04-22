@@ -22,13 +22,17 @@ protocol UpdateResultValues {
 
 public struct UpdateResult {
 
+    // MARK: - Private properties
     private var updateInfo: UpdateInfo
 
+    // MARK: - Init
     init(updateInfo: UpdateInfo) {
         self.updateInfo = updateInfo
     }
 
 }
+
+// MARK: - UpdateResultValues -
 
 extension UpdateResult: UpdateResultValues {
 
@@ -73,6 +77,9 @@ extension UpdateResult: UpdateResultValues {
         return updateInfo
     }
 
+    /**
+     Returns global metadata merged with metadata for configuration.
+     */
     public var metadata: [String : Any]? {
         return updateInfo.metadata
     }
