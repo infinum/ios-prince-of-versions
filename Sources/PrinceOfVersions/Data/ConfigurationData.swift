@@ -11,12 +11,14 @@ import Foundation
 // MARK: - ConfigurationData -
 struct ConfigurationData: Decodable {
 
+    // MARK: - Internal properties
     let requiredVersion: Version?
     let lastVersionAvailable: Version?
     let notificationType: UpdateInfo.NotificationType?
     let requirements: Requirements?
     let meta: [String: AnyDecodable]?
 
+    // MARK: - Coding keys
     enum CodingKeys: String, CodingKey {
         case requiredVersion = "required_version"
         case lastVersionAvailable = "last_version_available"
@@ -24,15 +26,12 @@ struct ConfigurationData: Decodable {
         case requirements
         case meta
     }
-
-    func validate() -> PrinceOfVersionsError? {
-        return nil
-    }
 }
 
 // MARK: - Requirements -
 struct Requirements: Decodable {
 
+    // MARK: - Internal properties
     let requiredOSVersion: Version?
     var userDefinedRequirements: [String: Any]
 
@@ -43,6 +42,7 @@ struct Requirements: Decodable {
         return requirements.merging(userDefinedRequirements, uniquingKeysWith: { (_, newValue) in newValue })
     }
 
+    // MARK: - Init
     init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -62,6 +62,7 @@ struct Requirements: Decodable {
         }
     }
 
+    // MARK: - Coding keys
     enum CodingKeys: String, CodingKey {
         case requiredOSVersion = "required_os_version"
     }
@@ -72,8 +73,6 @@ struct Requirements: Decodable {
 private extension KeyedDecodingContainer {
 
     func getValue(for key: K) -> AnyDecodable? {
-        do { return try decodeIfPresent(AnyDecodable.self, forKey: key) }
-        catch _ { }
-        return nil
+        return try? decode(AnyDecodable.self, forKey: key)
     }
 }
