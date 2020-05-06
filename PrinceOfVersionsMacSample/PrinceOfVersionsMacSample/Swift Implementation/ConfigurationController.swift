@@ -44,11 +44,13 @@ private extension ConfigurationController {
 
         options.addRequirement(key: "region") { (value) -> Bool in
             guard let value = value as? String else { return false }
+            // Check OS localisation
             return value == "hr"
         }
 
         options.addRequirement(key: "bluetooth") { (value) -> Bool in
             guard let value = value as? String else { return false }
+            // Check device bluetooth version
             return value.starts(with: "5")
         }
 
@@ -57,8 +59,8 @@ private extension ConfigurationController {
 
     func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions(with: options).checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] updateResultResponse in
-            switch updateResultResponse.result {
+        PrinceOfVersions(with: options).checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] response in
+            switch response.result {
             case .success(let updateResultData):
                 self.fillUI(with: updateResultData)
             case .failure:
@@ -99,7 +101,7 @@ private extension ConfigurationController {
     func fillUpdateResultUI(with infoResponse: UpdateResult) {
         updateVersionTextField.stringValue = infoResponse.updateVersion.description
         updateStateTextField.stringValue = infoResponse.updateState.description
-        metaTextField.stringValue = String(format: "%@", infoResponse.metadata!)
+        metaTextField.stringValue = "\(infoResponse.metadata ?? [:])"
     }
 
     func fillVersionInfoUI(with versionInfo: UpdateInfo) {
@@ -107,7 +109,7 @@ private extension ConfigurationController {
         lastVersionAvailableTextField.stringValue = versionInfo.lastVersionAvailable?.description ?? ""
         installedVersionTextField.stringValue = versionInfo.installedVersion.description
         notificationTypeTextField.stringValue = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
-        requirementsTextField.stringValue = String(format: "%@", versionInfo.requirements!)
+        requirementsTextField.stringValue = "\(versionInfo.requirements ?? [:])"
     }
 }
 

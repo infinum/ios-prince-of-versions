@@ -65,10 +65,7 @@ public struct AppStoreInfo: Codable {
         }
 
         var currentVersionReleaseDate: Date? {
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-            return releaseDate.flatMap { dateFormatter.date(from: $0) }
+            return releaseDate.flatMap { ConfigurationData.dateFormatter.date(from: $0) }
         }
 
         var sdkVersion: Version? {
@@ -78,6 +75,13 @@ public struct AppStoreInfo: Codable {
             return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
             #endif
         }
+
+        private static var dateFormatter: DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            return dateFormatter
+        }()
 
         enum CodingKeys: String, CodingKey {
             case latestVersion = "version"
