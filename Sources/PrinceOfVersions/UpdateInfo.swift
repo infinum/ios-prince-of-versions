@@ -37,9 +37,9 @@ public struct UpdateInfo: Decodable {
 
     private var configurations: [ConfigurationData]? {
         #if os(iOS)
-        return ios != nil ? ios : ios2
+        return ios ?? ios2
         #elseif os(macOS)
-        return macos != nil ? macos : macos2
+        return macos ?? macos2
         #endif
     }
 
