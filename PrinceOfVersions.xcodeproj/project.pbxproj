@@ -35,7 +35,7 @@
 		OBJ_50 /* ObjectiveCBaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* ObjectiveCBaseExtensions.swift */; };
 		OBJ_51 /* UpdateResultObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* UpdateResultObjectiveC.swift */; };
 		OBJ_52 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* PrinceOfVersions.swift */; };
-		OBJ_53 /* PrinceOfVersionsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PrinceOfVersionsError.swift */; };
+		OBJ_53 /* PoVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PoVError.swift */; };
 		OBJ_54 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UpdateInfo.swift */; };
 		OBJ_55 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Version.swift */; };
 		OBJ_73 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* PrinceOfVersionsTest.swift */; };
@@ -85,7 +85,7 @@
 		OBJ_16 /* ObjectiveCBaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveCBaseExtensions.swift; sourceTree = "<group>"; };
 		OBJ_17 /* UpdateResultObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResultObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_18 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
-		OBJ_19 /* PrinceOfVersionsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsError.swift; sourceTree = "<group>"; };
+		OBJ_19 /* PoVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVError.swift; sourceTree = "<group>"; };
 		OBJ_20 /* UpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,34 +172,78 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		A8F918A62449A96F0003C05E /* Data */ = {
+		A88447A324644F1900B24789 /* PoVDataTypes */ = {
 			isa = PBXGroup;
 			children = (
-				A8F918A42449A8B50003C05E /* AnyDecodable.swift */,
-				A8F918A82449A96F0003C05E /* ConfigurationData.swift */,
+				A8E5F378244D90AD004CF4DC /* PoVOptions.swift */,
+				OBJ_19 /* PoVError.swift */,
 			);
-			path = Data;
+			path = PoVDataTypes;
 			sourceTree = "<group>";
 		};
-		OBJ_10 /* ObjC */ = {
+		A88447A424644F3C00B24789 /* ResponseModels */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_12 /* ObjectiveC Extensions */,
+				A88447A524644F5200B24789 /* UpdateData */,
+				OBJ_9 /* AppStoreInfo.swift */,
+			);
+			path = ResponseModels;
+			sourceTree = "<group>";
+		};
+		A88447A524644F5200B24789 /* UpdateData */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_20 /* UpdateInfo.swift */,
+				A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */,
+			);
+			path = UpdateData;
+			sourceTree = "<group>";
+		};
+		A88447A624644F6E00B24789 /* ResponseModel Wrapers */ = {
+			isa = PBXGroup;
+			children = (
 				OBJ_11 /* AppStoreInfoObjectiveC.swift */,
 				A82DD4C22449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift */,
 				OBJ_17 /* UpdateResultObjectiveC.swift */,
 			);
-			path = ObjC;
+			path = "ResponseModel Wrapers";
 			sourceTree = "<group>";
 		};
-		OBJ_12 /* ObjectiveC Extensions */ = {
+		A88447A7246451A000B24789 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				A8F918A42449A8B50003C05E /* AnyDecodable.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		A8F918A62449A96F0003C05E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A88447A7246451A000B24789 /* Utility */,
+				OBJ_21 /* Version.swift */,
+				A8F918A82449A96F0003C05E /* ConfigurationData.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		OBJ_10 /* Objective-C Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A88447A624644F6E00B24789 /* ResponseModel Wrapers */,
+				OBJ_12 /* Objective-C Extensions */,
+			);
+			path = "Objective-C Helpers";
+			sourceTree = "<group>";
+		};
+		OBJ_12 /* Objective-C Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_16 /* ObjectiveCBaseExtensions.swift */,
 				OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */,
 				OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */,
 			);
-			path = "ObjectiveC Extensions";
+			path = "Objective-C Extensions";
 			sourceTree = "<group>";
 		};
 		OBJ_23 /* PrinceOfVersionsTests */ = {
@@ -240,14 +284,10 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_18 /* PrinceOfVersions.swift */,
-				A8E5F378244D90AD004CF4DC /* PoVOptions.swift */,
-				OBJ_19 /* PrinceOfVersionsError.swift */,
-				OBJ_9 /* AppStoreInfo.swift */,
-				OBJ_20 /* UpdateInfo.swift */,
-				A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */,
-				OBJ_21 /* Version.swift */,
-				A8F918A62449A96F0003C05E /* Data */,
-				OBJ_10 /* ObjC */,
+				A88447A324644F1900B24789 /* PoVDataTypes */,
+				A88447A424644F3C00B24789 /* ResponseModels */,
+				A8F918A62449A96F0003C05E /* Common */,
+				OBJ_10 /* Objective-C Helpers */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
 			);
 			name = PrinceOfVersions;
@@ -379,7 +419,7 @@
 				OBJ_51 /* UpdateResultObjectiveC.swift in Sources */,
 				A82DD4C32449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift in Sources */,
 				OBJ_52 /* PrinceOfVersions.swift in Sources */,
-				OBJ_53 /* PrinceOfVersionsError.swift in Sources */,
+				OBJ_53 /* PoVError.swift in Sources */,
 				A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */,
 				OBJ_54 /* UpdateInfo.swift in Sources */,
 				OBJ_55 /* Version.swift in Sources */,

@@ -75,6 +75,6 @@ internal extension PrinceOfVersions {
 
     func checkHeadersValidity(from headers: NSDictionary?) -> NSError? {
         if headers == nil || (headers as? [String : String?]) != nil { return nil }
-        return (PrinceOfVersionsError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError)
+        return (PoVError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError)
     }
 }
