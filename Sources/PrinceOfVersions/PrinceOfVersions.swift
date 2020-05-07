@@ -18,11 +18,11 @@ public class PrinceOfVersions: NSObject {
         public let response: URLResponse?
 
         /// The result of response serialization.
-        public let result: Result<UpdateResult, PrinceOfVersionsError>
+        public let result: Result<UpdateResult, PoVError>
     }
 
     public typealias CompletionBlock = (UpdateResultResponse) -> Void
-    public typealias AppStoreCompletionBlock = (Result<AppStoreInfo, PrinceOfVersionsError>) -> Void
+    public typealias AppStoreCompletionBlock = (Result<AppStoreInfo, PoVError>) -> Void
 
     // MARK: - Internal properties
 
@@ -62,7 +62,7 @@ public extension PrinceOfVersions {
      If configuration URL could not be provided, you can use `checkForUpdateFromAppStore` for automated check if new version is available.
 
      - parameter URL: URL that containts configuration data.
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data or PrinceOfVersionsError error
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data or PoVError error
 
      - returns: Discardable `URLSessionDataTask`
      */
@@ -84,7 +84,7 @@ public extension PrinceOfVersions {
 
         let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
 
-            let result: Result<UpdateResult, PrinceOfVersionsError>
+            let result: Result<UpdateResult, PoVError>
             if let error = error {
                 result = Result.failure(.unknown(error.localizedDescription))
             } else {
@@ -128,7 +128,7 @@ public extension PrinceOfVersions {
      After check with server is finished, this method will return all informations about the app versioning available on AppStore Connect.
      It's up to the user to handle that info in a way sutable for the app.
 
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PrinceOfVersionsError error
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error
 
      - returns: Discardable `URLSessionDataTask`
      */
@@ -140,7 +140,7 @@ public extension PrinceOfVersions {
             let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(bundleIdentifier)")
         else {
             options.callbackQueue.async {
-                completion(Result.failure(PrinceOfVersionsError.invalidJsonData))
+                completion(Result.failure(PoVError.invalidJsonData))
             }
             return nil
         }
@@ -232,13 +232,13 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool) -> Result<AppStoreInfo, PrinceOfVersionsError> {
+    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool) -> Result<AppStoreInfo, PoVError> {
 
         if let error = error {
             return Result.failure(.unknown(error.localizedDescription))
         }
 
-        let result: Result<AppStoreInfo, PrinceOfVersionsError>
+        let result: Result<AppStoreInfo, PoVError>
         do {
             
             var updateInfo = try JSONDecoder().decode(AppStoreInfo.self, from: data!)
@@ -252,8 +252,8 @@ private extension PrinceOfVersions {
 
         } catch let error {
             var errorDescription = error.localizedDescription
-            if let princeOfVersionsError = (error as? PrinceOfVersionsError),
-                case .dataNotFound = princeOfVersionsError {
+            if let PoVError = (error as? PoVError),
+                case .dataNotFound = PoVError {
                 errorDescription += ": \(bundle.bundleIdentifier ?? "bundle identifier not found")"
             }
             result = Result.failure(.unknown(errorDescription))

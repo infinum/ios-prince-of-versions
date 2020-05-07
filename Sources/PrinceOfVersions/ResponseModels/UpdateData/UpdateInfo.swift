@@ -173,7 +173,7 @@ extension UpdateInfo {
 
 extension UpdateInfo {
 
-    func validate() -> PrinceOfVersionsError? {
+    func validate() -> PoVError? {
 
         if configurations == nil {
             return .dataNotFound

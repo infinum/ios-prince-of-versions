@@ -1,5 +1,5 @@
 //
-//  PrinceOfVersionsError.swift
+//  PoVError.swift
 //  PrinceOfVersions
 //
 //  Created by Jasmin Abou Aldan on 14/09/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum PrinceOfVersionsError: Error {
+public enum PoVError: Error {
     case invalidJsonData
     case dataNotFound
     case requirementsNotSatisfied([String: Any]?)
@@ -18,7 +18,7 @@ public enum PrinceOfVersionsError: Error {
     case unknown(String?)
 }
 
-extension PrinceOfVersionsError: LocalizedError {
+extension PoVError: LocalizedError {
 
     public var errorDescription: String? {
         switch self {

@@ -92,7 +92,7 @@ public struct AppStoreInfo: Codable {
 
     // MARK: - Public methods
 
-    public func validate() -> PrinceOfVersionsError? {
+    public func validate() -> PoVError? {
 
         guard let resultCount = resultCount, resultCount > 0 else { return .dataNotFound }
 

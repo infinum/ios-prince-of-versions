@@ -20,7 +20,7 @@ extension PrinceOfVersions {
      After check with server is finished, this method will return all informations about the app versioning available on AppStore Connect.
      It's up to the user to handle that info in a way sutable for the app.
 
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PrinceOfVersionsError error
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error
      - parameter error: The completion handler to call when load request errors
 
      - returns: Discardable `URLSessionDataTask`
