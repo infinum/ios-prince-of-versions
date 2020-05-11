@@ -59,7 +59,7 @@
     PoVOptions *options = [PoVOptions new];
     options.trackPhaseRelease = NO;
 
-    [[[PrinceOfVersions alloc] initWithOptions:options] checkForUpdateFromAppStoreWithCompletion:^(AppStoreInfoObject *response) {
+    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithCompletion:^(AppStoreInfoObject *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error

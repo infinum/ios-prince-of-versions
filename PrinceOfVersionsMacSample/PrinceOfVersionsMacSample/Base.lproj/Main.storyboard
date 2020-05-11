@@ -133,11 +133,11 @@
             <objects>
                 <viewController storyboardIdentifier="SwiftAppSample" id="Z6J-RC-pac" customClass="ConfigurationController" customModule="Prince_of_Versions" sceneMemberID="viewController">
                     <view key="view" id="ble-8w-Lry">
-                        <rect key="frame" x="0.0" y="0.0" width="486" height="902"/>
+                        <rect key="frame" x="0.0" y="0.0" width="486" height="488"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="62" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FZ1-5p-Qf8">
-                                <rect key="frame" x="32" y="446" width="422" height="424"/>
+                                <rect key="frame" x="32" y="32" width="422" height="424"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="32" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgg-86-m3p">
                                         <rect key="frame" x="0.0" y="0.0" width="203" height="424"/>
@@ -488,18 +488,18 @@
                 </viewController>
                 <customObject id="zYe-Qc-3UY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-376" y="1217"/>
+            <point key="canvasLocation" x="-376" y="1004"/>
         </scene>
         <!--ObjC Configuration Controller-->
         <scene sceneID="mbV-E4-zVH">
             <objects>
                 <viewController storyboardIdentifier="ObjCAppSample" id="3LG-SW-tdP" customClass="ObjCConfigurationController" sceneMemberID="viewController">
                     <view key="view" id="gDi-A2-Hvc">
-                        <rect key="frame" x="0.0" y="0.0" width="486" height="902"/>
+                        <rect key="frame" x="0.0" y="0.0" width="486" height="488"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="62" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S8x-cc-9UN">
-                                <rect key="frame" x="32" y="446" width="422" height="424"/>
+                                <rect key="frame" x="32" y="32" width="422" height="424"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="32" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c7p-TY-RZG">
                                         <rect key="frame" x="0.0" y="0.0" width="203" height="424"/>
@@ -850,7 +850,7 @@
                 </viewController>
                 <customObject id="J6z-uW-6v8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="151" y="1217"/>
+            <point key="canvasLocation" x="151" y="1004"/>
         </scene>
     </scenes>
 </document>
