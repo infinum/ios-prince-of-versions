@@ -59,7 +59,7 @@ private extension ConfigurationController {
 
     func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions(with: options).checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] response in
+        PrinceOfVersions().checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
             switch response.result {
             case .success(let updateResultData):
                 self.fillUI(with: updateResultData)
@@ -77,10 +77,8 @@ private extension ConfigurationController {
     func checkAppStoreVersion() {
         // In sample app, error will occur as bundle ID
         // of the app is not available on the App Store
-        let options = PoVOptions()
-        options.trackPhaseRelease = false
-
-        PrinceOfVersions(with: options).checkForUpdateFromAppStore(
+        PrinceOfVersions().checkForUpdateFromAppStore(
+            trackPhaseRelease: false,
             completion: { result in
                 switch result {
                 case .success:
