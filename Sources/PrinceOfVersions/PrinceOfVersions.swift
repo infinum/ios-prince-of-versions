@@ -24,30 +24,9 @@ public class PrinceOfVersions: NSObject {
     public typealias CompletionBlock = (UpdateResultResponse) -> Void
     public typealias AppStoreCompletionBlock = (Result<AppStoreInfo, PoVError>) -> Void
 
-    // MARK: - Internal properties
-
-    var options: PoVOptions
-
     // MARK: - Private properties
 
     private var shouldPinCertificates: Bool = false
-
-    // MARK: - Init
-
-    public init(with options: PoVOptions? = nil) {
-        self.options = options ?? PoVOptions()
-    }
-
-    @available(swift, obsoleted: 1.0)
-    public override init() {
-        self.options = PoVOptions()
-    }
-
-    @available(swift, obsoleted: 1.0)
-    @objc(initWithOptions:)
-    public init(with options: PoVOptions) {
-        self.options = options
-    }
 }
 
 // MARK: - Public methods -
@@ -67,7 +46,7 @@ public extension PrinceOfVersions {
      - returns: Discardable `URLSessionDataTask`
      */
     @discardableResult
-    func checkForUpdates(from URL: URL, completion: @escaping CompletionBlock) -> URLSessionDataTask {
+    func checkForUpdates(from URL: URL, options: PoVOptions, completion: @escaping CompletionBlock) -> URLSessionDataTask {
 
         shouldPinCertificates = options.shouldPinCertificates
 
@@ -90,7 +69,7 @@ public extension PrinceOfVersions {
             } else {
                 do {
                     var updateInfo = try JSONDecoder().decode(UpdateInfo.self, from: data!)
-                    updateInfo.userRequirements = self.options.userRequirements
+                    updateInfo.userRequirements = options.userRequirements
 
                     if let error = updateInfo.validate() {
                         result = Result.failure(error)
@@ -108,7 +87,7 @@ public extension PrinceOfVersions {
                 response: response,
                 result: result
             )
-            self.options.callbackQueue.async {
+            options.callbackQueue.async {
                 completion(updateInfoResponse)
             }
         })
@@ -133,19 +112,30 @@ public extension PrinceOfVersions {
      - returns: Discardable `URLSessionDataTask`
      */
     @discardableResult
-    func checkForUpdateFromAppStore(completion: @escaping AppStoreCompletionBlock) -> URLSessionDataTask? {
+    func checkForUpdateFromAppStore(
+        trackPhaseRelease: Bool = true,
+        bundle: Bundle = .main,
+        callbackQueue: DispatchQueue = .main,
+        completion: @escaping AppStoreCompletionBlock
+    ) -> URLSessionDataTask? {
 
         guard
-            let bundleIdentifier = options.bundle.bundleIdentifier,
+            let bundleIdentifier = bundle.bundleIdentifier,
             let url = URL(string: "https://itunes.apple.com/lookup?bundleId=\(bundleIdentifier)")
         else {
-            options.callbackQueue.async {
+            callbackQueue.async {
                 completion(Result.failure(PoVError.invalidJsonData))
             }
             return nil
         }
 
-        return internalyGetDataFromAppStore(url, completion: completion)
+        return internalyGetDataFromAppStore(
+            url,
+            trackPhaseRelease: trackPhaseRelease,
+            bundle: bundle,
+            callbackQueue: callbackQueue,
+            completion: completion
+        )
     }
 }
 
@@ -156,6 +146,9 @@ internal extension PrinceOfVersions {
     @discardableResult
     func internalyGetDataFromAppStore(
         _ url: URL,
+        trackPhaseRelease: Bool = true,
+        bundle: Bundle = .main,
+        callbackQueue: DispatchQueue = .main,
         testMode: Bool = false,
         completion: @escaping AppStoreCompletionBlock
     ) -> URLSessionDataTask? {
@@ -163,12 +156,12 @@ internal extension PrinceOfVersions {
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
 
         guard !testMode else {
-            options.callbackQueue.async {
+            callbackQueue.async {
                 let appStoreData = PrinceOfVersions.prepareAppStoreData(
                     from: try? Data(contentsOf: url),
                     error: nil,
-                    bundle: self.options.bundle,
-                    trackPhaseRelease: self.options.trackPhaseRelease
+                    bundle: bundle,
+                    trackPhaseRelease: trackPhaseRelease
                 )
                 completion(appStoreData)
             }
@@ -176,12 +169,12 @@ internal extension PrinceOfVersions {
         }
 
         let dataTask = defaultSession.dataTask(with: URLRequest(url: url), completionHandler: { (data, /* response */_, error) in
-            self.options.callbackQueue.async {
+            callbackQueue.async {
                 let appStoreData = PrinceOfVersions.prepareAppStoreData(
                     from: data,
                     error: error,
-                    bundle: self.options.bundle,
-                    trackPhaseRelease: self.options.trackPhaseRelease
+                    bundle: bundle,
+                    trackPhaseRelease: trackPhaseRelease
                 )
                 completion(appStoreData)
             }
