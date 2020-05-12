@@ -15,7 +15,7 @@ public class AppStoreInfoObject: NSObject {
     private var appStoreInfo: AppStoreInfo
 
     // MARK: - Init
-    init(from appStoreInfo: AppStoreInfo) {
+    internal init(from appStoreInfo: AppStoreInfo) {
         self.appStoreInfo = appStoreInfo
     }
 }

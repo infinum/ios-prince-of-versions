@@ -38,5 +38,5 @@ public class PoVOptions: NSObject {
     }
 
     // MARK: - Internal properties
-    var userRequirements: [String: ((Any) -> Bool)] = [:]
+    internal var userRequirements: [String: ((Any) -> Bool)] = [:]
 }
