@@ -35,7 +35,7 @@ public struct UpdateInfo: Decodable {
 
     private let bundle = Bundle.main
 
-    private var configurations: [ConfigurationData]? {
+    internal var configurations: [ConfigurationData]? {
         #if os(iOS)
         return ios ?? ios2
         #elseif os(macOS)
@@ -43,7 +43,7 @@ public struct UpdateInfo: Decodable {
         #endif
     }
 
-    private var configurationForOS: ConfigurationData? {
+    internal var configuration: ConfigurationData? {
 
         guard let configurations = configurations else { return nil }
 
@@ -88,7 +88,7 @@ public struct UpdateInfo: Decodable {
 
     var metadata: [String: Any]? {
 
-        guard let configMeta = configurationForOS?.meta else {
+        guard let configMeta = configuration?.meta else {
             return meta?.mapValues { $0.value }
         }
 
@@ -123,7 +123,7 @@ public struct UpdateInfo: Decodable {
      Default value is `.once`
      */
     public var notificationType: UpdateInfo.NotificationType {
-        return configurationForOS?.notificationType ?? .once
+        return configuration?.notifyLastVersionFrequency ?? .once
     }
 
     // MARK: - Init -
@@ -142,11 +142,7 @@ public struct UpdateInfo: Decodable {
     // MARK: - Coding keys -
 
     enum CodingKeys: String, CodingKey {
-        case ios
-        case ios2
-        case macos
-        case macos2
-        case meta
+        case ios, ios2, macos, macos2, meta
     }
 }
 
@@ -169,32 +165,6 @@ extension UpdateInfo {
     }
 }
 
-// MARK: - Internal methods -
-
-extension UpdateInfo {
-
-    func validate() -> PoVError? {
-
-        if configurations == nil {
-            return .dataNotFound
-        }
-
-        if configurations != nil && configurationForOS == nil {
-            return .requirementsNotSatisfied(metadata)
-        }
-
-        if lastVersionAvailable == nil && requiredVersion == nil {
-            return .missingConfigurationVersion
-        }
-
-        if currentInstalledVersion == nil {
-            return .invalidCurrentVersion
-        }
-
-        return nil
-    }
-}
-
 // MARK: - UpdateInfoValues -
 
 extension UpdateInfo: UpdateInfoValues {
@@ -203,14 +173,14 @@ extension UpdateInfo: UpdateInfoValues {
      Returns minimum required version of the app.
      */
     public var requiredVersion: Version? {
-        return configurationForOS?.requiredVersion
+        return configuration?.requiredVersion
     }
 
     /**
      Returns latest available version of the app.
      */
     public var lastVersionAvailable: Version? {
-        return configurationForOS?.lastVersionAvailable
+        return configuration?.lastVersionAvailable
     }
 
     /**
@@ -227,7 +197,7 @@ extension UpdateInfo: UpdateInfoValues {
      Returns requirements for configuration.
      */
     public var requirements: [String : Any]? {
-        return configurationForOS?.requirements?.allRequirements
+        return configuration?.requirements?.allRequirements
     }
 }
 

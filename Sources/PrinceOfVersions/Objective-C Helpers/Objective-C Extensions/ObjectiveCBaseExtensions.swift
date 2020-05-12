@@ -50,7 +50,7 @@ internal extension PrinceOfVersions {
 
     // MARK: Check updates
 
-    func internalyCheckAndPrepareForUpdates(
+    func internalyLoadAndPrepareConfiguration(
         from URL: URL,
         options: PoVOptions,
         completion: @escaping ObjectCompletionBlock,
