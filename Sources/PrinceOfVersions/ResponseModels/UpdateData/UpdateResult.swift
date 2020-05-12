@@ -39,15 +39,15 @@ extension UpdateResult: UpdateResultValues {
     public var updateVersion: Version {
 
         if let requiredVersion = updateInfo.requiredVersion, let lastVersionAvailable = updateInfo.lastVersionAvailable {
-            return Version.getGreaterVersion(requiredVersion, lastVersionAvailable)
+            return Version.max(requiredVersion, lastVersionAvailable)
         }
 
         if let requiredVersion = updateInfo.requiredVersion, updateInfo.lastVersionAvailable == nil {
-            return Version.getGreaterVersion(requiredVersion, updateInfo.installedVersion)
+            return Version.max(requiredVersion, updateInfo.installedVersion)
         }
 
         if updateInfo.requiredVersion == nil, let lastVersionAvailable = updateInfo.lastVersionAvailable {
-            return Version.getGreaterVersion(lastVersionAvailable, updateInfo.installedVersion)
+            return Version.max(lastVersionAvailable, updateInfo.installedVersion)
         }
 
         return updateInfo.installedVersion

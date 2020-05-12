@@ -46,11 +46,13 @@ public extension PrinceOfVersions {
      - returns: Discardable `URLSessionDataTask`
      */
     @discardableResult
-    func checkForUpdates(from URL: URL, options: PoVOptions, completion: @escaping CompletionBlock) -> URLSessionDataTask {
+    static func checkForUpdates(from URL: URL, options: PoVOptions, completion: @escaping CompletionBlock) -> URLSessionDataTask {
 
-        shouldPinCertificates = options.shouldPinCertificates
+        let pov = PrinceOfVersions()
 
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        pov.shouldPinCertificates = options.shouldPinCertificates
+
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: pov, delegateQueue: nil)
         var request = URLRequest(url: URL)
 
         if let headerFields = options.httpHeaderFields {
@@ -68,10 +70,14 @@ public extension PrinceOfVersions {
                 result = Result.failure(.unknown(error.localizedDescription))
             } else {
                 do {
-                    var updateInfo = try JSONDecoder().decode(UpdateInfo.self, from: data!)
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                    var updateInfo = try decoder.decode(UpdateInfo.self, from: data!)
+
                     updateInfo.userRequirements = options.userRequirements
 
-                    if let error = updateInfo.validate() {
+                    if let error = PoVError.validate(updateInfo: updateInfo) {
                         result = Result.failure(error)
                     } else {
                         let updateResult = UpdateResult(updateInfo: updateInfo)
@@ -233,10 +239,10 @@ private extension PrinceOfVersions {
 
         let result: Result<AppStoreInfo, PoVError>
         do {
-            
+
             var updateInfo = try JSONDecoder().decode(AppStoreInfo.self, from: data!)
 
-            if let error = updateInfo.validate() {
+            if let error = PoVError.validate(appStoreInfo: updateInfo) {
                 result = Result.failure(error)
             } else {
                 updateInfo.bundle = bundle

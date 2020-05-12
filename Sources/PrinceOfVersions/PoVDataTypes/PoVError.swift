@@ -42,3 +42,44 @@ extension PoVError: LocalizedError {
         }
     }
 }
+
+// MARK: - Validation methods -
+
+extension PoVError {
+
+    static func validate(updateInfo: UpdateInfo) -> PoVError? {
+
+        if updateInfo.configurations == nil {
+            return .dataNotFound
+        }
+
+        if updateInfo.configurations != nil && updateInfo.configuration == nil {
+            return .requirementsNotSatisfied(updateInfo.metadata)
+        }
+
+        if updateInfo.lastVersionAvailable == nil && updateInfo.requiredVersion == nil {
+            return .missingConfigurationVersion
+        }
+
+        if updateInfo.currentInstalledVersion == nil {
+            return .invalidCurrentVersion
+        }
+
+        return nil
+    }
+
+    static func validate(appStoreInfo: AppStoreInfo) -> PoVError? {
+
+        guard let resultCount = appStoreInfo.resultCount, resultCount > 0 else { return .dataNotFound }
+
+        guard let configuration = appStoreInfo.configurationData else { return .invalidJsonData }
+
+        if configuration.latestVersion == nil { return .missingConfigurationVersion }
+
+        if configuration.currentVersionString == nil || configuration.currentBuildNumberString == nil {
+            return .invalidCurrentVersion
+        }
+
+        return nil
+    }
+}

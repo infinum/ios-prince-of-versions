@@ -10,22 +10,11 @@ import Foundation
 
 // MARK: - ConfigurationData -
 struct ConfigurationData: Decodable {
-
-    // MARK: - Internal properties
     let requiredVersion: Version?
     let lastVersionAvailable: Version?
-    let notificationType: UpdateInfo.NotificationType?
+    let notifyLastVersionFrequency: UpdateInfo.NotificationType?
     let requirements: Requirements?
     let meta: [String: AnyDecodable]?
-
-    // MARK: - Coding keys
-    enum CodingKeys: String, CodingKey {
-        case requiredVersion = "required_version"
-        case lastVersionAvailable = "last_version_available"
-        case notificationType = "notify_last_version_frequency"
-        case requirements
-        case meta
-    }
 }
 
 // MARK: - Requirements -
@@ -64,7 +53,7 @@ struct Requirements: Decodable {
 
     // MARK: - Coding keys
     enum CodingKeys: String, CodingKey {
-        case requiredOSVersion = "required_os_version"
+        case requiredOSVersion = "requiredOsVersion"
     }
 }
 

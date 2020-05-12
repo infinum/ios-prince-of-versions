@@ -87,8 +87,12 @@ public class Version: NSObject, Codable {
     @objc override public var description: String {
         return "\(major).\(minor).\(patch)-\(build)"
     }
+}
 
-    // MARK: - Comparison -
+// MARK: - Comparison -
+
+extension Version {
+
     @objc(isGreaterThanVersion:)
     public func isGreaterThan(_ version: Version) -> Bool {
         return self > version
@@ -114,7 +118,7 @@ public class Version: NSObject, Codable {
         return self != version
     }
 
-    public static func getGreaterVersion(_ version1: Version, _ version2: Version) -> Version {
+    public static func max(_ version1: Version, _ version2: Version) -> Version {
         return version1.isGreaterThan(version2) ? version1 : version2
     }
 }
