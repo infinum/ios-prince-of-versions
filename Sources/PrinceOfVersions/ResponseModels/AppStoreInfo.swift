@@ -18,10 +18,10 @@ public struct AppStoreInfo: Codable {
 
     var bundle: Bundle = .main
 
-    private let resultCount: Int?
-    private let results: [ConfigurationData]
+    internal let resultCount: Int?
+    internal let results: [ConfigurationData]
 
-    private var configurationData: ConfigurationData? {
+    internal var configurationData: ConfigurationData? {
         var configurationData = results.first
         configurationData?.bundle = bundle
         return configurationData
@@ -32,7 +32,7 @@ public struct AppStoreInfo: Codable {
         case results
     }
 
-    private struct ConfigurationData: Codable {
+    internal struct ConfigurationData: Codable {
 
         var bundle: Bundle = .main
 
@@ -88,23 +88,6 @@ public struct AppStoreInfo: Codable {
             case minimumSdkForLatestVersion = "minimumOsVersion"
             case releaseDate = "currentVersionReleaseDate"
         }
-    }
-
-    // MARK: - Public methods
-
-    public func validate() -> PoVError? {
-
-        guard let resultCount = resultCount, resultCount > 0 else { return .dataNotFound }
-
-        guard let configuration = configurationData else { return .invalidJsonData }
-
-        if configuration.latestVersion == nil { return .missingConfigurationVersion }
-
-        if configuration.currentVersionString == nil || configuration.currentBuildNumberString == nil {
-            return .invalidCurrentVersion
-        }
-
-        return nil
     }
 }
 
