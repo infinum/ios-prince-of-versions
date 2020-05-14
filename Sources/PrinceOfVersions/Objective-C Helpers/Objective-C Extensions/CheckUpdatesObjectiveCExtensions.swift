@@ -32,7 +32,7 @@ extension PrinceOfVersions {
     @objc(checkForUpdatesFromURL:completion:error:)
     @discardableResult
     public static func checkForUpdatesFromURL(_ URL: URL, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return internalyLoadAndPrepareConfiguration(from: URL, options: PoVRequestOptions(), completion: completion, error: error)
+        return internalyLoadAndPrepareConfiguration(from: URL, callbackQueue: .main, options: PoVRequestOptions(), completion: completion, error: error)
     }
 
     /**
@@ -53,7 +53,7 @@ extension PrinceOfVersions {
     @objc(checkForUpdatesFromURL:options:completion:error:)
     @discardableResult
     public static func checkForUpdatesFromURL(_ URL: URL, options: PoVRequestOptions, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return internalyLoadAndPrepareConfiguration(from: URL, options: options, completion: completion, error: error)
+        return internalyLoadAndPrepareConfiguration(from: URL, callbackQueue: .main, options: options, completion: completion, error: error)
     }
 
     /**
@@ -74,7 +74,7 @@ extension PrinceOfVersions {
     @objc(checkForUpdatesFromURL:callbackQueue:completion:error:)
     @discardableResult
     public static func checkForUpdatesFromURL(_ URL: URL, callbackQueue: DispatchQueue, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return internalyLoadAndPrepareConfiguration(from: URL, options: PoVRequestOptions(), completion: completion, error: error)
+        return internalyLoadAndPrepareConfiguration(from: URL, callbackQueue: callbackQueue, options: PoVRequestOptions(), completion: completion, error: error)
     }
 
     /**
@@ -96,6 +96,6 @@ extension PrinceOfVersions {
     @objc(checkForUpdatesFromURL:callbackQueue:options:completion:error:)
     @discardableResult
     public static func checkForUpdatesFromURL(_ URL: URL, callbackQueue: DispatchQueue, options: PoVRequestOptions, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return internalyLoadAndPrepareConfiguration(from: URL, options: options, completion: completion, error: error)
+        return internalyLoadAndPrepareConfiguration(from: URL, callbackQueue: callbackQueue, options: options, completion: completion, error: error)
     }
 }
