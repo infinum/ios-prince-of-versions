@@ -60,14 +60,11 @@
 
 - (void)checkAppStoreVersion
 {
-//    PoVRequestOptions *options = [PoVRequestOptions new];
-//    options.trackPhaseRelease = NO;
-
-//    [PrinceOfVersions checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreInfoObject *infoObject) {
-//        // Handle success
-//    } error:^(NSError *error) {
-//        // Handle error
-//    }];
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhaseRelease:NO callbackQueue:dispatch_get_main_queue() completion:^(AppStoreInfoObject *infoObject) {
+        // Handle success
+    } error:^(NSError *error) {
+        // Handle error
+    }];
 }
 
 - (void)fillUIWithInfoResponse:(UpdateResultObject *)infoResponse
