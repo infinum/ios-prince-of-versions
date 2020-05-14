@@ -25,7 +25,7 @@
 		06F8ADFF241A542A0099E820 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */; };
 		A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */; };
 		A82DD4C32449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82DD4C22449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift */; };
-		A8E5F379244D90AD004CF4DC /* PoVOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5F378244D90AD004CF4DC /* PoVOptions.swift */; };
+		A8E5F379244D90AD004CF4DC /* PoVRequestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */; };
 		A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A42449A8B50003C05E /* AnyDecodable.swift */; };
 		A8F918AB2449A96F0003C05E /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A82449A96F0003C05E /* ConfigurationData.swift */; };
 		OBJ_45 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreInfo.swift */; };
@@ -76,7 +76,7 @@
 		06F8AE39241A61850099E820 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResult.swift; sourceTree = "<group>"; };
 		A82DD4C22449F3CD00E6AD46 /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
-		A8E5F378244D90AD004CF4DC /* PoVOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVOptions.swift; sourceTree = "<group>"; };
+		A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVRequestOptions.swift; sourceTree = "<group>"; };
 		A8F918A42449A8B50003C05E /* AnyDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
 		A8F918A82449A96F0003C05E /* ConfigurationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationData.swift; sourceTree = "<group>"; };
 		OBJ_11 /* AppStoreInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreInfoObjectiveC.swift; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		A88447A324644F1900B24789 /* PoVDataTypes */ = {
 			isa = PBXGroup;
 			children = (
-				A8E5F378244D90AD004CF4DC /* PoVOptions.swift */,
+				A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */,
 				OBJ_19 /* PoVError.swift */,
 			);
 			path = PoVDataTypes;
@@ -413,7 +413,7 @@
 				OBJ_46 /* AppStoreInfoObjectiveC.swift in Sources */,
 				OBJ_47 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */,
 				OBJ_48 /* CheckUpdatesObjectiveCExtensions.swift in Sources */,
-				A8E5F379244D90AD004CF4DC /* PoVOptions.swift in Sources */,
+				A8E5F379244D90AD004CF4DC /* PoVRequestOptions.swift in Sources */,
 				A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */,
 				OBJ_50 /* ObjectiveCBaseExtensions.swift in Sources */,
 				OBJ_51 /* UpdateResultObjectiveC.swift in Sources */,
