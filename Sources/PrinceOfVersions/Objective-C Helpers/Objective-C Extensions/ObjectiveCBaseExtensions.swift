@@ -34,6 +34,7 @@ internal extension PrinceOfVersions {
 
     static func internalyLoadAndPrepareConfiguration(
         from URL: URL,
+        callbackQueue: DispatchQueue,
         options: PoVRequestOptions,
         completion: @escaping ObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
@@ -44,7 +45,7 @@ internal extension PrinceOfVersions {
             return nil
         }
 
-        return PrinceOfVersions.checkForUpdates(from: URL, options: options, completion: { response in
+        return PrinceOfVersions.checkForUpdates(from: URL, callbackQueue: callbackQueue, options: options, completion: { response in
                 switch response.result {
                 case .success(let updateResult):
                     let updateResultResponse = UpdateResponse(
@@ -61,10 +62,13 @@ internal extension PrinceOfVersions {
     // MARK: AppStore check
 
     static func internalyCheckAndPrepareForUpdateAppStore(
+        bundle: Bundle,
+        trackPhaseRelease: Bool,
+        callbackQueue: DispatchQueue,
         completion: @escaping AppStoreObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
-        return PrinceOfVersions.checkForUpdateFromAppStore(completion: { result in
+        return PrinceOfVersions.checkForUpdateFromAppStore(trackPhaseRelease: trackPhaseRelease, bundle: bundle, callbackQueue: callbackQueue, completion: { result in
                 switch result {
                 case .success(let appStoreInfo):
                     completion(AppStoreInfoObject(from: appStoreInfo))
