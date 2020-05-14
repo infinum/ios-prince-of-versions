@@ -16,12 +16,15 @@
 @property (nonatomic, weak) IBOutlet UILabel *installedVersionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *iOSVersionLabel;
 
-@property (nonatomic, weak) IBOutlet UILabel *minimumVersionLabel;
-@property (nonatomic, weak) IBOutlet UILabel *minimumSDKLabel;
-@property (nonatomic, weak) IBOutlet UILabel *latestVersionLabel;
-@property (nonatomic, weak) IBOutlet UILabel *notificationTypeLabel;
-@property (nonatomic, weak) IBOutlet UILabel *latestMinimumSDKLabel;
+@property (nonatomic, weak) IBOutlet UILabel *updateVersionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *updateStateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *metaLabel;
+
+@property (nonatomic, weak) IBOutlet UILabel *requiredVersionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *lastVersionAvailableLabel;
+@property (nonatomic, weak) IBOutlet UILabel *installedVersionLabel1;
+@property (nonatomic, weak) IBOutlet UILabel *notificationTypeLabel;
+@property (nonatomic, weak) IBOutlet UILabel *requirementsLabel;
 
 @end
 
@@ -45,13 +48,11 @@
     NSURL *princeOfVersionsURL = [NSURL URLWithString:Constant.princeOfVersionsURL];
 
     __weak __typeof(self) weakSelf = self;
-    [[PrinceOfVersions new] loadConfigurationFromURL:princeOfVersionsURL
-                                             options:nil
-                                          completion:^(UpdateResponse *updateResponse) {
-                                                [weakSelf fillUIWithInfoResponse:updateResponse.result];
-                                             } error:^(NSError *error) {
-                                                 /* Handle error */
-                                             }];
+    [PrinceOfVersions checkForUpdatesFromURL:princeOfVersionsURL completion:^(UpdateResponse *updateResponse) {
+        [weakSelf fillUIWithInfoResponse:updateResponse.result];
+    } error:^(NSError *error) {
+        /* Handle error */
+    }];
 }
 
 // In sample app, error will occur as bundle ID
@@ -59,26 +60,39 @@
 
 - (void)checkAppStoreVersion
 {
-    PoVRequestOptions *options = [PoVRequestOptions new];
-    options.trackPhaseRelease = NO;
+//    PoVRequestOptions *options = [PoVRequestOptions new];
+//    options.trackPhaseRelease = NO;
 
-    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreInfoObject *infoObject) {
-        // Handle success
-    } error:^(NSError *error) {
-        // Handle error
-    }];
+//    [PrinceOfVersions checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreInfoObject *infoObject) {
+//        // Handle success
+//    } error:^(NSError *error) {
+//        // Handle error
+//    }];
 }
 
-- (void)fillUIWithInfoResponse:(UpdateInfoObject *)infoResponse
+- (void)fillUIWithInfoResponse:(UpdateResultObject *)infoResponse
 {
-    self.installedVersionLabel.text = infoResponse.installedVersion.description;
-    self.iOSVersionLabel.text = infoResponse.sdkVersion.description;
-    self.minimumVersionLabel.text = infoResponse.minimumRequiredVersion.description;
-    self.minimumSDKLabel.text = infoResponse.minimumSdkForMinimumRequiredVersion.description;
-    self.latestVersionLabel.text = infoResponse.latestVersion.description;
-    self.notificationTypeLabel.text = infoResponse.notificationType == UpdateNotificationTypeOnce ? @"Once" : @"Always";
-    self.latestMinimumSDKLabel.text = infoResponse.minimumSdkForLatestVersion.description;
-    self.metaLabel.text = [NSString stringWithFormat:@"%@", infoResponse.metadata];
+    self.updateVersionLabel.text = infoResponse.updateVersion.description;
+    self.updateStateLabel.text = [self updateStateFromResult:infoResponse.updateState];
+    self.metaLabel.text = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
+
+    self.requiredVersionLabel.text = infoResponse.versionInfo.requiredVersion.description;
+    self.lastVersionAvailableLabel.text = infoResponse.versionInfo.lastVersionAvailable.description;
+    self.installedVersionLabel.text = infoResponse.versionInfo.installedVersion.description;
+    self.notificationTypeLabel.text = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
+    self.requirementsLabel.text = [NSString stringWithFormat:@"%@", infoResponse.versionInfo.requirements];
+}
+
+- (NSString *)updateStateFromResult:(UpdateStatusType)type
+{
+    switch (type) {
+        case UpdateStatusTypeNoUpdateAvailable:
+            return @"No Update Available";
+        case UpdateStatusTypeRequiredUpdateNeeded:
+            return @"Required Update Needed";
+        case UpdateStatusTypeNewUpdateAvailable:
+            return @"New Update Available";
+    }
 }
 
 @end

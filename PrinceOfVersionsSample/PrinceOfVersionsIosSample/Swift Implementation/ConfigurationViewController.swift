@@ -24,6 +24,17 @@ class ConfigurationViewController: UIViewController {
     @IBOutlet private var latestMinimumSDKLabel: UILabel!
     @IBOutlet private var metaLabel: UILabel!
 
+    @IBOutlet weak var updateVersionTextField: UILabel!
+    @IBOutlet weak var updateStateTextField: UILabel!
+    @IBOutlet weak var metaTextField: UILabel!
+
+    @IBOutlet weak var requiredVersionTextField: UILabel!
+    @IBOutlet weak var lastVersionAvailableTextField: UILabel!
+    @IBOutlet weak var installedVersionTextField: UILabel!
+    @IBOutlet weak var notificationTypeTextField: UILabel!
+    @IBOutlet weak var requirementsTextField: UILabel!
+
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -41,7 +52,7 @@ private extension ConfigurationViewController {
 
     func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions().loadConfiguration(
+        PrinceOfVersions.checkForUpdates(
             from: princeOfVersionsURL,
             completion: { [weak self] response in
                 switch response.result {
@@ -57,7 +68,7 @@ private extension ConfigurationViewController {
     func checkAppStoreVersion() {
         // In sample app, error will occur as bundle ID
         // of the app is not available on the App Store
-        PrinceOfVersions().checkForUpdateFromAppStore(
+        PrinceOfVersions.checkForUpdateFromAppStore(
             trackPhaseRelease: false,
             completion: { result in
                 switch result {
@@ -71,14 +82,34 @@ private extension ConfigurationViewController {
         })
     }
 
-    func fillUI(with infoResponse: UpdateInfo ) {
-        installedVersionLabel.text = infoResponse.installedVersion.description
-        iOSVersionLabel.text = infoResponse.sdkVersion.description
-        minimumVersionLabel.text = infoResponse.minimumRequiredVersion?.description
-        minimumSDKLabel.text = infoResponse.minimumSdkForMinimumRequiredVersion?.description
-        latestVersionLabel.text = infoResponse.latestVersion.description
-        notificationTypeLabel.text = infoResponse.notificationType == .once ? "Once" : "Always"
-        latestMinimumSDKLabel.text = infoResponse.minimumSdkForLatestVersion?.description
-        metaLabel.text = String(describing: infoResponse.metadata!)
+    func fillUI(with infoResponse: UpdateResult) {
+        fillUpdateResultUI(with: infoResponse)
+        fillVersionInfoUI(with: infoResponse.versionInfo)
+    }
+
+    func fillUpdateResultUI(with infoResponse: UpdateResult) {
+        updateVersionTextField.text = infoResponse.updateVersion.description
+        updateStateTextField.text = infoResponse.updateState.updateState
+        metaTextField.text = "\(infoResponse.metadata ?? [:])"
+    }
+
+    func fillVersionInfoUI(with versionInfo: UpdateInfo) {
+        requiredVersionTextField.text = versionInfo.requiredVersion?.description ?? ""
+        lastVersionAvailableTextField.text = versionInfo.lastVersionAvailable?.description ?? ""
+        installedVersionTextField.text = versionInfo.installedVersion.description
+        notificationTypeTextField.text = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
+        requirementsTextField.text = "\(versionInfo.requirements ?? [:])"
+    }
+}
+
+private extension UpdateStatus {
+
+    var updateState: String {
+        switch self {
+        case .noUpdateAvailable: return "No Update Available"
+        case .requiredUpdateNeeded: return "Required Update Needed"
+        case .newUpdateAvailable: return "New Update Available"
+        default: return ""
+        }
     }
 }

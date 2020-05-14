@@ -26,33 +26,15 @@ public class UpdateResponse: NSObject {
     }
 }
 
-/**
- Used for configuring PoV request.
- By default, PoV will not use http header fields and certificate pinning. All callbacks (success/versions, failure) will be returned on the main queue.
- */
-@objcMembers
-public class PoVRequestOptions: NSObject {
-    /// Optional HTTP header fields.
-    public var httpHeaderFields: NSDictionary?
-    /// Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
-    public var shouldPinCertificates: Bool = false
-    /// The queue on which the completion handler is dispatched. By default, `main` queue is used.
-    public var callbackQueue: DispatchQueue = .main
-    /// Boolean that indicates whether PoV should notify about new version after 7 days when app is fully rolled out or immediately. Default value is `true`.
-    public var trackPhaseRelease: Bool = true
-    /// Bundle where .plist file is stored in which app identifier and app versions should be checked.
-    public var bundle: Bundle = .main
-}
-
 // MARK: Helpers
 
 internal extension PrinceOfVersions {
 
     // MARK: Check updates
 
-    func internalyLoadAndPrepareConfiguration(
+    static func internalyLoadAndPrepareConfiguration(
         from URL: URL,
-        options: PoVOptions,
+        options: PoVRequestOptions,
         completion: @escaping ObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
@@ -62,7 +44,7 @@ internal extension PrinceOfVersions {
             return nil
         }
 
-        return checkForUpdates(from: URL, options: options, completion: { response in
+        return PrinceOfVersions.checkForUpdates(from: URL, options: options, completion: { response in
                 switch response.result {
                 case .success(let updateResult):
                     let updateResultResponse = UpdateResponse(
@@ -78,11 +60,11 @@ internal extension PrinceOfVersions {
 
     // MARK: AppStore check
 
-    func internalyCheckAndPrepareForUpdateAppStore(
+    static func internalyCheckAndPrepareForUpdateAppStore(
         completion: @escaping AppStoreObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
-        return checkForUpdateFromAppStore(completion: { result in
+        return PrinceOfVersions.checkForUpdateFromAppStore(completion: { result in
                 switch result {
                 case .success(let appStoreInfo):
                     completion(AppStoreInfoObject(from: appStoreInfo))
@@ -92,7 +74,7 @@ internal extension PrinceOfVersions {
         })
     }
 
-    func checkHeadersValidity(from headers: NSDictionary?) -> NSError? {
+    static func checkHeadersValidity(from headers: NSDictionary?) -> NSError? {
         if headers == nil || (headers as? [String : String?]) != nil { return nil }
         return (PoVError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError)
     }

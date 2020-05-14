@@ -28,7 +28,7 @@ extension PrinceOfVersions {
     @available(swift, obsoleted: 1.0)
     @objc(checkForUpdateFromAppStoreWithCompletion:error:)
     @discardableResult
-    public func checkForUpdateFromAppStore(completion: @escaping AppStoreObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return self.internalyCheckAndPrepareForUpdateAppStore(completion: completion, error: error)
+    public static func checkForUpdateFromAppStore(completion: @escaping AppStoreObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
+        return internalyCheckAndPrepareForUpdateAppStore(completion: completion, error: error)
     }
 }

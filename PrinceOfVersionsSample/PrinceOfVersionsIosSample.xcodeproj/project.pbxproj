@@ -17,6 +17,8 @@
 		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
 		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
+		A82D692F246AEBEF00F8E32D /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82D692E246AEBEF00F8E32D /* PrinceOfVersions.framework */; };
+		A82D6930246AEBEF00F8E32D /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A82D692E246AEBEF00F8E32D /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +28,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				A82D6930246AEBEF00F8E32D /* PrinceOfVersions.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +52,7 @@
 		0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckViewController.h; sourceTree = "<group>"; };
 		0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckViewController.m; sourceTree = "<group>"; };
 		0668A731232BE2D100693EA6 /* AppConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfiguration.xcconfig; sourceTree = "<group>"; };
+		A82D692E246AEBEF00F8E32D /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A82D692F246AEBEF00F8E32D /* PrinceOfVersions.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +149,7 @@
 		0668A72D232BD91B00693EA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A82D692E246AEBEF00F8E32D /* PrinceOfVersions.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F5M64F878;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsIosSample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -401,6 +408,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5F5M64F878;
 				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "$(SRCROOT)/PrinceOfVersionsIosSample/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

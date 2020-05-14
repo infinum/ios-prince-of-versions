@@ -41,18 +41,24 @@ public extension PrinceOfVersions {
      If configuration URL could not be provided, you can use `checkForUpdateFromAppStore` for automated check if new version is available.
 
      - parameter URL: URL that containts configuration data.
+     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
+     - parameter options: TODO
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data or PoVError error
 
      - returns: Discardable `URLSessionDataTask`
      */
     @discardableResult
-    static func checkForUpdates(from URL: URL, options: PoVOptions, completion: @escaping CompletionBlock) -> URLSessionDataTask {
+    static func checkForUpdates(
+        from URL: URL,
+        callbackQueue: DispatchQueue = .main,
+        options: PoVRequestOptions = PoVRequestOptions(),
+        completion: @escaping CompletionBlock
+    ) -> URLSessionDataTask {
 
-        let pov = PrinceOfVersions()
+        let princeOfVersions = PrinceOfVersions()
+        princeOfVersions.shouldPinCertificates = options.shouldPinCertificates
 
-        pov.shouldPinCertificates = options.shouldPinCertificates
-
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: pov, delegateQueue: nil)
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: princeOfVersions, delegateQueue: nil)
         var request = URLRequest(url: URL)
 
         if let headerFields = options.httpHeaderFields {
@@ -93,7 +99,7 @@ public extension PrinceOfVersions {
                 response: response,
                 result: result
             )
-            options.callbackQueue.async {
+            callbackQueue.async {
                 completion(updateInfoResponse)
             }
         })
@@ -113,12 +119,20 @@ public extension PrinceOfVersions {
      After check with server is finished, this method will return all informations about the app versioning available on AppStore Connect.
      It's up to the user to handle that info in a way sutable for the app.
 
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error
+     If flag `trackPhaseRelease` is set to `false`, the value of the `phaseReleaseInProgress` will instantly be `false` as phased release is not used.
+     Otherwise, if we have to check `trackPhaseRelease`, value of `phaseReleaseInProgress` will return `false` once phased release period of 7 days is over.
+
+     __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), if `trackPhaseRelease` is enabled `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value set on AppStore Connect.
+
+     - parameter trackPhaseRelease: Boolean that indicates whether PoV should notify about new version after 7 days when app is fully rolled out or immediately. Default value is `true`.
+     - parameter bundle: Bundle where .plist file is stored in which app identifier and app versions should be checked.
+     - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PrinceOfVersionsError error
 
      - returns: Discardable `URLSessionDataTask`
      */
     @discardableResult
-    func checkForUpdateFromAppStore(
+    static func checkForUpdateFromAppStore(
         trackPhaseRelease: Bool = true,
         bundle: Bundle = .main,
         callbackQueue: DispatchQueue = .main,
@@ -150,7 +164,7 @@ public extension PrinceOfVersions {
 internal extension PrinceOfVersions {
 
     @discardableResult
-    func internalyGetDataFromAppStore(
+    static func internalyGetDataFromAppStore(
         _ url: URL,
         trackPhaseRelease: Bool = true,
         bundle: Bundle = .main,
@@ -159,7 +173,9 @@ internal extension PrinceOfVersions {
         completion: @escaping AppStoreCompletionBlock
     ) -> URLSessionDataTask? {
 
-        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        let princeOfVersions = PrinceOfVersions()
+
+        let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: princeOfVersions, delegateQueue: nil)
 
         guard !testMode else {
             callbackQueue.async {
