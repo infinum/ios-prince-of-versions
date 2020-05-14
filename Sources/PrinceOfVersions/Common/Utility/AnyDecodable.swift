@@ -49,7 +49,7 @@ extension AnyDecodable {
         } else if let string = try? container.decode(String.self) {
             self.init(string)
         } else {
-            throw DecodingError.dataCorruptedError(in: container, debugDescription: "AnyCodable value cannot be decoded")
+            throw PoVError.invalidJsonData
         }
     }
 }

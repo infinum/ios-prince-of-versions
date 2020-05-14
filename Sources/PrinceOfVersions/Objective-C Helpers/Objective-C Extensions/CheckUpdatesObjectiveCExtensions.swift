@@ -30,7 +30,7 @@ extension PrinceOfVersions {
     @available(swift, obsoleted: 1.0)
     @objc(checkForUpdatesFromURL:completion:error:)
     @discardableResult
-    public func checkForUpdatesFromURL(_ URL: URL, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
-        return self.internalyLoadAndPrepareConfiguration(from: URL, options: PoVOptions(), completion: completion, error: error)
+    public static func checkForUpdatesFromURL(_ URL: URL, completion: @escaping ObjectCompletionBlock, error: @escaping ObjectErrorBlock) -> URLSessionDataTask? {
+        return internalyLoadAndPrepareConfiguration(from: URL, options: PoVRequestOptions(), completion: completion, error: error)
     }
 }
