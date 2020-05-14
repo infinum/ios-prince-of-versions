@@ -50,9 +50,9 @@ public struct UpdateInfo: Decodable {
         return configurations.first { configuration in
             guard
                 let requiredOSVersion = configuration.requirements?.requiredOSVersion,
-                let sdkVersion = sdkVersion
+                let installedOSVersion = sdkVersion
             else { return false }
-            return sdkVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
+            return installedOSVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
         }
     }
 
@@ -60,7 +60,7 @@ public struct UpdateInfo: Decodable {
 
     var sdkVersion: Version? {
         #if os(iOS)
-        return try Version(string: UIDevice.current.systemVersion)
+        return try? Version(string: UIDevice.current.systemVersion)
         #elseif os(macOS)
         return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
         #endif

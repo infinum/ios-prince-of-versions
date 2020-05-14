@@ -34,22 +34,22 @@ private extension AutomaticCheckViewController {
 
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
 
-        PrinceOfVersions().checkForUpdates(
-            from: princeOfVersionsURL,
-            newVersion: { [weak self] (/* versionData */_, isMinimumVersionSatisfied, meta) in
-                // versionData is same as in `ConfigurationViewController`. Check example there
-                let stateText = "New \(isMinimumVersionSatisfied ? "optional" : "mandatory") version is available."
-                self?.fillUI(with: stateText, and: String(describing: meta!))
-            }, noNewVersion: { [weak self] (isMinimumVersionSatisfied, meta) in
-                var stateText = "There is no new app versions."
-                if !isMinimumVersionSatisfied {
-                    stateText += "But minimum version is not satisfied."
-                }
-                self?.fillUI(with: stateText, and: String(describing: meta!))
-            }, error: { /* error */ _ in
-                // Handle error
-            }
-        )
+//        PrinceOfVersions.checkForUpdates(
+//            from: princeOfVersionsURL,
+//            newVersion: { [weak self] (/* versionData */_, isMinimumVersionSatisfied, meta) in
+//                // versionData is same as in `ConfigurationViewController`. Check example there
+//                let stateText = "New \(isMinimumVersionSatisfied ? "optional" : "mandatory") version is available."
+//                self?.fillUI(with: stateText, and: String(describing: meta!))
+//            }, noNewVersion: { [weak self] (isMinimumVersionSatisfied, meta) in
+//                var stateText = "There is no new app versions."
+//                if !isMinimumVersionSatisfied {
+//                    stateText += "But minimum version is not satisfied."
+//                }
+//                self?.fillUI(with: stateText, and: String(describing: meta!))
+//            }, error: { /* error */ _ in
+//                // Handle error
+//            }
+//        )
     }
 
     func fillUI(with appState: String, and meta: String) {

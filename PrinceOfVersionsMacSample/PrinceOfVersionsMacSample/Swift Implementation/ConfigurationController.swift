@@ -38,9 +38,9 @@ class ConfigurationController: NSViewController {
 
 private extension ConfigurationController {
 
-    var options: PoVOptions {
+    var options: PoVRequestOptions {
 
-        let options = PoVOptions()
+        let options = PoVRequestOptions()
 
         options.addRequirement(key: "region") { (value) -> Bool in
             guard let value = value as? String else { return false }
@@ -59,7 +59,7 @@ private extension ConfigurationController {
 
     func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions().checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
+        PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
             switch response.result {
             case .success(let updateResultData):
                 self.fillUI(with: updateResultData)
@@ -77,7 +77,7 @@ private extension ConfigurationController {
     func checkAppStoreVersion() {
         // In sample app, error will occur as bundle ID
         // of the app is not available on the App Store
-        PrinceOfVersions().checkForUpdateFromAppStore(
+        PrinceOfVersions.checkForUpdateFromAppStore(
             trackPhaseRelease: false,
             completion: { result in
                 switch result {
@@ -98,7 +98,7 @@ private extension ConfigurationController {
 
     func fillUpdateResultUI(with infoResponse: UpdateResult) {
         updateVersionTextField.stringValue = infoResponse.updateVersion.description
-        updateStateTextField.stringValue = infoResponse.updateState.description
+        updateStateTextField.stringValue = infoResponse.updateState.updateState
         metaTextField.stringValue = "\(infoResponse.metadata ?? [:])"
     }
 
@@ -113,7 +113,7 @@ private extension ConfigurationController {
 
 private extension UpdateStatus {
 
-    var description: String {
+    var updateState: String {
         switch self {
         case .noUpdateAvailable: return "No Update Available"
         case .requiredUpdateNeeded: return "Required Update Needed"
