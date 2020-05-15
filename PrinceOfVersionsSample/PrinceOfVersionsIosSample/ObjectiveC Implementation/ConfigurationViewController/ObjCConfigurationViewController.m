@@ -13,16 +13,13 @@
 
 @interface ObjCConfigurationViewController ()
 
-@property (nonatomic, weak) IBOutlet UILabel *installedVersionLabel;
-@property (nonatomic, weak) IBOutlet UILabel *iOSVersionLabel;
-
 @property (nonatomic, weak) IBOutlet UILabel *updateVersionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *updateStateLabel;
 @property (nonatomic, weak) IBOutlet UILabel *metaLabel;
 
 @property (nonatomic, weak) IBOutlet UILabel *requiredVersionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *lastVersionAvailableLabel;
-@property (nonatomic, weak) IBOutlet UILabel *installedVersionLabel1;
+@property (nonatomic, weak) IBOutlet UILabel *installedVersionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *notificationTypeLabel;
 @property (nonatomic, weak) IBOutlet UILabel *requirementsLabel;
 

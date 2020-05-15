@@ -14,9 +14,7 @@
 		0668A70A232BCABA00693EA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0668A708232BCABA00693EA6 /* LaunchScreen.storyboard */; };
 		0668A712232BCBC900693EA6 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0668A711232BCBC900693EA6 /* README.md */; };
 		0668A717232BCF1D00693EA6 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A716232BCF1D00693EA6 /* ConfigurationViewController.swift */; };
-		0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */; };
 		0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */; };
-		0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */; };
 		A82D692F246AEBEF00F8E32D /* PrinceOfVersions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A82D692E246AEBEF00F8E32D /* PrinceOfVersions.framework */; };
 		A82D6930246AEBEF00F8E32D /* PrinceOfVersions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A82D692E246AEBEF00F8E32D /* PrinceOfVersions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -45,12 +43,9 @@
 		0668A70B232BCABA00693EA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0668A711232BCBC900693EA6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0668A716232BCF1D00693EA6 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
-		0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticCheckViewController.swift; sourceTree = "<group>"; };
 		0668A71A232BCF4200693EA6 /* PrinceOfVersionsIosSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PrinceOfVersionsIosSample-Bridging-Header.h"; sourceTree = "<group>"; };
 		0668A71B232BCF4200693EA6 /* ObjCConfigurationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCConfigurationViewController.h; sourceTree = "<group>"; };
 		0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCConfigurationViewController.m; sourceTree = "<group>"; };
-		0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCAutomaticCheckViewController.h; sourceTree = "<group>"; };
-		0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCAutomaticCheckViewController.m; sourceTree = "<group>"; };
 		0668A731232BE2D100693EA6 /* AppConfiguration.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppConfiguration.xcconfig; sourceTree = "<group>"; };
 		A82D692E246AEBEF00F8E32D /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -114,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				0668A716232BCF1D00693EA6 /* ConfigurationViewController.swift */,
-				0668A718232BCF2900693EA6 /* AutomaticCheckViewController.swift */,
 			);
 			path = "Swift Implementation";
 			sourceTree = "<group>";
@@ -123,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				0668A721232BCFCF00693EA6 /* ConfigurationViewController */,
-				0668A722232BCFD800693EA6 /* AutomaticCheckViewController */,
 			);
 			path = "ObjectiveC Implementation";
 			sourceTree = "<group>";
@@ -135,15 +128,6 @@
 				0668A71C232BCF4200693EA6 /* ObjCConfigurationViewController.m */,
 			);
 			path = ConfigurationViewController;
-			sourceTree = "<group>";
-		};
-		0668A722232BCFD800693EA6 /* AutomaticCheckViewController */ = {
-			isa = PBXGroup;
-			children = (
-				0668A71E232BCF9200693EA6 /* ObjCAutomaticCheckViewController.h */,
-				0668A71F232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m */,
-			);
-			path = AutomaticCheckViewController;
 			sourceTree = "<group>";
 		};
 		0668A72D232BD91B00693EA6 /* Frameworks */ = {
@@ -233,10 +217,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0668A700232BCAB700693EA6 /* AppDelegate.swift in Sources */,
-				0668A719232BCF2900693EA6 /* AutomaticCheckViewController.swift in Sources */,
 				0668A717232BCF1D00693EA6 /* ConfigurationViewController.swift in Sources */,
 				0668A71D232BCF4200693EA6 /* ObjCConfigurationViewController.m in Sources */,
-				0668A720232BCF9200693EA6 /* ObjCAutomaticCheckViewController.m in Sources */,
 				063B7E7A232D44BD00DA8929 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

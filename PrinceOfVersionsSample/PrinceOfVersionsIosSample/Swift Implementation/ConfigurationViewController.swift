@@ -14,25 +14,15 @@ class ConfigurationViewController: UIViewController {
     // MARK: - Private properties
     // MARK: IBOutlets
 
-    @IBOutlet private var installedVersionLabel: UILabel!
-    @IBOutlet private var iOSVersionLabel:UILabel!
+    @IBOutlet weak var updateVersionLabel: UILabel!
+    @IBOutlet weak var updateStateLabel: UILabel!
+    @IBOutlet weak var metaLabel: UILabel!
 
-    @IBOutlet private var minimumVersionLabel: UILabel!
-    @IBOutlet private var minimumSDKLabel: UILabel!
-    @IBOutlet private var latestVersionLabel: UILabel!
-    @IBOutlet private var notificationTypeLabel: UILabel!
-    @IBOutlet private var latestMinimumSDKLabel: UILabel!
-    @IBOutlet private var metaLabel: UILabel!
-
-    @IBOutlet weak var updateVersionTextField: UILabel!
-    @IBOutlet weak var updateStateTextField: UILabel!
-    @IBOutlet weak var metaTextField: UILabel!
-
-    @IBOutlet weak var requiredVersionTextField: UILabel!
-    @IBOutlet weak var lastVersionAvailableTextField: UILabel!
-    @IBOutlet weak var installedVersionTextField: UILabel!
-    @IBOutlet weak var notificationTypeTextField: UILabel!
-    @IBOutlet weak var requirementsTextField: UILabel!
+    @IBOutlet weak var requiredVersionLabel: UILabel!
+    @IBOutlet weak var lastVersionAvailableLabel: UILabel!
+    @IBOutlet weak var installedVersionLabel: UILabel!
+    @IBOutlet weak var notificationTypeLabel: UILabel!
+    @IBOutlet weak var requirementsLabel: UILabel!
 
 
     // MARK: - View Lifecycle
@@ -88,17 +78,17 @@ private extension ConfigurationViewController {
     }
 
     func fillUpdateResultUI(with infoResponse: UpdateResult) {
-        updateVersionTextField.text = infoResponse.updateVersion.description
-        updateStateTextField.text = infoResponse.updateState.updateState
-        metaTextField.text = "\(infoResponse.metadata ?? [:])"
+        updateVersionLabel.text = infoResponse.updateVersion.description
+        updateStateLabel.text = infoResponse.updateState.updateState
+        metaLabel.text = "\(infoResponse.metadata ?? [:])"
     }
 
     func fillVersionInfoUI(with versionInfo: UpdateInfo) {
-        requiredVersionTextField.text = versionInfo.requiredVersion?.description ?? ""
-        lastVersionAvailableTextField.text = versionInfo.lastVersionAvailable?.description ?? ""
-        installedVersionTextField.text = versionInfo.installedVersion.description
-        notificationTypeTextField.text = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
-        requirementsTextField.text = "\(versionInfo.requirements ?? [:])"
+        requiredVersionLabel.text = versionInfo.requiredVersion?.description ?? ""
+        lastVersionAvailableLabel.text = versionInfo.lastVersionAvailable?.description ?? ""
+        installedVersionLabel.text = versionInfo.installedVersion.description
+        notificationTypeLabel.text = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
+        requirementsLabel.text = "\(versionInfo.requirements ?? [:])"
     }
 }
 
