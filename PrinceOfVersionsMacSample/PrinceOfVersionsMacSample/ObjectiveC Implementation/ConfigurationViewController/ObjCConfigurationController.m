@@ -80,11 +80,11 @@
     self.updateStateTextField.stringValue = [self updateStateFromResult:infoResponse.updateState];
     self.metaTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
 
-    self.requiredVersionTextField.stringValue = infoResponse.versionInfo.requiredVersion.description;
-    self.lastVersionAvailableTextField.stringValue = infoResponse.versionInfo.lastVersionAvailable.description;
-    self.installedVersionTextField.stringValue = infoResponse.versionInfo.installedVersion.description;
+    self.requiredVersionTextField.stringValue = infoResponse.versionInfo.updateData.requiredVersion.description;
+    self.lastVersionAvailableTextField.stringValue = infoResponse.versionInfo.updateData.lastVersionAvailable.description;
+    self.installedVersionTextField.stringValue = infoResponse.versionInfo.updateData.installedVersion.description;
     self.notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
-    self.requirementsTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.versionInfo.requirements];
+    self.requirementsTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.versionInfo.updateData.requirements];
 }
 
 - (NSString *)updateStateFromResult:(UpdateStatusType)type

@@ -105,11 +105,11 @@ private extension ConfigurationViewController {
     }
 
     func fillVersionInfoUI(with versionInfo: UpdateInfo) {
-        requiredVersionLabel.text = versionInfo.updateInfo.requiredVersion?.description ?? ""
-        lastVersionAvailableLabel.text = versionInfo.updateInfo.lastVersionAvailable?.description ?? ""
-        installedVersionLabel.text = versionInfo.updateInfo.installedVersion.description
+        requiredVersionLabel.text = versionInfo.updateData.requiredVersion?.description ?? ""
+        lastVersionAvailableLabel.text = versionInfo.updateData.lastVersionAvailable?.description ?? ""
+        installedVersionLabel.text = versionInfo.updateData.installedVersion.description
         notificationTypeLabel.text = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
-        requirementsLabel.text = "\(versionInfo.updateInfo.requirements ?? [:])"
+        requirementsLabel.text = "\(versionInfo.updateData.requirements ?? [:])"
     }
 }
 

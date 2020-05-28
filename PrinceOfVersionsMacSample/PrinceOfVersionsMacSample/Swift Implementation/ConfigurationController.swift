@@ -103,11 +103,11 @@ private extension ConfigurationController {
     }
 
     func fillVersionInfoUI(with versionInfo: UpdateInfo) {
-        requiredVersionTextField.stringValue = versionInfo.updateInfo.requiredVersion?.description ?? ""
-        lastVersionAvailableTextField.stringValue = versionInfo.updateInfo.lastVersionAvailable?.description ?? ""
-        installedVersionTextField.stringValue = versionInfo.updateInfo.installedVersion.description
+        requiredVersionTextField.stringValue = versionInfo.updateData.requiredVersion?.description ?? ""
+        lastVersionAvailableTextField.stringValue = versionInfo.updateData.lastVersionAvailable?.description ?? ""
+        installedVersionTextField.stringValue = versionInfo.updateData.installedVersion.description
         notificationTypeTextField.stringValue = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
-        requirementsTextField.stringValue = "\(versionInfo.updateInfo.requirements ?? [:])"
+        requirementsTextField.stringValue = "\(versionInfo.updateData.requirements ?? [:])"
     }
 }
 
