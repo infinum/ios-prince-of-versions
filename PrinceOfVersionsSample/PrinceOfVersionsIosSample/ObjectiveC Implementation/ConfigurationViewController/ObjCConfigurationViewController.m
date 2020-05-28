@@ -81,11 +81,14 @@
     self.updateStateLabel.text = [self updateStateFromResult:infoResponse.updateState];
     self.metaLabel.text = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
 
-    self.requiredVersionLabel.text = infoResponse.versionInfo.requiredVersion.description;
-    self.lastVersionAvailableLabel.text = infoResponse.versionInfo.lastVersionAvailable.description;
-    self.installedVersionLabel.text = infoResponse.versionInfo.installedVersion.description;
-    self.notificationTypeLabel.text = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
-    self.requirementsLabel.text = [NSString stringWithFormat:@"%@", infoResponse.versionInfo.requirements];
+    UpdateInfoObject *versionInfo = infoResponse.versionInfo;
+
+    self.requiredVersionLabel.text =
+    versionInfo.updateData.requiredVersion.description;
+    self.lastVersionAvailableLabel.text = versionInfo.updateData.lastVersionAvailable.description;
+    self.installedVersionLabel.text = versionInfo.updateData.installedVersion.description;
+    self.notificationTypeLabel.text = versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
+    self.requirementsLabel.text = [NSString stringWithFormat:@"%@", versionInfo.updateData.requirements];
 }
 
 - (NSString *)updateStateFromResult:(UpdateStatusType)type

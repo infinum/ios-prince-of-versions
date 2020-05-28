@@ -26,31 +26,46 @@ public class AppStoreInfoObject: NSObject {
 
 extension AppStoreInfoObject: UpdateInfoValues {
 
-    /**
-     Returns minimum required version of the app.
-     */
+    /// Returns minimum required version of the app.
     public var requiredVersion: Version? {
         return appStoreInfo.requiredVersion
     }
 
-    /**
-     Returns latest available version of the app.
-     */
+    /// Returns latest available version of the app.
     public var lastVersionAvailable: Version? {
         return appStoreInfo.lastVersionAvailable
     }
 
-    /**
-     Returns installed version of the app.
-     */
+    /// Returns installed version of the app.
     public var installedVersion: Version {
         return appStoreInfo.installedVersion
     }
 
-    /**
-     Returns requirements for configuration.
-     */
+    /// Returns requirements for configuration.
     public var requirements: [String : Any]? {
         return appStoreInfo.requirements
+    }
+}
+
+extension AppStoreInfoObject: UpdateResultObjectValues {
+
+    /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
+    public var updateVersion: Version {
+        return appStoreInfo.updateVersion
+    }
+
+    /// Resolution of the update check
+    public var updateState: UpdateResultObject.UpdateStatusType {
+        return appStoreInfo.updateState.updateStatusType
+    }
+
+    /// Update configuration values used to check
+    public var versionInfo: UpdateInfoObject {
+        return UpdateInfoResponseObject(from: appStoreInfo.versionInfo).versionInfo
+    }
+
+    /// Merged metadata from JSON
+    public var metadata: [String : Any]? {
+        return appStoreInfo.metadata
     }
 }
