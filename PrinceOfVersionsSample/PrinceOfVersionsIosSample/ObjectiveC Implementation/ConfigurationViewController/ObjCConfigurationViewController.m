@@ -44,8 +44,19 @@
 {
     NSURL *princeOfVersionsURL = [NSURL URLWithString:Constant.princeOfVersionsURL];
 
+    PoVRequestOptions *options = [PoVRequestOptions new];
+    [options addRequirementWithKey:@"region" requirementCheck:^BOOL (id value) {
+        // Check OS localisation
+        return [(NSString *)value isEqualToString:@"hr"];
+    }];
+
+    [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
+        // Check device bluetooth version
+        return [(NSString *)value hasPrefix:@"5"];
+    }];
+
     __weak __typeof(self) weakSelf = self;
-    [PrinceOfVersions checkForUpdatesFromURL:princeOfVersionsURL completion:^(UpdateResponse *updateResponse) {
+    [PrinceOfVersions checkForUpdatesFromURL:princeOfVersionsURL options:options completion:^(UpdateResponse *updateResponse) {
         [weakSelf fillUIWithInfoResponse:updateResponse.result];
     } error:^(NSError *error) {
         /* Handle error */

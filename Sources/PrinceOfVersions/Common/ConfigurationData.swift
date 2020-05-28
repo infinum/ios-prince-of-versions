@@ -12,7 +12,7 @@ import Foundation
 struct ConfigurationData: Decodable {
     let requiredVersion: Version?
     let lastVersionAvailable: Version?
-    let notifyLastVersionFrequency: UpdateInfo.NotificationType?
+    let notifyLastVersionFrequency: NotificationType?
     let requirements: Requirements?
     let meta: [String: AnyDecodable]?
 }

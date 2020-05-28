@@ -43,8 +43,19 @@
 {
     NSURL *princeOfVersionsURL = [NSURL URLWithString:Constant.princeOfVersionsURL];
 
+    PoVRequestOptions *options = [PoVRequestOptions new];
+    [options addRequirementWithKey:@"region" requirementCheck:^BOOL (id value) {
+        // Check OS localisation
+        return [(NSString *)value isEqualToString:@"hr"];
+    }];
+
+    [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
+        // Check device bluetooth version
+        return [(NSString *)value hasPrefix:@"5"];
+    }];
+
     __weak __typeof(self) weakSelf = self;
-    [[PrinceOfVersions new] checkForUpdatesFromURL:princeOfVersionsURL completion:^(UpdateResponse *updateResponse) {
+    [PrinceOfVersions checkForUpdatesFromURL:princeOfVersionsURL options:options completion:^(UpdateResponse *updateResponse) {
         [weakSelf fillUIWithInfoResponse:updateResponse.result];
     } error:^(NSError *error) {
         // Handle error
@@ -56,10 +67,7 @@
 
 - (void)checkAppStoreVersion
 {
-    PoVRequestOptions *options = [PoVRequestOptions new];
-    options.trackPhaseRelease = NO;
-
-    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithCompletion:^(AppStoreInfoObject *response) {
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhaseRelease:NO callbackQueue:dispatch_get_main_queue()  completion:^(AppStoreInfoObject *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error

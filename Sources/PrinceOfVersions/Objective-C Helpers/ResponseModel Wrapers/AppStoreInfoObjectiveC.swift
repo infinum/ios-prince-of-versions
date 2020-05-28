@@ -30,27 +30,27 @@ extension AppStoreInfoObject: UpdateInfoValues {
      Returns minimum required version of the app.
      */
     public var requiredVersion: Version? {
-        return nil// appStoreInfo.requiredVersion
+        return appStoreInfo.requiredVersion
     }
 
     /**
      Returns latest available version of the app.
      */
     public var lastVersionAvailable: Version? {
-        return nil// appStoreInfo.lastVersionAvailable
+        return appStoreInfo.lastVersionAvailable
     }
 
     /**
      Returns installed version of the app.
      */
     public var installedVersion: Version {
-        return (appStoreInfo.configurationData?.latestVersion!)!// appStoreInfo.installedVersion
+        return appStoreInfo.installedVersion
     }
 
     /**
      Returns requirements for configuration.
      */
     public var requirements: [String : Any]? {
-        return nil// appStoreInfo.requirements
+        return appStoreInfo.requirements
     }
 }

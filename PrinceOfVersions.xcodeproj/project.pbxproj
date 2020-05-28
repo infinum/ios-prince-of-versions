@@ -36,7 +36,7 @@
 		OBJ_51 /* UpdateResultObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* UpdateResultObjectiveC.swift */; };
 		OBJ_52 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* PrinceOfVersions.swift */; };
 		OBJ_53 /* PoVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PoVError.swift */; };
-		OBJ_54 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UpdateInfo.swift */; };
+		OBJ_54 /* UpdateInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UpdateInfoResponse.swift */; };
 		OBJ_55 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Version.swift */; };
 		OBJ_73 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* PrinceOfVersionsTest.swift */; };
 		OBJ_74 /* UpdateInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* UpdateInfoTest.swift */; };
@@ -86,7 +86,7 @@
 		OBJ_17 /* UpdateResultObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResultObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_18 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
 		OBJ_19 /* PoVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVError.swift; sourceTree = "<group>"; };
-		OBJ_20 /* UpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
+		OBJ_20 /* UpdateInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoResponse.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		OBJ_25 /* PrinceOfVersionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsTest.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		A88447A524644F5200B24789 /* UpdateData */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_20 /* UpdateInfo.swift */,
+				OBJ_20 /* UpdateInfoResponse.swift */,
 				A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */,
 			);
 			path = UpdateData;
@@ -421,7 +421,7 @@
 				OBJ_52 /* PrinceOfVersions.swift in Sources */,
 				OBJ_53 /* PoVError.swift in Sources */,
 				A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */,
-				OBJ_54 /* UpdateInfo.swift in Sources */,
+				OBJ_54 /* UpdateInfoResponse.swift in Sources */,
 				OBJ_55 /* Version.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
