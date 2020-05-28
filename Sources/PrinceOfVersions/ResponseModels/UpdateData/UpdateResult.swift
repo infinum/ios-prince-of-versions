@@ -25,7 +25,7 @@ public enum UpdateStatus {
     case newUpdateAvailable
 }
 
-protocol UpdateResultValues {
+public protocol UpdateResultValues {
     var updateVersion: Version { get }
     var updateState: UpdateStatus { get }
     var versionInfo: UpdateInfo { get }
@@ -33,8 +33,8 @@ protocol UpdateResultValues {
 }
 
 public struct UpdateInfo {
-    var updateInfo: UpdateInfoValues
-    var sdkVersion: Version?
+    public var updateInfo: UpdateInfoValues
+    public var sdkVersion: Version?
     /**
      Returns notification type.
 
@@ -44,14 +44,14 @@ public struct UpdateInfo {
 
      Default value is `.once`
      */
-    var notificationType: NotificationType
+    public var notificationType: NotificationType
 
     /**
      Returns bool value if phased release period is in progress
 
      __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value send by `itunes.apple.com` API.
      */
-    var phaseReleaseInProgress: Bool?
+    public var phaseReleaseInProgress: Bool?
 }
 
 public struct UpdateResult {

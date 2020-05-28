@@ -107,7 +107,7 @@ public struct AppStoreInfo: Codable {
 
 extension AppStoreInfo: UpdateResultValues {
 
-    var updateVersion: Version {
+    public var updateVersion: Version {
 
         guard let latestVersion = configurationData?.latestVersion else {
             preconditionFailure("Unable to get version data")
@@ -116,7 +116,7 @@ extension AppStoreInfo: UpdateResultValues {
         return Version.max(latestVersion, installedVersion)
     }
 
-    var updateState: UpdateStatus {
+    public var updateState: UpdateStatus {
 
         guard let latestVersion = configurationData?.latestVersion else {
             return .noUpdateAvailable
@@ -125,11 +125,11 @@ extension AppStoreInfo: UpdateResultValues {
         return latestVersion > installedVersion ? .newUpdateAvailable : .noUpdateAvailable
     }
 
-    var versionInfo: UpdateInfo {
+    public var versionInfo: UpdateInfo {
         return versionInfoValues
     }
 
-    var metadata: [String : Any]? {
+    public var metadata: [String : Any]? {
         return nil
     }
 }
