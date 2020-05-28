@@ -47,7 +47,7 @@ extension PoVError: LocalizedError {
 
 extension PoVError {
 
-    static func validate(updateInfo: UpdateInfo) -> PoVError? {
+    static func validate(updateInfo: UpdateInfoResponse) -> PoVError? {
 
         if updateInfo.configurations == nil {
             return .dataNotFound
@@ -76,7 +76,7 @@ extension PoVError {
 
         if configuration.latestVersion == nil { return .missingConfigurationVersion }
 
-        if configuration.currentVersionString == nil || configuration.currentBuildNumberString == nil {
+        if appStoreInfo.configurationData?.installedVersion == nil {
             return .invalidCurrentVersion
         }
 
