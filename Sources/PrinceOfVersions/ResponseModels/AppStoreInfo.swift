@@ -89,9 +89,8 @@ public struct AppStoreInfo: Codable {
 
     internal var versionInfoValues: UpdateInfo {
         return UpdateInfo(
-            updateInfo: self,
+            updateData: self,
             sdkVersion: configurationData?.sdkVersion,
-            notificationType: .always,
             phaseReleaseInProgress: phaseReleaseInProgress
         )
     }
@@ -107,6 +106,7 @@ public struct AppStoreInfo: Codable {
 
 extension AppStoreInfo: UpdateResultValues {
 
+    /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
     public var updateVersion: Version {
 
         guard let latestVersion = configurationData?.latestVersion else {
@@ -116,6 +116,7 @@ extension AppStoreInfo: UpdateResultValues {
         return Version.max(latestVersion, installedVersion)
     }
 
+    /// Resolution of the update check
     public var updateState: UpdateStatus {
 
         guard let latestVersion = configurationData?.latestVersion else {
@@ -125,6 +126,7 @@ extension AppStoreInfo: UpdateResultValues {
         return latestVersion > installedVersion ? .newUpdateAvailable : .noUpdateAvailable
     }
 
+    /// Update configuration values used to check
     public var versionInfo: UpdateInfo {
         return versionInfoValues
     }
@@ -138,30 +140,22 @@ extension AppStoreInfo: UpdateResultValues {
 
 extension AppStoreInfo: UpdateInfoValues {
 
-    /**
-     Returns minimum required version of the app.
-     */
+    /// Returns minimum required version of the app.
     public var requiredVersion: Version? {
         return configurationData?.installedVersion
     }
 
-    /**
-     Returns latest available version of the app.
-     */
+    /// Returns latest available version of the app.
     public var lastVersionAvailable: Version? {
         return configurationData?.latestVersion
     }
 
-    /**
-     Returns requirements for configuration.
-     */
+    /// Returns requirements for configuration.
     public var requirements: [String : Any]? {
         return nil
     }
 
-    /**
-     Returns installed version of the app.
-     */
+    /// Returns installed version of the app.
     public var installedVersion: Version {
         guard let version = configurationData?.installedVersion else {
             preconditionFailure("Unable to get installed version data")

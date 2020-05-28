@@ -7,18 +7,6 @@
 
 import Foundation
 
-// MARK: - Public notification type
-
-public enum NotificationType: String, Codable {
-    case always = "ALWAYS"
-    case once = "ONCE"
-
-    enum CodingKeys: CodingKey {
-        case always
-        case once
-    }
-}
-
 public enum UpdateStatus {
     case noUpdateAvailable
     case requiredUpdateNeeded
@@ -33,8 +21,13 @@ public protocol UpdateResultValues {
 }
 
 public struct UpdateInfo {
-    public var updateInfo: UpdateInfoValues
+
+    /// Returns struct containing information about possible update.
+    public var updateData: UpdateInfoValues
+
+    /// Returns current SDK version.
     public var sdkVersion: Version?
+
     /**
      Returns notification type.
 
@@ -44,10 +37,12 @@ public struct UpdateInfo {
 
      Default value is `.once`
      */
-    public var notificationType: NotificationType
+    public var notificationType: NotificationType = .once
 
     /**
      Returns bool value if phased release period is in progress
+
+     Used only with automated check from AppStore if new version is available.
 
      __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value send by `itunes.apple.com` API.
      */
@@ -70,6 +65,7 @@ public struct UpdateResult {
 
 extension UpdateResult: UpdateResultValues {
 
+    /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
     public var updateVersion: Version {
 
         if let requiredVersion = updateInfoResponse.requiredVersion, let lastVersionAvailable = updateInfoResponse.lastVersionAvailable {
@@ -87,6 +83,7 @@ extension UpdateResult: UpdateResultValues {
         return updateInfoResponse.installedVersion
     }
 
+    /// Resolution of the update check
     public var updateState: UpdateStatus {
 
         if let requiredVersion = updateInfoResponse.requiredVersion, requiredVersion > updateInfoResponse.installedVersion {
@@ -107,13 +104,12 @@ extension UpdateResult: UpdateResultValues {
         return .noUpdateAvailable
     }
 
+    /// Update configuration values used to check
     public var versionInfo: UpdateInfo {
         return updateInfoResponse.versionInfo
     }
 
-    /**
-     Returns global metadata merged with metadata for configuration.
-     */
+    /// Merged metadata from JSON
     public var metadata: [String : Any]? {
         return updateInfoResponse.metadata
     }

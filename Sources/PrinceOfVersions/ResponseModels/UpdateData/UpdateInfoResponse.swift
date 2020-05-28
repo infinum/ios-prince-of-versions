@@ -97,7 +97,7 @@ public struct UpdateInfoResponse: Decodable {
 
     internal var versionInfo: UpdateInfo {
         return UpdateInfo(
-            updateInfo: self,
+            updateData: self,
             sdkVersion: sdkVersion,
             notificationType: notificationType
         )
@@ -146,23 +146,17 @@ extension UpdateInfoResponse {
 
 extension UpdateInfoResponse: UpdateInfoValues {
 
-    /**
-     Returns minimum required version of the app.
-     */
+    /// Returns minimum required version of the app.
     public var requiredVersion: Version? {
         return configuration?.requiredVersion
     }
 
-    /**
-     Returns latest available version of the app.
-     */
+    /// Returns latest available version of the app.
     public var lastVersionAvailable: Version? {
         return configuration?.lastVersionAvailable
     }
 
-    /**
-     Returns installed version of the app.
-     */
+    /// Returns installed version of the app.
     public var installedVersion: Version {
         guard let version = currentInstalledVersion else {
             preconditionFailure("Unable to get installed version data")
@@ -170,9 +164,7 @@ extension UpdateInfoResponse: UpdateInfoValues {
         return version
     }
 
-    /**
-     Returns requirements for configuration.
-     */
+    /// Returns requirements for configuration.
     public var requirements: [String : Any]? {
         return configuration?.requirements?.allRequirements
     }
