@@ -40,10 +40,31 @@ class ConfigurationViewController: UIViewController {
 
 private extension ConfigurationViewController {
 
+    var options: PoVRequestOptions {
+
+        let options = PoVRequestOptions()
+
+        options.addRequirement(key: "region") { (value) -> Bool in
+            guard let value = value as? String else { return false }
+            // Check OS localisation
+            return value == "hr"
+        }
+
+        options.addRequirement(key: "bluetooth") { (value) -> Bool in
+            guard let value = value as? String else { return false }
+            // Check device bluetooth version
+            return value.starts(with: "5")
+        }
+
+        return options
+    }
+
     func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
+
         PrinceOfVersions.checkForUpdates(
             from: princeOfVersionsURL,
+            options: options,
             completion: { [weak self] response in
                 switch response.result {
                 case .success(let infoResponse):

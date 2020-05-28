@@ -23,7 +23,7 @@ public protocol UpdateInfoValues {
 
 // MARK: - Internal configuration data -
 
-public struct UpdateInfo: Decodable {
+public struct UpdateInfoResponse: Decodable {
 
     // MARK: - Private properties -
 
@@ -34,6 +34,8 @@ public struct UpdateInfo: Decodable {
     private var meta: [String: AnyDecodable]?
 
     private let bundle = Bundle.main
+
+    // MARK: - Internal properties -
 
     internal var configurations: [ConfigurationData]? {
         #if os(iOS)
@@ -56,9 +58,7 @@ public struct UpdateInfo: Decodable {
         }
     }
 
-    // MARK: - Internal properties -
-
-    var sdkVersion: Version? {
+    internal var sdkVersion: Version? {
         #if os(iOS)
         return try? Version(string: UIDevice.current.systemVersion)
         #elseif os(macOS)
@@ -66,19 +66,11 @@ public struct UpdateInfo: Decodable {
         #endif
     }
 
-    var currentVersionString: String? {
-        return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-    }
-
-    var currentBuildNumberString: String? {
-        return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-    }
-
-    var currentInstalledVersion: Version? {
+    internal var currentInstalledVersion: Version? {
 
         guard
-            let currentVersionString = currentVersionString,
-            let currentBuildNumberString = currentBuildNumberString
+            let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
         else {
             return nil
         }
@@ -86,7 +78,7 @@ public struct UpdateInfo: Decodable {
         return try? Version(string: currentVersionString + "-" + currentBuildNumberString)
     }
 
-    var metadata: [String: Any]? {
+    internal var metadata: [String: Any]? {
 
         guard let configMeta = configuration?.meta else {
             return meta?.mapValues { $0.value }
@@ -97,33 +89,18 @@ public struct UpdateInfo: Decodable {
             .mapValues { $0.value }
     }
 
-    var userRequirements: [String: ((Any) -> Bool)] = [:]
+    internal var userRequirements: [String: ((Any) -> Bool)] = [:]
 
-    // MARK: - Public notification type
-
-    public enum NotificationType: String, Codable {
-        case always = "ALWAYS"
-        case once = "ONCE"
-
-        enum CodingKeys: CodingKey {
-            case always
-            case once
-        }
+    internal var notificationType: NotificationType {
+        return configuration?.notifyLastVersionFrequency ?? .once
     }
 
-    // MARK: - Public properties
-
-    /**
-     Returns notification type.
-
-     Possible values are:
-     - Once: Show notification only once
-     - Always: Show notification every time app run
-
-     Default value is `.once`
-     */
-    public var notificationType: UpdateInfo.NotificationType {
-        return configuration?.notifyLastVersionFrequency ?? .once
+    internal var versionInfo: UpdateInfo {
+        return UpdateInfo(
+            updateInfo: self,
+            sdkVersion: sdkVersion,
+            notificationType: notificationType
+        )
     }
 
     // MARK: - Init -
@@ -148,7 +125,7 @@ public struct UpdateInfo: Decodable {
 
 // MARK: - Private methods -
 
-extension UpdateInfo {
+extension UpdateInfoResponse {
 
     private func meetsUserRequirements(for configuration: ConfigurationData) -> Bool {
 
@@ -167,7 +144,7 @@ extension UpdateInfo {
 
 // MARK: - UpdateInfoValues -
 
-extension UpdateInfo: UpdateInfoValues {
+extension UpdateInfoResponse: UpdateInfoValues {
 
     /**
      Returns minimum required version of the app.
