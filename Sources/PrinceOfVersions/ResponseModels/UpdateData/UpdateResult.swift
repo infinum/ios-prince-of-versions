@@ -7,6 +7,18 @@
 
 import Foundation
 
+// MARK: - Public notification type
+
+public enum NotificationType: String, Codable {
+    case always = "ALWAYS"
+    case once = "ONCE"
+
+    enum CodingKeys: CodingKey {
+        case always
+        case once
+    }
+}
+
 public enum UpdateStatus {
     case noUpdateAvailable
     case requiredUpdateNeeded
@@ -20,14 +32,36 @@ protocol UpdateResultValues {
     var metadata: [String: Any]? { get }
 }
 
+public struct UpdateInfo {
+    var updateInfo: UpdateInfoValues
+    var sdkVersion: Version?
+    /**
+     Returns notification type.
+
+     Possible values are:
+     - Once: Show notification only once
+     - Always: Show notification every time app run
+
+     Default value is `.once`
+     */
+    var notificationType: NotificationType
+
+    /**
+     Returns bool value if phased release period is in progress
+
+     __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value send by `itunes.apple.com` API.
+     */
+    var phaseReleaseInProgress: Bool?
+}
+
 public struct UpdateResult {
 
     // MARK: - Private properties
-    private var updateInfo: UpdateInfo
+    private var updateInfoResponse: UpdateInfoResponse
 
     // MARK: - Init
-    init(updateInfo: UpdateInfo) {
-        self.updateInfo = updateInfo
+    init(updateInfoResponse: UpdateInfoResponse) {
+        self.updateInfoResponse = updateInfoResponse
     }
 
 }
@@ -38,35 +72,35 @@ extension UpdateResult: UpdateResultValues {
 
     public var updateVersion: Version {
 
-        if let requiredVersion = updateInfo.requiredVersion, let lastVersionAvailable = updateInfo.lastVersionAvailable {
+        if let requiredVersion = updateInfoResponse.requiredVersion, let lastVersionAvailable = updateInfoResponse.lastVersionAvailable {
             return Version.max(requiredVersion, lastVersionAvailable)
         }
 
-        if let requiredVersion = updateInfo.requiredVersion, updateInfo.lastVersionAvailable == nil {
-            return Version.max(requiredVersion, updateInfo.installedVersion)
+        if let requiredVersion = updateInfoResponse.requiredVersion, updateInfoResponse.lastVersionAvailable == nil {
+            return Version.max(requiredVersion, updateInfoResponse.installedVersion)
         }
 
-        if updateInfo.requiredVersion == nil, let lastVersionAvailable = updateInfo.lastVersionAvailable {
-            return Version.max(lastVersionAvailable, updateInfo.installedVersion)
+        if updateInfoResponse.requiredVersion == nil, let lastVersionAvailable = updateInfoResponse.lastVersionAvailable {
+            return Version.max(lastVersionAvailable, updateInfoResponse.installedVersion)
         }
 
-        return updateInfo.installedVersion
+        return updateInfoResponse.installedVersion
     }
 
     public var updateState: UpdateStatus {
 
-        if let requiredVersion = updateInfo.requiredVersion, requiredVersion > updateInfo.installedVersion {
+        if let requiredVersion = updateInfoResponse.requiredVersion, requiredVersion > updateInfoResponse.installedVersion {
             return .requiredUpdateNeeded
         }
 
-        guard let latestVersion = updateInfo.lastVersionAvailable else {
+        guard let latestVersion = updateInfoResponse.lastVersionAvailable else {
             return .noUpdateAvailable
         }
 
-        let shouldNotify = !latestVersion.wasNotified || updateInfo.notificationType == .always
+        let shouldNotify = !latestVersion.wasNotified || updateInfoResponse.notificationType == .always
 
-        if (latestVersion > updateInfo.installedVersion) && shouldNotify {
-            updateInfo.lastVersionAvailable?.markNotified()
+        if (latestVersion > updateInfoResponse.installedVersion) && shouldNotify {
+            updateInfoResponse.lastVersionAvailable?.markNotified()
             return .newUpdateAvailable
         }
 
@@ -74,13 +108,13 @@ extension UpdateResult: UpdateResultValues {
     }
 
     public var versionInfo: UpdateInfo {
-        return updateInfo
+        return updateInfoResponse.versionInfo
     }
 
     /**
      Returns global metadata merged with metadata for configuration.
      */
     public var metadata: [String : Any]? {
-        return updateInfo.metadata
+        return updateInfoResponse.metadata
     }
 }

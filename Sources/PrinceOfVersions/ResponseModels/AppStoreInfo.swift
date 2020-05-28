@@ -16,6 +16,8 @@ import AppKit
 
 public struct AppStoreInfo: Codable {
 
+    // MARK: - Internal properties -
+
     internal var bundle: Bundle = .main
 
     internal let resultCount: Int?
@@ -27,9 +29,7 @@ public struct AppStoreInfo: Codable {
         return configurationData
     }
 
-    enum CodingKeys: String, CodingKey {
-        case resultCount, results
-    }
+    // MARK: - ConfigData Struct -
 
     internal struct ConfigurationData: Codable {
 
@@ -39,19 +39,11 @@ public struct AppStoreInfo: Codable {
 
         var bundle: Bundle = .main
 
-        var currentVersionString: String? {
-            return bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
-        }
-
-        var currentBuildNumberString: String? {
-            return bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-        }
-
         var installedVersion: Version? {
 
             guard
-                let currentVersionString = currentVersionString,
-                let currentBuildNumberString = currentBuildNumberString
+                let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+                let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
             else {
                 return nil
             }
@@ -86,72 +78,94 @@ public struct AppStoreInfo: Codable {
             case latestVersion, minimumOsVersion, currentVersionReleaseDate
         }
     }
+
+    internal var phaseReleaseInProgress: Bool {
+        guard
+            let releaseDate = configurationData?.releaseDate,
+            let finishDate = Calendar.current.date(byAdding: .day, value: 7, to: releaseDate)
+        else { return false }
+        return finishDate > Date()
+    }
+
+    internal var versionInfoValues: UpdateInfo {
+        return UpdateInfo(
+            updateInfo: self,
+            sdkVersion: configurationData?.sdkVersion,
+            notificationType: .always,
+            phaseReleaseInProgress: phaseReleaseInProgress
+        )
+    }
+
+    // MARK: - CodingKeys -
+
+    enum CodingKeys: String, CodingKey {
+        case resultCount, results
+    }
 }
-//
-//// MARK: - AppStoreInfoValues -
-//
-//extension AppStoreInfo: UpdateResultValues {
-//
-//    var updateVersion: Version {
-//        return installedVersion
-//    }
-//
-//    var updateState: UpdateStatus {
-//        return .newUpdateAvailable
-//    }
-//
-//    var versionInfo: UpdateInfo {
-//        return self
-//    }
-//
-//    var metadata: [String : Any]? {
-//        return nil
-//    }
-//
-//    /**
-//     Returns bool value if phased release period is in progress
-//
-//     __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value send by `itunes.apple.com` API.
-//     */
-//    public var phaseReleaseInProgress: Bool {
-//        guard
-//            let releaseDate = configurationData?.releaseDate,
-//            let finishDate = Calendar.current.date(byAdding: .day, value: 7, to: releaseDate)
-//        else { return false }
-//        return finishDate > Date()
-//    }
-//}
-//
-//extension AppStoreInfo: UpdateInfoValues {
-//
-//    /**
-//     Returns minimum required version of the app.
-//     */
-//    public var requiredVersion: Version? {
-//        return configurationData?.installedVersion
-//    }
-//
-//    /**
-//     Returns latest available version of the app.
-//     */
-//    public var lastVersionAvailable: Version? {
-//        return configurationData?.latestVersion
-//    }
-//
-//    /**
-//     Returns requirements for configuration.
-//     */
-//    public var requirements: [String : Any]? {
-//        return nil
-//    }
-//
-//    /**
-//     Returns installed version of the app.
-//     */
-//    public var installedVersion: Version {
-//        guard let version = configurationData?.installedVersion else {
-//            preconditionFailure("Unable to get installed version data")
-//        }
-//        return version
-//    }
-//}
+
+// MARK: - AppStoreResultValues -
+
+extension AppStoreInfo: UpdateResultValues {
+
+    var updateVersion: Version {
+
+        guard let latestVersion = configurationData?.latestVersion else {
+            preconditionFailure("Unable to get version data")
+        }
+
+        return Version.max(latestVersion, installedVersion)
+    }
+
+    var updateState: UpdateStatus {
+
+        guard let latestVersion = configurationData?.latestVersion else {
+            return .noUpdateAvailable
+        }
+
+        return latestVersion > installedVersion ? .newUpdateAvailable : .noUpdateAvailable
+    }
+
+    var versionInfo: UpdateInfo {
+        return versionInfoValues
+    }
+
+    var metadata: [String : Any]? {
+        return nil
+    }
+}
+
+// MARK: - AppStoreInfoValues -
+
+extension AppStoreInfo: UpdateInfoValues {
+
+    /**
+     Returns minimum required version of the app.
+     */
+    public var requiredVersion: Version? {
+        return configurationData?.installedVersion
+    }
+
+    /**
+     Returns latest available version of the app.
+     */
+    public var lastVersionAvailable: Version? {
+        return configurationData?.latestVersion
+    }
+
+    /**
+     Returns requirements for configuration.
+     */
+    public var requirements: [String : Any]? {
+        return nil
+    }
+
+    /**
+     Returns installed version of the app.
+     */
+    public var installedVersion: Version {
+        guard let version = configurationData?.installedVersion else {
+            preconditionFailure("Unable to get installed version data")
+        }
+        return version
+    }
+}

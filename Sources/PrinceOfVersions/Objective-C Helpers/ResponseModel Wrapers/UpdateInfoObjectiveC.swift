@@ -12,7 +12,7 @@ import Foundation
 public class UpdateInfoObject: NSObject {
 
     // MARK: - Private properties
-    private var updateInfo: UpdateInfo
+    private var versionInfo: UpdateInfo
 
     // MARK: - Public notification type
     @objc public enum UpdateNotificationType: Int {
@@ -34,9 +34,9 @@ public class UpdateInfoObject: NSObject {
     @objc public private(set) var notificationType: UpdateNotificationType
 
     // MARK: - Init
-    init(from updateInfo: UpdateInfo) {
-        self.updateInfo = updateInfo
-        self.notificationType = updateInfo.notificationType.updateNotificationType
+    init(from versionInfo: UpdateInfo) {
+        self.versionInfo = versionInfo
+        self.notificationType = versionInfo.notificationType.updateNotificationType
     }
 }
 
@@ -50,34 +50,34 @@ extension UpdateInfoObject: UpdateInfoValues {
      Returns minimum required version of the app.
      */
     public var requiredVersion: Version? {
-        return updateInfo.requiredVersion
+        return versionInfo.updateInfo.requiredVersion
     }
 
     /**
      Returns latest available version of the app.
      */
     public var lastVersionAvailable: Version? {
-        return updateInfo.lastVersionAvailable
+        return versionInfo.updateInfo.lastVersionAvailable
     }
 
     /**
      Returns installed version of the app.
      */
     public var installedVersion: Version {
-        return updateInfo.installedVersion
+        return versionInfo.updateInfo.installedVersion
     }
 
     /**
      Returns requirements for configuration.
      */
     public var requirements: [String : Any]? {
-        return updateInfo.requirements
+        return versionInfo.updateInfo.requirements
     }
 }
 
 // MARK: - Private helpers -
 
-private extension UpdateInfo.NotificationType {
+private extension NotificationType {
 
     var updateNotificationType: UpdateInfoObject.UpdateNotificationType {
         switch self {
