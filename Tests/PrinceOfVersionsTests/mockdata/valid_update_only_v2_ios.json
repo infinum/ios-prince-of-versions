@@ -1,0 +1,32 @@
+{
+   "ios":[
+      {
+         "required_version":"10.10.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.12.1"
+         }
+      },
+      {
+         "required_version":"9.1",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.11.1",
+            "region":"hr",
+            "bluetooth":"5.0"
+         }
+      },
+      {
+         "required_version":"9.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ONCE",
+         "requirements":{
+            "required_os_version":"10.14.2",
+            "region":"us"
+         }
+      }
+   ],
+   "meta":null
+}
