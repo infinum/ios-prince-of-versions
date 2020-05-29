@@ -24,10 +24,12 @@ class UpdateInfoTest: XCTestCase {
     func testCheckingValidContent() {
         let bundle = Bundle(for: type(of: self))
 
-        var info: UpdateInfo?
+        var info: UpdateInfoResponse?
         if let jsonPath = bundle.path(forResource: "valid_update_full", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
             do {
-                info = try UpdateInfo(data: data, bundle: Bundle(for: type(of: self)))
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                info = try decoder.decode(UpdateInfoResponse.self, from: data)
             } catch let error {
                 XCTFail(error.localizedDescription)
             }
@@ -38,6 +40,8 @@ class UpdateInfoTest: XCTestCase {
             return
         }
 
-        XCTAssertNotNil(_info.minimumRequiredVersion, "Value for minimum required version should not be nil")
+        let updateResult = UpdateResult(updateInfoResponse: _info)
+
+        XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
     }
 }
