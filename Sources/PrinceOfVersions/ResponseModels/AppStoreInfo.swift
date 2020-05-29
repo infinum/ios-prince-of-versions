@@ -18,14 +18,14 @@ public struct AppStoreInfo: Codable {
 
     // MARK: - Internal properties -
 
-    internal var bundle: Bundle = .main
+    static internal var bundle: Bundle = .main
 
     internal let resultCount: Int?
     internal let results: [ConfigurationData]
 
     internal var configurationData: ConfigurationData? {
         var configurationData = results.first
-        configurationData?.bundle = bundle
+        configurationData?.bundle = AppStoreInfo.bundle
         return configurationData
     }
 
