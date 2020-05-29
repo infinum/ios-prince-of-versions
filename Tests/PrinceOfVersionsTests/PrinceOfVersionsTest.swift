@@ -50,12 +50,18 @@ class PrinceOfVersionsTest: XCTestCase {
                 switch result {
                 case .success(let info):
                     XCTAssert(info.installedVersion == installedVersion)
-                    XCTAssert(info.lastVersionAvailable == lastVersionAvailable)
-//                    if let minSdkForLatestVersion = info.versionInfo.sdkVersion {
-//                        XCTAssert(minSdkForLatestVersion == minimumSdkForLatestVersion)
-//                    } else {
-//                        XCTFail("min sdk should not be nil")
-//                    }
+
+                    guard let latestVersion = info.lastVersionAvailable else {
+                        XCTFail("Last version available should not be nil")
+                        return
+                    }
+
+                    XCTAssert(latestVersion == lastVersionAvailable)
+                    if let minSdkForLatestVersion = info.configurationData?.minimumOsVersion {
+                        XCTAssert(minSdkForLatestVersion == minimumSdkForLatestVersion)
+                    } else {
+                        XCTFail("min sdk should not be nil")
+                    }
                     XCTAssert(!info.phaseReleaseInProgress)
                     finished()
                 case .failure:

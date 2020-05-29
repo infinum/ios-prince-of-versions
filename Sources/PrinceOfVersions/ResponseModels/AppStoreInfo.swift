@@ -33,7 +33,7 @@ public struct AppStoreInfo: Codable {
 
     internal struct ConfigurationData: Codable {
 
-        var latestVersion: Version?
+        var version: Version?
         var minimumOsVersion: Version?
         var currentVersionReleaseDate: String?
 
@@ -75,7 +75,7 @@ public struct AppStoreInfo: Codable {
         }()
 
         private enum CodingKeys: String, CodingKey {
-            case latestVersion, minimumOsVersion, currentVersionReleaseDate
+            case version, minimumOsVersion, currentVersionReleaseDate
         }
     }
 
@@ -113,7 +113,7 @@ extension AppStoreInfo: UpdateInfoValues {
 
     /// Returns latest available version of the app.
     public var lastVersionAvailable: Version? {
-        return configurationData?.latestVersion
+        return configurationData?.version
     }
 
     /// Returns requirements for configuration.
@@ -137,7 +137,7 @@ extension AppStoreInfo: UpdateResultValues {
     /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
     public var updateVersion: Version {
 
-        guard let latestVersion = configurationData?.latestVersion else {
+        guard let latestVersion = configurationData?.version else {
             preconditionFailure("Unable to get version data")
         }
 
@@ -147,7 +147,7 @@ extension AppStoreInfo: UpdateResultValues {
     /// Resolution of the update check
     public var updateState: UpdateStatus {
 
-        guard let latestVersion = configurationData?.latestVersion else {
+        guard let latestVersion = configurationData?.version else {
             return .noUpdateAvailable
         }
 
