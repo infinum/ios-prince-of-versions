@@ -29,6 +29,9 @@
 		A8E5F379244D90AD004CF4DC /* PoVRequestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */; };
 		A8E95B872480FCBD0080E000 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E95B862480FCBD0080E000 /* UpdateInfo.swift */; };
 		A8E95B8B2480FDCB0080E000 /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */; };
+		A8F359BC2481194300602DFB /* valid_update_only_v2_metadata_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */; };
+		A8F359BF248119B200602DFB /* valid_update_only_v2_macos.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */; };
+		A8F359C224811A7000602DFB /* valid_update_only_v2_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */; };
 		A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A42449A8B50003C05E /* AnyDecodable.swift */; };
 		A8F918AB2449A96F0003C05E /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A82449A96F0003C05E /* ConfigurationData.swift */; };
 		OBJ_45 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreInfo.swift */; };
@@ -83,6 +86,9 @@
 		A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVRequestOptions.swift; sourceTree = "<group>"; };
 		A8E95B862480FCBD0080E000 /* UpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
+		A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_metadata_empty.json; sourceTree = "<group>"; };
+		A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_macos.json; sourceTree = "<group>"; };
+		A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_ios.json; sourceTree = "<group>"; };
 		A8F918A42449A8B50003C05E /* AnyDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
 		A8F918A82449A96F0003C05E /* ConfigurationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationData.swift; sourceTree = "<group>"; };
 		OBJ_11 /* AppStoreInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreInfoObjectiveC.swift; sourceTree = "<group>"; };
@@ -165,6 +171,9 @@
 				06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */,
 				06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */,
 				06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */,
+				A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */,
+				A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */,
+				A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */,
 			);
 			path = mockdata;
 			sourceTree = "<group>";
@@ -414,10 +423,13 @@
 				06F8ADF3241A542A0099E820 /* valid_update_notification_once.json in Resources */,
 				06F8ADF4241A542A0099E820 /* app_store_version_example.json in Resources */,
 				06F8ADF5241A542A0099E820 /* malformed_json.json in Resources */,
+				A8F359C224811A7000602DFB /* valid_update_only_v2_ios.json in Resources */,
 				06F8ADF6241A542A0099E820 /* valid_update_only_min_version.json in Resources */,
 				06F8ADF7241A542A0099E820 /* valid_update_full_with_metadata_malformed.json in Resources */,
 				06F8ADF8241A542A0099E820 /* valid_update_full.json in Resources */,
+				A8F359BC2481194300602DFB /* valid_update_only_v2_metadata_empty.json in Resources */,
 				06F8ADF9241A542A0099E820 /* valid_update_full_with_metadata.json in Resources */,
+				A8F359BF248119B200602DFB /* valid_update_only_v2_macos.json in Resources */,
 				06F8ADFA241A542A0099E820 /* invalid_update_no_ios.json in Resources */,
 				06F8ADFB241A542A0099E820 /* invalid_update_incalid_version.json in Resources */,
 				06F8ADFC241A542A0099E820 /* valid_update_full_with_metadata_null.json in Resources */,
