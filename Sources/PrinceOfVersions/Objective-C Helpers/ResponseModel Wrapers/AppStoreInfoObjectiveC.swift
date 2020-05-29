@@ -24,7 +24,7 @@ public class AppStoreInfoObject: NSObject {
 
 // Should be updated with new properties from UpdateInfo
 
-extension AppStoreInfoObject: UpdateInfoValues {
+extension AppStoreInfoObject: UpdateInfoObjectValues {
 
     /// Returns minimum required version of the app.
     public var requiredVersion: Version? {

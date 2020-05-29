@@ -14,13 +14,6 @@ import UIKit
 import AppKit
 #endif
 
-public protocol UpdateInfoValues {
-    var requiredVersion: Version? { get }
-    var lastVersionAvailable: Version? { get }
-    var installedVersion: Version { get }
-    var requirements: [String: Any]? { get }
-}
-
 // MARK: - Internal configuration data -
 
 public struct UpdateInfoResponse: Decodable {
@@ -33,9 +26,9 @@ public struct UpdateInfoResponse: Decodable {
     private var macos2: [ConfigurationData]?
     private var meta: [String: AnyDecodable]?
 
-    private let bundle = Bundle.main
-
     // MARK: - Internal properties -
+
+    internal var bundle = Bundle.main
 
     internal var configurations: [ConfigurationData]? {
         #if os(iOS)
