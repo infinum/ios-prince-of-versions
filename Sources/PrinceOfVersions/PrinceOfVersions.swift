@@ -256,12 +256,12 @@ private extension PrinceOfVersions {
         let result: Result<AppStoreInfo, PoVError>
         do {
 
-            var updateInfo = try JSONDecoder().decode(AppStoreInfo.self, from: data!)
+            AppStoreInfo.bundle = bundle
+            let updateInfo = try JSONDecoder().decode(AppStoreInfo.self, from: data!)
 
             if let error = PoVError.validate(appStoreInfo: updateInfo) {
                 result = Result.failure(error)
             } else {
-                updateInfo.bundle = bundle
                 result = Result.success(updateInfo)
             }
 
