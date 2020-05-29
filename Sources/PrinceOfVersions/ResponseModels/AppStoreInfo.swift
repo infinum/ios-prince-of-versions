@@ -102,6 +102,34 @@ public struct AppStoreInfo: Codable {
     }
 }
 
+// MARK: - AppStoreInfoValues -
+
+extension AppStoreInfo: UpdateInfoValues {
+
+    /// Returns minimum required version of the app.
+    public var requiredVersion: Version? {
+        return configurationData?.installedVersion
+    }
+
+    /// Returns latest available version of the app.
+    public var lastVersionAvailable: Version? {
+        return configurationData?.latestVersion
+    }
+
+    /// Returns requirements for configuration.
+    public var requirements: [String : Any]? {
+        return nil
+    }
+
+    /// Returns installed version of the app.
+    public var installedVersion: Version {
+        guard let version = configurationData?.installedVersion else {
+            preconditionFailure("Unable to get installed version data")
+        }
+        return version
+    }
+}
+
 // MARK: - AppStoreResultValues -
 
 extension AppStoreInfo: UpdateResultValues {
@@ -133,33 +161,5 @@ extension AppStoreInfo: UpdateResultValues {
 
     public var metadata: [String : Any]? {
         return nil
-    }
-}
-
-// MARK: - AppStoreInfoValues -
-
-extension AppStoreInfo: UpdateInfoValues {
-
-    /// Returns minimum required version of the app.
-    public var requiredVersion: Version? {
-        return configurationData?.installedVersion
-    }
-
-    /// Returns latest available version of the app.
-    public var lastVersionAvailable: Version? {
-        return configurationData?.latestVersion
-    }
-
-    /// Returns requirements for configuration.
-    public var requirements: [String : Any]? {
-        return nil
-    }
-
-    /// Returns installed version of the app.
-    public var installedVersion: Version {
-        guard let version = configurationData?.installedVersion else {
-            preconditionFailure("Unable to get installed version data")
-        }
-        return version
     }
 }
