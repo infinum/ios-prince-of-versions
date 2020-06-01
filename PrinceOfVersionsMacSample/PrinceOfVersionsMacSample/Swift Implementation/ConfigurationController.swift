@@ -38,7 +38,7 @@ class ConfigurationController: NSViewController {
 
 private extension ConfigurationController {
 
-    var options: PoVRequestOptions {
+    func checkAppVersion() {
 
         let options = PoVRequestOptions()
 
@@ -54,11 +54,8 @@ private extension ConfigurationController {
             return value.starts(with: "5")
         }
 
-        return options
-    }
-
-    func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
+
         PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
             switch response.result {
             case .success(let updateResultData):
@@ -90,6 +87,9 @@ private extension ConfigurationController {
                 }
         })
     }
+}
+
+private extension ConfigurationController {
 
     func fillUI(with infoResponse: UpdateResult) {
         fillUpdateResultUI(with: infoResponse)

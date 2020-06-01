@@ -68,7 +68,7 @@
 
 - (void)checkAppStoreVersion
 {
-    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhaseRelease:NO callbackQueue:dispatch_get_main_queue() completion:^(AppStoreInfoObject *infoObject) {
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreInfoObject *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
