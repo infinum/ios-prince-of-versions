@@ -42,7 +42,7 @@ public extension PrinceOfVersions {
 
      - parameter URL: URL that containts configuration data.
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
-     - parameter options: TODO
+     - parameter options: Used for additional configuration such as `shouldPinCertificates`, `httpHeaderFields` and `userRequirements`
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data or PoVError error
 
      - returns: Discardable `URLSessionDataTask`

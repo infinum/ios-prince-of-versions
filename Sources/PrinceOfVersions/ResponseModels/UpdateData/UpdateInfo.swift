@@ -27,9 +27,9 @@ public struct UpdateInfo {
 
      Possible values are:
      - Once: Show notification only once
-     - Always: Show notification every time app run
+     - Always: Show notification on every app run
 
-     Default value is `.once`
+     If `notificationType` is not provided by the configuration file, a default value will be set to `.once`.
      */
     public var notificationType: NotificationType = .once
 
