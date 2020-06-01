@@ -14,15 +14,15 @@ class ConfigurationViewController: UIViewController {
     // MARK: - Private properties
     // MARK: IBOutlets
 
-    @IBOutlet weak var updateVersionLabel: UILabel!
-    @IBOutlet weak var updateStateLabel: UILabel!
-    @IBOutlet weak var metaLabel: UILabel!
+    @IBOutlet private weak var updateVersionLabel: UILabel!
+    @IBOutlet private weak var updateStateLabel: UILabel!
+    @IBOutlet private weak var metaLabel: UILabel!
 
-    @IBOutlet weak var requiredVersionLabel: UILabel!
-    @IBOutlet weak var lastVersionAvailableLabel: UILabel!
-    @IBOutlet weak var installedVersionLabel: UILabel!
-    @IBOutlet weak var notificationTypeLabel: UILabel!
-    @IBOutlet weak var requirementsLabel: UILabel!
+    @IBOutlet private weak var requiredVersionLabel: UILabel!
+    @IBOutlet private weak var lastVersionAvailableLabel: UILabel!
+    @IBOutlet private weak var installedVersionLabel: UILabel!
+    @IBOutlet private weak var notificationTypeLabel: UILabel!
+    @IBOutlet private weak var requirementsLabel: UILabel!
 
 
     // MARK: - View Lifecycle
@@ -40,7 +40,7 @@ class ConfigurationViewController: UIViewController {
 
 private extension ConfigurationViewController {
 
-    var options: PoVRequestOptions {
+    func checkAppVersion() {
 
         let options = PoVRequestOptions()
 
@@ -56,10 +56,6 @@ private extension ConfigurationViewController {
             return value.starts(with: "5")
         }
 
-        return options
-    }
-
-    func checkAppVersion() {
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
 
         PrinceOfVersions.checkForUpdates(
@@ -92,6 +88,9 @@ private extension ConfigurationViewController {
                 }
         })
     }
+}
+
+private extension ConfigurationViewController {
 
     func fillUI(with infoResponse: UpdateResult) {
         fillUpdateResultUI(with: infoResponse)

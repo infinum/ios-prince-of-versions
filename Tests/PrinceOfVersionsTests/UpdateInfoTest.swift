@@ -35,12 +35,12 @@ class UpdateInfoTest: XCTestCase {
             }
         }
 
-        guard let _info = info else {
+        guard let updateInfoResponse = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: _info)
+        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
 
         XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
     }
@@ -62,12 +62,12 @@ class UpdateInfoTest: XCTestCase {
             }
         }
 
-        guard let _info = info else {
+        guard let updateInfoResponse = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: _info)
+        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
 
         XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
     }
@@ -89,12 +89,12 @@ class UpdateInfoTest: XCTestCase {
             }
         }
 
-        guard let _info = info else {
+        guard let updateInfoResponse = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: _info)
+        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
 
         #if os(iOS)
         XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
@@ -118,12 +118,12 @@ class UpdateInfoTest: XCTestCase {
             }
         }
 
-        guard let _info = info else {
+        guard let updateInfoResponse = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: _info)
+        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
 
         #if os(macOS)
         XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")

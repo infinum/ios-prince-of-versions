@@ -23,7 +23,7 @@ extension PoVError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case .invalidJsonData:
-            return NSLocalizedString("Invalid JSDON Data", comment: "")
+            return NSLocalizedString("Invalid JSON Data", comment: "")
         case .dataNotFound:
             return NSLocalizedString("Data not found for selected app id", comment: "")
         case .requirementsNotSatisfied:
