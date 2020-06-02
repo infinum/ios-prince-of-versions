@@ -1,5 +1,5 @@
 //
-//  AppStoreInfo.swift
+//  AppStoreUpdateInfo.swift
 //  PrinceOfVersions
 //
 //  Created by Jasmin Abou Aldan on 06/02/2020.
@@ -14,7 +14,7 @@ import UIKit
 import AppKit
 #endif
 
-public struct AppStoreInfo: Codable {
+public struct AppStoreUpdateInfo: Codable {
 
     // MARK: - Internal properties -
 
@@ -25,7 +25,7 @@ public struct AppStoreInfo: Codable {
 
     internal var configurationData: ConfigurationData? {
         var configurationData = results.first
-        configurationData?.bundle = AppStoreInfo.bundle
+        configurationData?.bundle = AppStoreUpdateInfo.bundle
         return configurationData
     }
 
@@ -83,14 +83,6 @@ public struct AppStoreInfo: Codable {
         return finishDate > Date()
     }
 
-    internal var versionInfoValues: UpdateInfo {
-        return UpdateInfo(
-            updateData: self,
-            sdkVersion: configurationData?.sdkVersion,
-            phaseReleaseInProgress: phaseReleaseInProgress
-        )
-    }
-
     // MARK: - CodingKeys -
 
     enum CodingKeys: String, CodingKey {
@@ -98,23 +90,13 @@ public struct AppStoreInfo: Codable {
     }
 }
 
-// MARK: - AppStoreInfoValues -
+// MARK: - Public properties -
 
-extension AppStoreInfo: UpdateInfoValues {
-
-    /// Returns minimum required version of the app.
-    public var requiredVersion: Version? {
-        return configurationData?.installedVersion
-    }
+extension AppStoreUpdateInfo: BaseUpdateInfo {
 
     /// Returns latest available version of the app.
     public var lastVersionAvailable: Version? {
         return configurationData?.version
-    }
-
-    /// Returns requirements for configuration.
-    public var requirements: [String : Any]? {
-        return nil
     }
 
     /// Returns installed version of the app.
@@ -126,36 +108,9 @@ extension AppStoreInfo: UpdateInfoValues {
     }
 }
 
-// MARK: - AppStoreResultValues -
+extension AppStoreUpdateInfo {
 
-extension AppStoreInfo: UpdateResultValues {
-
-    /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
-    public var updateVersion: Version {
-
-        guard let latestVersion = configurationData?.version else {
-            preconditionFailure("Unable to get version data")
-        }
-
-        return Version.max(latestVersion, installedVersion)
-    }
-
-    /// Resolution of the update check
-    public var updateState: UpdateStatus {
-
-        guard let latestVersion = configurationData?.version else {
-            return .noUpdateAvailable
-        }
-
-        return latestVersion > installedVersion ? .newUpdateAvailable : .noUpdateAvailable
-    }
-
-    /// Update configuration values used to check
-    public var versionInfo: UpdateInfo {
-        return versionInfoValues
-    }
-
-    public var metadata: [String : Any]? {
-        return nil
+    public var releaseDate: Date? {
+        return configurationData?.releaseDate
     }
 }

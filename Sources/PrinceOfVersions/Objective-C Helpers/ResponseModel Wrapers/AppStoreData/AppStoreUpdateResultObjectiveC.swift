@@ -1,5 +1,5 @@
 //
-//  UpdateResultObjectiveC.swift
+//  AppStoreUpdateResultObjectiveC.swift
 //  PrinceOfVersions
 //
 //  Created by Jasmin Abou Aldan on 13/09/2019.
@@ -9,30 +9,33 @@
 import Foundation
 
 @objcMembers
-public class UpdateResultObject: NSObject {
+public class AppStoreUpdateResultObject: NSObject {
 
     // MARK: - Private properties
 
-    private var updateResult: UpdateResult
+    private var updateResult: AppStoreUpdateResult
 
     // MARK: - Init
 
-    init(from updateResult: UpdateResult) {
+    init(from updateResult: AppStoreUpdateResult) {
         self.updateResult = updateResult
     }
 }
 
 // MARK: - Public wrappers -
 
-extension UpdateResultObject {
+// Should be updated with new properties from UpdateInfo
 
-    /// Merged metadata from JSON
-    public var metadata: [String : Any]? {
-        return updateResult.metadata
+extension AppStoreUpdateResultObject {
+
+    public var phaseReleaseInProgress: Bool {
+        return updateResult.phaseReleaseInProgress
     }
 }
 
-extension UpdateResultObject: BaseUpdateResult {
+// MARK: - BaseUpdateResult
+
+extension AppStoreUpdateResultObject: BaseUpdateResult {
 
     /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
     public var updateVersion: Version {
@@ -44,9 +47,8 @@ extension UpdateResultObject: BaseUpdateResult {
         return updateResult.updateState
     }
 
-    /// Update configuration values used to check
     @objc
-    public var updateInfo: UpdateInfoObject {
-        return UpdateInfoObject(from: updateResult.updateInfoData)
+    public var updateInfo: AppStoreUpdateInfoObject {
+        return AppStoreUpdateInfoObject(from: updateResult.updateInfoData)
     }
 }

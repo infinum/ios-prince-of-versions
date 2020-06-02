@@ -12,7 +12,7 @@ import Foundation
 
 extension PrinceOfVersions {
 
-    public typealias AppStoreObjectCompletionBlock = (AppStoreInfoObject) -> Void
+    public typealias AppStoreObjectCompletionBlock = (AppStoreUpdateResultObject) -> Void
 
     /**
      Used for getting the versioning information from the AppStore Connect.

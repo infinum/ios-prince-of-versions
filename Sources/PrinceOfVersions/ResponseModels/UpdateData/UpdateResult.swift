@@ -7,68 +7,56 @@
 
 import Foundation
 
-public enum UpdateStatus {
-    case noUpdateAvailable
-    case requiredUpdateNeeded
-    case newUpdateAvailable
-}
-
-public protocol UpdateResultValues {
-    var updateVersion: Version { get }
-    var updateState: UpdateStatus { get }
-    var versionInfo: UpdateInfo { get }
-    var metadata: [String: Any]? { get }
-}
-
 public struct UpdateResult {
 
     // MARK: - Private properties
-    private var updateInfoResponse: UpdateInfoResponse
+
+    internal var updateInfoData: UpdateInfo
 
     // MARK: - Init
-    init(updateInfoResponse: UpdateInfoResponse) {
-        self.updateInfoResponse = updateInfoResponse
+    
+    init(updateInfo: UpdateInfo) {
+        self.updateInfoData = updateInfo
     }
-
 }
 
-// MARK: - UpdateResultValues -
+// MARK: - Public properties -
 
-extension UpdateResult: UpdateResultValues {
+extension UpdateResult: BaseUpdateResult {
 
     /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
     public var updateVersion: Version {
 
-        if let requiredVersion = updateInfoResponse.requiredVersion, let lastVersionAvailable = updateInfoResponse.lastVersionAvailable {
+        if let requiredVersion = updateInfoData.requiredVersion, let lastVersionAvailable = updateInfoData.lastVersionAvailable {
             return Version.max(requiredVersion, lastVersionAvailable)
         }
 
-        if let requiredVersion = updateInfoResponse.requiredVersion, updateInfoResponse.lastVersionAvailable == nil {
-            return Version.max(requiredVersion, updateInfoResponse.installedVersion)
+        if let requiredVersion = updateInfoData.requiredVersion, updateInfoData.lastVersionAvailable == nil {
+            return Version.max(requiredVersion, updateInfoData.installedVersion)
         }
 
-        if updateInfoResponse.requiredVersion == nil, let lastVersionAvailable = updateInfoResponse.lastVersionAvailable {
-            return Version.max(lastVersionAvailable, updateInfoResponse.installedVersion)
+        if updateInfoData.requiredVersion == nil, let lastVersionAvailable = updateInfoData.lastVersionAvailable {
+            return Version.max(lastVersionAvailable, updateInfoData.installedVersion)
         }
 
-        return updateInfoResponse.installedVersion
+        return updateInfoData.installedVersion
     }
 
     /// Resolution of the update check
     public var updateState: UpdateStatus {
 
-        if let requiredVersion = updateInfoResponse.requiredVersion, requiredVersion > updateInfoResponse.installedVersion {
+        if let requiredVersion = updateInfoData.requiredVersion, requiredVersion > updateInfoData.installedVersion {
             return .requiredUpdateNeeded
         }
 
-        guard let latestVersion = updateInfoResponse.lastVersionAvailable else {
+        guard let latestVersion = updateInfoData.lastVersionAvailable else {
             return .noUpdateAvailable
         }
 
-        let shouldNotify = !latestVersion.wasNotified || updateInfoResponse.notificationType == .always
+        let shouldNotify = !latestVersion.wasNotified || updateInfoData.notificationType == .always
 
-        if (latestVersion > updateInfoResponse.installedVersion) && shouldNotify {
-            updateInfoResponse.lastVersionAvailable?.markNotified()
+        if (latestVersion > updateInfoData.installedVersion) && shouldNotify {
+            updateInfoData.lastVersionAvailable?.markNotified()
             return .newUpdateAvailable
         }
 
@@ -76,12 +64,15 @@ extension UpdateResult: UpdateResultValues {
     }
 
     /// Update configuration values used to check
-    public var versionInfo: UpdateInfo {
-        return updateInfoResponse.versionInfo
+    public var updateInfo: UpdateInfo {
+        return updateInfoData
     }
+}
+
+extension UpdateResult {
 
     /// Merged metadata from JSON
     public var metadata: [String : Any]? {
-        return updateInfoResponse.metadata
+        return updateInfoData.metadata
     }
 }
