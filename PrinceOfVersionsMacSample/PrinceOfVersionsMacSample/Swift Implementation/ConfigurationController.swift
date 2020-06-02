@@ -93,7 +93,7 @@ private extension ConfigurationController {
 
     func fillUI(with infoResponse: UpdateResult) {
         fillUpdateResultUI(with: infoResponse)
-        fillVersionInfoUI(with: infoResponse.versionInfo)
+        fillVersionInfoUI(with: infoResponse.updateInfo)
     }
 
     func fillUpdateResultUI(with infoResponse: UpdateResult) {
@@ -103,11 +103,11 @@ private extension ConfigurationController {
     }
 
     func fillVersionInfoUI(with versionInfo: UpdateInfo) {
-        requiredVersionTextField.stringValue = versionInfo.updateData.requiredVersion?.description ?? ""
-        lastVersionAvailableTextField.stringValue = versionInfo.updateData.lastVersionAvailable?.description ?? ""
-        installedVersionTextField.stringValue = versionInfo.updateData.installedVersion.description
+        requiredVersionTextField.stringValue = versionInfo.requiredVersion?.description ?? ""
+        lastVersionAvailableTextField.stringValue = versionInfo.lastVersionAvailable?.description ?? ""
+        installedVersionTextField.stringValue = versionInfo.installedVersion.description
         notificationTypeTextField.stringValue = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
-        requirementsTextField.stringValue = "\(versionInfo.updateData.requirements ?? [:])"
+        requirementsTextField.stringValue = "\(versionInfo.requirements ?? [:])"
     }
 }
 

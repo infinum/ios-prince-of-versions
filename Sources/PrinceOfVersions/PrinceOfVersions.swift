@@ -22,7 +22,7 @@ public class PrinceOfVersions: NSObject {
     }
 
     public typealias CompletionBlock = (UpdateResultResponse) -> Void
-    public typealias AppStoreCompletionBlock = (Result<AppStoreInfo, PoVError>) -> Void
+    public typealias AppStoreCompletionBlock = (Result<AppStoreUpdateResult, PoVError>) -> Void
 
     // MARK: - Private properties
 
@@ -72,27 +72,51 @@ public extension PrinceOfVersions {
         let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
 
             let result: Result<UpdateResult, PoVError>
+
             if let error = error {
-                result = Result.failure(.unknown(error.localizedDescription))
-            } else {
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-                    var updateInfoResponse = try decoder.decode(UpdateInfoResponse.self, from: data!)
+                let updateInfoResponse = UpdateResultResponse(
+                    response: response,
+                    result:  Result.failure(.unknown(error.localizedDescription))
+                )
 
-                    updateInfoResponse.userRequirements = options.userRequirements
+                callbackQueue.async {
+                    completion(updateInfoResponse)
+                }
 
-                    if let error = PoVError.validate(updateInfo: updateInfoResponse) {
-                        result = Result.failure(error)
-                    } else {
-                        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
-                        result = Result.success(updateResult)
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+                guard let data = data else {
+
+                    let updateInfoResponse = UpdateResultResponse(
+                        response: response,
+                        result: Result.failure(.dataNotFound)
+                    )
+                    callbackQueue.async {
+                        completion(updateInfoResponse)
                     }
 
-                } catch _ {
-                    result = Result.failure(.invalidJsonData)
+                    return
                 }
+
+                var updateInfo = try decoder.decode(UpdateInfo.self, from: data)
+
+                updateInfo.userRequirements = options.userRequirements
+
+                if let error = PoVError.validate(updateInfo: updateInfo) {
+                    result = Result.failure(error)
+                } else {
+                    let updateResult = UpdateResult(updateInfo: updateInfo)
+                    result = Result.success(updateResult)
+                }
+
+            } catch _ {
+                result = Result.failure(.invalidJsonData)
             }
 
             let updateInfoResponse = UpdateResultResponse(
@@ -102,6 +126,7 @@ public extension PrinceOfVersions {
             callbackQueue.async {
                 completion(updateInfoResponse)
             }
+
         })
         dataTask.resume()
 
@@ -133,6 +158,7 @@ public extension PrinceOfVersions {
      */
     @discardableResult
     static func checkForUpdateFromAppStore(
+        // notification frequency
         trackPhaseRelease: Bool = true,
         bundle: Bundle = .main,
         callbackQueue: DispatchQueue = .main,
@@ -247,22 +273,22 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool) -> Result<AppStoreInfo, PoVError> {
+    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool) -> Result<AppStoreUpdateResult, PoVError> {
 
         if let error = error {
             return Result.failure(.unknown(error.localizedDescription))
         }
 
-        let result: Result<AppStoreInfo, PoVError>
+        let result: Result<AppStoreUpdateResult, PoVError>
         do {
 
-            AppStoreInfo.bundle = bundle
-            let updateInfo = try JSONDecoder().decode(AppStoreInfo.self, from: data!)
+            AppStoreUpdateInfo.bundle = bundle
+            let updateInfo = try JSONDecoder().decode(AppStoreUpdateInfo.self, from: data!)
 
             if let error = PoVError.validate(appStoreInfo: updateInfo) {
                 result = Result.failure(error)
             } else {
-                result = Result.success(updateInfo)
+                result = Result.success(AppStoreUpdateResult(updateInfo: updateInfo))
             }
 
         } catch let error {

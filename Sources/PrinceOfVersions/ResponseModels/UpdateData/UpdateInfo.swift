@@ -1,44 +1,172 @@
 //
 //  UpdateInfo.swift
-//  PrinceOfVersions
+//  Pods
 //
-//  Created by Ivana Mršić on 29/05/2020.
+//  Created by Jasmin Abou Aldan on 06/07/16.
+//
 //
 
 import Foundation
 
-public protocol UpdateInfoValues {
-    var requiredVersion: Version? { get }
-    var lastVersionAvailable: Version? { get }
-    var installedVersion: Version { get }
-    var requirements: [String: Any]? { get }
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
+// MARK: - Internal configuration data -
+
+public struct UpdateInfo: Decodable {
+
+    // MARK: - Private properties -
+
+    private var ios: [ConfigurationData]?
+    private var ios2: [ConfigurationData]?
+    private var macos: [ConfigurationData]?
+    private var macos2: [ConfigurationData]?
+    private var meta: [String: AnyDecodable]?
+
+    // MARK: - Internal properties -
+
+    internal var bundle = Bundle.main
+
+    internal var configurations: [ConfigurationData]? {
+        #if os(iOS)
+        return ios ?? ios2
+        #elseif os(macOS)
+        return macos ?? macos2
+        #endif
+    }
+
+    internal var configuration: ConfigurationData? {
+
+        guard let configurations = configurations else { return nil }
+
+        return configurations.first { configuration in
+            guard
+                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
+                let installedOSVersion = sdkVersion
+            else { return false }
+            return installedOSVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
+        }
+    }
+
+    internal var sdkVersion: Version? {
+        #if os(iOS)
+        return try? Version(string: UIDevice.current.systemVersion)
+        #elseif os(macOS)
+        return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
+        #endif
+    }
+
+    internal var currentInstalledVersion: Version? {
+
+        guard
+            let currentVersionString = bundle.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let currentBuildNumberString = bundle.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        else {
+            return nil
+        }
+
+        return try? Version(string: currentVersionString + "-" + currentBuildNumberString)
+    }
+
+    internal var metadata: [String: Any]? {
+
+        guard let configMeta = configuration?.meta else {
+            return meta?.mapValues { $0.value }
+        }
+
+        return meta?
+            .merging(configMeta, uniquingKeysWith: { (_, newValue) in newValue })
+            .mapValues { $0.value }
+    }
+
+    internal var userRequirements: [String: ((Any) -> Bool)] = [:]
+
+    // MARK: - Init -
+
+    public init(from decoder: Decoder) throws {
+
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        ios = container.decodeConfiguration(.ios)
+        ios2 = container.decodeConfiguration(.ios2)
+        macos = container.decodeConfiguration(.macos)
+        macos2 = container.decodeConfiguration(.macos2)
+        meta = container.decodeMeta(.meta)
+    }
+
+    // MARK: - Coding keys -
+
+    enum CodingKeys: String, CodingKey {
+        case ios, ios2, macos, macos2, meta
+    }
 }
 
-public struct UpdateInfo {
+// MARK: - Private methods -
 
-    /// Returns struct containing information about possible update.
-    public var updateData: UpdateInfoValues
+private extension UpdateInfo {
 
-    /// Returns current SDK version.
-    public var sdkVersion: Version?
+    func meetsUserRequirements(for configuration: ConfigurationData) -> Bool {
 
-    /**
-     Returns notification type.
+        return userRequirements.reduce(true) { (result, requirement) -> Bool in
 
-     Possible values are:
-     - Once: Show notification only once
-     - Always: Show notification on every app run
+            let (key, checkRequirement) = requirement
 
-     If `notificationType` is not provided by the configuration file, a default value will be set to `.once`.
-     */
-    public var notificationType: NotificationType = .once
+            guard let valueForKey = configuration.requirements?.userDefinedRequirements[key] else {
+                return false
+            }
 
-    /**
-     Returns bool value if phased release period is in progress
+            return result && checkRequirement(valueForKey)
+        }
+    }
+}
 
-     Used only with automated check from AppStore if new version is available.
+// MARK: - Public properties -
 
-     __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value send by `itunes.apple.com` API.
-     */
-    public var phaseReleaseInProgress: Bool?
+extension UpdateInfo: BaseUpdateInfo {
+
+    /// Returns latest available version of the app.
+    public var lastVersionAvailable: Version? {
+        return configuration?.lastVersionAvailable
+    }
+
+    /// Returns installed version of the app.
+    public var installedVersion: Version {
+        guard let version = currentInstalledVersion else {
+            preconditionFailure("Unable to get installed version data")
+        }
+        return version
+    }
+}
+
+extension UpdateInfo {
+
+    /// Returns minimum required version of the app.
+    public var requiredVersion: Version? {
+        return configuration?.requiredVersion
+    }
+
+    /// Returns requirements for configuration.
+    public var requirements: [String : Any]? {
+        return configuration?.requirements?.allRequirements
+    }
+
+    public var notificationType: NotificationType {
+        return configuration?.notifyLastVersionFrequency ?? .once
+    }
+}
+
+// MARK: - Private helpers -
+
+private extension KeyedDecodingContainer {
+    
+    func decodeConfiguration(_ key: K) -> [ConfigurationData]? {
+        return try? decode([ConfigurationData].self, forKey: key)
+    }
+
+    func decodeMeta(_ key: K) -> [String: AnyDecodable]? {
+        return try? decode([String: AnyDecodable].self, forKey: key)
+    }
 }

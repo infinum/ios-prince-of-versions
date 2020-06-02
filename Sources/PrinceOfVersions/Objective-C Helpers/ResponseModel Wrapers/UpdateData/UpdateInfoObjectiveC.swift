@@ -7,40 +7,55 @@
 
 import Foundation
 
-@objc
-public protocol UpdateInfoObjectValues {
-    var requiredVersion: Version? { get }
-    var lastVersionAvailable: Version? { get }
-    var installedVersion: Version { get }
-    var requirements: [String: Any]? { get }
-}
-
 @objcMembers
 public class UpdateInfoObject: NSObject {
 
-    /// Returns data containing information about possible update.
-    public var updateData: UpdateInfoObjectValues?
+    // MARK: - Private properties
 
-    /// Returns current SDK version.
-    public var sdkVersion: Version?
+    private var updateInfo: UpdateInfo
+    private var updateNotificationType: UpdateNotificationType
 
-    /**
-     Returns notification type.
+    // MARK: - Init
 
-     Possible values are:
-     - Once: Show notification only once
-     - Always: Show notification every time app run
+    init(from updateInfo: UpdateInfo) {
+        self.updateInfo = updateInfo
+        self.updateNotificationType = updateInfo.notificationType.updateNotificationType
+    }
+}
 
-     Default value is `.once`
-     */
-    public var notificationType: UpdateNotificationType = .once
+// MARK: - Public wrappers -
 
-    /**
-     Returns bool value if phased release period is in progress
+// Should be updated with new properties from UpdateInfo
 
-     Used only with automated check from AppStore if new version is available.
+extension UpdateInfoObject {
 
-     __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value send by `itunes.apple.com` API.
-     */
-    public var phaseReleaseInProgress: Bool = false
+    /// Returns minimum required version of the app.
+    public var requiredVersion: Version? {
+        return updateInfo.requiredVersion
+    }
+
+    /// Returns requirements for configuration.
+    public var requirements: [String : Any]? {
+        return updateInfo.requirements
+    }
+
+    public var notificationType: UpdateNotificationType {
+        return updateNotificationType
+    }
+
+}
+
+// MARK: - BaseUpdateInfo
+
+extension UpdateInfoObject: BaseUpdateInfo {
+
+    /// Returns latest available version of the app.
+    public var lastVersionAvailable: Version? {
+        return updateInfo.lastVersionAvailable
+    }
+
+    /// Returns installed version of the app.
+    public var installedVersion: Version {
+        return updateInfo.installedVersion
+    }
 }
