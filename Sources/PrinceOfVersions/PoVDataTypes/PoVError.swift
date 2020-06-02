@@ -48,7 +48,7 @@ extension PoVError: LocalizedError {
 
 extension PoVError {
 
-    static func validate(updateInfo: UpdateInfoResponse) -> PoVError? {
+    static func validate(updateInfo: UpdateInfo) -> PoVError? {
 
         if updateInfo.configurations == nil {
             return .dataNotFound
@@ -69,7 +69,7 @@ extension PoVError {
         return nil
     }
 
-    static func validate(appStoreInfo: AppStoreInfo) -> PoVError? {
+    static func validate(appStoreInfo: AppStoreUpdateInfo) -> PoVError? {
 
         guard let resultCount = appStoreInfo.resultCount, resultCount > 0 else { return .dataNotFound }
 

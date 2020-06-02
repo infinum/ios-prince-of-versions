@@ -68,7 +68,7 @@
 
 - (void)checkAppStoreVersion
 {
-    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreInfoObject *response) {
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreUpdateResultObject *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
@@ -81,24 +81,24 @@
     self.updateStateLabel.text = [self updateStateFromResult:infoResponse.updateState];
     self.metaLabel.text = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
 
-    UpdateInfoObject *versionInfo = infoResponse.versionInfo;
+    UpdateInfoObject *versionInfo = infoResponse.updateInfo;
 
     self.requiredVersionLabel.text =
-    versionInfo.updateData.requiredVersion.description;
-    self.lastVersionAvailableLabel.text = versionInfo.updateData.lastVersionAvailable.description;
-    self.installedVersionLabel.text = versionInfo.updateData.installedVersion.description;
+    versionInfo.requiredVersion.description;
+    self.lastVersionAvailableLabel.text = versionInfo.lastVersionAvailable.description;
+    self.installedVersionLabel.text = versionInfo.installedVersion.description;
     self.notificationTypeLabel.text = versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
-    self.requirementsLabel.text = [NSString stringWithFormat:@"%@", versionInfo.updateData.requirements];
+    self.requirementsLabel.text = [NSString stringWithFormat:@"%@", versionInfo.requirements];
 }
 
-- (NSString *)updateStateFromResult:(UpdateStatusType)type
+- (NSString *)updateStateFromResult:(UpdateStatus)type
 {
     switch (type) {
-        case UpdateStatusTypeNoUpdateAvailable:
+        case UpdateStatusNoUpdateAvailable:
             return @"No Update Available";
-        case UpdateStatusTypeRequiredUpdateNeeded:
+        case UpdateStatusRequiredUpdateNeeded:
             return @"Required Update Needed";
-        case UpdateStatusTypeNewUpdateAvailable:
+        case UpdateStatusNewUpdateAvailable:
             return @"New Update Available";
     }
 }
