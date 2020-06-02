@@ -71,7 +71,7 @@ internal extension PrinceOfVersions {
         return PrinceOfVersions.checkForUpdateFromAppStore(trackPhaseRelease: trackPhaseRelease, bundle: bundle, callbackQueue: callbackQueue, completion: { result in
                 switch result {
                 case .success(let appStoreInfo):
-                    completion(AppStoreInfoObject(from: appStoreInfo))
+                    completion(AppStoreUpdateResultObject(from: appStoreInfo))
                 case .failure(let (errorResponse as NSError)):
                     error(errorResponse)
                 }

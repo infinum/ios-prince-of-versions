@@ -67,7 +67,7 @@
 
 - (void)checkAppStoreVersion
 {
-    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreInfoObject *response) {
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreUpdateResultObject *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
@@ -80,21 +80,21 @@
     self.updateStateTextField.stringValue = [self updateStateFromResult:infoResponse.updateState];
     self.metaTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
 
-    self.requiredVersionTextField.stringValue = infoResponse.versionInfo.updateData.requiredVersion.description;
-    self.lastVersionAvailableTextField.stringValue = infoResponse.versionInfo.updateData.lastVersionAvailable.description;
-    self.installedVersionTextField.stringValue = infoResponse.versionInfo.updateData.installedVersion.description;
-    self.notificationTypeTextField.stringValue = infoResponse.versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
-    self.requirementsTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.versionInfo.updateData.requirements];
+    self.requiredVersionTextField.stringValue = infoResponse.updateInfo.requiredVersion.description;
+    self.lastVersionAvailableTextField.stringValue = infoResponse.updateInfo.lastVersionAvailable.description;
+    self.installedVersionTextField.stringValue = infoResponse.updateInfo.installedVersion.description;
+    self.notificationTypeTextField.stringValue = infoResponse.updateInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
+    self.requirementsTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.updateInfo.requirements];
 }
 
-- (NSString *)updateStateFromResult:(UpdateStatusType)type
+- (NSString *)updateStateFromResult:(UpdateStatus)type
 {
     switch (type) {
-        case UpdateStatusTypeNoUpdateAvailable:
+        case UpdateStatusNoUpdateAvailable:
             return @"No Update Available";
-        case UpdateStatusTypeRequiredUpdateNeeded:
+        case UpdateStatusRequiredUpdateNeeded:
             return @"Required Update Needed";
-        case UpdateStatusTypeNewUpdateAvailable:
+        case UpdateStatusNewUpdateAvailable:
             return @"New Update Available";
     }
 }
