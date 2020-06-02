@@ -11,6 +11,7 @@ import Foundation
 public enum PoVError: Error {
     case invalidJsonData
     case dataNotFound
+    /// Returns global metadata if available
     case requirementsNotSatisfied([String: Any]?)
     case missingConfigurationVersion
     case invalidCurrentVersion

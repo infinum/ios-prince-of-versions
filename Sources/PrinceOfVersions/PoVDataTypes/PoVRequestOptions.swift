@@ -30,7 +30,7 @@ public class PoVRequestOptions: NSObject {
      Use this method to add custom requirement by which configuration must comply with.
 
      - parameter key: String that matches key in requirements array in JSON with `requirementsCheck` parameter,
-     - parameter requirementCheck: A block used to check if a configuration meets requirement. This block returns `True` if configuration meets the requirement, and takes the any value as input parameter by which .
+     - parameter requirementCheck: A block used to check if a configuration meets requirement. This block returns `true` if configuration meets the requirement, and takes the any value as input parameter by which .
 
      */
     public func addRequirement(key: String, requirementCheck: @escaping ((Any) -> Bool)) {
