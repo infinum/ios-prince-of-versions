@@ -187,6 +187,14 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
+		A8622CB124866FE300B81DAD /* AppStoreData */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_9 /* AppStoreInfo.swift */,
+			);
+			path = AppStoreData;
+			sourceTree = "<group>";
+		};
 		A88447A324644F1900B24789 /* PoVDataTypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				A88447A524644F5200B24789 /* UpdateData */,
-				OBJ_9 /* AppStoreInfo.swift */,
+				A8622CB124866FE300B81DAD /* AppStoreData */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -208,9 +216,9 @@
 		A88447A524644F5200B24789 /* UpdateData */ = {
 			isa = PBXGroup;
 			children = (
-				A8E95B852480FCA80080E000 /* Internal */,
-				A8E95B862480FCBD0080E000 /* UpdateInfo.swift */,
 				A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */,
+				A8E95B862480FCBD0080E000 /* UpdateInfo.swift */,
+				A8E95B852480FCA80080E000 /* Internal */,
 			);
 			path = UpdateData;
 			sourceTree = "<group>";
@@ -219,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				A8E95B892480FDB30080E000 /* UpdateData */,
-				OBJ_11 /* AppStoreInfoObjectiveC.swift */,
+				A8F74C6A248675F60006B115 /* AppStoreData */,
 			);
 			path = "ResponseModel Wrapers";
 			sourceTree = "<group>";
@@ -256,6 +264,14 @@
 				OBJ_17 /* UpdateResultObjectiveC.swift */,
 			);
 			path = UpdateData;
+			sourceTree = "<group>";
+		};
+		A8F74C6A248675F60006B115 /* AppStoreData */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* AppStoreInfoObjectiveC.swift */,
+			);
+			path = AppStoreData;
 			sourceTree = "<group>";
 		};
 		A8F918A62449A96F0003C05E /* Common */ = {
