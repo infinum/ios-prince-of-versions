@@ -14,15 +14,15 @@ class ConfigurationController: NSViewController {
     // MARK: - Private properties
     // MARK: IBOutlets
 
-    @IBOutlet weak var updateVersionTextField: NSTextField!
-    @IBOutlet weak var updateStateTextField: NSTextField!
-    @IBOutlet weak var metaTextField: NSTextField!
-
-    @IBOutlet weak var requiredVersionTextField: NSTextField!
-    @IBOutlet weak var lastVersionAvailableTextField: NSTextField!
-    @IBOutlet weak var installedVersionTextField: NSTextField!
-    @IBOutlet weak var notificationTypeTextField: NSTextField!
-    @IBOutlet weak var requirementsTextField: NSTextField!
+    @IBOutlet private weak var updateVersionTextField: NSTextField!
+    @IBOutlet private weak var updateStateTextField: NSTextField!
+    @IBOutlet private weak var metaTextField: NSTextField!
+ 
+    @IBOutlet private weak var requiredVersionTextField: NSTextField!
+    @IBOutlet private weak var lastVersionAvailableTextField: NSTextField!
+    @IBOutlet private weak var installedVersionTextField: NSTextField!
+    @IBOutlet private weak var notificationTypeTextField: NSTextField!
+    @IBOutlet private weak var requirementsTextField: NSTextField!
 
     // MARK: - View Lifecycle
 
