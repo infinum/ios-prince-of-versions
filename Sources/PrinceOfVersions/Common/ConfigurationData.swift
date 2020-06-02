@@ -9,6 +9,7 @@
 import Foundation
 
 // MARK: - ConfigurationData -
+
 struct ConfigurationData: Decodable {
     let requiredVersion: Version?
     let lastVersionAvailable: Version?
@@ -18,9 +19,11 @@ struct ConfigurationData: Decodable {
 }
 
 // MARK: - Requirements -
+
 struct Requirements: Decodable {
 
     // MARK: - Internal properties
+
     let requiredOSVersion: Version?
     var userDefinedRequirements: [String: Any]
 
@@ -32,6 +35,7 @@ struct Requirements: Decodable {
     }
 
     // MARK: - Init
+
     init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -52,6 +56,7 @@ struct Requirements: Decodable {
     }
 
     // MARK: - Coding keys
+    
     enum CodingKeys: String, CodingKey {
         case requiredOSVersion = "requiredOsVersion"
     }
