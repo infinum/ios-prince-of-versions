@@ -127,7 +127,7 @@ public extension PrinceOfVersions {
      - parameter trackPhaseRelease: Boolean that indicates whether PoV should notify about new version after 7 days when app is fully rolled out or immediately. Default value is `true`.
      - parameter bundle: Bundle where .plist file is stored in which app identifier and app versions should be checked.
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PrinceOfVersionsError error
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error
 
      - returns: Discardable `URLSessionDataTask`
      */
