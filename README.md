@@ -158,7 +158,7 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
 
 It is possible to support older versions of PrinceOfVersions, but in that case JSON file will look somewhat different.
 
-JSON still has to follow [Semantic Versioning](http://semver.org/). To specify a configuration for older PrinceOfVersions version, you have to provide an configuration object which conforms [older PrinceOfVersions specification](#Older PrinceOfVersions configuration form) under key `ios` or `macos`, depending on a platform, and for current PrinceOfVersions, you have to specify configuration described in previous section under key `ios2` or `macos2`.
+JSON still has to follow [Semantic Versioning](http://semver.org/). To specify a configuration for older PrinceOfVersions version, you have to provide an configuration object which conforms [older PrinceOfVersions specification](#Older-configuration-form) under key `ios` or `macos`, depending on a platform, and for current PrinceOfVersions, you have to specify configuration described in previous section under key `ios2` or `macos2`.
 
 Described JSON format is displayed below:
 
@@ -215,7 +215,7 @@ Described JSON format is displayed below:
 }
 ```
 
-#### Older PrinceOfVersions configuration form
+#### Older-configuration-form
 ```json
 ...
 "ios":{
