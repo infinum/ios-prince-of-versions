@@ -58,11 +58,11 @@ To support PrinceOfVersions versions less than 4.0, JSON file will look somewhat
 
 JSON still has to follow [Semantic Versioning](http://semver.org/).
 
-* PrinceOfVersions version < 4.0
+* **PrinceOfVersions version < 4.0**
 
   You have to provide an configuration object which conforms older PrinceOfVersions (< 4.0) specification under key `ios` or `macos`, depending on a platform.
 
-* PrinceOfVersions version >= 4.0
+* **PrinceOfVersions version >= 4.0**
 
   You have to specify configuration described in [previous section](#JSON-format) under key `ios2` or `macos2`.
 
