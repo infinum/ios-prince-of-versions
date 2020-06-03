@@ -1,5 +1,7 @@
 # JSON File
 
+## JSON-format
+
 JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
 
 ```json
@@ -50,11 +52,19 @@ Depending on `notify_last_version_frequency` property, the user can be notified 
 
 Key-value pairs under `"meta"` key are optional metadata of which any amount can be sent accompanying the required fields. Metadata can be specified for each configuration and it can also be specified on a global level. In the return values, global metadata and metadata from the appropriate configuration will be merged. If there is not an appropriate configuration, only global metadata will be returned.
 
-## Supporting older versions
+## Supporting older versions (< 4.0)
 
-It is possible to support older versions of PrinceOfVersions, but in that case JSON file will look somewhat different.
+To support PrinceOfVersions versions less than 4.0, JSON file will look somewhat different.
 
-JSON still has to follow [Semantic Versioning](http://semver.org/). To specify a configuration for older PrinceOfVersions version, you have to provide an configuration object which conforms older PrinceOfVersions specification under key `ios` or `macos`, depending on a platform, and for current PrinceOfVersions, you have to specify configuration described in previous section under key `ios2` or `macos2`.
+JSON still has to follow [Semantic Versioning](http://semver.org/).
+
+* PrinceOfVersions version < 4.0
+
+  You have to provide an configuration object which conforms older PrinceOfVersions (< 4.0) specification under key `ios` or `macos`, depending on a platform.
+
+* PrinceOfVersions version >= 4.0
+
+  You have to specify configuration described in [previous section](#JSON-format) under key `ios2` or `macos2`.
 
 Described JSON format is displayed below:
 
