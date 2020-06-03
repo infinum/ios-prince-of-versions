@@ -269,6 +269,8 @@ Described JSON format is displayed below:
 
 If you don't want to manage the JSON configuration file required by `loadConfiguration` or `checkForUpdates`, you can use `checkForUpdateFromAppStore`. This method will automatically get your app BundleID and it will return version info fetched from the App Store.
 
+However, `updateStatus` result can only assume values `UpdateStatus.noUpdateAvailable` and `UpdateStatus.newUpdateAvailable`. It is not possible to check if update is mandatory by using this method and provided data by the AppStore.
+
 ```swift
 PrinceOfVersions().checkForUpdateFromAppStore(
     trackPhaseRelease: false,
