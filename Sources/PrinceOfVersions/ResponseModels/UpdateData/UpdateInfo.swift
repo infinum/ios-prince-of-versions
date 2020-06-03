@@ -1,6 +1,6 @@
 //
 //  UpdateInfo.swift
-//  Pods
+//  PrinceOfVersions
 //
 //  Created by Jasmin Abou Aldan on 06/07/16.
 //
