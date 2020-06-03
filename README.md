@@ -39,7 +39,7 @@ use_frameworks!
 pod 'PrinceOfVersions'
 ```
 
-or 
+or
 
 ```ruby
 platform :osx, '10.10'
@@ -80,49 +80,146 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
 
 ```json
 {
-    "ios": {
-        "minimum_version": "1.2.3",
-        "minimum_version_min_sdk": "8.0.0",
-        "latest_version": {
-            "version": "2.4.5",
-            "notification_type": "ALWAYS",
-            "min_sdk": "12.1.2"
-        }
-    },
-    "macos": {
-        "minimum_version": "1.2.3",
-        "minimum_version_min_sdk": "10.9.0",
-        "latest_version": {
-            "version": "2.4.5",
-            "notification_type": "ALWAYS",
-            "min_sdk": "10.11.0"
-        }
-    },
-    "android": {
-        "minimum_version": "1.2.3",
-        "latest_version": {
-            "version": "2.4.5",
-            "notification_type": "ONCE"
-        }
-    },
-    "meta": {
-        "key1": "value1",
-        "key2": "value2"
-    }
+   "ios":[
+      {
+         "required_version":"1.2.3",
+         "last_version_available":"1.9.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"8.0.0",
+            "region":"hr",
+            "bluetooth":"5.0"
+         },
+         "meta":{
+            "key1":"value1",
+            "key2":2
+         }
+      },
+      {
+         "required_version":"1.2.3",
+         "last_version_available":"2.4.5",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"12.1.2"
+         },
+         "meta":{
+            "key3":"value3",
+         }
+      }
+   ],
+   "macos":[
+      {
+         "required_version":"10.10.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.12.1"
+         }
+      },
+      {
+         "required_version":"9.1",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.11.1",
+            "region":"hr",
+            "bluetooth":"5.0"
+         }
+      },
+      {
+         "required_version":"9.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ONCE",
+         "requirements":{
+            "required_os_version":"10.14.2",
+            "region":"us"
+         }
+      }
+   ],
+   "meta":{
+      "key3":true,
+      "key4":"value2"
+   }
 }
 ```
 
-Depending on `notification_type` property, the user can be notified `ONCE` or `ALWAYS`. The library handles this for you, and if notification type is set to `ONCE`, it will notify you via `newUpdate(version: String, isMandatory: Bool, metadata: [String: AnyObject]?)` method only once. Every other time the library will return `noUpdate` for that specific version. 
+Library will decide which configuration to use based on the platform used and requirements listed under `requirements` key.
+> First configuration that meets all the requirements will be used to determine update status.
 
-By setting min required iOS version with `minimum_version_min_sdk` for mandatory updates and `min_sdk` for optional updates, library will notify you about new versions only if user have same or later version of iOS installed on device. If specified version is greater than installed one, library will return `noUpdate`.
+In the `requirements` array, parameter `required_os_version` is **mandatory** for every configuration. Every other parameter is optional, and it is on the user to decide which requirements are needed to be satisfied. Requirements (besides `required_os_version`) will be checked with closures provided by the user. Closure can be provided by `addRequirement` [method](#### Adding requirements) in `PoVRequestOptions` class. If requirement closure is not supplied for a given requirement key, library will consider that requirement as **not satisfied**.
 
-Key-value pairs under `"meta"` key are optional metadata of which any amount can be sent accompanying the required fields.
+If there is not even one configuration that satisfies all requirements (including `required_os_version`), library will set `updateStatus` value to `UpdateStatus.noUpdateAvailable`.
+
+Depending on `notify_last_version_frequency` property, the user can be notified `ONCE` or `ALWAYS`. The library handles this for you. If notification frequency is set to `ONCE`, in the result values which are returned, the value of `updateStatus` will be set to `UpdateStatus.newUpdateAvailable`. Every subsequent call, the library will set the value of `updateStatus` to `UpdateStatus.noUpdateAvailable` for that specific version.
+
+Key-value pairs under `"meta"` key are optional metadata of which any amount can be sent accompanying the required fields. Metadata can be specified for each configuration and it can also be specified on a global level. In the return values, global metadata and metadata from the appropriate configuration will be merged. If there is not an appropriate configuration, only global metadata will be returned.
+
+### Supporting older versions
+
+It is possible to support older versions of PrinceOfVersions, but in that case JSON file will look somewhat different.
+
+JSON still has to follow [Semantic Versioning](http://semver.org/). To specify a configuration for older PrinceOfVersions version, you have to provide an object under key `ios` or `macos`, depending on a platform, and for current PrinceOfVersions, you have to specify configuration under key `ios2` or `macos2`.
+
+Described JSON format is displayed below:
+
+```json
+{
+   "ios":{
+      "minimum_version":"1.2.3",
+      "minimum_version_min_sdk":"8.0.0",
+      "latest_version":{
+         "version":"2.4.5",
+         "notification_type":"ALWAYS",
+         "min_sdk":"12.1.2"
+      }
+   },
+   "ios2":[
+      {
+         "required_version":"1.2.3",
+         "last_version_available":"1.9.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"8.0.0",
+            "region":"hr",
+            "bluetooth":"5.0"
+         },
+         "meta":{
+            "key1":"value1",
+            "key2":2
+         }
+      }
+   ],
+   "macos":{
+      "minimum_version":"1.2.3",
+      "minimum_version_min_sdk":"10.9.0",
+      "latest_version":{
+         "version":"2.4.5",
+         "notification_type":"ALWAYS",
+         "min_sdk":"10.11.0"
+      }
+   },
+   "macos2":[
+      {
+         "required_version":"10.10.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.12.1"
+         }
+      }
+   ],
+   "meta":{
+      "key3":true,
+      "key4":"value2"
+   }
+}
+```
 
 ## Usage
 
 ### Loading from network resource
 
-1. Getting all data
+#### Getting all data
 
     ```swift
     let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
@@ -143,22 +240,7 @@ Key-value pairs under `"meta"` key are optional metadata of which any amount can
     }
     ```
 
-2. Automatic handling update frequency
-
-    ```swift
-    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
-    PrinceOfVersions().checkForUpdates(
-        from: url,
-        newVersion: { (latestVersion, isMinimumVersionSatisfied, metadata) in
-            ...
-        },
-        noNewVersion: { (isMinimumVersionSatisfied, metadata) in
-            ...
-        },
-        error: { error in
-            ...
-        })
-    ```
+#### Adding requirements
 
 ### Automatic check with data from the App Store
 
@@ -186,7 +268,7 @@ If your application has multiple targets you might need more than one JSON confi
 
 ### Security certificate pinning
 
-If you use certificate pinning for secure communication with the server holding your JSON version file, put the certificate in the app Resource folder (make sure that the certificate has one these extensions: `".cer"`, `".CER"`, `".crt"`, `".CRT"`, `".der"`, `".DER"`). 
+If you use certificate pinning for secure communication with the server holding your JSON version file, put the certificate in the app Resource folder (make sure that the certificate has one these extensions: `".cer"`, `".CER"`, `".crt"`, `".CRT"`, `".der"`, `".DER"`).
 Prince Of Versions will look for all the certificates in the main bundle. Then set the `shouldPinCertificates` parameter to `true` in the `loadConfiguration` method call.
 
 ```swift
