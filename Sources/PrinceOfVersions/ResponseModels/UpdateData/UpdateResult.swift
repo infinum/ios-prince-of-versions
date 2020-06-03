@@ -7,6 +7,17 @@
 
 import Foundation
 
+// MARK: - Public interface
+
+public struct UpdateResultResponse {
+
+    /// The server's response to the URL request.
+    public let response: URLResponse?
+
+    /// The result of response serialization.
+    public let result: Result<UpdateResult, PoVError>
+}
+
 public struct UpdateResult {
 
     // MARK: - Private properties
