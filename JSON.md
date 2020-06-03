@@ -1,4 +1,4 @@
-#JSON File
+# JSON File
 
 JSON file in your application has to follow [Semantic Versioning](http://semver.org/) and it has to look like this:
 
@@ -18,17 +18,6 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
             "key1":"value1",
             "key2":2
          }
-      },
-      {
-         "required_version":"1.2.3",
-         "last_version_available":"2.4.5",
-         "notify_last_version_frequency":"ALWAYS",
-         "requirements":{
-            "required_os_version":"12.1.2"
-         },
-         "meta":{
-            "key3":"value3",
-         }
       }
    ],
    "macos":[
@@ -37,28 +26,11 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
          "last_version_available":"11.0",
          "notify_last_version_frequency":"ALWAYS",
          "requirements":{
-            "required_os_version":"10.12.1"
-         }
-      },
-      {
-         "required_version":"9.1",
-         "last_version_available":"11.0",
-         "notify_last_version_frequency":"ALWAYS",
-         "requirements":{
-            "required_os_version":"10.11.1",
+            "required_os_version":"10.12.1",
             "region":"hr",
             "bluetooth":"5.0"
          }
       },
-      {
-         "required_version":"9.0",
-         "last_version_available":"11.0",
-         "notify_last_version_frequency":"ONCE",
-         "requirements":{
-            "required_os_version":"10.14.2",
-            "region":"us"
-         }
-      }
    ],
    "meta":{
       "key3":true,
