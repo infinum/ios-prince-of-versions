@@ -26,15 +26,6 @@ public class AppStoreUpdateResultObject: NSObject {
 
 // Should be updated with new properties from UpdateInfo
 
-extension AppStoreUpdateResultObject {
-
-    public var phaseReleaseInProgress: Bool {
-        return updateResult.phaseReleaseInProgress
-    }
-}
-
-// MARK: - BaseUpdateResult
-
 extension AppStoreUpdateResultObject: BaseUpdateResult {
 
     /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
@@ -47,8 +38,21 @@ extension AppStoreUpdateResultObject: BaseUpdateResult {
         return updateResult.updateState
     }
 
+    /// Update configuration values used to check
     @objc
     public var updateInfo: AppStoreUpdateInfoObject {
         return AppStoreUpdateInfoObject(from: updateResult.updateInfoData)
+    }
+}
+
+extension AppStoreUpdateResultObject {
+
+    /**
+     Returns bool value if phased release period is in progress.
+
+     __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value send by `itunes.apple.com` API.
+     */
+    public var phaseReleaseInProgress: Bool {
+        return updateResult.phaseReleaseInProgress
     }
 }

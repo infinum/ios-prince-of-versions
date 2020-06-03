@@ -16,7 +16,7 @@ extension PrinceOfVersions {
     public typealias ObjectErrorBlock = (NSError) -> Void
 
     /**
-     Used for getting the versioning configuration stored on server. Uses URL for data fetch with posibility to set custom http headers, certificate pinning enabling and custom callback queue.
+     Used for getting the versioning configuration stored on server. Uses URL for data fetch.
 
      After check with server is finished, this method will return all informations about the app versioning.
      It's up to the user to handle that info in a way sutable for the app.
@@ -36,14 +36,14 @@ extension PrinceOfVersions {
     }
 
     /**
-     Used for getting the versioning configuration stored on server. Uses URL for data fetch with posibility to set custom http headers, certificate pinning enabling and custom callback queue.
+     Used for getting the versioning configuration stored on server. Uses URL for data fetch with posibility to set custom http headers and certificate pinning enabling.
 
      After check with server is finished, this method will return all informations about the app versioning.
      It's up to the user to handle that info in a way sutable for the app.
 
      - Parameters:
         * URL: URL that containts configuration data.
-        * options: TODO
+        * options: Used for additional configuration such as `shouldPinCertificates`, `httpHeaderFields` and `userRequirements`
         * completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data
         * error: The completion handler to call when load request errors
 
@@ -57,7 +57,7 @@ extension PrinceOfVersions {
     }
 
     /**
-     Used for getting the versioning configuration stored on server. Uses URL for data fetch with posibility to set custom http headers, certificate pinning enabling and custom callback queue.
+     Used for getting the versioning configuration stored on server. Uses URL for data fetch with posibility to set custom callback queue.
 
      After check with server is finished, this method will return all informations about the app versioning.
      It's up to the user to handle that info in a way sutable for the app.
@@ -86,7 +86,7 @@ extension PrinceOfVersions {
      - Parameters:
         * URL: URL that containts configuration data.
         * callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
-        * options: TODO
+        * options: Used for additional configuration such as `shouldPinCertificates`, `httpHeaderFields` and `userRequirements`
         * completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data
         * error: The completion handler to call when load request errors
 

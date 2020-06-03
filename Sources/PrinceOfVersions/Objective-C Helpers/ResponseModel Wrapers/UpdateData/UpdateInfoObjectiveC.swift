@@ -27,6 +27,19 @@ public class UpdateInfoObject: NSObject {
 
 // Should be updated with new properties from UpdateInfo
 
+extension UpdateInfoObject: BaseUpdateInfo {
+
+    /// Returns latest available version of the app.
+    public var lastVersionAvailable: Version? {
+        return updateInfo.lastVersionAvailable
+    }
+
+    /// Returns installed version of the app.
+    public var installedVersion: Version {
+        return updateInfo.installedVersion
+    }
+}
+
 extension UpdateInfoObject {
 
     /// Returns minimum required version of the app.
@@ -39,23 +52,8 @@ extension UpdateInfoObject {
         return updateInfo.requirements
     }
 
+    /// Returns notification frequency for configuration.
     public var notificationType: UpdateNotificationType {
         return updateNotificationType
-    }
-
-}
-
-// MARK: - BaseUpdateInfo
-
-extension UpdateInfoObject: BaseUpdateInfo {
-
-    /// Returns latest available version of the app.
-    public var lastVersionAvailable: Version? {
-        return updateInfo.lastVersionAvailable
-    }
-
-    /// Returns installed version of the app.
-    public var installedVersion: Version {
-        return updateInfo.installedVersion
     }
 }

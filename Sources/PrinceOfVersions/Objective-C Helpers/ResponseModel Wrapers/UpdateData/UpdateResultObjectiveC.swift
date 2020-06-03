@@ -24,14 +24,6 @@ public class UpdateResultObject: NSObject {
 
 // MARK: - Public wrappers -
 
-extension UpdateResultObject {
-
-    /// Merged metadata from JSON
-    public var metadata: [String : Any]? {
-        return updateResult.metadata
-    }
-}
-
 extension UpdateResultObject: BaseUpdateResult {
 
     /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
@@ -48,5 +40,13 @@ extension UpdateResultObject: BaseUpdateResult {
     @objc
     public var updateInfo: UpdateInfoObject {
         return UpdateInfoObject(from: updateResult.updateInfoData)
+    }
+}
+
+extension UpdateResultObject {
+
+    /// Merged metadata from JSON
+    public var metadata: [String : Any]? {
+        return updateResult.metadata
     }
 }

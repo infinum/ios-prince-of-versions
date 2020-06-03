@@ -20,6 +20,8 @@ public struct AppStoreUpdateInfo: Codable {
 
     static internal var bundle: Bundle = .main
 
+    internal var notificationFrequency: NotificationType = .always
+
     internal let resultCount: Int?
     internal let results: [ConfigurationData]
 
@@ -110,6 +112,7 @@ extension AppStoreUpdateInfo: BaseUpdateInfo {
 
 extension AppStoreUpdateInfo {
 
+    /// Returns latest version release date.
     public var releaseDate: Date? {
         return configurationData?.releaseDate
     }
