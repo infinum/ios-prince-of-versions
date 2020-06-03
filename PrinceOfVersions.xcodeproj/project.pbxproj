@@ -192,8 +192,8 @@
 		A8622CB124866FE300B81DAD /* AppStoreUpdateData */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* AppStoreUpdateInfo.swift */,
 				A8620FCD24868E2D0006CCF9 /* AppStoreUpdateResult.swift */,
+				OBJ_9 /* AppStoreUpdateInfo.swift */,
 			);
 			path = AppStoreUpdateData;
 			sourceTree = "<group>";
@@ -203,6 +203,8 @@
 			children = (
 				A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */,
 				OBJ_19 /* PoVError.swift */,
+				OBJ_21 /* Version.swift */,
+				A8745B0B248005A600DE451D /* NotificationType.swift */,
 			);
 			path = PoVDataTypes;
 			sourceTree = "<group>";
@@ -220,8 +222,8 @@
 		A88447A524644F5200B24789 /* UpdateData */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_20 /* UpdateInfo.swift */,
 				A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */,
+				OBJ_20 /* UpdateInfo.swift */,
 			);
 			path = UpdateData;
 			sourceTree = "<group>";
@@ -246,8 +248,8 @@
 		A8E95B892480FDB30080E000 /* UpdateData */ = {
 			isa = PBXGroup;
 			children = (
-				A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */,
 				OBJ_17 /* UpdateResultObjectiveC.swift */,
+				A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */,
 			);
 			path = UpdateData;
 			sourceTree = "<group>";
@@ -255,8 +257,8 @@
 		A8F74C6A248675F60006B115 /* AppStoreData */ = {
 			isa = PBXGroup;
 			children = (
-				A8620FCF248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift */,
 				OBJ_11 /* AppStoreUpdateResultObjectiveC.swift */,
+				A8620FCF248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift */,
 			);
 			path = AppStoreData;
 			sourceTree = "<group>";
@@ -265,9 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				A88447A7246451A000B24789 /* Utility */,
-				OBJ_21 /* Version.swift */,
 				A8F918A82449A96F0003C05E /* ConfigurationData.swift */,
-				A8745B0B248005A600DE451D /* NotificationType.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -329,8 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_18 /* PrinceOfVersions.swift */,
-				A88447A324644F1900B24789 /* PoVDataTypes */,
 				A88447A424644F3C00B24789 /* ResponseModels */,
+				A88447A324644F1900B24789 /* PoVDataTypes */,
 				A8F918A62449A96F0003C05E /* Common */,
 				OBJ_10 /* Objective-C Helpers */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
@@ -396,7 +396,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 9999;
-				LastUpgradeCheck = 9999;
+				LastUpgradeCheck = 1150;
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "PrinceOfVersions" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -404,6 +404,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = OBJ_5;
 			productRefGroup = OBJ_28 /* Products */;
@@ -504,17 +505,43 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"SWIFT_PACKAGE=1",
 					"DEBUG=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
@@ -534,15 +561,40 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"SWIFT_PACKAGE=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
@@ -619,8 +671,8 @@
 		OBJ_70 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -644,8 +696,8 @@
 		OBJ_71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
