@@ -11,24 +11,17 @@ import Foundation
 public class AppStoreUpdateInfoObject: NSObject {
 
     // MARK: - Private properties
+
     private var appStoreInfo: AppStoreUpdateInfo
 
     // MARK: - Init
+
     internal init(from appStoreInfo: AppStoreUpdateInfo) {
         self.appStoreInfo = appStoreInfo
     }
 }
 
 // MARK: - Public properties -
-
-extension AppStoreUpdateInfoObject {
-
-    public var releaseDate: Date? {
-        return appStoreInfo.releaseDate
-    }
-}
-
-// MARK: - BaseUpdateInfo
 
 extension AppStoreUpdateInfoObject: BaseUpdateInfo {
 
@@ -40,5 +33,13 @@ extension AppStoreUpdateInfoObject: BaseUpdateInfo {
     /// Returns installed version of the app.
     public var installedVersion: Version {
         return appStoreInfo.installedVersion
+    }
+}
+
+extension AppStoreUpdateInfoObject {
+
+    /// Returns latest version release date.
+    public var releaseDate: Date? {
+        return appStoreInfo.releaseDate
     }
 }
