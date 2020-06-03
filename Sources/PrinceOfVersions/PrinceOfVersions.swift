@@ -83,11 +83,11 @@ public extension PrinceOfVersions {
                 callbackQueue.async {
                     completion(updateInfoResponse)
                 }
-
                 return
             }
 
             do {
+
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
 
@@ -105,7 +105,6 @@ public extension PrinceOfVersions {
                 }
 
                 var updateInfo = try decoder.decode(UpdateInfo.self, from: data)
-
                 updateInfo.userRequirements = options.userRequirements
 
                 if let error = PoVError.validate(updateInfo: updateInfo) {
@@ -144,24 +143,29 @@ public extension PrinceOfVersions {
      After check with server is finished, this method will return all informations about the app versioning available on AppStore Connect.
      It's up to the user to handle that info in a way sutable for the app.
 
+     Update status can only take on value `UpdateStatus.noUpdateAvailable` or `UpdateStatus.newUpdateAvailable`, but it can't be `UpdateStatus.requiredUpdateNeeded` since there is no way to determine if the update version is mandatory with this check.
+
      If flag `trackPhaseRelease` is set to `false`, the value of the `phaseReleaseInProgress` will instantly be `false` as phased release is not used.
      Otherwise, if we have to check `trackPhaseRelease`, value of `phaseReleaseInProgress` will return `false` once phased release period of 7 days is over.
 
      __WARNING:__ As we are not able to determine if phased release period is finished earlier (release to all options is selected after a while), if `trackPhaseRelease` is enabled `phaseReleaseInProgress` will return `false` only after 7 days of `currentVersionReleaseDate` value set on AppStore Connect.
 
+     If parameter `notificationFrequency` is set to `.always`  and latest version of the app is bigger than installed version, method will always return `.newUpdateAvailable`. However, if the`notificationFrequency` is set to `.once`, only first time this method is called for the same latest app version, it will return `.newUpdateAvailable`, each subsequent call, it will return `.noUpdateAvailable`.
+
      - parameter trackPhaseRelease: Boolean that indicates whether PoV should notify about new version after 7 days when app is fully rolled out or immediately. Default value is `true`.
      - parameter bundle: Bundle where .plist file is stored in which app identifier and app versions should be checked.
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
-     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error
+     - parameter notificationFrequency: Determines update status appearance frequency.
+     - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error.
 
      - returns: Discardable `URLSessionDataTask`
      */
     @discardableResult
     static func checkForUpdateFromAppStore(
-        // notification frequency
         trackPhaseRelease: Bool = true,
         bundle: Bundle = .main,
         callbackQueue: DispatchQueue = .main,
+        notificationFrequency: NotificationType = .always,
         completion: @escaping AppStoreCompletionBlock
     ) -> URLSessionDataTask? {
 
@@ -180,6 +184,7 @@ public extension PrinceOfVersions {
             trackPhaseRelease: trackPhaseRelease,
             bundle: bundle,
             callbackQueue: callbackQueue,
+            notificationFrequency: notificationFrequency,
             completion: completion
         )
     }
@@ -195,6 +200,7 @@ internal extension PrinceOfVersions {
         trackPhaseRelease: Bool = true,
         bundle: Bundle = .main,
         callbackQueue: DispatchQueue = .main,
+        notificationFrequency: NotificationType = .always,
         testMode: Bool = false,
         completion: @escaping AppStoreCompletionBlock
     ) -> URLSessionDataTask? {
@@ -209,7 +215,8 @@ internal extension PrinceOfVersions {
                     from: try? Data(contentsOf: url),
                     error: nil,
                     bundle: bundle,
-                    trackPhaseRelease: trackPhaseRelease
+                    trackPhaseRelease: trackPhaseRelease,
+                    notificationFrequency: notificationFrequency
                 )
                 completion(appStoreData)
             }
@@ -222,7 +229,8 @@ internal extension PrinceOfVersions {
                     from: data,
                     error: error,
                     bundle: bundle,
-                    trackPhaseRelease: trackPhaseRelease
+                    trackPhaseRelease: trackPhaseRelease,
+                    notificationFrequency: notificationFrequency
                 )
                 completion(appStoreData)
             }
@@ -273,7 +281,7 @@ private extension PrinceOfVersions {
         return publicKey
     }
 
-    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool) -> Result<AppStoreUpdateResult, PoVError> {
+    static func prepareAppStoreData(from data: Data?, error: Error?, bundle: Bundle, trackPhaseRelease: Bool, notificationFrequency: NotificationType) -> Result<AppStoreUpdateResult, PoVError> {
 
         if let error = error {
             return Result.failure(.unknown(error.localizedDescription))
@@ -283,7 +291,9 @@ private extension PrinceOfVersions {
         do {
 
             AppStoreUpdateInfo.bundle = bundle
-            let updateInfo = try JSONDecoder().decode(AppStoreUpdateInfo.self, from: data!)
+
+            var updateInfo = try JSONDecoder().decode(AppStoreUpdateInfo.self, from: data!)
+            updateInfo.notificationFrequency = notificationFrequency
 
             if let error = PoVError.validate(appStoreInfo: updateInfo) {
                 result = Result.failure(error)
