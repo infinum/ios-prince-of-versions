@@ -153,6 +153,7 @@ extension UpdateInfo {
         return configuration?.requirements?.allRequirements
     }
 
+    /// Returns notification frequency for configuration.
     public var notificationType: NotificationType {
         return configuration?.notifyLastVersionFrequency ?? .once
     }
