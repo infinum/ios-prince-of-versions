@@ -24,80 +24,80 @@ class UpdateInfoTest: XCTestCase {
     func testCheckingValidContent() {
         let bundle = Bundle(for: type(of: self))
 
-        var info: UpdateInfoResponse?
+        var info: UpdateInfo?
         if let jsonPath = bundle.path(forResource: "valid_update_full", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                info = try decoder.decode(UpdateInfoResponse.self, from: data)
+                info = try decoder.decode(UpdateInfo.self, from: data)
             } catch let error {
                 XCTFail(error.localizedDescription)
             }
         }
 
-        guard let updateInfoResponse = info else {
+        guard let updateInfo = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
+        let updateResult = UpdateResult(updateInfo: updateInfo)
 
-        XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
+        XCTAssertNotNil(updateResult.updateInfo.requiredVersion, "Value for required version should not be nil")
     }
 
     func testCheckingValidV2Content() {
 
         let bundle = Bundle(for: type(of: self))
 
-        var info: UpdateInfoResponse?
+        var info: UpdateInfo?
 
         if let jsonPath = bundle.path(forResource: "valid_update_only_v2_metadata_empty", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                info = try decoder.decode(UpdateInfoResponse.self, from: data)
+                info = try decoder.decode(UpdateInfo.self, from: data)
                 
             } catch let error {
                 XCTFail(error.localizedDescription)
             }
         }
 
-        guard let updateInfoResponse = info else {
+        guard let updateInfo = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
+        let updateResult = UpdateResult(updateInfo: updateInfo)
 
-        XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
+        XCTAssertNotNil(updateResult.updateInfo.requiredVersion, "Value for required version should not be nil")
     }
 
     func testCheckingValidV2OnlyIosContent() {
 
         let bundle = Bundle(for: type(of: self))
 
-        var info: UpdateInfoResponse?
+        var info: UpdateInfo?
 
         if let jsonPath = bundle.path(forResource: "valid_update_only_v2_ios", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                info = try decoder.decode(UpdateInfoResponse.self, from: data)
+                info = try decoder.decode(UpdateInfo.self, from: data)
 
             } catch let error {
                 XCTFail(error.localizedDescription)
             }
         }
 
-        guard let updateInfoResponse = info else {
+        guard let updateInfo = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
+        let updateResult = UpdateResult(updateInfo: updateInfo)
 
         #if os(iOS)
-        XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
+        XCTAssertNotNil(updateResult.updateInfo.requiredVersion, "Value for required version should not be nil")
         #endif
     }
 
@@ -105,28 +105,28 @@ class UpdateInfoTest: XCTestCase {
 
         let bundle = Bundle(for: type(of: self))
 
-        var info: UpdateInfoResponse?
+        var info: UpdateInfo?
 
         if let jsonPath = bundle.path(forResource: "valid_update_only_v2_macos", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                info = try decoder.decode(UpdateInfoResponse.self, from: data)
+                info = try decoder.decode(UpdateInfo.self, from: data)
 
             } catch let error {
                 XCTFail(error.localizedDescription)
             }
         }
 
-        guard let updateInfoResponse = info else {
+        guard let updateInfo = info else {
             XCTFail("Update info should not be nil")
             return
         }
 
-        let updateResult = UpdateResult(updateInfoResponse: updateInfoResponse)
+        let updateResult = UpdateResult(updateInfo: updateInfo)
 
         #if os(macOS)
-        XCTAssertNotNil(updateResult.versionInfo.updateData.requiredVersion, "Value for required version should not be nil")
+        XCTAssertNotNil(updateResult.updateInfo.requiredVersion, "Value for required version should not be nil")
         #endif
     }
 

@@ -48,21 +48,21 @@ class PrinceOfVersionsTest: XCTestCase {
         runAsyncTest { finished in
             PrinceOfVersions.internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: false, bundle: bundle, testMode: true, completion: { result in
                 switch result {
-                case .success(let info):
-                    XCTAssert(info.installedVersion == installedVersion)
+                case .success(let updateResult):
+                    XCTAssert(updateResult.updateInfo.installedVersion == installedVersion)
 
-                    guard let latestVersion = info.lastVersionAvailable else {
+                    guard let latestVersion = updateResult.updateInfo.lastVersionAvailable else {
                         XCTFail("Last version available should not be nil")
                         return
                     }
 
                     XCTAssert(latestVersion == lastVersionAvailable)
-                    if let minSdkForLatestVersion = info.configurationData?.minimumOsVersion {
+                    if let minSdkForLatestVersion = updateResult.updateInfo.configurationData?.minimumOsVersion {
                         XCTAssert(minSdkForLatestVersion == minimumSdkForLatestVersion)
                     } else {
                         XCTFail("min sdk should not be nil")
                     }
-                    XCTAssert(!info.phaseReleaseInProgress)
+                    XCTAssert(!updateResult.phaseReleaseInProgress)
                     finished()
                 case .failure:
                     XCTFail("Invalid data")
