@@ -276,10 +276,10 @@ PrinceOfVersions().checkForUpdateFromAppStore(
     trackPhaseRelease: false,
     completion: { result in
         switch result {
-        case .success(let appStoreInfo):
-        print("Minimum version: ", info.minimumRequiredVersion)
-        print("Installed version: ", info.installedVersion)
-        print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
+        case .success(let appStoreResult):
+        print("Update version: ", appStoreResult.updateVersion)
+        print("Installed version: ", appStoreResult.updateInfo.installedVersion)
+        print("Update status: ", appStoreResult.updateStatus)
         case .failure:
             // Handle error
         }
