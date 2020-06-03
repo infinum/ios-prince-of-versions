@@ -222,25 +222,48 @@ Described JSON format is displayed below:
 #### Getting all data
 
     ```swift
-    let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
-    PrinceOfVersions().loadConfiguration(from: url) { response in
-        switch response.result {
-        case .success(let info):
-            print("Minimum version: ", info.minimumRequiredVersion)
-            print("Installed version: ", info.installedVersion)
-            print("Is minimum version satisfied: ", info.isMinimumVersionSatisfied)
-            print("Notification type: ", info.notificationType)
+    let princeOfVersionsURL = URL(string: https://pastebin.com/raw/0MfYmWGu)!
 
-            if let latestVersion = info.latestVersion {
-                print("Is minimum version satisfied: ", latestVersion)
-            }
-        case .failure(let error):
-            print(error.localizedDescription)
+    PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
+        switch response.result {
+        case .success(let updateResultData):
+            self.fillUI(with: updateResultData)
+        case .failure:
+            // Handle error
+            break
         }
-    }
+    })
     ```
 
-####Adding-requirements
+#### Adding-requirements
+
+  ```swift
+  let options = PoVRequestOptions()
+
+  options.addRequirement(key: "region") { (value) -> Bool in
+      guard let value = value as? String else { return false }
+      // Check OS localisation
+      return value == "hr"
+  }
+
+  options.addRequirement(key: "bluetooth") { (value) -> Bool in
+      guard let value = value as? String else { return false }
+      // Check device bluetooth version
+      return value.starts(with: "5")
+  }
+
+  let princeOfVersionsURL = URL(string: https://pastebin.com/raw/0MfYmWGu)!
+
+  PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
+      switch response.result {
+      case .success(let updateResultData):
+          self.fillUI(with: updateResultData)
+      case .failure:
+          // Handle error
+          break
+      }
+  })
+  ```
 
 ### Automatic check with data from the App Store
 
