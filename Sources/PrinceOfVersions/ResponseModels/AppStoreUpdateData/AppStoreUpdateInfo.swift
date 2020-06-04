@@ -22,7 +22,7 @@ public struct AppStoreUpdateInfo: Codable {
 
     internal var notificationFrequency: NotificationType = .always
 
-    internal let resultCount: Int?
+//    internal let resultCount: Int?
     internal let results: [ConfigurationData]
 
     internal var configurationData: ConfigurationData? {
@@ -88,7 +88,7 @@ public struct AppStoreUpdateInfo: Codable {
     // MARK: - CodingKeys -
 
     enum CodingKeys: String, CodingKey {
-        case resultCount, results
+        case results
     }
 }
 
