@@ -173,20 +173,20 @@ However, `updateStatus` result can only assume values `UpdateStatus.noUpdateAvai
 ```swift
 PrinceOfVersions.checkForUpdateFromAppStore(
     trackPhaseRelease: false,
-    notificationFrequency = .once,
+    notificationFrequency: .once,
     completion: { result in
       switch result {
       case .success(let appStoreResult):
-      print("Update version: ", appStoreResult.updateVersion)
-      print("Installed version: ", appStoreResult.updateInfo.installedVersion)
-      print("Update status: ", appStoreResult.updateStatus)
+        print("Update version: ", appStoreResult.updateVersion)
+        print("Installed version: ", appStoreResult.updateInfo.installedVersion)
+        print("Update status: ", appStoreResult.updateStatus)
       case .failure:
           // Handle error
       }
 })
 ```
 
-It is possible to define update notification frequency with the parameter `notificationFrequency`. If you set the parameter value to `NotificationType.once`, only the first time this methods is called, it will return `UpdateStatus.newUpdateAvailable` if a new version exists, every subsequent call it will return `UpdateStatus.noUpdateAvailable` for that specific version. If described behaviour doesn't suit your needs, you can always set this parameter to `NotificationType.always` and have updateStatus always be `UpdateStatus.newUpdateAvailable` when a new version is available.
+It is possible to define update notification frequency with the parameter `notificationFrequency`. If you set the parameter value to `NotificationType.once`, only the first time this methods is called, it will return `UpdateStatus.newUpdateAvailable` if a new version exists, every subsequent call it will return `UpdateStatus.noUpdateAvailable` for that specific version. If described behaviour doesn't suit your needs, you can always set this parameter to `NotificationType.always` and have updateStatus as `UpdateStatus.newUpdateAvailable` when a new version is available.
 
 ### Multiple targets
 
@@ -198,11 +198,11 @@ If you use certificate pinning for secure communication with the server holding 
 Prince Of Versions will look for all the certificates in the main bundle. Then set the `shouldPinCertificates` parameter to `true` in the `loadConfiguration` method call.
 
 ```swift
-let url = URL(string: "https://pastebin.com/raw/ZAfWNZCi")
-PrinceOfVersions().loadConfiguration(from: url, shouldPinCertificates: true) { (response) in
+let url = URL(string: "https://pastebin.com/raw/0MfYmWGu")
+PrinceOfVersions.checkForUpdates(from: url, shouldPinCertificates: true) { (response) in
     switch response.result {
-    case .success(let info):
-        if let latestVersion = info.latestVersion {
+    case .success(let result):
+        if let latestVersion = result.updateInfo.latestVersion {
             print("Is minimum version satisfied: ", latestVersion)
         }
     case .failure(let error):
