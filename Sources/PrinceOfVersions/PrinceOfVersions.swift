@@ -50,69 +50,32 @@ public extension PrinceOfVersions {
         princeOfVersions.shouldPinCertificates = options.shouldPinCertificates
 
         let defaultSession = URLSession(configuration: URLSessionConfiguration.default, delegate: princeOfVersions, delegateQueue: nil)
-        var request = URLRequest(url: URL)
 
-        if let headerFields = options.httpHeaderFields {
-            for (fieldName, fieldValue) in headerFields {
-                if let fieldValue = fieldValue as? String, let fieldName = fieldName as? String {
-                    request.setValue(fieldValue, forHTTPHeaderField: fieldName)
-                }
-            }
-        }
+        let request = princeOfVersions.createRequest(for: URL, headerFields: options.httpHeaderFields)
 
         let dataTask = defaultSession.dataTask(with: request, completionHandler: { (data, response, error) in
-
-            let result: Result<UpdateResult, PoVError>
 
             if let error = error {
 
                 let updateInfoResponse = UpdateResultResponse(
                     response: response,
-                    result:  Result.failure(.unknown(error.localizedDescription))
+                    result: Result.failure(.unknown(error.localizedDescription))
                 )
 
                 callbackQueue.async {
                     completion(updateInfoResponse)
                 }
+
                 return
             }
 
-            do {
-
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-                guard let data = data else {
-
-                    let updateInfoResponse = UpdateResultResponse(
-                        response: response,
-                        result: Result.failure(.dataNotFound)
-                    )
-                    callbackQueue.async {
-                        completion(updateInfoResponse)
-                    }
-
-                    return
-                }
-
-                var updateInfo = try decoder.decode(UpdateInfo.self, from: data)
-                updateInfo.userRequirements = options.userRequirements
-
-                if let error = PoVError.validate(updateInfo: updateInfo) {
-                    result = Result.failure(error)
-                } else {
-                    let updateResult = UpdateResult(updateInfo: updateInfo)
-                    result = Result.success(updateResult)
-                }
-
-            } catch _ {
-                result = Result.failure(.invalidJsonData)
-            }
+            let result = princeOfVersions.decode(data: data, options: options)
 
             let updateInfoResponse = UpdateResultResponse(
                 response: response,
                 result: result
             )
+
             callbackQueue.async {
                 completion(updateInfoResponse)
             }
@@ -241,6 +204,50 @@ internal extension PrinceOfVersions {
 // MARK: - Private helpers -
 
 private extension PrinceOfVersions {
+
+    func createRequest(for URL: URL, headerFields: NSDictionary?) -> URLRequest {
+
+        var request = URLRequest(url: URL)
+
+        if let headerFields = headerFields {
+            for (fieldName, fieldValue) in headerFields {
+                if let fieldValue = fieldValue as? String, let fieldName = fieldName as? String {
+                    request.setValue(fieldValue, forHTTPHeaderField: fieldName)
+                }
+            }
+        }
+
+        return request
+    }
+
+    func decode(data: Data?, options: PoVRequestOptions) -> Result<UpdateResult, PoVError> {
+
+        guard let data = data else {
+            return .failure(.dataNotFound)
+        }
+
+        var result: Result<UpdateResult, PoVError>
+
+        do {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+            var updateInfo = try decoder.decode(UpdateInfo.self, from: data)
+            updateInfo.userRequirements = options.userRequirements
+
+            if let error = PoVError.validate(updateInfo: updateInfo) {
+                result = Result.failure(error)
+            } else {
+                let updateResult = UpdateResult(updateInfo: updateInfo)
+                result = Result.success(updateResult)
+            }
+
+        } catch _ {
+            result = Result.failure(.invalidJsonData)
+        }
+
+        return result
+    }
 
     func certificates(in bundle: Bundle = .main) -> [SecCertificate] {
         let paths = [".cer", ".CER", ".crt", ".CRT", ".der", ".DER"]
