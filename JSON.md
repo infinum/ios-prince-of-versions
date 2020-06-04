@@ -44,7 +44,7 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
 Library will decide which configuration to use based on the platform used and requirements listed under `requirements` key.
 > First configuration that meets all the requirements will be used to determine update status.
 
-In the `requirements` array, parameter `required_os_version` is **mandatory** for every configuration. Every other parameter is optional, and it is on the user to decide which requirements are needed to be satisfied. Requirements (besides `required_os_version`) will be checked with closures provided by the user. Closure can be provided by `addRequirement` [method](#Adding-requirements) in `PoVRequestOptions` class. If requirement closure is not supplied for a given requirement key, library will consider that requirement as **not satisfied**.
+In the `requirements` array, parameter `required_os_version` is **mandatory** for every configuration. Every other parameter is optional, and it is on the user to decide which requirements are needed to be satisfied. Requirements (besides `required_os_version`) will be checked with closures provided by the user. Closure can be provided by `addRequirement` [method](README.md#Adding-requirements) in `PoVRequestOptions` class. If requirement closure is not supplied for a given requirement key, library will consider that requirement as **not satisfied**.
 
 If there is not even one configuration that satisfies all requirements (including `required_os_version`), library will set `updateStatus` value to `UpdateStatus.noUpdateAvailable`.
 
