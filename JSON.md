@@ -64,7 +64,7 @@ JSON still has to follow [Semantic Versioning](http://semver.org/).
 
 * **PrinceOfVersions version >= 4.0**
 
-  You have to specify configuration described in [previous section](#JSON-format) under key `ios2` or `macos2`.
+  You have to specify configuration described in [previous section](#JSON-format). Configuration should be stored under key `ios2` or `macos2`.
 
 Described JSON format is displayed below:
 
@@ -120,3 +120,5 @@ Described JSON format is displayed below:
    }
 }
 ```
+
+[:arrow_left: README](README.md)

@@ -13,7 +13,6 @@ Library checks for updates using configuration from some resource.
 * Load update configuration from **network** resource
 * Use predefined parser for parsing update configuration in **JSON format**
 * Make **asynchronous** loading and use **callback** for notifying result
-* Loading and verifying versions happen **outside of UI thread**
 
 ## Requirements
 
@@ -76,7 +75,7 @@ For more information, check [Swift Package Manager](https://swift.org/package-ma
 
 ## JSON File
 
-* [JSON File Specification](JSON.md)
+For JSON file details and formatting, read [JSON specification](JSON.md).
 
 ## Usage
 
