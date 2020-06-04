@@ -136,7 +136,7 @@ Here is the example of how to add requirement check closures.
   })
   ```
 
-If you consider following JSON example and requirement checks added in example above, first configurtion will be considered as not appropriate since requirement check for `free-memory` is not defined. However, all requirements in second configurtion are met and it's values will be returned.
+If you consider following JSON example and requirement checks added in example above, first configuration will be considered as not appropriate since requirement check for `free-memory` is not defined. However, all requirements in second configurtion are met and it's values will be returned.
 
 ```json
 ...
@@ -166,13 +166,14 @@ If you consider following JSON example and requirement checks added in example a
 
 ### Automatic check with data from the App Store
 
-If you don't want to manage the JSON configuration file required by `loadConfiguration` or `checkForUpdates`, you can use `checkForUpdateFromAppStore`. This method will automatically get your app BundleID and it will return version info fetched from the App Store.
+If you don't want to manage the JSON configuration file required by `checkForUpdates`, you can use `checkForUpdateFromAppStore`. This method will automatically get your app BundleID and it will return version info fetched from the App Store.
 
 However, `updateStatus` result can only assume values `UpdateStatus.noUpdateAvailable` and `UpdateStatus.newUpdateAvailable`. It is not possible to check if update is mandatory by using this method and data provided by the AppStore.
 
 ```swift
 PrinceOfVersions.checkForUpdateFromAppStore(
     trackPhaseRelease: false,
+    notificationFrequency = .once,
     completion: { result in
       switch result {
       case .success(let appStoreResult):
@@ -184,6 +185,8 @@ PrinceOfVersions.checkForUpdateFromAppStore(
       }
 })
 ```
+
+It is possible to define update notification frequency with the parameter `notificationFrequency`. If you set the parameter value to `NotificationType.once`, only the first time this methods is called, it will return `UpdateStatus.newUpdateAvailable` if a new version exists, every subsequent call it will return `UpdateStatus.noUpdateAvailable` for that specific version. If described behaviour doesn't suit your needs, you can always set this parameter to `NotificationType.always` and have updateStatus always be `UpdateStatus.newUpdateAvailable` when a new version is available.
 
 ### Multiple targets
 
