@@ -14,9 +14,9 @@ public enum VersionError: Error {
 }
 
 public class Version: NSObject, Codable {
-    @objc public var major: Int
-    @objc public var minor: Int
-    @objc public var patch: Int = 0
+    @objc public let major: Int
+    @objc public let minor: Int
+    @objc public let patch: Int
     @objc public var build: Int = 0
 
     public var wasNotified: Bool {
@@ -31,30 +31,13 @@ public class Version: NSObject, Codable {
         UserDefaults.standard.set(true, forKey: versionUserDefaultKey)
     }
 
-    required public init(from decoder: Decoder) throws {
-        major = 0
-        minor = 0
-        super.init()
+    required public convenience init(from decoder: Decoder) throws {
         let string = try decoder.singleValueContainer().decode(String.self)
-        try configure(with: string)
+        try self.init(string: string)
     }
 
     init(string: String) throws {
-        major = 0
-        minor = 0
-        super.init()
-        try configure(with: string)
-    }
 
-    #if os(macOS)
-    init(macVersion: OperatingSystemVersion) {
-        major = macVersion.majorVersion
-        minor = macVersion.minorVersion
-        patch = macVersion.patchVersion
-    }
-    #endif
-
-    private func configure(with string: String) throws {
         let versionBuildComponents = string.components(separatedBy: "-")
         guard let versionComponents = versionBuildComponents.first?.components(separatedBy: ".") else {
             throw VersionError.invalidString
@@ -76,6 +59,14 @@ public class Version: NSObject, Codable {
         minor = Version.number(from: versionComponents, atIndex: 1) ?? 0
         patch = Version.number(from: versionComponents, atIndex: 2) ?? 0
     }
+
+    #if os(macOS)
+    init(macVersion: OperatingSystemVersion) {
+        major = macVersion.majorVersion
+        minor = macVersion.minorVersion
+        patch = macVersion.patchVersion
+    }
+    #endif
 
     private static func number(from components: [String], atIndex index: Int) -> Int? {
         guard components.indices.contains(index) else {

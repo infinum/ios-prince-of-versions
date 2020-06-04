@@ -47,7 +47,7 @@ public struct UpdateInfo: Decodable {
                 let requiredOSVersion = configuration.requirements?.requiredOSVersion,
                 let installedOSVersion = sdkVersion
             else { return false }
-            return installedOSVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
+            return installedOSVersion >= requiredOSVersion && meetsUserRequirements(configuration.requirements)
         }
     }
 
@@ -77,9 +77,13 @@ public struct UpdateInfo: Decodable {
             return meta?.mapValues { $0.value }
         }
 
-        return meta?
-            .merging(configMeta, uniquingKeysWith: { (_, newValue) in newValue })
-            .mapValues { $0.value }
+        if let meta = meta {
+            return meta
+                .merging(configMeta, uniquingKeysWith: { (_, newValue) in newValue })
+                .mapValues { $0.value }
+        }
+
+        return configMeta
     }
 
     internal var userRequirements: [String: ((Any) -> Bool)] = [:]
@@ -108,17 +112,15 @@ public struct UpdateInfo: Decodable {
 
 private extension UpdateInfo {
 
-    func meetsUserRequirements(for configuration: ConfigurationData) -> Bool {
+    func meetsUserRequirements(_ requirements: Requirements?) -> Bool {
 
-        return userRequirements.reduce(true) { (result, requirement) -> Bool in
+        return userRequirements.allSatisfy { (key, checkRequirement) -> Bool in
 
-            let (key, checkRequirement) = requirement
-
-            guard let valueForKey = configuration.requirements?.userDefinedRequirements[key] else {
+            guard let valueForKey = requirements?.userDefinedRequirements[key] else {
                 return false
             }
 
-            return result && checkRequirement(valueForKey)
+            return checkRequirement(valueForKey)
         }
     }
 }

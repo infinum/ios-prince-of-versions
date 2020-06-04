@@ -39,12 +39,6 @@ internal extension PrinceOfVersions {
         completion: @escaping ObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
-
-        if let headersError = checkHeadersValidity(from: options.httpHeaderFields) {
-            error(headersError)
-            return nil
-        }
-
         return PrinceOfVersions.checkForUpdates(from: URL, callbackQueue: callbackQueue, options: options, completion: { response in
                 switch response.result {
                 case .success(let updateResult):
@@ -77,10 +71,5 @@ internal extension PrinceOfVersions {
                     error(errorResponse)
                 }
         })
-    }
-
-    static func checkHeadersValidity(from headers: NSDictionary?) -> NSError? {
-        if headers == nil || (headers as? [String : String?]) != nil { return nil }
-        return (PoVError.unknown("httpHeaderFields value should be in @{NSString : NSString} format.") as NSError)
     }
 }
