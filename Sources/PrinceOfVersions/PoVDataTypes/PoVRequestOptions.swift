@@ -20,7 +20,7 @@ public class PoVRequestOptions: NSObject {
 
     // Adds value to httpHeaderFields dictionary
     @objc(setValue:forHttpHeaderField:)
-    public func set(value: String, forHttpHeaderField httpHeaderField: String) {
+    public func set(value: String, httpHeaderField: String) {
         httpHeaderFields.setValue(value, forKey: httpHeaderField)
     }
 
