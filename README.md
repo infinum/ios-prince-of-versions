@@ -84,14 +84,14 @@ For JSON file details and formatting, read [JSON specification](JSON.md).
 #### Getting all data
 
   ```swift
-  let princeOfVersionsURL = URL(string: https://pastebin.com/raw/0MfYmWGu)!
+  let princeOfVersionsURL = URL(string: "https://pastebin.com/raw/0MfYmWGu")!
 
   PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] response in
       switch response.result {
       case .success(let updateResultData):
-          print("Update version: ", updateResultData.updateVersion)
-          print("Installed version: ", updateResultData.updateInfo.installedVersion)
-          print("Update status: ", updateResultData.updateStatus)
+          print("Update version: \(updateResultData.updateVersion)")
+          print("Installed version: \(updateResultData.updateInfo.installedVersion)")
+          print("Update status: \(updateResultData.updateStatus)")
       case .failure:
           // Handle error
           break
@@ -101,7 +101,7 @@ For JSON file details and formatting, read [JSON specification](JSON.md).
 
 #### Adding-requirements
 
-For each requirement key listed in a configuration, there has to exist a requirement check closure. If you don't provide it, the requirement will be considered as not met, and the whole configuration will be discarded.
+For each requirement key listed in a configuration, there should exist a requirement check closure. If you don't provide it, the requirement will be considered as not met, and the whole configuration will be discarded.
 
 Here is the example of how to add requirement check closures.
 
@@ -120,14 +120,14 @@ Here is the example of how to add requirement check closures.
       return value.starts(with: "5")
   }
 
-  let princeOfVersionsURL = URL(string: https://pastebin.com/raw/0MfYmWGu)!
+  let princeOfVersionsURL = URL(string: "https://pastebin.com/raw/0MfYmWGu")!
 
   PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
       switch response.result {
       case .success(let updateResultData):
-          print("Update version: ", updateResultData.updateVersion)
-          print("Installed version: ", updateResultData.updateInfo.installedVersion)
-          print("Update status: ", updateResultData.updateStatus)
+          print("Update version: \(updateResultData.updateVersion)")
+          print("Installed version: \(updateResultData.updateInfo.installedVersion)")
+          print("Update status: \(updateResultData.updateStatus)")
       case .failure:
           // Handle error
           break
@@ -176,9 +176,9 @@ PrinceOfVersions.checkForUpdateFromAppStore(
     completion: { result in
         switch result {
         case .success(let appStoreResult):
-            print("Update version: ", appStoreResult.updateVersion)
-            print("Installed version: ", appStoreResult.updateInfo.installedVersion)
-            print("Update status: ", appStoreResult.updateStatus)
+            print("Update version: \(appStoreResult.updateVersion)")
+            print("Installed version: \(appStoreResult.updateInfo.installedVersion)")
+            print("Update status: \(appStoreResult.updateStatus)")
         case .failure:
             // Handle error
         }
