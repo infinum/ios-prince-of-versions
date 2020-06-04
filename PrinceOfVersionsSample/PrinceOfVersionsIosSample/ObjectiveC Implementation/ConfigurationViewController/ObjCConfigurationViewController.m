@@ -46,13 +46,25 @@
 
     PoVRequestOptions *options = [PoVRequestOptions new];
     [options addRequirementWithKey:@"region" requirementCheck:^BOOL (id value) {
+
         // Check OS localisation
-        return [(NSString *)value isEqualToString:@"hr"];
+
+        if ([value isKindOfClass:[NSString class]]) {
+            return [(NSString *)value isEqualToString:@"hr"];
+        }
+
+        return NO;
     }];
 
     [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
+
         // Check device bluetooth version
-        return [(NSString *)value hasPrefix:@"5"];
+
+        if ([value isKindOfClass:[NSString class]]) {
+            return [(NSString *)value hasPrefix:@"5"];
+        }
+
+        return NO;
     }];
 
     __weak __typeof(self) weakSelf = self;
@@ -79,7 +91,7 @@
 {
     self.updateVersionLabel.text = infoResponse.updateVersion.description;
     self.updateStateLabel.text = [self updateStateFromResult:infoResponse.updateState];
-    self.metaLabel.text = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
+    self.metaLabel.text = infoResponse.metadata.description;
 
     UpdateInfoObject *versionInfo = infoResponse.updateInfo;
 
@@ -88,7 +100,7 @@
     self.lastVersionAvailableLabel.text = versionInfo.lastVersionAvailable.description;
     self.installedVersionLabel.text = versionInfo.installedVersion.description;
     self.notificationTypeLabel.text = versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
-    self.requirementsLabel.text = [NSString stringWithFormat:@"%@", versionInfo.requirements];
+    self.requirementsLabel.text = versionInfo.requirements.description;
 }
 
 - (NSString *)updateStateFromResult:(UpdateStatus)type
