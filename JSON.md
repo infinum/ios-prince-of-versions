@@ -121,4 +121,4 @@ Described JSON format is displayed below:
 }
 ```
 
-[:arrow_left: README](README.md)
+[:arrow_left: Go back](README.md)
