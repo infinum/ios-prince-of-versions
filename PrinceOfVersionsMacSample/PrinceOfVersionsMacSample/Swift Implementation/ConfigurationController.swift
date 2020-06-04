@@ -56,10 +56,10 @@ private extension ConfigurationController {
 
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
 
-        PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
+        PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [weak self] response in
             switch response.result {
             case .success(let updateResultData):
-                self.fillUI(with: updateResultData)
+                self?.fillUI(with: updateResultData)
             case .failure:
                 // Handle error
                 break

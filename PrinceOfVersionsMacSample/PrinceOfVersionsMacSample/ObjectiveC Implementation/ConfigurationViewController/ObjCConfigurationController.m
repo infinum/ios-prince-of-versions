@@ -45,13 +45,25 @@
 
     PoVRequestOptions *options = [PoVRequestOptions new];
     [options addRequirementWithKey:@"region" requirementCheck:^BOOL (id value) {
+
         // Check OS localisation
-        return [(NSString *)value isEqualToString:@"hr"];
+
+        if ([value isKindOfClass:[NSString class]]) {
+            return [(NSString *)value isEqualToString:@"hr"];
+        }
+
+        return NO;
     }];
 
     [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
+
         // Check device bluetooth version
-        return [(NSString *)value hasPrefix:@"5"];
+
+        if ([value isKindOfClass:[NSString class]]) {
+            return [(NSString *)value hasPrefix:@"5"];
+        }
+
+        return NO;
     }];
 
     __weak __typeof(self) weakSelf = self;
@@ -78,13 +90,13 @@
 {
     self.updateVersionTextField.stringValue = infoResponse.updateVersion.description;
     self.updateStateTextField.stringValue = [self updateStateFromResult:infoResponse.updateState];
-    self.metaTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
+    self.metaTextField.stringValue = infoResponse.metadata.description;
 
     self.requiredVersionTextField.stringValue = infoResponse.updateInfo.requiredVersion.description;
     self.lastVersionAvailableTextField.stringValue = infoResponse.updateInfo.lastVersionAvailable.description;
     self.installedVersionTextField.stringValue = infoResponse.updateInfo.installedVersion.description;
     self.notificationTypeTextField.stringValue = infoResponse.updateInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
-    self.requirementsTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.updateInfo.requirements];
+    self.requirementsTextField.stringValue = infoResponse.updateInfo.requirements.description;
 }
 
 - (NSString *)updateStateFromResult:(UpdateStatus)type
