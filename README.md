@@ -61,7 +61,7 @@ For the Carthage installation and usage instruction, you can check official [qui
 To integrate the library into your Xcode project, specify it in your `Cartfile`:
 
 ```
-github "infinum/iOS-prince-of-versions"
+github "infinum/iOS-prince-of-versions"Â
 ```
 
 Run `carthage update`.
@@ -90,7 +90,9 @@ For more information, check [Swift Package Manager](https://swift.org/package-ma
   PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] response in
       switch response.result {
       case .success(let updateResultData):
-          self.fillUI(with: updateResultData)
+        print("Update version: ", updateResultData.updateVersion)
+        print("Installed version: ", updateResultData.updateInfo.installedVersion)
+        print("Update status: ", updateResultData.updateStatus)
       case .failure:
           // Handle error
           break
@@ -99,6 +101,10 @@ For more information, check [Swift Package Manager](https://swift.org/package-ma
   ```
 
 #### Adding-requirements
+
+For each requirement key listed in a configuration, there has to exist a requirement check closure. If you don't provide it, requirement will be considered as not met, and whole configuration will be discarded.
+
+Here is the example of how to add requirement check closures.
 
   ```swift
   let options = PoVRequestOptions()
@@ -120,13 +126,43 @@ For more information, check [Swift Package Manager](https://swift.org/package-ma
   PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
       switch response.result {
       case .success(let updateResultData):
-          self.fillUI(with: updateResultData)
+        print("Update version: ", updateResultData.updateVersion)
+        print("Installed version: ", updateResultData.updateInfo.installedVersion)
+        print("Update status: ", updateResultData.updateStatus)
       case .failure:
           // Handle error
           break
       }
   })
   ```
+
+If you consider following JSON example and requirement checks added in example above, first configurtion will be considered as not appropriate since requirement check for `free-memory` is not defined. However, all requirements in second configurtion are met and it's values will be returned.
+
+```json
+...
+      {
+         "required_version":"1.2.3",
+         "last_version_available":"1.9.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"8.0.0",
+            "region":"hr",
+            "bluetooth":"5.0",
+            "free-memory":"80MB"
+         },
+      },
+      {
+         "required_version":"1.2.3",
+         "last_version_available":"2.4.5",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"12.1.2",
+            "region":"hr",
+            "bluetooth":"5.0"
+         },
+      }
+...
+```
 
 ### Automatic check with data from the App Store
 
@@ -135,19 +171,18 @@ If you don't want to manage the JSON configuration file required by `loadConfigu
 However, `updateStatus` result can only assume values `UpdateStatus.noUpdateAvailable` and `UpdateStatus.newUpdateAvailable`. It is not possible to check if update is mandatory by using this method and data provided by the AppStore.
 
 ```swift
-PrinceOfVersions().checkForUpdateFromAppStore(
+PrinceOfVersions.checkForUpdateFromAppStore(
     trackPhaseRelease: false,
     completion: { result in
-        switch result {
-        case .success(let appStoreResult):
-        print("Update version: ", appStoreResult.updateVersion)
-        print("Installed version: ", appStoreResult.updateInfo.installedVersion)
-        print("Update status: ", appStoreResult.updateStatus)
-        case .failure:
-            // Handle error
-        }
-    }
-)
+      switch result {
+      case .success(let appStoreResult):
+      print("Update version: ", appStoreResult.updateVersion)
+      print("Installed version: ", appStoreResult.updateInfo.installedVersion)
+      print("Update status: ", appStoreResult.updateStatus)
+      case .failure:
+          // Handle error
+      }
+})
 ```
 
 ### Multiple targets
