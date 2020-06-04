@@ -90,9 +90,9 @@ For more information, check [Swift Package Manager](https://swift.org/package-ma
   PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, completion: { [unowned self] response in
       switch response.result {
       case .success(let updateResultData):
-        print("Update version: ", updateResultData.updateVersion)
-        print("Installed version: ", updateResultData.updateInfo.installedVersion)
-        print("Update status: ", updateResultData.updateStatus)
+          print("Update version: ", updateResultData.updateVersion)
+          print("Installed version: ", updateResultData.updateInfo.installedVersion)
+          print("Update status: ", updateResultData.updateStatus)
       case .failure:
           // Handle error
           break
@@ -126,9 +126,9 @@ Here is the example of how to add requirement check closures.
   PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [unowned self] response in
       switch response.result {
       case .success(let updateResultData):
-        print("Update version: ", updateResultData.updateVersion)
-        print("Installed version: ", updateResultData.updateInfo.installedVersion)
-        print("Update status: ", updateResultData.updateStatus)
+          print("Update version: ", updateResultData.updateVersion)
+          print("Installed version: ", updateResultData.updateInfo.installedVersion)
+          print("Update status: ", updateResultData.updateStatus)
       case .failure:
           // Handle error
           break
@@ -175,14 +175,14 @@ PrinceOfVersions.checkForUpdateFromAppStore(
     trackPhaseRelease: false,
     notificationFrequency: .once,
     completion: { result in
-      switch result {
-      case .success(let appStoreResult):
-        print("Update version: ", appStoreResult.updateVersion)
-        print("Installed version: ", appStoreResult.updateInfo.installedVersion)
-        print("Update status: ", appStoreResult.updateStatus)
-      case .failure:
-          // Handle error
-      }
+        switch result {
+        case .success(let appStoreResult):
+            print("Update version: ", appStoreResult.updateVersion)
+            print("Installed version: ", appStoreResult.updateInfo.installedVersion)
+            print("Update status: ", appStoreResult.updateStatus)
+        case .failure:
+            // Handle error
+        }
 })
 ```
 
