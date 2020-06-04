@@ -102,7 +102,7 @@ For more information, check [Swift Package Manager](https://swift.org/package-ma
 
 #### Adding-requirements
 
-For each requirement key listed in a configuration, there has to exist a requirement check closure. If you don't provide it, requirement will be considered as not met, and whole configuration will be discarded.
+For each requirement key listed in a configuration, there has to exist a requirement check closure. If you don't provide it, the requirement will be considered as not met, and the whole configuration will be discarded.
 
 Here is the example of how to add requirement check closures.
 
@@ -136,7 +136,7 @@ Here is the example of how to add requirement check closures.
   })
   ```
 
-If you consider following JSON example and requirement checks added in example above, first configuration will be considered as not appropriate since requirement check for `free-memory` is not defined. However, all requirements in second configurtion are met and it's values will be returned.
+If you consider following JSON example and requirement checks added in the example above, the first configuration will be considered as not appropriate since requirement check for `free-memory` is not defined. However, all requirements in the second configuration are met and its values will be returned.
 
 ```json
 ...
