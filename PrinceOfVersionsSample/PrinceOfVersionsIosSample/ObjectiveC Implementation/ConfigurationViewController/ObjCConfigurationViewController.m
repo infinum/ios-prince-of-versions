@@ -49,22 +49,22 @@
 
         // Check OS localisation
 
-        if ([value isKindOfClass:[NSString class]]) {
-            return [(NSString *)value isEqualToString:@"hr"];
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
         }
 
-        return NO;
+        return [(NSString *)value isEqualToString:@"hr"];
     }];
 
     [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
 
         // Check device bluetooth version
 
-        if ([value isKindOfClass:[NSString class]]) {
-            return [(NSString *)value hasPrefix:@"5"];
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
         }
 
-        return NO;
+        return [(NSString *)value hasPrefix:@"5"];
     }];
 
     __weak __typeof(self) weakSelf = self;
