@@ -11,16 +11,17 @@
 
 import Foundation
 
+@objc(UpdateResponse)
 @objcMembers
-public class UpdateResponse: NSObject {
+public class __ObjCUpdateResponse: NSObject {
 
     /// The server's response to the URL request.
     public let response: URLResponse?
 
     /// The result of response serialization.
-    public let result: UpdateResultObject
+    public let result: __ObjCUpdateResult
 
-    public init(response: URLResponse?, result: UpdateResultObject) {
+    public init(response: URLResponse?, result: __ObjCUpdateResult) {
         self.response = response
         self.result = result
     }
@@ -42,9 +43,9 @@ internal extension PrinceOfVersions {
         return PrinceOfVersions.checkForUpdates(from: URL, callbackQueue: callbackQueue, options: options, completion: { response in
                 switch response.result {
                 case .success(let updateResult):
-                    let updateResultResponse = UpdateResponse(
+                    let updateResultResponse = __ObjCUpdateResponse(
                         response: response.response,
-                        result: UpdateResultObject(from: updateResult)
+                        result: __ObjCUpdateResult(from: updateResult)
                     )
                     completion(updateResultResponse)
                 case .failure(let (errorResponse as NSError)):
@@ -66,7 +67,7 @@ internal extension PrinceOfVersions {
         return PrinceOfVersions.checkForUpdateFromAppStore(trackPhaseRelease: trackPhaseRelease, bundle: bundle, callbackQueue: callbackQueue, notificationFrequency: notificationFrequency, completion: { result in
                 switch result {
                 case .success(let appStoreInfo):
-                    completion(AppStoreUpdateResultObject(from: appStoreInfo))
+                    completion(__ObjCAppStoreResult(from: appStoreInfo))
                 case .failure(let (errorResponse as NSError)):
                     error(errorResponse)
                 }
