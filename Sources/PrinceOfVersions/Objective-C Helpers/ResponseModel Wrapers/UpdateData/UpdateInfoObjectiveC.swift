@@ -7,8 +7,9 @@
 
 import Foundation
 
+@objc(UpdateInfo)
 @objcMembers
-public class UpdateInfoObject: NSObject {
+public class __ObjCUpdateInfo: NSObject {
 
     // MARK: - Private properties
 
@@ -27,7 +28,7 @@ public class UpdateInfoObject: NSObject {
 
 // Should be updated with new properties from UpdateInfo
 
-extension UpdateInfoObject: BaseUpdateInfo {
+extension __ObjCUpdateInfo: BaseUpdateInfo {
 
     /// Returns latest available version of the app.
     public var lastVersionAvailable: Version? {
@@ -40,7 +41,7 @@ extension UpdateInfoObject: BaseUpdateInfo {
     }
 }
 
-extension UpdateInfoObject {
+extension __ObjCUpdateInfo {
 
     /// Returns minimum required version of the app.
     public var requiredVersion: Version? {

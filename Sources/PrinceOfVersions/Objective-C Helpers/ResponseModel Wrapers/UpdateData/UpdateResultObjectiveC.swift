@@ -8,8 +8,9 @@
 
 import Foundation
 
+@objc(UpdateResult)
 @objcMembers
-public class UpdateResultObject: NSObject {
+public class __ObjCUpdateResult: NSObject {
 
     // MARK: - Private properties
 
@@ -24,7 +25,7 @@ public class UpdateResultObject: NSObject {
 
 // MARK: - Public wrappers -
 
-extension UpdateResultObject: BaseUpdateResult {
+extension __ObjCUpdateResult: BaseUpdateResult {
 
     /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
     public var updateVersion: Version {
@@ -38,12 +39,12 @@ extension UpdateResultObject: BaseUpdateResult {
 
     /// Update configuration values used to check
     @objc
-    public var updateInfo: UpdateInfoObject {
-        return UpdateInfoObject(from: updateResult.updateInfoData)
+    public var updateInfo: __ObjCUpdateInfo {
+        return __ObjCUpdateInfo(from: updateResult.updateInfoData)
     }
 }
 
-extension UpdateResultObject {
+extension __ObjCUpdateResult {
 
     /// Merged metadata from JSON
     public var metadata: [String : Any]? {
