@@ -16,12 +16,12 @@ public class PoVRequestOptions: NSObject {
     public var shouldPinCertificates: Bool = false
 
     /// HTTP header fields.
-    public private(set) var httpHeaderFields: NSDictionary = [:]
+    public private(set) var httpHeaderFields: NSMutableDictionary = [:]
 
-    // Adds value to httpHeaderFields dictionary
+    /// Adds value to httpHeaderFields dictionary
     @objc(setValue:forHttpHeaderField:)
-    public func set(value: String, httpHeaderField: String) {
-        httpHeaderFields.setValue(value, forKey: httpHeaderField)
+    public func set(value: NSString, httpHeaderField: NSString) {
+        httpHeaderFields.setObject(value, forKey: httpHeaderField)
     }
 
     // MARK: - Internal properties
