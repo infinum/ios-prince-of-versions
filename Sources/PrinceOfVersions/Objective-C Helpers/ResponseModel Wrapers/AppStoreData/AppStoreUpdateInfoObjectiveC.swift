@@ -7,8 +7,9 @@
 
 import Foundation
 
+@objc(AppStoreUpdateInfo)
 @objcMembers
-public class AppStoreUpdateInfoObject: NSObject {
+public class __ObjCAppStoreUpdateInfo: NSObject {
 
     // MARK: - Private properties
 
@@ -23,7 +24,7 @@ public class AppStoreUpdateInfoObject: NSObject {
 
 // MARK: - Public properties -
 
-extension AppStoreUpdateInfoObject: BaseUpdateInfo {
+extension __ObjCAppStoreUpdateInfo: BaseUpdateInfo {
 
     /// Returns latest available version of the app.
     public var lastVersionAvailable: Version? {
@@ -36,7 +37,7 @@ extension AppStoreUpdateInfoObject: BaseUpdateInfo {
     }
 }
 
-extension AppStoreUpdateInfoObject {
+extension __ObjCAppStoreUpdateInfo {
 
     /// Returns latest version release date.
     public var releaseDate: Date? {

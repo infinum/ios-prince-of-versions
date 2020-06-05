@@ -18,8 +18,7 @@ Library checks for updates using configuration from some resource.
 
 * iOS 8.0+
 * macOS 10.10+
-* Xcode 10.0+
-* Swift 5.0
+* Xcode 11.0+
 
 ## Installation
 

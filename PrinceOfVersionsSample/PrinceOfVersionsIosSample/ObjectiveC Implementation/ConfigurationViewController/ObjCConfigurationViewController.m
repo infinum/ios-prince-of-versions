@@ -46,12 +46,24 @@
 
     PoVRequestOptions *options = [PoVRequestOptions new];
     [options addRequirementWithKey:@"region" requirementCheck:^BOOL (id value) {
+
         // Check OS localisation
+
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+
         return [(NSString *)value isEqualToString:@"hr"];
     }];
 
     [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
+
         // Check device bluetooth version
+
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+
         return [(NSString *)value hasPrefix:@"5"];
     }];
 
@@ -68,27 +80,27 @@
 
 - (void)checkAppStoreVersion
 {
-    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreUpdateResultObject *response) {
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreUpdateResult *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
     }];
 }
 
-- (void)fillUIWithInfoResponse:(UpdateResultObject *)infoResponse
+- (void)fillUIWithInfoResponse:(__ObjcUpdateResultObject *)infoResponse
 {
     self.updateVersionLabel.text = infoResponse.updateVersion.description;
     self.updateStateLabel.text = [self updateStateFromResult:infoResponse.updateState];
-    self.metaLabel.text = [NSString stringWithFormat:@"%@", infoResponse.metadata];;
+    self.metaLabel.text = infoResponse.metadata.description;
 
-    UpdateInfoObject *versionInfo = infoResponse.updateInfo;
+    UpdateInfo *versionInfo = infoResponse.updateInfo;
 
     self.requiredVersionLabel.text =
     versionInfo.requiredVersion.description;
     self.lastVersionAvailableLabel.text = versionInfo.lastVersionAvailable.description;
     self.installedVersionLabel.text = versionInfo.installedVersion.description;
     self.notificationTypeLabel.text = versionInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
-    self.requirementsLabel.text = [NSString stringWithFormat:@"%@", versionInfo.requirements];
+    self.requirementsLabel.text = versionInfo.requirements.description;
 }
 
 - (NSString *)updateStateFromResult:(UpdateStatus)type

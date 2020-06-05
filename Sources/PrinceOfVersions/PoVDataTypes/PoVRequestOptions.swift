@@ -15,8 +15,14 @@ public class PoVRequestOptions: NSObject {
     /// Boolean that indicates whether PoV should use security keys from all certificates found in the main bundle. Default value is `false`.
     public var shouldPinCertificates: Bool = false
 
-    /// Optional HTTP header fields.
-    public var httpHeaderFields: NSDictionary?
+    /// HTTP header fields.
+    public private(set) var httpHeaderFields: NSMutableDictionary = [:]
+
+    /// Adds value to httpHeaderFields dictionary
+    @objc(setValue:forHttpHeaderField:)
+    public func set(value: NSString, httpHeaderField: NSString) {
+        httpHeaderFields.setObject(value, forKey: httpHeaderField)
+    }
 
     // MARK: - Internal properties
     
