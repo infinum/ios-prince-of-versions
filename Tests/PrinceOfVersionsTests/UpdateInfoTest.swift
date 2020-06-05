@@ -129,5 +129,4 @@ class UpdateInfoTest: XCTestCase {
         XCTAssertNotNil(updateResult.updateInfo.requiredVersion, "Value for required version should not be nil")
         #endif
     }
-
 }

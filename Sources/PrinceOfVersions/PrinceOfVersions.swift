@@ -207,14 +207,13 @@ private extension PrinceOfVersions {
 
     func createRequest(for URL: URL, headerFields: NSDictionary?) -> URLRequest {
 
-        var request = URLRequest(url: URL)
+        guard let headerFields = headerFields as? [String : String] else {
+            return URLRequest(url: URL)
+        }
 
-        if let headerFields = headerFields {
-            for (fieldName, fieldValue) in headerFields {
-                if let fieldValue = fieldValue as? String, let fieldName = fieldName as? String {
-                    request.setValue(fieldValue, forHTTPHeaderField: fieldName)
-                }
-            }
+        var request = URLRequest(url: URL)
+        for (fieldName, fieldValue) in headerFields {
+            request.setValue(fieldValue, forHTTPHeaderField: fieldName)
         }
 
         return request
