@@ -8,8 +8,9 @@
 
 import Foundation
 
+@objc(AppStoreUpdateResult)
 @objcMembers
-public class AppStoreUpdateResultObject: NSObject {
+public class __ObjCAppStoreResult: NSObject {
 
     // MARK: - Private properties
 
@@ -26,7 +27,7 @@ public class AppStoreUpdateResultObject: NSObject {
 
 // Should be updated with new properties from UpdateInfo
 
-extension AppStoreUpdateResultObject: BaseUpdateResult {
+extension __ObjCAppStoreResult: BaseUpdateResult {
 
     /// The biggest version it is possible to update to, or current version of the app if it isn't possible to update
     public var updateVersion: Version {
@@ -40,12 +41,12 @@ extension AppStoreUpdateResultObject: BaseUpdateResult {
 
     /// Update configuration values used to check
     @objc
-    public var updateInfo: AppStoreUpdateInfoObject {
-        return AppStoreUpdateInfoObject(from: updateResult.updateInfoData)
+    public var updateInfo: __ObjCAppStoreUpdateInfo {
+        return __ObjCAppStoreUpdateInfo(from: updateResult.updateInfoData)
     }
 }
 
-extension AppStoreUpdateResultObject {
+extension __ObjCAppStoreResult {
 
     /**
      Returns bool value if phased release period is in progress.

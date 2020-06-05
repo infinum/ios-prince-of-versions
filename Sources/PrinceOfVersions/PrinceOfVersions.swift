@@ -225,7 +225,7 @@ private extension PrinceOfVersions {
             return .failure(.dataNotFound)
         }
 
-        var result: Result<UpdateResult, PoVError>
+        let result: Result<UpdateResult, PoVError>
 
         do {
             let decoder = JSONDecoder()

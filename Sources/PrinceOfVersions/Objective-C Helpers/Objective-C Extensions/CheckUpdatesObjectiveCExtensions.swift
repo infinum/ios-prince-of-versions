@@ -12,7 +12,7 @@ import Foundation
 
 extension PrinceOfVersions {
 
-    public typealias ObjectCompletionBlock = (UpdateResponse) -> Void
+    public typealias ObjectCompletionBlock = (__ObjCUpdateResponse) -> Void
     public typealias ObjectErrorBlock = (NSError) -> Void
 
     /**
