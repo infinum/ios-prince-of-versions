@@ -39,16 +39,7 @@ public struct UpdateInfo: Decodable {
     }
 
     internal var configuration: ConfigurationData? {
-
-        guard let configurations = configurations else { return nil }
-
-        return configurations.first { configuration in
-            guard
-                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
-                let installedOSVersion = sdkVersion
-            else { return false }
-            return installedOSVersion >= requiredOSVersion && meetsUserRequirements(configuration.requirements)
-        }
+        return configurations?.first { meetsUserRequirements($0.requirements) }
     }
 
     internal var sdkVersion: Version? {
@@ -112,16 +103,27 @@ public struct UpdateInfo: Decodable {
 
 private extension UpdateInfo {
 
+    var requiredOSVersionCheck: ((Any) -> Bool) {
+        return { requiredOSVersion -> Bool in
+            guard
+                let installedOSVersion = self.sdkVersion,
+                let requiredOSVersion = requiredOSVersion as? Version
+            else { return true }
+            return installedOSVersion >= requiredOSVersion
+        }
+    }
+
     func meetsUserRequirements(_ requirements: Requirements?) -> Bool {
 
-        return userRequirements.allSatisfy { (key, checkRequirement) -> Bool in
+        guard let requirements = requirements else { return true }
 
-            guard let valueForKey = requirements?.userDefinedRequirements[key] else {
-                return false
-            }
+        var requirementChecks = userRequirements
+        requirementChecks.updateValue(requiredOSVersionCheck, forKey: "requiredOsVersion")
 
-            return checkRequirement(valueForKey)
-        }
+        return requirements.allRequirements?.allSatisfy {
+            guard let checkRequirement = requirementChecks[$0.key] else { return false }
+            return checkRequirement($0.value)
+        } ?? true
     }
 }
 
