@@ -21,8 +21,12 @@ public struct UpdateInfo: Decodable {
     // MARK: - Private properties -
 
     private var ios: [ConfigurationData]?
+    // used only when supporting both PoV versions < 4.0, and versions >= 4.0
+    // older version configuration is stored in ios property, and newer in ios2
     private var ios2: [ConfigurationData]?
     private var macos: [ConfigurationData]?
+    // used only when supporting both PoV versions < 4.0, and versions >= 4.0
+    // older version configuration is stored in macos property, and newer in macos2
     private var macos2: [ConfigurationData]?
     private var meta: [String: AnyDecodable]?
 
@@ -64,17 +68,14 @@ public struct UpdateInfo: Decodable {
 
     internal var metadata: [String: Any]? {
 
-        guard let configMeta = configuration?.meta else {
-            return meta?.mapValues { $0.value }
-        }
+        if meta == nil && configuration?.meta == nil { return nil }
 
-        if let meta = meta {
-            return meta
-                .merging(configMeta, uniquingKeysWith: { (_, newValue) in newValue })
-                .mapValues { $0.value }
-        }
+        let globalMeta = meta ?? [:]
+        let configMeta = configuration?.meta ?? [:]
 
-        return configMeta
+        return globalMeta
+            .merging(configMeta, uniquingKeysWith: { (_, newValue) in newValue })
+            .mapValues { $0.value }
     }
 
     internal var userRequirements: [String: ((Any) -> Bool)] = [:]

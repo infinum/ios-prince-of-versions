@@ -79,14 +79,14 @@
 
 - (void)checkAppStoreVersion
 {
-    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreUpdateResultObject *response) {
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreUpdateResult *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
     }];
 }
 
-- (void)fillUIWithInfoResponse:(UpdateResultObject *)infoResponse
+- (void)fillUIWithInfoResponse:(UpdateResult *)infoResponse
 {
     self.updateVersionTextField.stringValue = infoResponse.updateVersion.description;
     self.updateStateTextField.stringValue = [self updateStateFromResult:infoResponse.updateState];
