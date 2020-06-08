@@ -9,10 +9,11 @@
 import Foundation
 
 enum Constants {
-    static let princeOfVersionsURL = "https://pastebin.com/raw/ZAfWNZCi"
+    static let princeOfVersionsURL = "https://pastebin.com/raw/0MfYmWGu"
 }
 
-@objcMembers class Constant: NSObject {
+@objcMembers
+class Constant: NSObject {
 
     private override init() {}
 

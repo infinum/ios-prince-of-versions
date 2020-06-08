@@ -23,15 +23,31 @@
 		06F8ADFD241A542A0099E820 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */; };
 		06F8ADFE241A542A0099E820 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */; };
 		06F8ADFF241A542A0099E820 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */; };
-		OBJ_45 /* AppStoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreInfo.swift */; };
-		OBJ_46 /* AppStpreInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStpreInfoObjectiveC.swift */; };
+		A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */; };
+		A8620FCA248689640006CCF9 /* BaseUpdateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8620FC9248689640006CCF9 /* BaseUpdateData.swift */; };
+		A8620FCE24868E2D0006CCF9 /* AppStoreUpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8620FCD24868E2D0006CCF9 /* AppStoreUpdateResult.swift */; };
+		A8620FD0248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8620FCF248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift */; };
+		A8745B0C248005A600DE451D /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8745B0B248005A600DE451D /* NotificationType.swift */; };
+		A8E5F379244D90AD004CF4DC /* PoVRequestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */; };
+		A8E7DA14248A46C5008CC276 /* valid_update_no_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA12248A46BC008CC276 /* valid_update_no_requirements.json */; };
+		A8E7DA1C248A6851008CC276 /* RequirementsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E7DA1A248A677A008CC276 /* RequirementsTest.swift */; };
+		A8E7DA21248A6CD2008CC276 /* valid_update_with_increasing_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA1D248A6A13008CC276 /* valid_update_with_increasing_requirements.json */; };
+		A8E7DA22248A6CD5008CC276 /* valid_update_with_decreasing_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA1F248A6CCD008CC276 /* valid_update_with_decreasing_requirements.json */; };
+		A8E7DA25248A72EF008CC276 /* valid_update_with_shuffled_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA23248A72E9008CC276 /* valid_update_with_shuffled_requirements.json */; };
+		A8E95B8B2480FDCB0080E000 /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */; };
+		A8F359BC2481194300602DFB /* valid_update_only_v2_metadata_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */; };
+		A8F359BF248119B200602DFB /* valid_update_only_v2_macos.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */; };
+		A8F359C224811A7000602DFB /* valid_update_only_v2_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */; };
+		A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A42449A8B50003C05E /* AnyDecodable.swift */; };
+		A8F918AB2449A96F0003C05E /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A82449A96F0003C05E /* ConfigurationData.swift */; };
+		OBJ_45 /* AppStoreUpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreUpdateInfo.swift */; };
+		OBJ_46 /* AppStoreUpdateResultObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStoreUpdateResultObjectiveC.swift */; };
 		OBJ_47 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */; };
 		OBJ_48 /* CheckUpdatesObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */; };
-		OBJ_49 /* LoadConfigurationObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* LoadConfigurationObjectiveCExtensions.swift */; };
 		OBJ_50 /* ObjectiveCBaseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* ObjectiveCBaseExtensions.swift */; };
-		OBJ_51 /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* UpdateInfoObjectiveC.swift */; };
+		OBJ_51 /* UpdateResultObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* UpdateResultObjectiveC.swift */; };
 		OBJ_52 /* PrinceOfVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* PrinceOfVersions.swift */; };
-		OBJ_53 /* PrinceOfVersionsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PrinceOfVersionsError.swift */; };
+		OBJ_53 /* PoVError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* PoVError.swift */; };
 		OBJ_54 /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* UpdateInfo.swift */; };
 		OBJ_55 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Version.swift */; };
 		OBJ_73 /* PrinceOfVersionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* PrinceOfVersionsTest.swift */; };
@@ -70,14 +86,30 @@
 		06F8ADB1241945D90099E820 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06F8AE03241A57590099E820 /* PrinceOfVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinceOfVersions.h; sourceTree = "<group>"; };
 		06F8AE39241A61850099E820 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		OBJ_11 /* AppStpreInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStpreInfoObjectiveC.swift; sourceTree = "<group>"; };
+		A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResult.swift; sourceTree = "<group>"; };
+		A8620FC9248689640006CCF9 /* BaseUpdateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUpdateData.swift; sourceTree = "<group>"; };
+		A8620FCD24868E2D0006CCF9 /* AppStoreUpdateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUpdateResult.swift; sourceTree = "<group>"; };
+		A8620FCF248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
+		A8745B0B248005A600DE451D /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
+		A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVRequestOptions.swift; sourceTree = "<group>"; };
+		A8E7DA12248A46BC008CC276 /* valid_update_no_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_no_requirements.json; sourceTree = "<group>"; };
+		A8E7DA1A248A677A008CC276 /* RequirementsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsTest.swift; sourceTree = "<group>"; };
+		A8E7DA1D248A6A13008CC276 /* valid_update_with_increasing_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_with_increasing_requirements.json; sourceTree = "<group>"; };
+		A8E7DA1F248A6CCD008CC276 /* valid_update_with_decreasing_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_with_decreasing_requirements.json; sourceTree = "<group>"; };
+		A8E7DA23248A72E9008CC276 /* valid_update_with_shuffled_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_with_shuffled_requirements.json; sourceTree = "<group>"; };
+		A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
+		A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_metadata_empty.json; sourceTree = "<group>"; };
+		A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_macos.json; sourceTree = "<group>"; };
+		A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_ios.json; sourceTree = "<group>"; };
+		A8F918A42449A8B50003C05E /* AnyDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
+		A8F918A82449A96F0003C05E /* ConfigurationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationData.swift; sourceTree = "<group>"; };
+		OBJ_11 /* AppStoreUpdateResultObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUpdateResultObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdateFromAppStoreObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdatesObjectiveCExtensions.swift; sourceTree = "<group>"; };
-		OBJ_15 /* LoadConfigurationObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadConfigurationObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_16 /* ObjectiveCBaseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectiveCBaseExtensions.swift; sourceTree = "<group>"; };
-		OBJ_17 /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
+		OBJ_17 /* UpdateResultObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResultObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_18 /* PrinceOfVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersions.swift; sourceTree = "<group>"; };
-		OBJ_19 /* PrinceOfVersionsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrinceOfVersionsError.swift; sourceTree = "<group>"; };
+		OBJ_19 /* PoVError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVError.swift; sourceTree = "<group>"; };
 		OBJ_20 /* UpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		OBJ_21 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		OBJ_24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,7 +117,7 @@
 		OBJ_26 /* UpdateInfoTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoTest.swift; sourceTree = "<group>"; };
 		OBJ_27 /* VersionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionTest.swift; sourceTree = "<group>"; };
 		OBJ_39 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		OBJ_9 /* AppStoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreInfo.swift; sourceTree = "<group>"; };
+		OBJ_9 /* AppStoreUpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUpdateInfo.swift; sourceTree = "<group>"; };
 		"PrinceOfVersions::PrinceOfVersions::Product" /* PrinceOfVersions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PrinceOfVersions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"PrinceOfVersions::PrinceOfVersionsTests::Product" /* PrinceOfVersionsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = PrinceOfVersionsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -136,6 +168,7 @@
 		06F8AD9F241945CE0099E820 /* mockdata */ = {
 			isa = PBXGroup;
 			children = (
+				A8E7DA19248A674A008CC276 /* requirementChecks */,
 				06F8ADA0241945CE0099E820 /* invalid_update_no_json.json */,
 				06F8ADA1241945CE0099E820 /* valid_update_full_with_metadata_empty.json */,
 				06F8ADA2241945CE0099E820 /* valid_update_notification_once.json */,
@@ -151,6 +184,9 @@
 				06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */,
 				06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */,
 				06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */,
+				A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */,
+				A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */,
+				A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */,
 			);
 			path = mockdata;
 			sourceTree = "<group>";
@@ -164,25 +200,117 @@
 			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
-		OBJ_10 /* ObjC */ = {
+		A8622CB124866FE300B81DAD /* AppStoreUpdateData */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_11 /* AppStpreInfoObjectiveC.swift */,
-				OBJ_12 /* ObjectiveC Extensions */,
-				OBJ_17 /* UpdateInfoObjectiveC.swift */,
+				A8620FCD24868E2D0006CCF9 /* AppStoreUpdateResult.swift */,
+				OBJ_9 /* AppStoreUpdateInfo.swift */,
 			);
-			path = ObjC;
+			path = AppStoreUpdateData;
 			sourceTree = "<group>";
 		};
-		OBJ_12 /* ObjectiveC Extensions */ = {
+		A88447A324644F1900B24789 /* PoVDataTypes */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */,
-				OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */,
-				OBJ_15 /* LoadConfigurationObjectiveCExtensions.swift */,
-				OBJ_16 /* ObjectiveCBaseExtensions.swift */,
+				A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */,
+				OBJ_19 /* PoVError.swift */,
+				OBJ_21 /* Version.swift */,
+				A8745B0B248005A600DE451D /* NotificationType.swift */,
 			);
-			path = "ObjectiveC Extensions";
+			path = PoVDataTypes;
+			sourceTree = "<group>";
+		};
+		A88447A424644F3C00B24789 /* ResponseModels */ = {
+			isa = PBXGroup;
+			children = (
+				A8620FC9248689640006CCF9 /* BaseUpdateData.swift */,
+				A88447A524644F5200B24789 /* UpdateData */,
+				A8622CB124866FE300B81DAD /* AppStoreUpdateData */,
+			);
+			path = ResponseModels;
+			sourceTree = "<group>";
+		};
+		A88447A524644F5200B24789 /* UpdateData */ = {
+			isa = PBXGroup;
+			children = (
+				A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */,
+				OBJ_20 /* UpdateInfo.swift */,
+			);
+			path = UpdateData;
+			sourceTree = "<group>";
+		};
+		A88447A624644F6E00B24789 /* ResponseModel Wrapers */ = {
+			isa = PBXGroup;
+			children = (
+				A8E95B892480FDB30080E000 /* UpdateData */,
+				A8F74C6A248675F60006B115 /* AppStoreData */,
+			);
+			path = "ResponseModel Wrapers";
+			sourceTree = "<group>";
+		};
+		A88447A7246451A000B24789 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				A8F918A42449A8B50003C05E /* AnyDecodable.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		A8E7DA19248A674A008CC276 /* requirementChecks */ = {
+			isa = PBXGroup;
+			children = (
+				A8E7DA12248A46BC008CC276 /* valid_update_no_requirements.json */,
+				A8E7DA1D248A6A13008CC276 /* valid_update_with_increasing_requirements.json */,
+				A8E7DA1F248A6CCD008CC276 /* valid_update_with_decreasing_requirements.json */,
+				A8E7DA23248A72E9008CC276 /* valid_update_with_shuffled_requirements.json */,
+			);
+			path = requirementChecks;
+			sourceTree = "<group>";
+		};
+		A8E95B892480FDB30080E000 /* UpdateData */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_17 /* UpdateResultObjectiveC.swift */,
+				A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */,
+			);
+			path = UpdateData;
+			sourceTree = "<group>";
+		};
+		A8F74C6A248675F60006B115 /* AppStoreData */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* AppStoreUpdateResultObjectiveC.swift */,
+				A8620FCF248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift */,
+			);
+			path = AppStoreData;
+			sourceTree = "<group>";
+		};
+		A8F918A62449A96F0003C05E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A88447A7246451A000B24789 /* Utility */,
+				A8F918A82449A96F0003C05E /* ConfigurationData.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		OBJ_10 /* Objective-C Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A88447A624644F6E00B24789 /* ResponseModel Wrapers */,
+				OBJ_12 /* Objective-C Extensions */,
+			);
+			path = "Objective-C Helpers";
+			sourceTree = "<group>";
+		};
+		OBJ_12 /* Objective-C Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_16 /* ObjectiveCBaseExtensions.swift */,
+				OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */,
+				OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */,
+			);
+			path = "Objective-C Extensions";
 			sourceTree = "<group>";
 		};
 		OBJ_23 /* PrinceOfVersionsTests */ = {
@@ -190,6 +318,7 @@
 			children = (
 				OBJ_25 /* PrinceOfVersionsTest.swift */,
 				OBJ_26 /* UpdateInfoTest.swift */,
+				A8E7DA1A248A677A008CC276 /* RequirementsTest.swift */,
 				OBJ_27 /* VersionTest.swift */,
 				OBJ_24 /* Info.plist */,
 				06F8AD9F241945CE0099E820 /* mockdata */,
@@ -222,12 +351,11 @@
 		OBJ_8 /* PrinceOfVersions */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_9 /* AppStoreInfo.swift */,
-				OBJ_10 /* ObjC */,
 				OBJ_18 /* PrinceOfVersions.swift */,
-				OBJ_19 /* PrinceOfVersionsError.swift */,
-				OBJ_20 /* UpdateInfo.swift */,
-				OBJ_21 /* Version.swift */,
+				A88447A424644F3C00B24789 /* ResponseModels */,
+				A88447A324644F1900B24789 /* PoVDataTypes */,
+				A8F918A62449A96F0003C05E /* Common */,
+				OBJ_10 /* Objective-C Helpers */,
 				06F8ADAF241945D90099E820 /* SupportingFiles */,
 			);
 			name = PrinceOfVersions;
@@ -291,7 +419,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 9999;
-				LastUpgradeCheck = 9999;
+				LastUpgradeCheck = 1150;
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "PrinceOfVersions" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -299,6 +427,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = OBJ_5;
 			productRefGroup = OBJ_28 /* Products */;
@@ -320,11 +449,18 @@
 				06F8ADF2241A542A0099E820 /* valid_update_full_with_metadata_empty.json in Resources */,
 				06F8ADF3241A542A0099E820 /* valid_update_notification_once.json in Resources */,
 				06F8ADF4241A542A0099E820 /* app_store_version_example.json in Resources */,
+				A8E7DA25248A72EF008CC276 /* valid_update_with_shuffled_requirements.json in Resources */,
 				06F8ADF5241A542A0099E820 /* malformed_json.json in Resources */,
+				A8F359C224811A7000602DFB /* valid_update_only_v2_ios.json in Resources */,
 				06F8ADF6241A542A0099E820 /* valid_update_only_min_version.json in Resources */,
 				06F8ADF7241A542A0099E820 /* valid_update_full_with_metadata_malformed.json in Resources */,
+				A8E7DA14248A46C5008CC276 /* valid_update_no_requirements.json in Resources */,
+				A8E7DA22248A6CD5008CC276 /* valid_update_with_decreasing_requirements.json in Resources */,
 				06F8ADF8241A542A0099E820 /* valid_update_full.json in Resources */,
+				A8F359BC2481194300602DFB /* valid_update_only_v2_metadata_empty.json in Resources */,
 				06F8ADF9241A542A0099E820 /* valid_update_full_with_metadata.json in Resources */,
+				A8E7DA21248A6CD2008CC276 /* valid_update_with_increasing_requirements.json in Resources */,
+				A8F359BF248119B200602DFB /* valid_update_only_v2_macos.json in Resources */,
 				06F8ADFA241A542A0099E820 /* invalid_update_no_ios.json in Resources */,
 				06F8ADFB241A542A0099E820 /* invalid_update_incalid_version.json in Resources */,
 				06F8ADFC241A542A0099E820 /* valid_update_full_with_metadata_null.json in Resources */,
@@ -348,15 +484,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_45 /* AppStoreInfo.swift in Sources */,
-				OBJ_46 /* AppStpreInfoObjectiveC.swift in Sources */,
+				OBJ_45 /* AppStoreUpdateInfo.swift in Sources */,
+				A8F918AB2449A96F0003C05E /* ConfigurationData.swift in Sources */,
+				OBJ_46 /* AppStoreUpdateResultObjectiveC.swift in Sources */,
+				A8620FCE24868E2D0006CCF9 /* AppStoreUpdateResult.swift in Sources */,
 				OBJ_47 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */,
 				OBJ_48 /* CheckUpdatesObjectiveCExtensions.swift in Sources */,
-				OBJ_49 /* LoadConfigurationObjectiveCExtensions.swift in Sources */,
+				A8E5F379244D90AD004CF4DC /* PoVRequestOptions.swift in Sources */,
+				A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */,
+				A8620FD0248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift in Sources */,
 				OBJ_50 /* ObjectiveCBaseExtensions.swift in Sources */,
-				OBJ_51 /* UpdateInfoObjectiveC.swift in Sources */,
+				OBJ_51 /* UpdateResultObjectiveC.swift in Sources */,
+				A8745B0C248005A600DE451D /* NotificationType.swift in Sources */,
+				A8620FCA248689640006CCF9 /* BaseUpdateData.swift in Sources */,
+				A8E95B8B2480FDCB0080E000 /* UpdateInfoObjectiveC.swift in Sources */,
 				OBJ_52 /* PrinceOfVersions.swift in Sources */,
-				OBJ_53 /* PrinceOfVersionsError.swift in Sources */,
+				OBJ_53 /* PoVError.swift in Sources */,
+				A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */,
 				OBJ_54 /* UpdateInfo.swift in Sources */,
 				OBJ_55 /* Version.swift in Sources */,
 			);
@@ -367,6 +511,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_73 /* PrinceOfVersionsTest.swift in Sources */,
+				A8E7DA1C248A6851008CC276 /* RequirementsTest.swift in Sources */,
 				OBJ_74 /* UpdateInfoTest.swift in Sources */,
 				OBJ_75 /* VersionTest.swift in Sources */,
 			);
@@ -388,17 +533,43 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"SWIFT_PACKAGE=1",
 					"DEBUG=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
@@ -418,15 +589,40 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"SWIFT_PACKAGE=1",
 				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DXcode";
@@ -503,8 +699,8 @@
 		OBJ_70 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -528,8 +724,8 @@
 		OBJ_71 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",

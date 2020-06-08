@@ -1,0 +1,23 @@
+{
+   "macos":[
+      {
+         "required_version":"10.10.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS"
+      },
+      {
+         "required_version":"9.1",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS"
+      },
+      {
+         "required_version":"9.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ONCE"
+      }
+   ],
+   "meta":{
+      "key3":true,
+      "key4":"value2"
+   }
+}
