@@ -7,12 +7,12 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 * **Multiple configurations:**
 
   * It is possible to define multiple configuration for the same platform
-  * Appropriate configuration will be chosen based on the requirements
+  * Appropriate configuration will be chosen based on the requirements if they are defined in JSON
 
 
 * **Defining requirements:**
 
-  * Requirements are necessary conditions for a configuration to be chosen
+  * Requirements are necessary conditions that have to be met for a configuration to be chosen
   * User can decide whatever requirement they think it's necessary
   * `addRequirement` method used to provide requirement check closure
   * `required_os_version` built-in support for checking if required OS version requirement is met as long it is defined in JSON
@@ -20,8 +20,9 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 ## Braking Changes
 
 * `checkForUpdates` method is removed
+* `UpdateStatus` enum which determines if update exists and if it is mandatory
 * `loadConfiguration` method has been renamed to `checkForUpdates`
-* JSON formatting has changed
+* JSON formatting has changed, see more [here](JSON.md)
 
 ## New Features
 
