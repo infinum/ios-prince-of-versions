@@ -28,10 +28,12 @@ struct Requirements: Decodable {
     var userDefinedRequirements: [String: Any]
 
     var allRequirements: [String: Any]? {
-        guard let requiredOSVersion = requiredOSVersion else { return nil }
-        var requirements: [String : Any] = [:]
-        requirements.updateValue(requiredOSVersion, forKey: CodingKeys.requiredOSVersion.rawValue)
-        return requirements.merging(userDefinedRequirements, uniquingKeysWith: { (_, newValue) in newValue })
+        var requirements = userDefinedRequirements
+        if let requiredOSVersion = requiredOSVersion {
+            requirements.updateValue(requiredOSVersion, forKey: CodingKeys.requiredOSVersion.rawValue)
+
+        }
+        return requirements
     }
 
     // MARK: - Init

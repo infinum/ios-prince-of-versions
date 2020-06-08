@@ -29,6 +29,11 @@
 		A8620FD0248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8620FCF248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift */; };
 		A8745B0C248005A600DE451D /* NotificationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8745B0B248005A600DE451D /* NotificationType.swift */; };
 		A8E5F379244D90AD004CF4DC /* PoVRequestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */; };
+		A8E7DA14248A46C5008CC276 /* valid_update_no_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA12248A46BC008CC276 /* valid_update_no_requirements.json */; };
+		A8E7DA1C248A6851008CC276 /* RequirementsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E7DA1A248A677A008CC276 /* RequirementsTest.swift */; };
+		A8E7DA21248A6CD2008CC276 /* valid_update_with_increasing_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA1D248A6A13008CC276 /* valid_update_with_increasing_requirements.json */; };
+		A8E7DA22248A6CD5008CC276 /* valid_update_with_decreasing_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA1F248A6CCD008CC276 /* valid_update_with_decreasing_requirements.json */; };
+		A8E7DA25248A72EF008CC276 /* valid_update_with_shuffled_requirements.json in Resources */ = {isa = PBXBuildFile; fileRef = A8E7DA23248A72E9008CC276 /* valid_update_with_shuffled_requirements.json */; };
 		A8E95B8B2480FDCB0080E000 /* UpdateInfoObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */; };
 		A8F359BC2481194300602DFB /* valid_update_only_v2_metadata_empty.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */; };
 		A8F359BF248119B200602DFB /* valid_update_only_v2_macos.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */; };
@@ -87,6 +92,11 @@
 		A8620FCF248694860006CCF9 /* AppStoreUpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
 		A8745B0B248005A600DE451D /* NotificationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationType.swift; sourceTree = "<group>"; };
 		A8E5F378244D90AD004CF4DC /* PoVRequestOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoVRequestOptions.swift; sourceTree = "<group>"; };
+		A8E7DA12248A46BC008CC276 /* valid_update_no_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_no_requirements.json; sourceTree = "<group>"; };
+		A8E7DA1A248A677A008CC276 /* RequirementsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequirementsTest.swift; sourceTree = "<group>"; };
+		A8E7DA1D248A6A13008CC276 /* valid_update_with_increasing_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_with_increasing_requirements.json; sourceTree = "<group>"; };
+		A8E7DA1F248A6CCD008CC276 /* valid_update_with_decreasing_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_with_decreasing_requirements.json; sourceTree = "<group>"; };
+		A8E7DA23248A72E9008CC276 /* valid_update_with_shuffled_requirements.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_with_shuffled_requirements.json; sourceTree = "<group>"; };
 		A8E95B8A2480FDCB0080E000 /* UpdateInfoObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfoObjectiveC.swift; sourceTree = "<group>"; };
 		A8F359BA2481179000602DFB /* valid_update_only_v2_metadata_empty.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_metadata_empty.json; sourceTree = "<group>"; };
 		A8F359BD2481198A00602DFB /* valid_update_only_v2_macos.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_macos.json; sourceTree = "<group>"; };
@@ -158,6 +168,7 @@
 		06F8AD9F241945CE0099E820 /* mockdata */ = {
 			isa = PBXGroup;
 			children = (
+				A8E7DA19248A674A008CC276 /* requirementChecks */,
 				06F8ADA0241945CE0099E820 /* invalid_update_no_json.json */,
 				06F8ADA1241945CE0099E820 /* valid_update_full_with_metadata_empty.json */,
 				06F8ADA2241945CE0099E820 /* valid_update_notification_once.json */,
@@ -245,6 +256,17 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		A8E7DA19248A674A008CC276 /* requirementChecks */ = {
+			isa = PBXGroup;
+			children = (
+				A8E7DA12248A46BC008CC276 /* valid_update_no_requirements.json */,
+				A8E7DA1D248A6A13008CC276 /* valid_update_with_increasing_requirements.json */,
+				A8E7DA1F248A6CCD008CC276 /* valid_update_with_decreasing_requirements.json */,
+				A8E7DA23248A72E9008CC276 /* valid_update_with_shuffled_requirements.json */,
+			);
+			path = requirementChecks;
+			sourceTree = "<group>";
+		};
 		A8E95B892480FDB30080E000 /* UpdateData */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +318,7 @@
 			children = (
 				OBJ_25 /* PrinceOfVersionsTest.swift */,
 				OBJ_26 /* UpdateInfoTest.swift */,
+				A8E7DA1A248A677A008CC276 /* RequirementsTest.swift */,
 				OBJ_27 /* VersionTest.swift */,
 				OBJ_24 /* Info.plist */,
 				06F8AD9F241945CE0099E820 /* mockdata */,
@@ -426,13 +449,17 @@
 				06F8ADF2241A542A0099E820 /* valid_update_full_with_metadata_empty.json in Resources */,
 				06F8ADF3241A542A0099E820 /* valid_update_notification_once.json in Resources */,
 				06F8ADF4241A542A0099E820 /* app_store_version_example.json in Resources */,
+				A8E7DA25248A72EF008CC276 /* valid_update_with_shuffled_requirements.json in Resources */,
 				06F8ADF5241A542A0099E820 /* malformed_json.json in Resources */,
 				A8F359C224811A7000602DFB /* valid_update_only_v2_ios.json in Resources */,
 				06F8ADF6241A542A0099E820 /* valid_update_only_min_version.json in Resources */,
 				06F8ADF7241A542A0099E820 /* valid_update_full_with_metadata_malformed.json in Resources */,
+				A8E7DA14248A46C5008CC276 /* valid_update_no_requirements.json in Resources */,
+				A8E7DA22248A6CD5008CC276 /* valid_update_with_decreasing_requirements.json in Resources */,
 				06F8ADF8241A542A0099E820 /* valid_update_full.json in Resources */,
 				A8F359BC2481194300602DFB /* valid_update_only_v2_metadata_empty.json in Resources */,
 				06F8ADF9241A542A0099E820 /* valid_update_full_with_metadata.json in Resources */,
+				A8E7DA21248A6CD2008CC276 /* valid_update_with_increasing_requirements.json in Resources */,
 				A8F359BF248119B200602DFB /* valid_update_only_v2_macos.json in Resources */,
 				06F8ADFA241A542A0099E820 /* invalid_update_no_ios.json in Resources */,
 				06F8ADFB241A542A0099E820 /* invalid_update_incalid_version.json in Resources */,
@@ -484,6 +511,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_73 /* PrinceOfVersionsTest.swift in Sources */,
+				A8E7DA1C248A6851008CC276 /* RequirementsTest.swift in Sources */,
 				OBJ_74 /* UpdateInfoTest.swift in Sources */,
 				OBJ_75 /* VersionTest.swift in Sources */,
 			);
