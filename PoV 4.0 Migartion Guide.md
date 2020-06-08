@@ -17,12 +17,17 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
   * `addRequirement` method used to provide requirement check closure
   * `required_os_version` built-in support for checking if required OS version requirement is met as long it is defined in JSON
 
+
+* **Supporting older versions**
+
+  * If you decide to upgrade PoV to version >= 4.0, both type of users (the ones who have app version with PoV < 4.0 and the ones who have app version with PoV >= 4.0) can be supported with only one JSON, for more information, please check out [this section](JSON.md#Supporting\ older\ versions).
+
 ## Breaking Changes
 
 * **JSON Formatting**
 
   * JSON formatting has changed, see more [here](JSON.md)
-  
+
 
 * **Methods**
 
