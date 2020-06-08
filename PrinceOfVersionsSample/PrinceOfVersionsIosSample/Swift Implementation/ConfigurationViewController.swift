@@ -119,7 +119,6 @@ private extension UpdateStatus {
         case .noUpdateAvailable: return "No Update Available"
         case .requiredUpdateNeeded: return "Required Update Needed"
         case .newUpdateAvailable: return "New Update Available"
-        default: return ""
         }
     }
 }

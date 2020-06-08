@@ -22,7 +22,6 @@ public struct AppStoreUpdateInfo: Codable {
 
     internal var notificationFrequency: NotificationType = .always
 
-    internal let resultCount: Int?
     internal let results: [ConfigurationData]
 
     internal var configurationData: ConfigurationData? {
@@ -59,7 +58,7 @@ public struct AppStoreUpdateInfo: Codable {
 
         var sdkVersion: Version? {
             #if os(iOS)
-            do { return try Version(string: UIDevice.current.systemVersion) } catch { return nil }
+            return try? Version(string: UIDevice.current.systemVersion)
             #elseif os(macOS)
             return Version(macVersion: ProcessInfo.processInfo.operatingSystemVersion)
             #endif
@@ -88,7 +87,7 @@ public struct AppStoreUpdateInfo: Codable {
     // MARK: - CodingKeys -
 
     enum CodingKeys: String, CodingKey {
-        case resultCount, results
+        case results
     }
 }
 
