@@ -23,7 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 private extension AppDelegate {
 
     func createAndShowViewController(with identifier: String) {
-        let tabBarController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: identifier) as! NSTabViewController
-        NSApplication.shared.mainWindow?.contentViewController = tabBarController
+        let viewController = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: identifier) as! NSViewController
+        NSApplication.shared.mainWindow?.contentViewController = viewController
     }
 }

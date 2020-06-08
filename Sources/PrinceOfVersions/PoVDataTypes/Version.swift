@@ -13,10 +13,10 @@ public enum VersionError: Error {
     case invalidMajorVersion
 }
 
-public class Version: NSObject {
-    @objc public var major: Int
-    @objc public var minor: Int
-    @objc public var patch: Int = 0
+public class Version: NSObject, Codable {
+    @objc public let major: Int
+    @objc public let minor: Int
+    @objc public let patch: Int
     @objc public var build: Int = 0
 
     public var wasNotified: Bool {
@@ -31,7 +31,13 @@ public class Version: NSObject {
         UserDefaults.standard.set(true, forKey: versionUserDefaultKey)
     }
 
+    required public convenience init(from decoder: Decoder) throws {
+        let string = try decoder.singleValueContainer().decode(String.self)
+        try self.init(string: string)
+    }
+
     init(string: String) throws {
+
         let versionBuildComponents = string.components(separatedBy: "-")
         guard let versionComponents = versionBuildComponents.first?.components(separatedBy: ".") else {
             throw VersionError.invalidString
@@ -72,8 +78,12 @@ public class Version: NSObject {
     @objc override public var description: String {
         return "\(major).\(minor).\(patch)-\(build)"
     }
+}
 
-    // MARK: - Comparison -
+// MARK: - Comparison -
+
+extension Version {
+
     @objc(isGreaterThanVersion:)
     public func isGreaterThan(_ version: Version) -> Bool {
         return self > version
@@ -99,6 +109,9 @@ public class Version: NSObject {
         return self != version
     }
 
+    public static func max(_ version1: Version, _ version2: Version) -> Version {
+        return version1.isGreaterThan(version2) ? version1 : version2
+    }
 }
 
 extension Version: Comparable {

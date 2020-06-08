@@ -13,15 +13,15 @@
 
 @interface ObjCConfigurationController ()
 
- @property (nonatomic, weak) IBOutlet NSTextField *installedVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *macOSVersionTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *updateVersionTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *updateStateTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *metaTextField;
 
- @property (nonatomic, weak) IBOutlet NSTextField *minimumVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *minimumSDKTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *latestVersionTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *notificationTypeTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *latestMinimumSDKTextField;
- @property (nonatomic, weak) IBOutlet NSTextField *metaTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *requiredVersionTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *lastVersionAvailableTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *installedVersionTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *notificationTypeTextField;
+@property (nonatomic, weak) IBOutlet NSTextField *requirementsTextField;
 
 @end
 
@@ -43,14 +43,35 @@
 {
     NSURL *princeOfVersionsURL = [NSURL URLWithString:Constant.princeOfVersionsURL];
 
+    PoVRequestOptions *options = [PoVRequestOptions new];
+    [options addRequirementWithKey:@"region" requirementCheck:^BOOL (id value) {
+
+        // Check OS localisation
+
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+
+        return [(NSString *)value isEqualToString:@"hr"];
+    }];
+
+    [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
+
+        // Check device bluetooth version
+
+        if (![value isKindOfClass:[NSString class]]) {
+            return NO;
+        }
+
+        return [(NSString *)value hasPrefix:@"5"];
+    }];
+
     __weak __typeof(self) weakSelf = self;
-    [[PrinceOfVersions new] loadConfigurationFromURL:princeOfVersionsURL
-                                             options:nil
-                                          completion:^(UpdateResponse *updateResponse) {
-                                                [weakSelf fillUIWithInfoResponse:updateResponse.result];
-                                          } error:^(NSError *error) {
-                                                // Handle error
-                                          }];
+    [PrinceOfVersions checkForUpdatesFromURL:princeOfVersionsURL options:options completion:^(UpdateResponse *updateResponse) {
+        [weakSelf fillUIWithInfoResponse:updateResponse.result];
+    } error:^(NSError *error) {
+        // Handle error
+    }];
 }
 
 // In sample app, error will occur as bundle ID
@@ -58,26 +79,36 @@
 
 - (void)checkAppStoreVersion
 {
-    PoVRequestOptions *options = [PoVRequestOptions new];
-    options.trackPhaseRelease = NO;
-
-    [[PrinceOfVersions new] checkForUpdateFromAppStoreWithOptions:options completion:^(AppStoreInfoObject *response) {
+    [PrinceOfVersions checkForUpdateFromAppStoreWithTrackPhasedRelease:NO completion:^(AppStoreUpdateResult *response) {
         // Handle success
     } error:^(NSError *error) {
         // Handle error
     }];
 }
 
-- (void)fillUIWithInfoResponse:(UpdateInfoObject *)infoResponse
+- (void)fillUIWithInfoResponse:(UpdateResult *)infoResponse
 {
-    self.installedVersionTextField.stringValue = infoResponse.installedVersion.description;
-    self.macOSVersionTextField.stringValue = infoResponse.sdkVersion.description;
-    self.minimumVersionTextField.stringValue = infoResponse.minimumRequiredVersion.description;
-    self.minimumSDKTextField.stringValue = infoResponse.minimumSdkForMinimumRequiredVersion.description;
-    self.latestVersionTextField.stringValue = infoResponse.latestVersion.description;
-    self.notificationTypeTextField.stringValue = infoResponse.notificationType == UpdateNotificationTypeOnce ? @"Once" : @"Always";
-    self.latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion.description;
-    self.metaTextField.stringValue = [NSString stringWithFormat:@"%@", infoResponse.metadata];
+    self.updateVersionTextField.stringValue = infoResponse.updateVersion.description;
+    self.updateStateTextField.stringValue = [self updateStateFromResult:infoResponse.updateState];
+    self.metaTextField.stringValue = infoResponse.metadata.description;
+
+    self.requiredVersionTextField.stringValue = infoResponse.updateInfo.requiredVersion.description;
+    self.lastVersionAvailableTextField.stringValue = infoResponse.updateInfo.lastVersionAvailable.description;
+    self.installedVersionTextField.stringValue = infoResponse.updateInfo.installedVersion.description;
+    self.notificationTypeTextField.stringValue = infoResponse.updateInfo.notificationType == UpdateNotificationTypeOnce ? @"ONCE" : @"ALWAYS";
+    self.requirementsTextField.stringValue = infoResponse.updateInfo.requirements.description;
+}
+
+- (NSString *)updateStateFromResult:(UpdateStatus)type
+{
+    switch (type) {
+        case UpdateStatusNoUpdateAvailable:
+            return @"No Update Available";
+        case UpdateStatusRequiredUpdateNeeded:
+            return @"Required Update Needed";
+        case UpdateStatusNewUpdateAvailable:
+            return @"New Update Available";
+    }
 }
 
 @end
