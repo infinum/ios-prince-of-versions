@@ -12,7 +12,8 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
 * **Defining requirements:**
 
-  * Requirements are necessary conditions that have to be met for a configuration to be chosen
+  * Requirements are conditions that have to be met for a configuration to be chosen
+  * It is not mandatory for a configuration to have requirements
   * User can decide whatever requirement they think it's necessary
   * `addRequirement` method used to provide requirement check closure
   * `required_os_version` built-in support for checking if required OS version requirement is met as long it is defined in JSON
