@@ -21,8 +21,12 @@ public struct UpdateInfo: Decodable {
     // MARK: - Private properties -
 
     private var ios: [ConfigurationData]?
+    // used only when supporting both PoV versions < 4.0, and versions >= 4.0
+    // older version configuration is stored in ios property, and newer in ios2
     private var ios2: [ConfigurationData]?
     private var macos: [ConfigurationData]?
+    // used only when supporting both PoV versions < 4.0, and versions >= 4.0
+    // older version configuration is stored in macos property, and newer in macos2
     private var macos2: [ConfigurationData]?
     private var meta: [String: AnyDecodable]?
 
@@ -39,16 +43,7 @@ public struct UpdateInfo: Decodable {
     }
 
     internal var configuration: ConfigurationData? {
-
-        guard let configurations = configurations else { return nil }
-
-        return configurations.first { configuration in
-            guard
-                let requiredOSVersion = configuration.requirements?.requiredOSVersion,
-                let installedOSVersion = sdkVersion
-            else { return false }
-            return installedOSVersion >= requiredOSVersion && meetsUserRequirements(for: configuration)
-        }
+        return configurations?.first { meetsUserRequirements($0.requirements) }
     }
 
     internal var sdkVersion: Version? {
@@ -73,11 +68,12 @@ public struct UpdateInfo: Decodable {
 
     internal var metadata: [String: Any]? {
 
-        guard let configMeta = configuration?.meta else {
-            return meta?.mapValues { $0.value }
-        }
+        if meta == nil && configuration?.meta == nil { return nil }
 
-        return meta?
+        let globalMeta = meta ?? [:]
+        let configMeta = configuration?.meta ?? [:]
+
+        return globalMeta
             .merging(configMeta, uniquingKeysWith: { (_, newValue) in newValue })
             .mapValues { $0.value }
     }
@@ -108,18 +104,27 @@ public struct UpdateInfo: Decodable {
 
 private extension UpdateInfo {
 
-    func meetsUserRequirements(for configuration: ConfigurationData) -> Bool {
-
-        return userRequirements.reduce(true) { (result, requirement) -> Bool in
-
-            let (key, checkRequirement) = requirement
-
-            guard let valueForKey = configuration.requirements?.userDefinedRequirements[key] else {
-                return false
-            }
-
-            return result && checkRequirement(valueForKey)
+    var requiredOSVersionCheck: ((Any) -> Bool) {
+        return { requiredOSVersion -> Bool in
+            guard
+                let installedOSVersion = self.sdkVersion,
+                let requiredOSVersion = requiredOSVersion as? Version
+            else { return true }
+            return installedOSVersion >= requiredOSVersion
         }
+    }
+
+    func meetsUserRequirements(_ requirements: Requirements?) -> Bool {
+
+        guard let requirements = requirements else { return true }
+
+        var requirementChecks = userRequirements
+        requirementChecks.updateValue(requiredOSVersionCheck, forKey: "requiredOsVersion")
+
+        return requirements.allRequirements?.allSatisfy {
+            guard let checkRequirement = requirementChecks[$0.key] else { return false }
+            return checkRequirement($0.value)
+        } ?? true
     }
 }
 
