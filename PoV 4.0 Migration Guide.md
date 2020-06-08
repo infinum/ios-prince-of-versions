@@ -33,12 +33,12 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 * **Methods**
 
   * Both `checkForUpdates` and `loadConfiguration` methods are now unified in one method `checkForUpdates`.
-  * Return type of new `checkForUpdates` method is `UpdateResult`, [see more here](#Return%20types).
+  * Return type of new `checkForUpdates` method is `UpdateResult` (see more info under **Return types**).
 
   * Achieving behaviour from old `checkForUpdates` and `loadConfiguration`:
 
     * Return type `UpdateInfo` in `loadConfiguration` can be found as a property in `UpdateResult` struct.
-    * Closures that were available in old `checkForUpdates` method have been replaced by `UpdateStatus` enum ([see here](#New%20Features)) which can also be found in `UpdateResult` struct under property `updateStatus`.
+    * Closures that were available in old `checkForUpdates` method have been replaced by `UpdateStatus` enum (see more info under **New Features**) which can also be found in `UpdateResult` struct under property `updateStatus`.
 
 
 * **Return types**
