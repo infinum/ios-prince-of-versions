@@ -27,7 +27,7 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
 * **Return types**
 
-  * Each method for checking whether update exists comes with compatible return type
+  * Each method for checking whether update exists comes with compatible return type (`UpdateResult`, `AppStoreUpdateResult`)
   * Each return type, in addition to its essential properties `updateStatus`, `updateVersion`, `updateInfo`, possesses some unique properties specialised for method of getting versioning info
 
   * `UpdateResult`
