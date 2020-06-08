@@ -102,6 +102,8 @@ For JSON file details and formatting, read [JSON specification](JSON.md).
 
 For each requirement key listed in a configuration, there should exist a requirement check closure. If you don't provide it, the requirement will be considered as not met, and the whole configuration will be discarded.
 
+> If the JSON contains `required_os_version` key under requirements, the library itself will handle checking if that requirement is met. You don't need to provide a closure.
+
 Here is the example of how to add requirement check closures.
 
   ```swift
