@@ -21,7 +21,7 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
 * **Supporting older versions**
 
-  * If you decide to upgrade PoV to version >= 4.0, both type of users (the ones who have app version with PoV < 4.0 and the ones who have app version with PoV >= 4.0) can be supported with only one JSON, for more information, please check out [this file](JSON.md).
+  * If you decide to upgrade PoV to version >= 4.0, both type of users (the ones who have app version with PoV < 4.0 and the ones who have app version with PoV >= 4.0) can be supported with only one JSON, for more information, please check out **JSON Formatting** section.
 
 ## Breaking Changes
 
@@ -32,33 +32,40 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
 * **Methods**
 
-  * `checkForUpdates` method is removed, you should use new `checkForUpdates` method (see below)
-  * `loadConfiguration` method has been renamed to `checkForUpdates`
+  * Both `checkForUpdates` and `loadConfiguration` methods are now unified in one method `checkForUpdates`.
+  * Return type of new `checkForUpdates` method is `UpdateResult`, [see more here](#Return%20types).
+
+  * Achieving behaviour from old `checkForUpdates` and `loadConfiguration`:
+
+    * Return type `UpdateInfo` in `loadConfiguration` can be found as a property in `UpdateResult` struct.
+    * Closures that were available in old `checkForUpdates` method have been replaced by `UpdateStatus` enum ([see here](#New%20Features)) which can also be found in `UpdateResult` struct under property `updateStatus`.
 
 
 * **Return types**
 
-  * Each method for checking whether update exists comes with compatible return type (`UpdateResult`, `AppStoreUpdateResult`)
-  * Each return type, in addition to its essential properties `updateStatus`, `updateVersion`, `updateInfo`, possesses some unique properties specialised for method of getting versioning info
+  * Each method for checking whether update exists comes with compatible return type (`UpdateResult`, `AppStoreUpdateResult`).
+  * Each return type, in addition to its essential properties `updateStatus`, `updateVersion`, `updateInfo`, possesses some unique properties specialised for method of getting versioning info.
 
   * `UpdateResult`
 
-    * New return type which contains all information necessary for the update, to use previous `UpdateInfo` just access `updateInfo` property on returned `UpdateResult` struct
-    * Used when getting the versioning information from JSON
-    * `metadata` returns global metadata defined in JSON with metadata from chosen configuration
+    * New return type which contains all information necessary for the update, to use previous `UpdateInfo` just access `updateInfo` property on returned `UpdateResult` struct.
+    * Used when getting the versioning information from JSON.
+    * `metadata` returns global metadata defined in JSON joined with metadata from the chosen configuration.
 
   * `AppStoreUpdateResult`
 
-    * Used when getting the versioning information from the AppStore Connect
-    * `phaseReleaseInProgress` returns bool value if phased release period is in progress
+    * Used when getting the versioning information from the AppStore Connect.
+    * `phaseReleaseInProgress` returns bool value if phased release period is in progress.
+
+
+## New Features
+
+* Added parameter `notificationFrequency` to `checkForUpdateFromAppStore` method which is used for setting desired update notification frequency.
 
 
 * **UpdateStatus**
 
-  * new enum which determines if update exists and if it is mandatory
-  * contained in `UpdateResult`
-  * possible values are `noUpdateAvailable`, `requiredUpdateNeeded`, `newUpdateAvailable`
-
-## New Features
-
-* added parameter `notificationFrequency` to `checkForUpdateFromAppStore` method which is used for setting desired update notification frequency
+  * New enum which determines if update exists and if it is mandatory.
+  * Contained in `UpdateResult` struct.
+  * Replaces closures in old `checkForUpdates` method.
+  * Possible values are `noUpdateAvailable`, `requiredUpdateNeeded`, `newUpdateAvailable`.
