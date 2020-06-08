@@ -20,7 +20,7 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
 * **Supporting older versions**
 
-  * If you decide to upgrade PoV to version >= 4.0, both type of users (the ones who have app version with PoV < 4.0 and the ones who have app version with PoV >= 4.0) can be supported with only one JSON, for more information, please check out [this section](JSON.md#Supporting\ older\ versions).
+  * If you decide to upgrade PoV to version >= 4.0, both type of users (the ones who have app version with PoV < 4.0 and the ones who have app version with PoV >= 4.0) can be supported with only one JSON, for more information, please check out [this file](JSON.md).
 
 ## Breaking Changes
 
