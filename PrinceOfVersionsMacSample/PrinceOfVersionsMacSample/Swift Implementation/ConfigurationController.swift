@@ -14,15 +14,15 @@ class ConfigurationController: NSViewController {
     // MARK: - Private properties
     // MARK: IBOutlets
 
-    @IBOutlet weak var installedVersionTextField: NSTextField!
-    @IBOutlet weak var macOSVersionTextField: NSTextField!
-
-    @IBOutlet weak var minimumVersionTextField: NSTextField!
-    @IBOutlet weak var minimumSDKTextField: NSTextField!
-    @IBOutlet weak var latestVersionTextField: NSTextField!
-    @IBOutlet weak var notificationTypeTextField: NSTextField!
-    @IBOutlet weak var latestMinimumSDKTextField: NSTextField!
-    @IBOutlet weak var metaTextField: NSTextField!
+    @IBOutlet private weak var updateVersionTextField: NSTextField!
+    @IBOutlet private weak var updateStateTextField: NSTextField!
+    @IBOutlet private weak var metaTextField: NSTextField!
+ 
+    @IBOutlet private weak var requiredVersionTextField: NSTextField!
+    @IBOutlet private weak var lastVersionAvailableTextField: NSTextField!
+    @IBOutlet private weak var installedVersionTextField: NSTextField!
+    @IBOutlet private weak var notificationTypeTextField: NSTextField!
+    @IBOutlet private weak var requirementsTextField: NSTextField!
 
     // MARK: - View Lifecycle
 
@@ -39,18 +39,33 @@ class ConfigurationController: NSViewController {
 private extension ConfigurationController {
 
     func checkAppVersion() {
+
+        let options = PoVRequestOptions()
+
+        options.addRequirement(key: "region") { (value) -> Bool in
+            guard let value = value as? String else { return false }
+            // Check OS localisation
+            return value == "hr"
+        }
+
+        options.addRequirement(key: "bluetooth") { (value) -> Bool in
+            guard let value = value as? String else { return false }
+            // Check device bluetooth version
+            return value.starts(with: "5")
+        }
+
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
-        PrinceOfVersions().loadConfiguration(
-            from: princeOfVersionsURL,
-            completion: { [weak self] response in
-                switch response.result {
-                case .success(let infoResponse):
-                    self?.fillUI(with: infoResponse)
-                case .failure:
-                    // Handle error
-                    break
-                }
+
+        PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [weak self] response in
+            switch response.result {
+            case .success(let updateResultData):
+                self?.fillUI(with: updateResultData)
+            case .failure:
+                // Handle error
+                break
+            }
         })
+
     }
 
     // In sample app, error will occur as bundle ID
@@ -59,7 +74,7 @@ private extension ConfigurationController {
     func checkAppStoreVersion() {
         // In sample app, error will occur as bundle ID
         // of the app is not available on the App Store
-        PrinceOfVersions().checkForUpdateFromAppStore(
+        PrinceOfVersions.checkForUpdateFromAppStore(
             trackPhaseRelease: false,
             completion: { result in
                 switch result {
@@ -72,15 +87,38 @@ private extension ConfigurationController {
                 }
         })
     }
+}
 
-    func fillUI(with infoResponse: UpdateInfo ) {
-        installedVersionTextField.stringValue = infoResponse.installedVersion.description
-        macOSVersionTextField.stringValue = infoResponse.sdkVersion.description
-        minimumVersionTextField.stringValue = infoResponse.minimumRequiredVersion?.description ?? "-"
-        minimumSDKTextField.stringValue = infoResponse.minimumSdkForMinimumRequiredVersion?.description ?? "-"
-        latestVersionTextField.stringValue = infoResponse.latestVersion.description
-        notificationTypeTextField.stringValue = infoResponse.notificationType == .once ? "Once" : "Always"
-        latestMinimumSDKTextField.stringValue = infoResponse.minimumSdkForLatestVersion?.description ?? "-"
-        metaTextField.stringValue = String(describing: infoResponse.metadata!)
+private extension ConfigurationController {
+
+    func fillUI(with infoResponse: UpdateResult) {
+        fillUpdateResultUI(with: infoResponse)
+        fillVersionInfoUI(with: infoResponse.updateInfo)
+    }
+
+    func fillUpdateResultUI(with infoResponse: UpdateResult) {
+        updateVersionTextField.stringValue = infoResponse.updateVersion.description
+        updateStateTextField.stringValue = infoResponse.updateState.updateState
+        metaTextField.stringValue = "\(infoResponse.metadata ?? [:])"
+    }
+
+    func fillVersionInfoUI(with versionInfo: UpdateInfo) {
+        requiredVersionTextField.stringValue = versionInfo.requiredVersion?.description ?? ""
+        lastVersionAvailableTextField.stringValue = versionInfo.lastVersionAvailable?.description ?? ""
+        installedVersionTextField.stringValue = versionInfo.installedVersion.description
+        notificationTypeTextField.stringValue = versionInfo.notificationType == .once ? "ONCE" : "ALWAYS"
+        requirementsTextField.stringValue = "\(versionInfo.requirements ?? [:])"
+    }
+}
+
+private extension UpdateStatus {
+
+    var updateState: String {
+        switch self {
+        case .noUpdateAvailable: return "No Update Available"
+        case .requiredUpdateNeeded: return "Required Update Needed"
+        case .newUpdateAvailable: return "New Update Available"
+        default: return ""
+        }
     }
 }
