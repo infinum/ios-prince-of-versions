@@ -45,7 +45,7 @@ Library will decide which configuration to use based on the platform used and re
 
 > First configuration that meets all the requirements will be used to determine update status.
 
-For more details about requirements, check out [this section](#Defining requirements).
+For more details about requirements, check out [this section](#Requirements).
 
 * **Notification frequency**
 
@@ -124,7 +124,7 @@ Described JSON format is displayed below:
 }
 ```
 
-## Defining requirements
+## Requirements
 
 For every configuration, there is a possibility to define requirements. Based on the provided requirements and user-provided requirements checks, the appropriate configuration will be chosen and evaluated for update status.
 
@@ -235,7 +235,7 @@ For the sake of this example, let's say that all required OS versions are met. I
 
 Here we will also consider `required_os_version` requirement as met. If user provided requirement checks for both region and Bluetooth and they are both met, first configuration will be chosen. If user provided check only for `region`, only second and third configuration would be considered, since `bluetooth` requirement is not met.
 
-## Finally thoughts
+## Final thoughts
 
 * You can define requirements in any kind of way that you want and in any sort of order, but be aware that their order profoundly affects the way they are chosen.
 * Best practice would be to put configuration without any requirements (or only with `required_os_version` requirement) on the bottom of the list since all other configurations after this one will be ignored.
