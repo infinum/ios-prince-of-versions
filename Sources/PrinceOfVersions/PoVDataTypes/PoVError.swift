@@ -71,7 +71,7 @@ extension PoVError {
 
     static func validate(appStoreInfo: AppStoreUpdateInfo) -> PoVError? {
 
-        guard let resultCount = appStoreInfo.resultCount, resultCount > 0 else { return .dataNotFound }
+        guard appStoreInfo.results.count > 0 else { return .dataNotFound }
 
         guard let configuration = appStoreInfo.configurationData else { return .invalidJsonData }
 
