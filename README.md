@@ -214,3 +214,10 @@ PrinceOfVersions.checkForUpdates(from: url, shouldPinCertificates: true) { (resp
 ## Contributing
 
 Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](https://github.com/infinum/Android-prince-of-versions/blob/dev/LICENCE).
+
+## Credits
+
+Maintained and sponsored by [Infinum](http://www.infinum.com).
+<a href='https://infinum.com'>
+  <img src='https://infinum.com/infinum.png' href='https://infinum.com' width='264'>
+</a>
