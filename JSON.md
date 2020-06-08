@@ -42,13 +42,16 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
 ```
 
 Library will decide which configuration to use based on the platform used and requirements listed under `requirements` key.
+
 > First configuration that meets all the requirements will be used to determine update status.
 
-In the `requirements` array, parameter `required_os_version` is **mandatory** for every configuration. Every other parameter is optional, and it is on the user to decide which requirements are needed to be satisfied. Requirements (besides `required_os_version`) will be checked with closures provided by the user. Closure can be provided by `addRequirement` [method](README.md#Adding-requirements) in `PoVRequestOptions` class. If requirement closure is not supplied for a given requirement key, library will consider that requirement as **not satisfied**.
+For more details about requirements, check out [this section](#Defining requirements).
 
-If there is not even one configuration that satisfies all requirements (including `required_os_version`), library will set `updateStatus` value to `UpdateStatus.noUpdateAvailable`.
+* **Notification frequency**
 
 Depending on `notify_last_version_frequency` property, the user can be notified `ONCE` or `ALWAYS`. The library handles this for you. If notification frequency is set to `ONCE`, in the result values which are returned, the value of `updateStatus` will be set to `UpdateStatus.newUpdateAvailable`. Every subsequent call, the library will set the value of `updateStatus` to `UpdateStatus.noUpdateAvailable` for that specific version.
+
+* **Metadata**
 
 Key-value pairs under `"meta"` key are optional metadata of which any amount can be sent accompanying the required fields. Metadata can be specified for each configuration and it can also be specified on a global level. In the return values, global metadata and metadata from the appropriate configuration will be merged. If there is not an appropriate configuration, only global metadata will be returned.
 
@@ -120,5 +123,122 @@ Described JSON format is displayed below:
    }
 }
 ```
+
+## Defining requirements
+
+For every configuration, there is a possibility to define requirements. Based on the provided requirements and user-provided requirements checks, the appropriate configuration will be chosen and evaluated for update status.
+
+> If you don't provide any requirements for a configuration in JSON, that configuration will be classified as valid.
+
+Defining requirements is possible through `requirements array`. It is up to you to choose which requirements are necessary for your configuration. However, for setting required operating system version requirement, you can use key `required_os_version`. By using that key, library will provide requirement check so the user doesn't have to define it. Every other requirement in configuration will be checked with closures provided by the user. Closure can be provided by `addRequirement` [method](README.md#Adding-requirements) in `PoVRequestOptions` class.  If requirement closure is not supplied for a given requirement key, library will consider that requirement as **not satisfied**.
+
+> If there is not even one configuration that satisfies all requirements (including `required_os_version`), library will set `updateStatus` value to `UpdateStatus.noUpdateAvailable`.
+
+So to sum up, chosen configuration depends on requirements in JSON, requirement checks provided by the user and it's position in configurations array in JSON. For more info, please check [example section](#Examples).
+
+### Examples
+
+* Configurations without requirements
+
+```json
+  ...
+   "ios":[
+      {
+         "required_version":"1.2.4",
+         "last_version_available":"1.8.0",
+         "notify_last_version_frequency":"ALWAYS"
+      },
+      {
+         "required_version":"1.2.3",
+         "last_version_available":"1.8.0",
+         "notify_last_version_frequency":"ONCE"
+      }
+   ]
+   ...
+```
+
+In this example, first configuration will always be chosen whether or not user provides requirement checks.
+
+* Configurations with increasing requirements count
+
+```json
+{
+   "macos":[
+      {
+         "required_version":"10.10.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.12.1"
+         }
+      },
+      {
+         "required_version":"9.1",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.11.1",
+            "region":"hr",
+         }
+      },
+      {
+         "required_version":"9.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ONCE",
+         "requirements":{
+            "required_os_version":"10.14.2",
+            "region":"us",
+            "bluetooth":"5.0"
+         }
+      },
+   ]
+}
+```
+
+For the sake of this example, let's say that all required OS versions are met. In this example, the first configuration will always be chosen since all requirements are met, second and third configuration won't be evaluated no matter if user defined requirement checks for `region` or `Bluetooth`.
+
+* Configuration with decreasing requirements count
+
+```json
+{
+   "macos":[
+      {
+         "required_version":"9.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ONCE",
+         "requirements":{
+            "required_os_version":"10.14.2",
+            "region":"us",
+            "bluetooth":"5.0"
+         }
+      },
+      {
+         "required_version":"9.1",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.11.1",
+            "region":"hr"
+         }
+      },
+      {
+         "required_version":"10.10.0",
+         "last_version_available":"11.0",
+         "notify_last_version_frequency":"ALWAYS",
+         "requirements":{
+            "required_os_version":"10.12.1"
+         }
+      }
+   ]
+}
+```
+
+Here we will also consider `required_os_version` requirement as met. If user provided requirement checks for both region and Bluetooth and they are both met, first configuration will be chosen. If user provided check only for `region`, only second and third configuration would be considered, since `bluetooth` requirement is not met.
+
+## Finally thoughts
+
+* You can define requirements in any kind of way that you want and in any sort of order, but be aware that their order profoundly affects the way they are chosen.
+* Best practice would be to put configuration without any requirements (or only with `required_os_version` requirement) on the bottom of the list since all other configurations after this one will be ignored.
+
 
 [:arrow_left: Go back](README.md)
