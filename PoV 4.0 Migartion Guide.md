@@ -17,12 +17,41 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
   * `addRequirement` method used to provide requirement check closure
   * `required_os_version` built-in support for checking if required OS version requirement is met as long it is defined in JSON
 
-## Braking Changes
+## Breaking Changes
 
-* `checkForUpdates` method is removed
-* `UpdateStatus` enum which determines if update exists and if it is mandatory
-* `loadConfiguration` method has been renamed to `checkForUpdates`
-* JSON formatting has changed, see more [here](JSON.md)
+* **Methods**
+
+  * `checkForUpdates` method is removed, you should use new `checkForUpdates` method (see below)
+  * `loadConfiguration` method has been renamed to `checkForUpdates`
+
+
+* **Return types**
+
+  * Each method for checking whether update exists comes with compatible return type
+  * Each return type, in addition to its essential properties `updateStatus`, `updateVersion`, `updateInfo`, possesses some unique properties specialised for method of getting versioning info
+
+  * `UpdateResult`
+
+    * New return type which contains all information necessary for the update, to use previous `UpdateInfo` just access `updateInfo` property on returned `UpdateResult` struct
+    * Used when getting the versioning information from JSON
+    * `metadata` returns global metadata defined in JSON with metadata from chosen configuration
+
+  * `AppStoreUpdateResult`
+
+    * Used when getting the versioning information from the AppStore Connect
+    * `phaseReleaseInProgress` returns bool value if phased release period is in progress
+
+
+* **UpdateStatus**
+
+  * new enum which determines if update exists and if it is mandatory
+  * contained in `UpdateResult`
+  * possible values are `noUpdateAvailable`, `requiredUpdateNeeded`, `newUpdateAvailable`
+
+
+* **JSON Formatting**
+
+  * JSON formatting has changed, see more [here](JSON.md)
 
 ## New Features
 
