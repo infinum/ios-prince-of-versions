@@ -100,7 +100,7 @@ For JSON file details and formatting, read [JSON specification](JSON.md).
 
 #### Adding-requirements
 
-For each requirement key listed in a configuration, there should exist a requirement check closure. If you don't provide it, the requirement will be considered as not met, and the whole configuration will be discarded.
+For each requirement key listed in a configuration, there should exist a requirement check closure. If you don't provide it, the requirement will be considered as not met, and the whole configuration will be discarded. However, if you provide requirement check, but JSON doesn't contain requirement key for your check, the check will be ignored.
 
 > If the JSON contains `required_os_version` key under requirements, the library itself will handle checking if that requirement is met. You don't need to provide a closure.
 
