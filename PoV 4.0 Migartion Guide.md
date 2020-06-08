@@ -19,6 +19,11 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
 ## Breaking Changes
 
+* **JSON Formatting**
+
+  * JSON formatting has changed, see more [here](JSON.md)
+  
+
 * **Methods**
 
   * `checkForUpdates` method is removed, you should use new `checkForUpdates` method (see below)
@@ -47,11 +52,6 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
   * new enum which determines if update exists and if it is mandatory
   * contained in `UpdateResult`
   * possible values are `noUpdateAvailable`, `requiredUpdateNeeded`, `newUpdateAvailable`
-
-
-* **JSON Formatting**
-
-  * JSON formatting has changed, see more [here](JSON.md)
 
 ## New Features
 
