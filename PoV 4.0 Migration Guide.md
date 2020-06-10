@@ -30,6 +30,7 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 * **Methods**
 
   * Both `checkForUpdates` and `loadConfiguration` methods are now unified in one method `checkForUpdates`.
+  * All methods are now `static`.
   * Return type of new `checkForUpdates` method is `UpdateResult` (see more info under **Return types**).
 
   * Achieving behaviour from old `checkForUpdates` and `loadConfiguration`:
