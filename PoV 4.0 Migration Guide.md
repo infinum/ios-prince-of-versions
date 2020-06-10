@@ -26,6 +26,7 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 * **JSON Formatting**
 
   * JSON formatting has changed, see more [here](JSON.md)
+  * PoV version 4.0 will only work with the v2 version of JSON. Update the JSON file at the same time with the PoV.
 
 * **Methods**
 
