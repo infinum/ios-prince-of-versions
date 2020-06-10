@@ -7,8 +7,7 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 * **Multiple configurations:**
 
   * It is possible to define multiple configuration for the same platform
-  * Appropriate configuration will be chosen based on the requirements if they are defined in JSON
-
+  * Appropriate configuration will be chosen based on the requirements - if defined in JSON
 
 * **Defining requirements:**
 
@@ -17,7 +16,6 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
   * User can decide whatever requirement they think it's necessary
   * `addRequirement` method used to provide requirement check closure
   * `required_os_version` built-in support for checking if required OS version requirement is met as long it is defined in JSON
-
 
 * **Supporting older versions**
 
@@ -29,7 +27,6 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
   * JSON formatting has changed, see more [here](JSON.md)
 
-
 * **Methods**
 
   * Both `checkForUpdates` and `loadConfiguration` methods are now unified in one method `checkForUpdates`.
@@ -39,7 +36,6 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
 
     * Return type `UpdateInfo` in `loadConfiguration` can be found as a property in `UpdateResult` struct.
     * Closures that were available in old `checkForUpdates` method have been replaced by `UpdateStatus` enum (see more info under **New Features**) which can also be found in `UpdateResult` struct under property `updateStatus`.
-
 
 * **Return types**
 
@@ -57,11 +53,9 @@ PrinceOfVersions 4.0 is the latest major release of PrinceOfVersions, library us
     * Used when getting the versioning information from the AppStore Connect.
     * `phaseReleaseInProgress` returns bool value if phased release period is in progress.
 
-
 ## New Features
 
 * Added parameter `notificationFrequency` to `checkForUpdateFromAppStore` method which is used for setting desired update notification frequency.
-
 
 * **UpdateStatus**
 
