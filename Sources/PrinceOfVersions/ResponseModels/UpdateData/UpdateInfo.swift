@@ -42,9 +42,7 @@ public struct UpdateInfo: Decodable {
         #endif
     }
 
-    internal var configuration: ConfigurationData? {
-        return configurations?.first { meetsUserRequirements($0.requirements) }
-    }
+    internal var configuration: ConfigurationData?
 
     internal var sdkVersion: Version? {
         #if os(iOS)
@@ -78,7 +76,11 @@ public struct UpdateInfo: Decodable {
             .mapValues { $0.value }
     }
 
-    internal var userRequirements: [String: ((Any) -> Bool)] = [:]
+    internal var userRequirements: [String: ((Any) -> Bool)] = [:] {
+        didSet {
+            configuration = configurations?.first { meetsUserRequirements($0.requirements) }
+        }
+    }
 
     // MARK: - Init -
 
