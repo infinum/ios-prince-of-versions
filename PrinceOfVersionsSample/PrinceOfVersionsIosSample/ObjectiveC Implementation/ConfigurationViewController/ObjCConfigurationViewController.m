@@ -87,7 +87,7 @@
     }];
 }
 
-- (void)fillUIWithInfoResponse:(__ObjcUpdateResultObject *)infoResponse
+- (void)fillUIWithInfoResponse:(UpdateResult *)infoResponse
 {
     self.updateVersionLabel.text = infoResponse.updateVersion.description;
     self.updateStateLabel.text = [self updateStateFromResult:infoResponse.updateState];
