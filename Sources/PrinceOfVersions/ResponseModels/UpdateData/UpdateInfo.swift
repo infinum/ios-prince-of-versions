@@ -93,6 +93,8 @@ public struct UpdateInfo: Decodable {
         macos = container.decodeConfiguration(.macos)
         macos2 = container.decodeConfiguration(.macos2)
         meta = container.decodeMeta(.meta)
+
+        userRequirements = [:]
     }
 
     // MARK: - Coding keys -

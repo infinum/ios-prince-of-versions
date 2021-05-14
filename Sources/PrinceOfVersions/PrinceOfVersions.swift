@@ -231,13 +231,12 @@ private extension PrinceOfVersions {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-            var updateInfo = try decoder.decode(UpdateInfo.self, from: data)
-            updateInfo.userRequirements = options.userRequirements
+            let updateInfo = try decoder.decode(UpdateInfo.self, from: data)
 
             if let error = PoVError.validate(updateInfo: updateInfo) {
                 result = Result.failure(error)
             } else {
-                let updateResult = UpdateResult(updateInfo: updateInfo)
+                let updateResult = UpdateResult(updateInfo: updateInfo, userRequirements: options.userRequirements)
                 result = Result.success(updateResult)
             }
 
