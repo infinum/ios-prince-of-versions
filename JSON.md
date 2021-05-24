@@ -132,7 +132,7 @@ For every configuration, there is a possibility to define requirements. Based on
 
 Defining requirements is possible through `requirements array`. It is up to you to choose which requirements are necessary for your configuration. However, for setting required operating system version requirement, you can use key `required_os_version`. By using that key, library will provide requirement check so the user doesn't have to define it. Every other requirement in configuration will be checked with closures provided by the user. Closure can be provided by `addRequirement` [method](README.md#Adding-requirements) in `PoVRequestOptions` class.  If requirement closure is not supplied for a given requirement key, library will consider that requirement as **not satisfied**.
 
-> If there is not even one configuration that satisfies all requirements (including `required_os_version`), library will set `updateStatus` value to `UpdateStatus.noUpdateAvailable`.
+> If there is not even one configuration that satisfies all requirements (including `required_os_version`), library will return error with value `requirementsNotSatisfied`.
 
 So to sum up, chosen configuration depends on requirements in JSON, requirement checks provided by the user and it's position in configurations array in JSON. For more info, please check [example section](#Examples).
 
