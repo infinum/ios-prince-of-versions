@@ -124,7 +124,7 @@ private extension UpdateInfo {
         guard let requirements = requirements else { return true }
 
         var requirementChecks = userRequirements
-        if requirements.shouldAddOSCheck {
+        if requirements.requiredOSVersion != nil  {
             requirementChecks.updateValue(requiredOSVersionCheck, forKey: "requiredOsVersion")
         }
 
