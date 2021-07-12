@@ -85,7 +85,6 @@ public struct UpdateInfo: Decodable {
     // MARK: - Init -
 
     public init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         ios = container.decodeConfiguration(.ios)
@@ -94,7 +93,9 @@ public struct UpdateInfo: Decodable {
         macos2 = container.decodeConfiguration(.macos2)
         meta = container.decodeMeta(.meta)
 
-        userRequirements = [:]
+        defer {
+            userRequirements = [:]
+        }
     }
 
     // MARK: - Coding keys -
