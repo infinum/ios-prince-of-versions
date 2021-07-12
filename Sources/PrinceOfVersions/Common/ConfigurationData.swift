@@ -27,8 +27,6 @@ struct Requirements: Decodable {
     let requiredOSVersion: Version?
     var userDefinedRequirements: [String: Any]
 
-    var shouldAddOSCheck: Bool { requiredOSVersion != nil }
-
     var allRequirements: [String: Any]? {
         var requirements = userDefinedRequirements
         if let requiredOSVersion = requiredOSVersion {
