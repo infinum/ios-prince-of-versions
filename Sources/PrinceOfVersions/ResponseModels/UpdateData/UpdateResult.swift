@@ -26,8 +26,9 @@ public struct UpdateResult {
 
     // MARK: - Init
     
-    init(updateInfo: UpdateInfo) {
+    init(updateInfo: UpdateInfo, userRequirements: [String : ((Any) -> Bool)] = [:]) {
         self.updateInfoData = updateInfo
+        updateInfoData.userRequirements = userRequirements
     }
 }
 
