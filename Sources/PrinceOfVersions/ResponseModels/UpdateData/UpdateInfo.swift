@@ -42,9 +42,7 @@ public struct UpdateInfo: Decodable {
         #endif
     }
 
-    internal var configuration: ConfigurationData? {
-        return configurations?.first { meetsUserRequirements($0.requirements) }
-    }
+    internal var configuration: ConfigurationData?
 
     internal var sdkVersion: Version? {
         #if os(iOS)
@@ -78,12 +76,15 @@ public struct UpdateInfo: Decodable {
             .mapValues { $0.value }
     }
 
-    internal var userRequirements: [String: ((Any) -> Bool)] = [:]
+    internal var userRequirements: [String: ((Any) -> Bool)] = [:] {
+        didSet {
+            configuration = configurations?.first { meetsUserRequirements($0.requirements) }
+        }
+    }
 
     // MARK: - Init -
 
     public init(from decoder: Decoder) throws {
-
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         ios = container.decodeConfiguration(.ios)
@@ -91,6 +92,10 @@ public struct UpdateInfo: Decodable {
         macos = container.decodeConfiguration(.macos)
         macos2 = container.decodeConfiguration(.macos2)
         meta = container.decodeMeta(.meta)
+
+        defer {
+            userRequirements = [:]
+        }
     }
 
     // MARK: - Coding keys -
@@ -119,7 +124,9 @@ private extension UpdateInfo {
         guard let requirements = requirements else { return true }
 
         var requirementChecks = userRequirements
-        requirementChecks.updateValue(requiredOSVersionCheck, forKey: "requiredOsVersion")
+        if requirements.requiredOSVersion != nil  {
+            requirementChecks.updateValue(requiredOSVersionCheck, forKey: "requiredOsVersion")
+        }
 
         return requirements.allRequirements?.allSatisfy {
             guard let checkRequirement = requirementChecks[$0.key] else { return false }
