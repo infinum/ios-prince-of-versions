@@ -31,7 +31,6 @@ struct Requirements: Decodable {
         var requirements = userDefinedRequirements
         if let requiredOSVersion = requiredOSVersion {
             requirements.updateValue(requiredOSVersion, forKey: CodingKeys.requiredOSVersion.rawValue)
-
         }
         return requirements
     }
@@ -41,7 +40,7 @@ struct Requirements: Decodable {
     init(from decoder: Decoder) throws {
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        requiredOSVersion = try container.decode(Version.self, forKey: .requiredOSVersion)
+        requiredOSVersion = try? container.decode(Version.self, forKey: .requiredOSVersion)
 
         userDefinedRequirements = [:]
 
