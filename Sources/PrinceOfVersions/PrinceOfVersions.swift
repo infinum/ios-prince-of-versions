@@ -231,7 +231,10 @@ private extension PrinceOfVersions {
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-            let updateInfo = try decoder.decode(UpdateInfo.self, from: data)
+            var updateInfo = try decoder.decode(UpdateInfo.self, from: data)
+            /// due to: https://github.com/infinum/iOS-prince-of-versions/issues/38
+            /// `PovError.validate(:)` falis if proper configuration is not selected, and it can't be selected without proper `userRequirements`
+            updateInfo.userRequirements = options.userRequirements
 
             if let error = PoVError.validate(updateInfo: updateInfo) {
                 result = Result.failure(error)
