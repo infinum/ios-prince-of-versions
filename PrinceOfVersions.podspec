@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "PrinceOfVersions"
-  s.version = "4.0.1"
+  s.version = "4.0.2"
   s.summary = "Library checks for updates using configuration from some resource."
   s.homepage = "https://github.com/infinum/iOS-prince-of-versions"
   s.license = { :type => "MIT", :file => "LICENSE" }
