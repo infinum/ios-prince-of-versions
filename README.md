@@ -59,7 +59,7 @@ For the Carthage installation and usage instruction, you can check official [qui
 To integrate the library into your Xcode project, specify it in your `Cartfile`:
 
 ```
-github "infinum/iOS-prince-of-versions"
+github "infinum/ios-prince-of-versions"
 ```
 
 Run `carthage update`.
@@ -68,7 +68,7 @@ Run `carthage update`.
 
 To install Prince of Versions from the Swift Package Manager, you should:
 * In Xcode 11+ select File → Packages → Add Package Dependency
-* Enter project's URL: https://github.com/infinum/iOS-prince-of-versions.git
+* Enter project's URL: https://github.com/infinum/ios-prince-of-versions.git
 
 For more information, check [Swift Package Manager](https://swift.org/package-manager/) .
 
