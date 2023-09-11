@@ -16,9 +16,9 @@ Library checks for updates using configuration from some resource.
 
 ## Requirements
 
-* iOS 8.0+
-* macOS 10.10+
-* Xcode 11.0+
+* iOS 11.0+
+* macOS 10.13+
+* Xcode 14.0+
 
 ## Installation
 
@@ -31,7 +31,7 @@ See installation instructions for [CocoaPods](http://cocoapods.org) if not alrea
 To integrate the library into your Xcode project specify the pod dependency to your `Podfile`:
 
 ```ruby
-platform :ios, '8.0'
+platform :ios, '11.0'
 use_frameworks!
 
 pod 'PrinceOfVersions'
@@ -40,7 +40,7 @@ pod 'PrinceOfVersions'
 or
 
 ```ruby
-platform :osx, '10.10'
+platform :osx, '10.13'
 use_frameworks!
 
 pod 'PrinceOfVersions'
