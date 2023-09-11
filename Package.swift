@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "PrinceOfVersions",
     platforms: [
-        .macOS(.v10_10),
-        .iOS(.v8)
+        .macOS(.v10_13),
+        .iOS(.v11)
     ],
     products: [
         .library(
