@@ -18,7 +18,6 @@
 		06F8ADF8241A542A0099E820 /* valid_update_full.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA7241945CE0099E820 /* valid_update_full.json */; };
 		06F8ADF9241A542A0099E820 /* valid_update_full_with_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA8241945CE0099E820 /* valid_update_full_with_metadata.json */; };
 		06F8ADFA241A542A0099E820 /* invalid_update_no_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA9241945CE0099E820 /* invalid_update_no_ios.json */; };
-		06F8ADFB241A542A0099E820 /* invalid_update_incalid_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAA241945CE0099E820 /* invalid_update_incalid_version.json */; };
 		06F8ADFC241A542A0099E820 /* valid_update_full_with_metadata_null.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAB241945CE0099E820 /* valid_update_full_with_metadata_null.json */; };
 		06F8ADFD241A542A0099E820 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */; };
 		06F8ADFE241A542A0099E820 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */; };
@@ -78,7 +77,6 @@
 		06F8ADA7241945CE0099E820 /* valid_update_full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full.json; sourceTree = "<group>"; };
 		06F8ADA8241945CE0099E820 /* valid_update_full_with_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata.json; sourceTree = "<group>"; };
 		06F8ADA9241945CE0099E820 /* invalid_update_no_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_no_ios.json; sourceTree = "<group>"; };
-		06F8ADAA241945CE0099E820 /* invalid_update_incalid_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_incalid_version.json; sourceTree = "<group>"; };
 		06F8ADAB241945CE0099E820 /* valid_update_full_with_metadata_null.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata_null.json; sourceTree = "<group>"; };
 		06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_no_notification.json; sourceTree = "<group>"; };
 		06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_optional_without_version.json; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 			isa = PBXGroup;
 			children = (
 				06F8ADA3241945CE0099E820 /* app_store_version_example.json */,
-				06F8ADAA241945CE0099E820 /* invalid_update_incalid_version.json */,
 				06F8ADA9241945CE0099E820 /* invalid_update_no_ios.json */,
 				06F8ADA0241945CE0099E820 /* invalid_update_no_json.json */,
 				06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */,
@@ -462,7 +459,6 @@
 				A8E7DA21248A6CD2008CC276 /* valid_update_with_increasing_requirements.json in Resources */,
 				A8F359BF248119B200602DFB /* valid_update_only_v2_macos.json in Resources */,
 				06F8ADFA241A542A0099E820 /* invalid_update_no_ios.json in Resources */,
-				06F8ADFB241A542A0099E820 /* invalid_update_incalid_version.json in Resources */,
 				06F8ADFC241A542A0099E820 /* valid_update_full_with_metadata_null.json in Resources */,
 				06F8ADFD241A542A0099E820 /* valid_update_no_notification.json in Resources */,
 				06F8ADFE241A542A0099E820 /* invalid_update_optional_without_version.json in Resources */,

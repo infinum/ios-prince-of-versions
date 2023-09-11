@@ -43,7 +43,7 @@ class PrinceOfVersionsTest: XCTestCase {
 
         let installedVersion = try! Version(string: "1.0.0-1")
         let lastVersionAvailable = try! Version(string: "0.1.0")
-        let minimumSdkForLatestVersion = try! Version(string: "9.0")
+        let minimumSdkForLatestVersion = try! Version(string: "12.0")
 
         runAsyncTest { finished in
             PrinceOfVersions.internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: false, bundle: bundle, testMode: true, completion: { result in
