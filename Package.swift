@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -17,7 +17,14 @@ let package = Package(
         )
     ],
     targets: [
-        .target(name: "PrinceOfVersions", dependencies: []),
-        .testTarget(name: "PrinceOfVersionsTests", dependencies: ["PrinceOfVersions"])
+        .target(
+            name: "PrinceOfVersions",
+            dependencies: [],
+            resources: [.copy("SupportingFiles/PrivacyInfo.xcprivacy")]
+        ),
+        .testTarget(
+            name: "PrinceOfVersionsTests",
+            dependencies: ["PrinceOfVersions"]
+        )
     ]
 )

@@ -39,6 +39,7 @@
 		A8F359C224811A7000602DFB /* valid_update_only_v2_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */; };
 		A8F918A52449A8B60003C05E /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A42449A8B50003C05E /* AnyDecodable.swift */; };
 		A8F918AB2449A96F0003C05E /* ConfigurationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F918A82449A96F0003C05E /* ConfigurationData.swift */; };
+		FA3C37BF2B613CAE00725950 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = FA3C37BC2B6138B900725950 /* PrivacyInfo.xcprivacy */; };
 		OBJ_45 /* AppStoreUpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* AppStoreUpdateInfo.swift */; };
 		OBJ_46 /* AppStoreUpdateResultObjectiveC.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* AppStoreUpdateResultObjectiveC.swift */; };
 		OBJ_47 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */; };
@@ -101,6 +102,7 @@
 		A8F359C024811A3500602DFB /* valid_update_only_v2_ios.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = valid_update_only_v2_ios.json; sourceTree = "<group>"; };
 		A8F918A42449A8B50003C05E /* AnyDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
 		A8F918A82449A96F0003C05E /* ConfigurationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationData.swift; sourceTree = "<group>"; };
+		FA3C37BC2B6138B900725950 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		OBJ_11 /* AppStoreUpdateResultObjectiveC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUpdateResultObjectiveC.swift; sourceTree = "<group>"; };
 		OBJ_13 /* CheckUpdateFromAppStoreObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdateFromAppStoreObjectiveCExtensions.swift; sourceTree = "<group>"; };
 		OBJ_14 /* CheckUpdatesObjectiveCExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUpdatesObjectiveCExtensions.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				06F8AE03241A57590099E820 /* PrinceOfVersions.h */,
 				06F8ADB1241945D90099E820 /* Info.plist */,
+				FA3C37BC2B6138B900725950 /* PrivacyInfo.xcprivacy */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA3C37BF2B613CAE00725950 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
