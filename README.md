@@ -211,6 +211,10 @@ PrinceOfVersions.checkForUpdates(from: url, shouldPinCertificates: true) { (resp
 }
 ```
 
+## Privacy
+
+PrinceOfVersions does not collect any user data. We have provided a [privacy manifest](https://github.com/infinum/ios-prince-of-versions/blob/master/Sources/PrinceOfVersions/SupportingFiles/PrivacyInfo.xcprivacy) file that can be included in your app.
+
 ## Contributing
 
 Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](https://github.com/infinum/Android-prince-of-versions/blob/dev/LICENCE).
@@ -218,6 +222,11 @@ Feedback and code contributions are very much welcome. Just make a pull request 
 ## Credits
 
 Maintained and sponsored by [Infinum](http://www.infinum.com).
-<a href='https://infinum.com'>
-  <img src='https://infinum.com/infinum.png' href='https://infinum.com' width='264'>
-</a>
+<p align="center">
+  <a href='https://infinum.com'>
+    <picture>
+        <source srcset="https://assets.infinum.com/brand/logo/static/white.svg" media="(prefers-color-scheme: dark)">
+        <img src="https://assets.infinum.com/brand/logo/static/default.svg">
+    </picture>
+  </a>
+</p>
