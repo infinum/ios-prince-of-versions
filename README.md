@@ -87,7 +87,6 @@ For JSON file details and formatting, read [JSON specification](JSON.md).
 
     PrinceOfVersions.checkForUpdates(
         from: princeOfVersionsURL,
-        cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
         completion: { [unowned self] response in
             switch response.result {
             case .success(let updateResultData):
@@ -106,7 +105,7 @@ For JSON file details and formatting, read [JSON specification](JSON.md).
 
 When checking for updates, be it for AppStore or other sources, you can provide a *cachePolicy* parameter. The *cachePolicy* parameter determines which request cache policy will be used for network requests.
 
-The initial value for the default `URLSession` configuration uses **.useProtocolCachePolicy** which shouldn't be the default behavior for Prince of Versions, we want to refresh the data from the server every time. That's why we defaulted the value to **.reloadIgnoringLocalAndRemoteCacheData**. If you want to change the default behavior, you can always provide which cache policy you want to use, as seen in the example above :)
+The initial value for the default `URLSession` configuration uses **.useProtocolCachePolicy**, which shouldn't be the default behavior for Prince of Versions; we want to refresh the data from the server every time. That's why we defaulted the value to **.reloadIgnoringLocalCacheData**. If you want to change the default behavior, you can always provide a different cache policy that suits your needs.
 
 #### Adding-requirements
 

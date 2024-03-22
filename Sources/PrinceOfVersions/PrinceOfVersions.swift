@@ -34,7 +34,7 @@ public extension PrinceOfVersions {
      - parameter URL: URL that containts configuration data.
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
      - parameter options: Used for additional configuration such as `shouldPinCertificates`, `httpHeaderFields` and `userRequirements`
-     - parameter cachePolicy: Determines which URLRequest cache policy should be used. Defaults to `.reloadIgnoringLocalAndRemoteCacheData` which will call the API every time.
+     - parameter cachePolicy: Determines which URLRequest cache policy should be used. Defaults to `.reloadIgnoringLocalCacheData` which will call the API every time.
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdateResult data or PoVError error
 
      - returns: Discardable `URLSessionDataTask`
@@ -44,7 +44,7 @@ public extension PrinceOfVersions {
         from URL: URL,
         callbackQueue: DispatchQueue = .main,
         options: PoVRequestOptions = PoVRequestOptions(),
-        cachePolicy: NSURLRequest.CachePolicy = .reloadIgnoringLocalAndRemoteCacheData,
+        cachePolicy: NSURLRequest.CachePolicy = .reloadIgnoringLocalCacheData,
         completion: @escaping CompletionBlock
     ) -> URLSessionDataTask {
 
@@ -115,7 +115,7 @@ public extension PrinceOfVersions {
      - parameter bundle: Bundle where .plist file is stored in which app identifier and app versions should be checked.
      - parameter callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
      - parameter notificationFrequency: Determines update status appearance frequency.
-     - parameter cachePolicy: Determines which URLRequest cache policy should be used. Defaults to `.reloadIgnoringLocalAndRemoteCacheData` which will call the API every time.
+     - parameter cachePolicy: Determines which URLRequest cache policy should be used. Defaults to `.reloadIgnoringLocalCacheData` which will call the API every time.
      - parameter completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error.
 
      - returns: Discardable `URLSessionDataTask`
@@ -126,7 +126,7 @@ public extension PrinceOfVersions {
         bundle: Bundle = .main,
         callbackQueue: DispatchQueue = .main,
         notificationFrequency: NotificationType = .always,
-        cachePolicy: NSURLRequest.CachePolicy = .reloadIgnoringLocalAndRemoteCacheData,
+        cachePolicy: NSURLRequest.CachePolicy = .reloadIgnoringLocalCacheData,
         completion: @escaping AppStoreCompletionBlock
     ) -> URLSessionDataTask? {
 
