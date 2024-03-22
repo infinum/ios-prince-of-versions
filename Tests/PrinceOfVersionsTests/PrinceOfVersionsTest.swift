@@ -46,29 +46,36 @@ class PrinceOfVersionsTest: XCTestCase {
         let minimumSdkForLatestVersion = try! Version(string: "12.0")
 
         runAsyncTest { finished in
-            PrinceOfVersions.internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: false, bundle: bundle, testMode: true, completion: { result in
-                switch result {
-                case .success(let updateResult):
-                    XCTAssert(updateResult.updateInfo.installedVersion == installedVersion)
+            PrinceOfVersions.internalyGetDataFromAppStore(
+                URL(fileURLWithPath: jsonPath),
+                trackPhaseRelease: false,
+                bundle: bundle,
+                testMode: true,
+                cachePolicy: .reloadIgnoringLocalCacheData,
+                completion: { result in
+                    switch result {
+                    case .success(let updateResult):
+                        XCTAssert(updateResult.updateInfo.installedVersion == installedVersion)
 
-                    guard let latestVersion = updateResult.updateInfo.lastVersionAvailable else {
-                        XCTFail("Last version available should not be nil")
-                        return
-                    }
+                        guard let latestVersion = updateResult.updateInfo.lastVersionAvailable else {
+                            XCTFail("Last version available should not be nil")
+                            return
+                        }
 
-                    XCTAssert(latestVersion == lastVersionAvailable)
-                    if let minSdkForLatestVersion = updateResult.updateInfo.configurationData?.minimumOsVersion {
-                        XCTAssert(minSdkForLatestVersion == minimumSdkForLatestVersion)
-                    } else {
-                        XCTFail("min sdk should not be nil")
+                        XCTAssert(latestVersion == lastVersionAvailable)
+                        if let minSdkForLatestVersion = updateResult.updateInfo.configurationData?.minimumOsVersion {
+                            XCTAssert(minSdkForLatestVersion == minimumSdkForLatestVersion)
+                        } else {
+                            XCTFail("min sdk should not be nil")
+                        }
+                        XCTAssert(!updateResult.phaseReleaseInProgress)
+                        finished()
+                    case .failure:
+                        XCTFail("Invalid data")
+                        finished()
                     }
-                    XCTAssert(!updateResult.phaseReleaseInProgress)
-                    finished()
-                case .failure:
-                    XCTFail("Invalid data")
-                    finished()
                 }
-            })
+            )
         }
     }
 
@@ -76,16 +83,23 @@ class PrinceOfVersionsTest: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         let jsonPath = bundle.path(forResource: "app_store_version_example", ofType: "json")!
         runAsyncTest { finished in
-            PrinceOfVersions.internalyGetDataFromAppStore(URL(fileURLWithPath: jsonPath), trackPhaseRelease: true, bundle: bundle, testMode: true, completion: { result in
-                switch result {
-                case .success(let info):
-                    XCTAssert(!info.phaseReleaseInProgress)
-                    finished()
-                case .failure:
-                    XCTFail("Invalid data")
-                    finished()
+            PrinceOfVersions.internalyGetDataFromAppStore(
+                URL(fileURLWithPath: jsonPath),
+                trackPhaseRelease: true,
+                bundle: bundle,
+                testMode: true,
+                cachePolicy: .reloadIgnoringLocalCacheData,
+                completion: { result in
+                    switch result {
+                    case .success(let info):
+                        XCTAssert(!info.phaseReleaseInProgress)
+                        finished()
+                    case .failure:
+                        XCTFail("Invalid data")
+                        finished()
+                    }
                 }
-            })
+            )
         }
     }
 }
