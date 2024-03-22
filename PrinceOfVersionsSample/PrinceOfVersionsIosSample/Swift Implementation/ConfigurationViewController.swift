@@ -61,7 +61,7 @@ private extension ConfigurationViewController {
         PrinceOfVersions.checkForUpdates(
             from: princeOfVersionsURL,
             options: options,
-            cachePolicy: .reloadIgnoringLocalCacheData,
+            cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
             completion: { [weak self] response in
                 switch response.result {
                 case .success(let infoResponse):
@@ -78,7 +78,7 @@ private extension ConfigurationViewController {
         // of the app is not available on the App Store
         PrinceOfVersions.checkForUpdateFromAppStore(
             trackPhaseRelease: false,
-            cachePolicy: .reloadIgnoringLocalCacheData,
+            cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
             completion: { result in
                 switch result {
                 case .success:

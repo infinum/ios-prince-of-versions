@@ -51,7 +51,7 @@ class PrinceOfVersionsTest: XCTestCase {
                 trackPhaseRelease: false,
                 bundle: bundle,
                 testMode: true,
-                cachePolicy: .reloadIgnoringLocalCacheData,
+                cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                 completion: { result in
                     switch result {
                     case .success(let updateResult):
@@ -88,7 +88,7 @@ class PrinceOfVersionsTest: XCTestCase {
                 trackPhaseRelease: true,
                 bundle: bundle,
                 testMode: true,
-                cachePolicy: .reloadIgnoringLocalCacheData,
+                cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                 completion: { result in
                     switch result {
                     case .success(let info):
