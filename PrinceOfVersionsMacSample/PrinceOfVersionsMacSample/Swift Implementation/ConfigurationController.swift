@@ -56,15 +56,20 @@ private extension ConfigurationController {
 
         let princeOfVersionsURL = URL(string: Constants.princeOfVersionsURL)!
 
-        PrinceOfVersions.checkForUpdates(from: princeOfVersionsURL, options: options, completion: { [weak self] response in
-            switch response.result {
-            case .success(let updateResultData):
-                self?.fillUI(with: updateResultData)
-            case .failure:
-                // Handle error
-                break
+        PrinceOfVersions.checkForUpdates(
+            from: princeOfVersionsURL,
+            options: options,
+            cachePolicy: .reloadIgnoringLocalCacheData,
+            completion: { [weak self] response in
+                switch response.result {
+                case .success(let updateResultData):
+                    self?.fillUI(with: updateResultData)
+                case .failure:
+                    // Handle error
+                    break
+                }
             }
-        })
+        )
 
     }
 
@@ -76,6 +81,7 @@ private extension ConfigurationController {
         // of the app is not available on the App Store
         PrinceOfVersions.checkForUpdateFromAppStore(
             trackPhaseRelease: false,
+            cachePolicy: .reloadIgnoringLocalCacheData,
             completion: { result in
                 switch result {
                 case .success:
