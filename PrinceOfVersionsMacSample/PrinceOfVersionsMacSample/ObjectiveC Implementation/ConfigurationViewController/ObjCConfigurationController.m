@@ -56,7 +56,6 @@
         return [value hasPrefix:@"5"];
     }];
 
-
     __weak __typeof(self) weakSelf = self;
     [PrinceOfVersions checkForUpdatesFromURL:princeOfVersionsURL options:options completion:^(UpdateResponse *updateResponse) {
         [weakSelf fillUIWithInfoResponse:updateResponse.result];
