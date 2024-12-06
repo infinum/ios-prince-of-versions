@@ -45,26 +45,18 @@
     NSURL *princeOfVersionsURL = [NSURL URLWithString:Constant.princeOfVersionsURL];
 
     PoVRequestOptions *options = [PoVRequestOptions new];
-    [options addRequirementWithKey:@"region" requirementCheck:^BOOL (id value) {
-
+    [options addRequirementWithKey:@"region"
+                            ofType:[NSString class]
+                  requirementCheck:^BOOL(NSString *value) {
         // Check OS localisation
-
-        if (![value isKindOfClass:[NSString class]]) {
-            return NO;
-        }
-
-        return [(NSString *)value isEqualToString:@"hr"];
+        return [value isEqualToString:@"hr"];
     }];
 
-    [options addRequirementWithKey:@"bluetooth" requirementCheck:^BOOL (id value) {
-
+    [options addRequirementWithKey:@"bluetooth"
+                            ofType:[NSString class]
+                  requirementCheck:^BOOL(NSString *value) {
         // Check device bluetooth version
-
-        if (![value isKindOfClass:[NSString class]]) {
-            return NO;
-        }
-
-        return [(NSString *)value hasPrefix:@"5"];
+        return [value hasPrefix:@"5"];
     }];
 
     __weak __typeof(self) weakSelf = self;

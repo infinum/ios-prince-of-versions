@@ -118,17 +118,9 @@ Here is the example of how to add requirement check closures.
   ```swift
   let options = PoVRequestOptions()
 
-  options.addRequirement(key: "region") { (value) -> Bool in
-      guard let value = value as? String else { return false }
-      // Check OS localisation
-      return value == "hr"
-  }
+  options.addRequirement(key: "region", ofType: String.self) { $0.starts(with: "hr") }
 
-  options.addRequirement(key: "bluetooth") { (value) -> Bool in
-      guard let value = value as? String else { return false }
-      // Check device bluetooth version
-      return value.starts(with: "5")
-  }
+  options.addRequirement(key: "bluetooth", ofType: String.self) { $0.starts(with: "5") }
 
   let princeOfVersionsURL = URL(string: "https://pastebin.com/raw/0MfYmWGu")!
 
