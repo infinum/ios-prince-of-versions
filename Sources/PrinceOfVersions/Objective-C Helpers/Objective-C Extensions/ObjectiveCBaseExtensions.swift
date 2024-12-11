@@ -61,16 +61,24 @@ internal extension PrinceOfVersions {
         trackPhaseRelease: Bool,
         callbackQueue: DispatchQueue,
         notificationFrequency: NotificationType = .always,
+        country: String? = nil,
         completion: @escaping AppStoreObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
-        return PrinceOfVersions.checkForUpdateFromAppStore(trackPhaseRelease: trackPhaseRelease, bundle: bundle, callbackQueue: callbackQueue, notificationFrequency: notificationFrequency, completion: { result in
+        return PrinceOfVersions.checkForUpdateFromAppStore(
+            trackPhaseRelease: trackPhaseRelease,
+            bundle: bundle,
+            callbackQueue: callbackQueue,
+            notificationFrequency: notificationFrequency,
+            country: country,
+            completion: {
+                result in
                 switch result {
                 case .success(let appStoreInfo):
                     completion(__ObjCAppStoreResult(from: appStoreInfo))
                 case .failure(let (errorResponse as NSError)):
                     error(errorResponse)
                 }
-        })
+            })
     }
 }
