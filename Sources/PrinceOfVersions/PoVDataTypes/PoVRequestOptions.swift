@@ -58,6 +58,7 @@ public class PoVRequestOptions: NSObject {
 
      This method is designed for Objective-C compatibility and uses runtime type checking (`isKindOfClass:`) to validate the value.
      */
+    @available(swift, obsoleted: 1.0, message: "Use the generic addRequirement(key:ofType:requirementCheck:) method in Swift.")
     @objc(addRequirementWithKey:ofType:requirementCheck:)
     public func addRequirementWithKey(key: String, ofType type: AnyClass, requirementCheck: @escaping (Any) -> Bool) {
         userRequirements.updateValue({ value in
