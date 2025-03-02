@@ -6,13 +6,25 @@
     <img src="./prince-of-versions.svg" width="300" max-width="50%" alt="PoV"/>
 </p>
 
+## Description
+
 Library checks for updates using configuration from some resource.
 
-## Features
+### Features
 
 * Load update configuration from **network** resource
 * Use predefined parser for parsing update configuration in **JSON format**
 * Make **asynchronous** loading and use **callback** for notifying result
+
+## Table of contents
+
+* [Requirements](#requirements)
+* [Getting started](#getting-started)
+* [Usage](#usage)
+* [Privacy](#privacy)
+* [Contributing](#contributing)
+* [License](#license)
+* [Credits](#credits)
 
 ## Requirements
 
@@ -20,7 +32,7 @@ Library checks for updates using configuration from some resource.
 * macOS 10.13+
 * Xcode 14.0+
 
-## Installation
+## Getting started
 
 The easiest way to use Prince of versions in your project is using the CocaPods package manager.
 
@@ -218,7 +230,30 @@ PrinceOfVersions does not collect any user data. We have provided a [privacy man
 
 ## Contributing
 
-Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](https://github.com/infinum/Android-prince-of-versions/blob/dev/LICENCE).
+We believe that the community can help us improve and build better a product.
+Please refer to our [contributing guide](CONTRIBUTING.md) to learn about the types of contributions we accept and the process for submitting them.
+
+To ensure that our community remains respectful and professional, we defined a [code of conduct](CODE_OF_CONDUCT.md) and [coding standards](<https://github.com/infinum/swift-style-guide>) that we expect all contributors to follow.
+
+We appreciate your interest and look forward to your contributions.
+
+## License
+
+```text
+Copyright 2024 Infinum
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
 
 ## Credits
 
