@@ -78,7 +78,7 @@ public struct UpdateInfo: Decodable {
 
     internal var userRequirements: [String: ((Any) -> Bool)] = [:] {
         didSet {
-            if oldValue.keys == userRequirements.keys { return }
+            if oldValue.keys == userRequirements.keys && configuration != nil { return }
             configuration = configurations?.first { meetsUserRequirements($0.requirements) }
         }
     }
