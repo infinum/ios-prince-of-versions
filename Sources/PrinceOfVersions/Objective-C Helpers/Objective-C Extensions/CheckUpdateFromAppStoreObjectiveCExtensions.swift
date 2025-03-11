@@ -88,30 +88,42 @@ extension PrinceOfVersions {
 
      If parameter `notificationFrequency` is set to `.always`  and latest version of the app is bigger than installed version, method will always return `.newUpdateAvailable`. However, if the`notificationFrequency` is set to `.once`, only first time this method is called for the same latest app version, it will return `.newUpdateAvailable`, each subsequent call, it will return `.noUpdateAvailable`.
 
+     If the optional `country` parameter is provided, the API request will target the specified App Store region (e.g., `"mk"` for Macedonia). If `country` is not provided, the API will fallback to its default behavior, typically fetching data from the U.S. App Store.
+
      - Parameters:
         * bundle: Bundle where .plist file is stored in which app identifier and app versions should be checked.
         * trackPhaseRelease: Boolean that indicates whether PoV should notify about new version after 7 days when app is fully rolled out or immediately. Default value is `YES`.
         * callbackQueue: The queue on which the completion handler is dispatched. By default, `main` queue is used.
         * notificationFrequency: Determines update status appearance frequency.
+        * country: Optional parameter to specify the App Store region to target (e.g., `"mk"` for Macedonia). Defaults to `nil`.
         * completion: The completion handler to call when the load request is complete. It returns result that contains UpdatInfo data or PoVError error
 
      - Returns:
         * Discardable `URLSessionDataTask`
      */
     @available(swift, obsoleted: 1.0)
-    @objc(checkForUpdateFromAppStoreWithTrackPhasedRelease:callbackQueue:bundle:notificationFrequency:completion:error:)
+    @objc(checkForUpdateFromAppStoreWithTrackPhasedRelease:callbackQueue:bundle:notificationFrequency:country:completion:error:)
     @discardableResult
     public static func checkForUpdateFromAppStore(
         trackPhaseRelease: Bool,
         callbackQueue: DispatchQueue,
         bundle: Bundle,
         notificationFrequency: UpdateNotificationType,
+        country: String?,
         completion: @escaping AppStoreObjectCompletionBlock,
         error: @escaping ObjectErrorBlock
     ) -> URLSessionDataTask? {
 
         let frequency: NotificationType = notificationFrequency == .always ? .always : .once
 
-        return internalyCheckAndPrepareForUpdateAppStore(bundle: bundle, trackPhaseRelease: trackPhaseRelease, callbackQueue: callbackQueue, notificationFrequency: frequency, completion: completion, error: error)
+        return internalyCheckAndPrepareForUpdateAppStore(
+            bundle: bundle,
+            trackPhaseRelease: trackPhaseRelease,
+            callbackQueue: callbackQueue,
+            notificationFrequency: frequency,
+            country: country,
+            completion: completion,
+            error: error
+        )
     }
 }
