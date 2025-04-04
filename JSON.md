@@ -32,7 +32,7 @@ JSON file in your application has to follow [Semantic Versioning](http://semver.
             "region":"hr",
             "bluetooth":"5.0"
          }
-      },
+      }
    ],
    "meta":{
       "key3":true,
