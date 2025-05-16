@@ -36,6 +36,24 @@ public class PoVRequestOptions: NSObject {
      Use this method to add custom requirement by which configuration must comply with.
 
      - parameter key: String that matches key in requirements array in JSON with `requirementsCheck` parameter,
+     - parameter requirementCheck: A block used to check if a configuration meets the requirement. This block returns `true` if the configuration meets the requirement, and takes the value as input.
+
+     - Warning: Deprecated. Use `addRequirement<T>(key:ofType:requirementCheck:)` instead.
+     */
+    @available(*, deprecated, message: "Use the generic version `addRequirement<T>(key:ofType:requirementCheck:)` instead.")
+    public func addRequirement(
+        key: String,
+        requirementCheck: @escaping ((Any) -> Bool)
+    ) {
+        userRequirements.updateValue(requirementCheck, forKey: key)
+    }
+
+    /**
+     Adds requirement check for configuration.
+
+     Use this method to add custom requirement by which configuration must comply with.
+
+     - parameter key: String that matches key in requirements array in JSON with `requirementsCheck` parameter,
      - parameter type: The expected type of the value.
      - parameter requirementCheck: A block used to check if a configuration meets the requirement. This block returns `true` if the configuration meets the requirement, and takes the typed value as input.
 
