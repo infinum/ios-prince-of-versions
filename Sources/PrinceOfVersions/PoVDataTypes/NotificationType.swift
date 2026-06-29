@@ -18,7 +18,7 @@ If `NotificationType` is **once**,  only first time when new app update is avail
 
  If `NotificationType` is **always**, `updateStatus` will always return `.newUpdateAvailable` if new optional app update is available.
  */
-public enum NotificationType: String, Codable {
+public enum NotificationType: String, Codable, CaseInsensitiveDecodable {
     case always = "ALWAYS"
     case once = "ONCE"
 
