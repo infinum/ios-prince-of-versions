@@ -6,7 +6,7 @@
 //
 
 
-protocol CaseInsensitiveDecodable: RawRepresentable, Codable where RawValue == String {}
+public protocol CaseInsensitiveDecodable: RawRepresentable, Decodable where RawValue == String {}
 
 extension CaseInsensitiveDecodable {
 	
