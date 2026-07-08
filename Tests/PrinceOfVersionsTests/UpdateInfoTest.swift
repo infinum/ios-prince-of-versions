@@ -129,4 +129,48 @@ class UpdateInfoTest: XCTestCase {
         XCTAssertNotNil(updateResult.updateInfo.requiredVersion, "Value for required version should not be nil")
         #endif
     }
+
+    // MARK: - CaseInsensitiveDecodable
+
+    func testNotificationTypeDecodesCaseInsensitively() throws {
+        for raw in ["ALWAYS", "Always", "always", "aLwAyS"] {
+            XCTAssertEqual(try decodeNotificationType(from: raw), .always, "'\(raw)' should decode to .always")
+        }
+        for raw in ["ONCE", "Once", "once", "oNcE"] {
+            XCTAssertEqual(try decodeNotificationType(from: raw), .once, "'\(raw)' should decode to .once")
+        }
+    }
+
+    func testNotificationTypeDecodingThrowsForUnknownValue() {
+        XCTAssertThrowsError(try decodeNotificationType(from: "sometimes"))
+    }
+
+    func testCheckingValidCaseInsensitiveNotificationContent() {
+        let bundle = Bundle(for: type(of: self))
+
+        var info: UpdateInfo?
+        if let jsonPath = bundle.path(forResource: "valid_update_case_insensitive_notification", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) {
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                info = try decoder.decode(UpdateInfo.self, from: data)
+            } catch let error {
+                XCTFail("Mixed-case notification frequency should decode without error: \(error.localizedDescription)")
+            }
+        }
+
+        guard let updateInfo = info else {
+            XCTFail("Update info should not be nil")
+            return
+        }
+
+        let updateResult = UpdateResult(updateInfo: updateInfo)
+        let notificationType = updateResult.updateInfo.notificationType
+        XCTAssertTrue([.always, .once].contains(notificationType), "Notification type should resolve to a valid value")
+    }
+
+    private func decodeNotificationType(from raw: String) throws -> NotificationType {
+        let data = Data("\"\(raw)\"".utf8)
+        return try JSONDecoder().decode(NotificationType.self, from: data)
+    }
 }

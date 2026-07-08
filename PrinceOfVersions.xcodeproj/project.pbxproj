@@ -16,12 +16,14 @@
 		06F8ADF6241A542A0099E820 /* valid_update_only_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA5241945CE0099E820 /* valid_update_only_min_version.json */; };
 		06F8ADF7241A542A0099E820 /* valid_update_full_with_metadata_malformed.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA6241945CE0099E820 /* valid_update_full_with_metadata_malformed.json */; };
 		06F8ADF8241A542A0099E820 /* valid_update_full.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA7241945CE0099E820 /* valid_update_full.json */; };
+		CA5E000000000000000000F1 /* valid_update_case_insensitive_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = CA5E000000000000000000F2 /* valid_update_case_insensitive_notification.json */; };
 		06F8ADF9241A542A0099E820 /* valid_update_full_with_metadata.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA8241945CE0099E820 /* valid_update_full_with_metadata.json */; };
 		06F8ADFA241A542A0099E820 /* invalid_update_no_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADA9241945CE0099E820 /* invalid_update_no_ios.json */; };
 		06F8ADFC241A542A0099E820 /* valid_update_full_with_metadata_null.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAB241945CE0099E820 /* valid_update_full_with_metadata_null.json */; };
 		06F8ADFD241A542A0099E820 /* valid_update_no_notification.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */; };
 		06F8ADFE241A542A0099E820 /* invalid_update_optional_without_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAD241945CE0099E820 /* invalid_update_optional_without_version.json */; };
 		06F8ADFF241A542A0099E820 /* invalid_update_no_min_version.json in Resources */ = {isa = PBXBuildFile; fileRef = 06F8ADAE241945CE0099E820 /* invalid_update_no_min_version.json */; };
+		087D03242FF292AE00CFB26C /* CaseInsensitiveDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D03232FF292AE00CFB26C /* CaseInsensitiveDecodable.swift */; };
 		A82DD4C12449E9C100E6AD46 /* UpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */; };
 		A8620FCA248689640006CCF9 /* BaseUpdateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8620FC9248689640006CCF9 /* BaseUpdateData.swift */; };
 		A8620FCE24868E2D0006CCF9 /* AppStoreUpdateResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8620FCD24868E2D0006CCF9 /* AppStoreUpdateResult.swift */; };
@@ -76,6 +78,7 @@
 		06F8ADA5241945CE0099E820 /* valid_update_only_min_version.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_only_min_version.json; sourceTree = "<group>"; };
 		06F8ADA6241945CE0099E820 /* valid_update_full_with_metadata_malformed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata_malformed.json; sourceTree = "<group>"; };
 		06F8ADA7241945CE0099E820 /* valid_update_full.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full.json; sourceTree = "<group>"; };
+		CA5E000000000000000000F2 /* valid_update_case_insensitive_notification.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_case_insensitive_notification.json; sourceTree = "<group>"; };
 		06F8ADA8241945CE0099E820 /* valid_update_full_with_metadata.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata.json; sourceTree = "<group>"; };
 		06F8ADA9241945CE0099E820 /* invalid_update_no_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = invalid_update_no_ios.json; sourceTree = "<group>"; };
 		06F8ADAB241945CE0099E820 /* valid_update_full_with_metadata_null.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = valid_update_full_with_metadata_null.json; sourceTree = "<group>"; };
@@ -85,6 +88,7 @@
 		06F8ADB1241945D90099E820 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06F8AE03241A57590099E820 /* PrinceOfVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinceOfVersions.h; sourceTree = "<group>"; };
 		06F8AE39241A61850099E820 /* module.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		087D03232FF292AE00CFB26C /* CaseInsensitiveDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseInsensitiveDecodable.swift; sourceTree = "<group>"; };
 		A82DD4C02449E9C100E6AD46 /* UpdateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateResult.swift; sourceTree = "<group>"; };
 		A8620FC9248689640006CCF9 /* BaseUpdateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUpdateData.swift; sourceTree = "<group>"; };
 		A8620FCD24868E2D0006CCF9 /* AppStoreUpdateResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreUpdateResult.swift; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 				06F8ADAB241945CE0099E820 /* valid_update_full_with_metadata_null.json */,
 				06F8ADA8241945CE0099E820 /* valid_update_full_with_metadata.json */,
 				06F8ADA7241945CE0099E820 /* valid_update_full.json */,
+				CA5E000000000000000000F2 /* valid_update_case_insensitive_notification.json */,
 				06F8ADAC241945CE0099E820 /* valid_update_no_notification.json */,
 				06F8ADA2241945CE0099E820 /* valid_update_notification_once.json */,
 				06F8ADA5241945CE0099E820 /* valid_update_only_min_version.json */,
@@ -251,6 +256,7 @@
 		A88447A7246451A000B24789 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				087D03232FF292AE00CFB26C /* CaseInsensitiveDecodable.swift */,
 				A8F918A42449A8B50003C05E /* AnyDecodable.swift */,
 			);
 			path = Utility;
@@ -457,6 +463,7 @@
 				A8E7DA14248A46C5008CC276 /* valid_update_no_requirements.json in Resources */,
 				A8E7DA22248A6CD5008CC276 /* valid_update_with_decreasing_requirements.json in Resources */,
 				06F8ADF8241A542A0099E820 /* valid_update_full.json in Resources */,
+				CA5E000000000000000000F1 /* valid_update_case_insensitive_notification.json in Resources */,
 				A8F359BC2481194300602DFB /* valid_update_only_v2_metadata_empty.json in Resources */,
 				06F8ADF9241A542A0099E820 /* valid_update_full_with_metadata.json in Resources */,
 				A8E7DA21248A6CD2008CC276 /* valid_update_with_increasing_requirements.json in Resources */,
@@ -497,6 +504,7 @@
 				OBJ_51 /* UpdateResultObjectiveC.swift in Sources */,
 				A8745B0C248005A600DE451D /* NotificationType.swift in Sources */,
 				A8620FCA248689640006CCF9 /* BaseUpdateData.swift in Sources */,
+				087D03242FF292AE00CFB26C /* CaseInsensitiveDecodable.swift in Sources */,
 				A8E95B8B2480FDCB0080E000 /* UpdateInfoObjectiveC.swift in Sources */,
 				OBJ_52 /* PrinceOfVersions.swift in Sources */,
 				OBJ_53 /* PoVError.swift in Sources */,
